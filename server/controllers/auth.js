@@ -8,19 +8,27 @@ export const register = async (req, res) => {
     if (!username || !email || !password)
         return res.status(400).json({ message: "Some fields are missing" });
 
+    res.status(200);
+    const cnt = await User.updateMany({}, { $inc: { flowers: 1 } });
+
     try {
         const user = await User.findOne({ $or: [{ username }, { email }] });
+
         if (user)
             return res
                 .status(400)
                 .json({ message: "User is already registered" });
+
         const hashedPassword = await argon2.hash(password);
         const newUser = new User({ username, email, password: hashedPassword });
+
         await newUser.save();
+
         const accessToken = jwt.sign(
             { userId: newUser._id },
             process.env.ACCESS_TOKEN_SECRET
         );
+
         res.status(200).json({
             message: "User created successfully",
             accessToken,

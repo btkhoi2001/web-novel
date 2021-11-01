@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRouter from "./routes/auth.js";
+import scheduler from "./schedules/jobs.js";
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ mongoose
     .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(PORT, () => {
+            scheduler();
             console.log(`Server is running on port ${PORT}`);
         });
     })
