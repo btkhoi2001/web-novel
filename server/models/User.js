@@ -17,6 +17,10 @@ const schema = new mongoose.Schema(
             required: true,
         },
         avatar: String,
+        description: {
+            type: String,
+            maxLength: 200,
+        },
         isVerified: {
             type: Boolean,
             default: false,

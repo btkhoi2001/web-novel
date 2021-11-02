@@ -8,7 +8,7 @@ const schema = new mongoose.Schema(
         },
         description: {
             type: String,
-            maxLength: 200,
+            maxLength: 500,
         },
         views: {
             type: Number,
