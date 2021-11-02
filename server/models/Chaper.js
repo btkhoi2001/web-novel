@@ -11,7 +11,7 @@ const schema = new mongoose.Schema(
             maxLength: 100,
         },
         content: String,
-        novel: {
+        novelId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "novels",
             required: true,
