@@ -19,7 +19,7 @@ const schema = new mongoose.Schema(
             default: 0,
         },
         cover: String,
-        author: {
+        authorId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "users",
             required: true,
