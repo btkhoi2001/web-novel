@@ -3,24 +3,25 @@ import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
 
 export const register = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { email, displayName, password } = req.body;
 
-    if (!username || !email || !password)
+    if (!email || !displayName || !password)
         return res.status(400).json({ message: "Some fields are missing" });
 
-    res.status(200);
-    const cnt = await User.updateMany({}, { $inc: { flowers: 1 } });
-
     try {
-        const user = await User.findOne({ $or: [{ username }, { email }] });
+        const user = await User.findOne({ email });
 
         if (user)
             return res
                 .status(400)
-                .json({ message: "User is already registered" });
+                .json({ message: "Email is already registered" });
 
         const hashedPassword = await argon2.hash(password);
-        const newUser = new User({ username, email, password: hashedPassword });
+        const newUser = new User({
+            email,
+            displayName,
+            password: hashedPassword,
+        });
 
         await newUser.save();
 
@@ -34,13 +35,13 @@ export const register = async (req, res) => {
             accessToken,
         });
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ error });
     }
 };
 
 export const login = async (req, res) => {
     try {
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json({ error });
     }
 };

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import validator from "validator";
 import Inc from "mongoose-sequence";
 const AutoIncrement = Inc(mongoose);
 
@@ -8,11 +9,11 @@ const schema = new mongoose.Schema(
             type: String,
             required: true,
             unique: true,
+            validate: [validator.isEmail, "Invalid email"],
         },
-        username: {
+        displayName: {
             type: String,
             required: true,
-            unique: true,
         },
         password: {
             type: String,
