@@ -7,13 +7,13 @@ const schema = new mongoose.Schema(
             ref: "users",
             required: true,
         },
-        commentId: {
+        novelId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "comments",
+            ref: "novels",
             required: true,
         },
     },
     { timestamps: true }
 );
 
-export const CommentLike = mongoose.model("commentLike", schema);
+export const Novel = mongoose.model("novels", schema);

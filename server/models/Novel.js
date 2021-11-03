@@ -24,6 +24,10 @@ const schema = new mongoose.Schema(
             ref: "users",
             required: true,
         },
+        genres: {
+            type: [mongoose.Schema.Types.ObjectId],
+            ref: "genres",
+        },
     },
     { timestamps: true }
 );
