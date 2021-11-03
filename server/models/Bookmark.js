@@ -16,4 +16,4 @@ const schema = new mongoose.Schema(
     { timestamps: true }
 );
 
-export const Novel = mongoose.model("novels", schema);
+export const Bookmark = mongoose.model("bookmarks", schema);
