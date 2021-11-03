@@ -8,8 +8,11 @@ export const verifyToken = (req, res, next) => {
         return res.status(401).json({ message: "Access token not found" });
 
     try {
-        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        req.userId = decoded;
+        const decoded = jwt.verify(
+            accessToken,
+            process.env.ACCESS_TOKEN_SECRET
+        );
+        req.userId = decoded.userId;
 
         next();
     } catch (error) {
