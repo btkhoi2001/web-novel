@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="./asset/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="./asset/css/bootstrap-utilities.min.css">
+    <link rel="stylesheet" href="./asset/css/base.css">
+    <link rel="stylesheet" href="./asset/css/style.css">
+    <script type="text/javascript" src="./asset/js/jquery-3.6.0.js"></script>
+    <title>Đọc truyện online - SimplePoLL</title>
+</head>
+<body>
+   <div class="main">
+        <header id="header">
+            <div class="container-xl">
+                <div class="searchbar">               
+                    <div class="searchbar-item">
+                        <a href="#" class="logo"><h1>Simple<span style="color: #F18121;">PoLL</span></h1></a>
+                    </div>
+                    <div class="searchbar-item search d-none d-lg-flex">
+                        <input type="search" class="search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
+                        <div class="search-select-btn"><i class="fas fa-search"></i></div>
+                    </div>
+                    <div class="searchbar-item d-none d-lg-block">
+                        <div class="searchbar-btn sign-up"><a href="#">Đăng kí</a></div>
+                        <div class="searchbar-btn sign-in"><a href="#">Đăng nhập</a></div>
+                    </div>
+                
+                    <div id="mobile-menu" class="mobile-menu-btn d-lg-none">
+                        <!-- <div><i class="fas fa-home"></i></div>
+                        <div><i class="fas fa-bell"></i></div>
+                        <div><i class="fas fa-search"></i></div>
+                        <div><i class="fas fa-user-circle"></i></div> -->
+                        <div><i class="fas fa-bars"></i></div>
+                    </div>
+                </div>
+
+                <ul class="navbar d-none d-lg-block">
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"><i class="fas fa-home navbar-icon"></i> Trang chủ </a>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Danh sách <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-normal">
+                            <a href="#">Truyện mới cập nhật</a>
+                            <a href="#">Truyện Hot</a>
+                            <a href="#">Truyện Full</a>
+                            <a href="#">Tiên Hiệp Hay</a>
+                            <a href="#">Kiếm Hiệp Hay</a>
+                            <a href="#">Truyện teen Hay</a>
+                            <a href="#">Ngôn Tình Hay</a>
+                            <a href="#">Ngôn Tình Sắc</a>
+                            <a href="#">Ngôn Tình Ngược</a>
+                            <a href="#">Ngôn Tình Sủng</a>
+                            <a href="#">Ngôn Tình Hài</a>
+                            <a href="#">Đam Mỹ Hài</a>
+                            <a href="#">Đam Mỹ Hay</a>
+                            <a href="#">Đam Mỹ Sắc</a>
+                            <a href="#">Khác</a>
+                        </div>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Thể loại  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-fluid-container">
+                            <div class="droplist-fluid">
+                                <a href="#">Tiên Hiệp</a>
+                                <a href="#">Kiếm Hiệp</a>
+                                <a href="#">Ngôn Tình</a>
+                                <a href="#">Đam Mỹ</a>
+                                <a href="#">Quan Trường</a>
+                                <a href="#">Võng Du</a>
+                                <a href="#">Khoa Huyễn</a>
+                                <a href="#">Hệ Thống</a>
+                                <a href="#">Huyền Huyễn</a>
+                                <a href="#">Dị Giới</a>
+                                <a href="#">Dị Năng</a>
+                                <a href="#">Quân Sự</a>
+                                <a href="#">Lịch Sử</a>
+                                <a href="#">Xuyên Không</a>
+                                <a href="#">Xuyên Nhanh</a>
+                                <a href="#">Trọng Sinh</a>
+                                <a href="#">Trinh Thám</a>
+                                <a href="#">Thám Hiểm</a>
+                                <a href="#">Linh Dị</a>
+                                <a href="#">Sắc</a>
+                                <a href="#">Ngược</a>
+                                <a href="#">Sủng</a>
+                                <a href="#">Cung Đấu</a>
+                                <a href="#">Nữ Cường</a>
+                                <a href="#">Gia Đấu</a>
+                                <a href="#">Đông Phương</a>
+                                <a href="#">Đô Thị</a>
+                                <a href="#">Bách Hợp</a>
+                                <a href="#">Hài Hước</a>
+                                <a href="#">Điền Văn</a>
+                                <a href="#">Cổ đại</a>
+                                <a href="#">Mạt Thế</a>
+                                <a href="#">Truyện Teen</a>
+                                <a href="#">Phương Tây</a>
+                                <a href="#">Nữ Phụ</a>
+                                <a href="#">Light Novel</a>
+                                <a href="#">Việt Nam</a>
+                                <a href="#">Đoản Văn</a>
+                                <a href="#">Khác</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Phân loại theo chương  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-normal">
+                            <a href="#">Dưới 100 chương</a>
+                            <a href="#">100-500 chương</a>
+                            <a href="#">500-1000 chương</a>
+                            <a href="#">Trên 1000 chương</a>
+                        </div>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"> Bảng xếp hạng </a>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-sliders-h navbar-icon"></i>Phông nền  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-normal color-select">
+                            <a href="#" id="lightmode">Màu sáng</a>
+                            <a href="#" id="darkmode">Màu tối</a>
+                        </div>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"> <i class="far fa-bookmark navbar-icon"></i>Lịch sử </a>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"> <i class="far fa-bell navbar-icon"></i>Thông báo </a>
+                    </li> 
+                </ul>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="container-xl">
+                <div class="section col-xs-12">
+                    <div class="section__title">
+                       <div class="title">
+                            <h2><a href="#" title="Truyện hot">Truyện Hot <i class="fab fa-gripfire"></i></a></h2>
+                       </div>
+                       <select id="hot-select" class="form-control select-type" aria-label="Chọn thể loại">
+                            <option value="all">Tất cả</option>
+                            <option value="1">Tiên Hiệp</option>
+                            <option value="2">Kiếm Hiệp</option>
+                            <option value="3">Ngôn Tình</option>
+                            <option value="4">Đam Mỹ</option>
+                            <option value="5">Quan Trường</option>
+                            <option value="6">Võng Du</option>
+                            <option value="7">Khoa Huyễn</option>
+                            <option value="8">Hệ thống</option>
+                            <option value="9">Huyền Huyễn</option>
+                            <option value="10">Dị Giới</option>
+                            <option value="11">Dị Năng</option>
+                            <option value="12">Quân Sự</option>
+                            <option value="13">Lịch SỬ</option>
+                            <option value="14">Xuyên Không</option>
+                            <option value="15">Xuyên Nhanh</option>
+                            <option value="16">Trọng SInh</option>
+                            <option value="17">Trinh thám</option>
+                            <option value="18">Thám hiểm</option>
+                            <option value="19">Sắc</option>
+                            <option value="20">Ngược</option>
+                            <option value="21">Sủng</option>
+                            <option value="22">Cung Đấu</option>
+                            <option value="23">Nữ Cường</option>
+                            <option value="24">Gia Đấu</option>
+                            <option value="25">Đông Phương</option>
+                            <option value="26">Đô Thị </option>
+                            <option value="27">Bách Hợp </option>
+                            <option value="28">Hài Hước</option>
+                            <option value="29">Điền Văn</option>
+                            <option value="30">Cổ Đại</option>
+                            <option value="31">Mạt Thế</option>
+                            <option value="32">Truyện Teen</option>
+                            <option value="33">Phương Tây</option>
+                            <option value="34">Nữ Phụ</option>
+                            <option value="35">Light Novel</option>
+                            <option value="36">Việt Nam</option>
+                            <option value="37">Đoản Văn</option>
+                            <option value="38">Khác</option>
+                       </select>
+                    </div>
+                    <div class="section__list row">
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                 <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <span class="item__fulllabel"></span>
+                                <img src="./asset/img/truyen-than-khong-thien-ha.jpg" alt="Thần khống thiên ha" class="item__img">
+                                <div class="item__title">
+                                    <h3 class = "novel-title" itemprop="name">Thần Khống Thiên Hạ</h3>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="section col-xs-12">
+                    <div class="section__title">
+                       <div class="title">
+                            <h2><a href="#" title="Truyện mới cập nhật">Truyện Mới Cập Nhật <i class="fas fa-angle-right"></i></a></h2>
+                       </div>
+                    </div>
+                    <div class="section__list row">
+
+                    </div>
+                </div>
+
+
+                <div class="section col-xs-12">
+                    <div class="section__title">
+                       <div class="title">
+                            <h2><a href="#" title="Truyện đã hoàn thành">Truyện Đã Hoàn Thành <i class="fas fa-angle-right"></i></a></h2>
+                       </div>
+                    </div>
+                     <div class="section__list row">
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/cong-luoc-trai-tim-215x322.jpg" alt="Công Lược Trái Tim" title="Công Lược Trái Tim" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Công Lược Trái Tim</h3>
+                                    <small class="fullepisode">Full - 250 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/anchoi-215x322.jpg" alt="Gả Ăn Chơi Trác Táng " title="Gả Ăn Chơi Trác Táng " class="item__img">
+                                 <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Gả Ăn Chơi Trác Táng</h3>
+                                    <small class="fullepisode">Full - 165 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/bacsyhuhong-215x322.jpg" alt="Này Bác Sĩ Hư Hỏng Em Yêu Anh" title="Này Bác Sĩ Hư Hỏng Em Yêu Anh" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Này Bác Sĩ Hư Hỏng Em Yêu Anh</h3>
+                                    <small class="fullepisode">Full - 521 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/tuong-thanh-qua-phu-khi-con-tre.jpg" alt="Tưởng Thành Quả Phụ Khi Còn Trẻ" title="Tưởng Thành Quả Phụ Khi Còn Trẻ" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Tưởng Thành Quả Phụ Khi Còn Trẻ</h3>
+                                    <small class="fullepisode">Full - 103 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/nam-chu-benh-kieu-sung-len-troi.jpg" alt="Nam Chủ Bệnh Kiều Sủng Lên Trời" title="Nam Chủ Bệnh Kiều, Sủng Lên Trời" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Nam Chủ Bệnh Kiều Sủng Lên Trời</h3>
+                                    <small class="fullepisode">Full - 2128 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/de-nhat-my-nhan-thanh-truong-an.jpg" alt="Đệ Nhất Mỹ Nhân Thành Trường An" title="Đệ Nhất Mỹ Nhân Thành Trường An" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Đệ Nhất Mỹ Nhân Thành Trường An</h3>
+                                    <small class="fullepisode">Full - 137 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/Untitled-1-4-215x322.jpg" alt="Người Vợ Thứ 7 Của Tổng Tài Ác Ma" title="Người Vợ Thứ 7 Của Tổng Tài Ác Ma" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Người Vợ Thứ 7 Của Tổng Tài Ác Ma</h3>
+                                    <small class="fullepisode">Full - 550 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/chong-doc-tai-cu-cuong-hon-toi.jpg" alt="Chồng Độc Tài Cứ Cưỡng Hôn Tôi" title="Chồng Độc Tài Cứ Cưỡng Hôn Tôi" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Chồng Độc Tài Cứ Cưỡng Hôn Tôi</h3>
+                                    <small class="fullepisode">Full - 902 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/vu-su-649010.jpg" alt="Vu Sư" title="Vu Sư" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Vu Sư</h3>
+                                    <small class="fullepisode">Full - 156 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/duoi-vay-than-691341.jpg" alt="Dưới Váy Thần" title="Dưới Váy Thần" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">"Dưới Váy Thần</h3>
+                                    <small class="fullepisode">Full - 92 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/ha-canh-tren-trai-tim-anh.jpg" alt="Hạ Cánh Trên Trái Tim Anh" title="Hạ Cánh Trên Trái Tim Anh" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Hạ Cánh Trên Trái Tim Anh</h3>
+                                    <small class="fullepisode">Full - 87 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item col-lg-2 col-sm-3 col-4">
+                            <a href="#" class="">
+                                <img src="./asset/img/dau-nha-nong.jpg" alt="Dâu Nhà Nông" title="Dâu Nhà Nông" class="item__img">
+                                <div class="item__title">
+                                    <h3 class="novel-title" itemprop="name">Dâu Nhà Nông</h3>
+                                    <small class="fullepisode">Full - 107 chương</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+               
+            </div>
+        </div>
+
+        <footer id="footer">
+            <div class="social-list">
+                <a href=""><i class="fab fa-facebook-square"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-youtube"></i></a>
+                <a href=""><i class="fab fa-pinterest-p"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copy-right"> 
+                Copyright © 2021 - Đọc Truyện Chữ Hay Và Đầy Đủ. 
+                Maded by <a href="#">SimplePoLL</a>
+            </p>
+        </footer>
+
+   </div>
+
+    
+
+   <script> 
+      $("#darkmode").click(function(){
+        $("#header").css("background-color", "var(--header-dark-color)");
+        $("#footer").css("background-color", "var(--dark-background-color)");
+        $(".main").css("background-color", "var(--dark-background-color)");
+        $(".droplist-fluid").css("background-color", "var(--header-dark-color)");
+        $(".droplist-normal").css("background-color", "var(--header-dark-color)");
+        $(".fullepisode").css({
+            "color" : "var(--mint-color)",
+            "background-color": "var(--dark-background-color)",
+            "border" : "1px solid var(--mint-color)"
+        });
+        $(".novel-title").css("color" , "white");
+        $(".title a").css("color" , "white");
+      })
+
+      $("#lightmode").click(function(){
+        $("#header").css("background-color", "var(--header-light-color)");
+        $("#footer").css("background-color", "var(--header-light-color)");
+        $(".main").css("background-color", "var(--light-background-color)");
+        $(".droplist-fluid").css("background-color", "var(--header-light-color)");
+        $(".droplist-normal").css("background-color", "var(--header-light-color)");
+        $(".fullepisode").css({
+            "color" : "white",
+            "background-color": "#2A5893",
+            "border" : "none"
+        });
+        $(".novel-title").css("color" , "#4E4E4E");
+        $(".title a").css("color" , "#4E4E4E");
+      })
+
+   </script>
+
+
+
+</body>
+</html>
