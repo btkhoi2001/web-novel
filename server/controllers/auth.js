@@ -4,7 +4,7 @@ import { User } from "../models/User.js";
 
 export const loggedIn = async (req, res) => {
     try {
-        if (!(await User.exists({ _id: req.userId })))
+        if (!(await User.exists({ _id: req.body.userId })))
             return res.status(401).json({ message: "User not found" });
 
         res.status(200).json({ message: "User is already logged in" });

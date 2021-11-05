@@ -12,7 +12,7 @@ export const verifyToken = (req, res, next) => {
             accessToken,
             process.env.ACCESS_TOKEN_SECRET
         );
-        req.userId = decoded.userId;
+        req.body.userId = decoded.userId;
 
         next();
     } catch (error) {

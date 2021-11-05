@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRouter from "./routes/auth.js";
+import novelRouter from "./routes/novel.js";
 import scheduler from "./schedules/jobs.js";
 
 dotenv.config();
@@ -12,6 +13,7 @@ const URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@webnove
 
 app.use(express.json({ limit: "50mb" }));
 app.use("/api/auth", authRouter);
+app.use("/api/novel", novelRouter);
 
 mongoose
     .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })

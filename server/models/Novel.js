@@ -11,6 +11,7 @@ const schema = new mongoose.Schema(
         description: {
             type: String,
             maxLength: 500,
+            default: "",
         },
         views: {
             type: Number,
