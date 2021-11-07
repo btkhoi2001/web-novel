@@ -30,7 +30,6 @@ export const register = async (req, res) => {
             email,
             displayName,
             password: hashedPassword,
-            isAuthor: true,
         });
 
         await newUser.save();

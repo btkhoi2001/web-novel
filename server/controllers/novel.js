@@ -15,11 +15,7 @@ export const getNovelById = async (req, res) => {
     try {
         const novel = await Novel.findOne({ novelId });
 
-        if (!novel)
-            res.status(404).json({
-                message: `novelId ${novelId} doesn't exist`,
-            });
-        else res.status(200).json({ novel });
+        res.status(200).json({ novel });
     } catch (error) {
         res.status(500).json({ error });
     }
@@ -70,3 +66,5 @@ export const updateNovel = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+
+export const deleteNovel = async (req, res) => {};
