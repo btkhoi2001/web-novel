@@ -5,6 +5,10 @@ const AutoIncrement = Inc(mongoose);
 
 const schema = new mongoose.Schema(
     {
+        userId: {
+            type: Number,
+            unique: true,
+        },
         email: {
             type: String,
             required: true,
@@ -44,6 +48,6 @@ const schema = new mongoose.Schema(
     { timestamps: true }
 );
 
-schema.plugin(AutoIncrement, { inc_field: "userNo" });
+schema.plugin(AutoIncrement, { inc_field: "userId" });
 
 export const User = mongoose.model("users", schema);

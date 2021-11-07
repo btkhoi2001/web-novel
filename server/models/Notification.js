@@ -2,9 +2,8 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema(
     {
-        receiver: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "users",
+        receiverId: {
+            type: Number,
             required: true,
         },
         message: String,

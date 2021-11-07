@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema(
     {
-        chapterNo: {
+        chapterId: {
             type: Number,
-            require: true,
+            unique: true,
         },
         title: {
             type: String,
@@ -12,12 +12,13 @@ const schema = new mongoose.Schema(
         },
         content: String,
         novelId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "novels",
+            type: Number,
             required: true,
         },
     },
     { timestamps: true }
 );
+
+schema.plugin(AutoIncrement, { inc_field: "chaperId" });
 
 export const Chapter = mongoose.model("chapters", schema);

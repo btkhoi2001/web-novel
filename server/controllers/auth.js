@@ -30,12 +30,13 @@ export const register = async (req, res) => {
             email,
             displayName,
             password: hashedPassword,
+            isAuthor: true,
         });
 
         await newUser.save();
 
         const accessToken = jwt.sign(
-            { userId: newUser._id },
+            { userId: newUser.userId },
             process.env.ACCESS_TOKEN_SECRET
         );
 

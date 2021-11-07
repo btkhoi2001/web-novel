@@ -2,20 +2,16 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema(
     {
+        CommentId: {
+            type: Number,
+            unique: true,
+        },
         userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "users",
+            type: Number,
             required: true,
         },
-        chapterId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "chapters",
-            required: true,
-        },
-        parentCommentId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "comments",
-        },
+        chapterId: Number,
+        parentCommentId: Number,
         content: {
             type: String,
             required: true,
@@ -23,5 +19,7 @@ const schema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+schema.plugin(AutoIncrement, { inc_field: "commentId" });
 
 export const Comment = mongoose.model("comments", schema);

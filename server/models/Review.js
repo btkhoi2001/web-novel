@@ -2,20 +2,19 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema(
     {
+        reviewId: {
+            type: Number,
+            unique: true,
+        },
         userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "users",
+            type: Number,
             required: true,
         },
         novelId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "novels",
+            type: Number,
             required: true,
         },
-        parentReviewId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "reviews",
-        },
+        parentReviewId: Number,
         content: {
             type: String,
             required: true,
@@ -28,5 +27,7 @@ const schema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+schema.plugin(AutoIncrement, { inc_field: "reviewId" });
 
 export const Review = mongoose.model("reviews", schema);

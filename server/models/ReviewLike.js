@@ -3,13 +3,11 @@ import mongoose from "mongoose";
 const schema = new mongoose.Schema(
     {
         userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "users",
+            type: Number,
             required: true,
         },
         reviewId: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "reviews",
+            type: Number,
             required: true,
         },
     },

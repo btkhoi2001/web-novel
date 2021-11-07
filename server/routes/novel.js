@@ -6,6 +6,7 @@ import { verifyAuthor } from "../middlewares/novel.js";
 const router = express.Router();
 
 router.get("/", getNovel);
+router.get("/:novelId",);
 router.post("/", verifyToken, verifyAuthor, createNovel);
 
 export default router;

@@ -4,6 +4,10 @@ const AutoIncrement = Inc(mongoose);
 
 const schema = new mongoose.Schema(
     {
+        novelId: {
+            type: Number,
+            unique: true,
+        },
         title: {
             type: String,
             required: true,
@@ -23,18 +27,17 @@ const schema = new mongoose.Schema(
         },
         cover: String,
         authorId: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Number,
             ref: "users",
             required: true,
         },
         genres: {
             type: [mongoose.Schema.Types.ObjectId],
-            ref: "genres",
         },
     },
     { timestamps: true }
 );
 
-schema.plugin(AutoIncrement, { inc_field: "novelNo" });
+schema.plugin(AutoIncrement, { inc_field: "novelId" });
 
 export const Novel = mongoose.model("novels", schema);
