@@ -67,4 +67,13 @@ export const updateNovel = async (req, res) => {
     }
 };
 
-export const deleteNovel = async (req, res) => {};
+export const deleteNovel = async (req, res) => {
+    const { novelId } = req.params;
+
+    try {
+        const deletedNovel = await Novel.findOneAndDelete({ novelId });
+        res.status(200).json({ deletedNovel });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};

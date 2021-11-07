@@ -4,6 +4,7 @@ import {
     getNovelById,
     createNovel,
     updateNovel,
+    deleteNovel,
 } from "../controllers/novel.js";
 import { verifyToken } from "../middlewares/auth.js";
 import {
@@ -24,6 +25,14 @@ router.put(
     verifyAuthor,
     verifyOwnership,
     updateNovel
+);
+router.delete(
+    "/:novelId",
+    verifyToken,
+    verifyNovelId,
+    verifyAuthor,
+    verifyOwnership,
+    deleteNovel
 );
 
 export default router;
