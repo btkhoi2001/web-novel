@@ -4,7 +4,7 @@ export const verifyAuthor = async (req, res, next) => {
     try {
         const user = await User.findOne({ userId: req.body.userId });
 
-        if (!user.isAuthor)
+        if (!user.isAuthor && !user.isAdmin)
             return res.status(401).json({
                 message: "This user has no permission to upload novel",
             });

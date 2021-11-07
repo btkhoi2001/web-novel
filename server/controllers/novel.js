@@ -49,3 +49,24 @@ export const createNovel = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+
+export const updateNovel = async (req, res) => {
+    const { title, description, cover, genres } = req.body;
+
+    try {
+        const updatedNovel = await Novel.findOneAndUpdate(
+            { novelId: req.params.novelId },
+            {
+                title,
+                description,
+                cover,
+                genres,
+            },
+            { new: true }
+        );
+
+        res.status(200).json({ updatedNovel });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
