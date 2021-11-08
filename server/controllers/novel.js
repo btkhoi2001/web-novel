@@ -38,8 +38,8 @@ export const createNovel = async (req, res) => {
         await newNovel.save();
 
         res.status(201).json({
-            newNovel,
             message: "Novel created successfully",
+            newNovel,
         });
     } catch (error) {
         res.status(500).json({ error });
@@ -61,7 +61,10 @@ export const updateNovel = async (req, res) => {
             { new: true }
         );
 
-        res.status(200).json({ updatedNovel });
+        res.status(200).json({
+            message: "Novel updated successfully",
+            updatedNovel,
+        });
     } catch (error) {
         res.status(500).json({ error });
     }

@@ -4,10 +4,14 @@ import { User } from "../models/User.js";
 
 export const loggedIn = async (req, res) => {
     try {
-        if (!(await User.exists({ _id: req.body.userId })))
-            return res.status(401).json({ message: "User not found" });
+        const user = await User.findOne({ userId: req.body.userId });
+        if (!user) return res.status(401).json({ message: "User not found" });
 
-        res.status(200).json({ message: "User is already logged in" });
+        res.status(200).json({
+            message: "User is already logged in",
+            email: user.email,
+            displayName: user.displayName,
+        });
     } catch (error) {
         res.status(500).json({ error });
     }
