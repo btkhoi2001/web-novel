@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="./asset/css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="./asset/css/bootstrap-utilities.min.css">
+    <link rel="stylesheet" href="./asset/css/bootstrap.min.css">
     <link rel="stylesheet" href="./asset/css/base.css">
     <link rel="stylesheet" href="./asset/css/style.css">
+    <link rel="stylesheet" href="./asset/css/responsive.css">
     <script type="text/javascript" src="./asset/js/jquery-3.6.0.js"></script>
     <title>Đọc truyện online - SimplePoLL</title>
 </head>
@@ -34,14 +34,14 @@
                         <!-- <div><i class="fas fa-home"></i></div>
                         <div><i class="fas fa-bell"></i></div>
                         <div><i class="fas fa-search"></i></div>
-                        <div><i class="fas fa-user-circle"></i></div> -->
-                        <div><i class="fas fa-bars"></i></div>
+                        <div class="account-btn"><i class="fas fa-user-circle"></i></div> -->
+                        <div class="mobile-navbar-btn"><i class="fas fa-bars"></i></div>
                     </div>
                 </div>
 
                 <ul class="navbar d-none d-lg-block">
                     <li class="navbar-items">
-                        <a href="#" class="item-link"><i class="fas fa-home navbar-icon"></i> Trang chủ </a>
+                        <a href="#" class="item-link"><i class="fas fa-home navbar-icon"></i>Trang chủ </a>
                     </li>
                     <li class="navbar-items dropdown">
                         <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Danh sách <i class="fas fa-sort-down navbar-arrow-down"></i></a>
@@ -119,7 +119,7 @@
                         </div>
                     </li>
                     <li class="navbar-items">
-                        <a href="#" class="item-link"> Bảng xếp hạng </a>
+                        <a href="#" class="item-link"><i class="far fa-chart-bar navbar-icon"></i> Bảng xếp hạng </a>
                     </li>
                     <li class="navbar-items dropdown">
                         <a href="#" class="item-link"> <i class="fas fa-sliders-h navbar-icon"></i>Phông nền  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
@@ -133,6 +133,100 @@
                     </li>
                     <li class="navbar-items">
                         <a href="#" class="item-link"> <i class="far fa-bell navbar-icon"></i>Thông báo </a>
+                    </li> 
+                </ul>
+
+                <ul class="mobile-navbar d-none">
+                    <li class="mobile-navbar-items mn1 ">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Danh sách <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist md1 d-none">
+                            <li><a href="#">Truyện mới cập nhật</a></li>
+                            <li><a href="#">Truyện Hot</a></li>
+                            <li><a href="#">Truyện Full</a></li>
+                            <li><a href="#">Tiên Hiệp Hay</a></li>
+                            <li><a href="#">Kiếm Hiệp Hay</a></li>
+                            <li><a href="#">Truyện teen Hay</a></li>
+                            <li><a href="#">Ngôn Tình Hay</a></li>
+                            <li><a href="#">Ngôn Tình Sắc</a></li>
+                            <li><a href="#">Ngôn Tình Ngược</a></li>
+                            <li><a href="#">Ngôn Tình Sủng</a></li>
+                            <li><a href="#">Ngôn Tình Hài</a></li>
+                            <li><a href="#">Đam Mỹ Hài</a></li>
+                            <li><a href="#">Đam Mỹ Hay</a></li>
+                            <li><a href="#">Đam Mỹ Sắc</a></li>
+                            <li><a href="#">Khác</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items mn2">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Thể loại  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist md2 d-none">
+                            <!-- <div class="droplist-fluid"> -->
+                                <li><a href="#">Tiên Hiệp</a></li>
+                                <li><a href="#">Kiếm Hiệp</a></li>
+                                <li><a href="#">Ngôn Tình</a></li>
+                                <li><a href="#">Đam Mỹ</a></li>
+                                <li><a href="#">Quan Trường</a></li>
+                                <li><a href="#">Võng Du</a></li>
+                                <li><a href="#">Khoa Huyễn</a></li>
+                                <li><a href="#">Hệ Thống</a></li>
+                                <li><a href="#">Huyền Huyễn</a></li>
+                                <li><a href="#">Dị Giới</a></li>
+                                <li><a href="#">Dị Năng</a></li>
+                                <li><a href="#">Quân Sự</a></li>
+                                <li><a href="#">Lịch Sử</a></li>
+                                <li><a href="#">Xuyên Không</a></li>
+                                <li><a href="#">Xuyên Nhanh</a></li>
+                                <li><a href="#">Trọng Sinh</a></li>
+                                <li><a href="#">Trinh Thám</a></li>
+                                <li><a href="#">Thám Hiểm</a></li>
+                                <li><a href="#">Linh Dị</a></li>
+                                <li><a href="#">Sắc</a></li>
+                                <li><a href="#">Ngược</a></li>
+                                <li><a href="#">Sủng</a></li>
+                                <li><a href="#">Cung Đấu</a></li>
+                                <li><a href="#">Nữ Cường</a></li>
+                                <li><a href="#">Gia Đấu</a></li>
+                                <li><a href="#">Đông Phương</a></li>
+                                <li><a href="#">Đô Thị</a></li>
+                                <li><a href="#">Bách Hợp</a></li>
+                                <li><a href="#">Hài Hước</a></li>
+                                <li><a href="#">Điền Văn</a></li>
+                                <li><a href="#">Cổ đại</a></li>
+                                <li><a href="#">Mạt Thế</a></li>
+                                <li><a href="#">Truyện Teen</a></li>
+                                <li><a href="#">Phương Tây</a></li>
+                                <li><a href="#">Nữ Phụ</a></li>
+                                <li><a href="#">Light Novel</a></li>
+                                <li><a href="#">Việt Nam</a></li>
+                                <li><a href="#">Đoản Văn</a></li>
+                                <li><a href="#">Khác</a></li>
+                            <!-- </div> -->
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items mn3">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Phân loại theo chương  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist md3 d-none">
+                            <li><a href="#">Dưới 100 chương</a></li>
+                            <li><a href="#">100-500 chương</a></li>
+                            <li><a href="#">500-1000 chương</a></li>
+                            <li><a href="#">Trên 1000 chương</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"><i class="far fa-chart-bar  mobile-navbar-icon"></i> Bảng xếp hạng </a>
+                    </li>
+                    <li class="mobile-navbar-items mn4">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-sliders-h mobile-navbar-icon"></i> Phông nền  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist md4 d-none">
+                            <li><a href="#" id="lightmode">Màu sáng</a></li>
+                            <li><a href="#" id="darkmode">Màu tối</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="far fa-bookmark mobile-navbar-icon"></i> Lịch sử </a>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="far fa-bell mobile-navbar-icon"></i> Thông báo </a>
                     </li> 
                 </ul>
             </div>
@@ -454,36 +548,64 @@
 
     
 
-   <script> 
-      $("#darkmode").click(function(){
-        $("#header").css("background-color", "var(--header-dark-color)");
-        $("#footer").css("background-color", "var(--dark-background-color)");
-        $(".main").css("background-color", "var(--dark-background-color)");
-        $(".droplist-fluid").css("background-color", "var(--header-dark-color)");
-        $(".droplist-normal").css("background-color", "var(--header-dark-color)");
-        $(".fullepisode").css({
-            "color" : "var(--mint-color)",
-            "background-color": "var(--dark-background-color)",
-            "border" : "1px solid var(--mint-color)"
-        });
-        $(".novel-title").css("color" , "white");
-        $(".title a").css("color" , "white");
-      })
+   <script>
+        function showDarkBackground(){
+            $("#header").css("background-color", "var(--header-dark-color)");
+            $("#footer").css("background-color", "var(--dark-background-color)");
+            $(".main").css("background-color", "var(--dark-background-color)");
+            $(".droplist-fluid").css("background-color", "var(--header-dark-color)");
+            $(".droplist-normal").css("background-color", "var(--header-dark-color)");
+            $(".fullepisode").css({
+                "color" : "var(--mint-color)",
+                "background-color": "var(--dark-background-color)",
+                "border" : "1px solid var(--mint-color)"
+            });
+            $(".novel-title").css("color" , "white");
+            $(".title a").css("color" , "white");
+        }
+        function showLightBackground(){
+            $("#header").css("background-color", "var(--header-light-color)");
+            $("#footer").css("background-color", "var(--header-light-color)");
+            $(".main").css("background-color", "var(--light-background-color)");
+            $(".droplist-fluid").css("background-color", "var(--header-light-color)");
+            $(".droplist-normal").css("background-color", "var(--header-light-color)");
+            $(".fullepisode").css({
+                "color" : "white",
+                "background-color": "#2A5893",
+                "border" : "none"
+            });
+            $(".novel-title").css("color" , "#4E4E4E");
+            $(".title a").css("color" , "#4E4E4E");
+        }
 
-      $("#lightmode").click(function(){
-        $("#header").css("background-color", "var(--header-light-color)");
-        $("#footer").css("background-color", "var(--header-light-color)");
-        $(".main").css("background-color", "var(--light-background-color)");
-        $(".droplist-fluid").css("background-color", "var(--header-light-color)");
-        $(".droplist-normal").css("background-color", "var(--header-light-color)");
-        $(".fullepisode").css({
-            "color" : "white",
-            "background-color": "#2A5893",
-            "border" : "none"
+        var backgroundColor = "light";
+        if(backgroundColor == "light")
+            showLightBackground();
+        else showDarkBackground();
+
+        $(".mobile-navbar-btn").click(function(){
+            $(".mobile-navbar").toggleClass('d-none');
         });
-        $(".novel-title").css("color" , "#4E4E4E");
-        $(".title a").css("color" , "#4E4E4E");
-      })
+        $(".mn1").click(function(){
+            $(".md1").toggleClass('d-none');
+        });
+        $(".mn2").click(function(){
+            $(".md2").toggleClass('d-none');
+        });
+        $(".mn3").click(function(){
+            $(".md3").toggleClass('d-none');
+        });
+        $(".mn4").click(function(){
+            $(".md4").toggleClass('d-none');
+        });
+        $("#darkmode").click(function(){
+            backgroundColor = "dark";
+            showDarkBackground();
+        });
+        $("#lightmode").click(function(){
+            backgroundColor = "light";
+            showLightBackground();
+        });
 
    </script>
 
