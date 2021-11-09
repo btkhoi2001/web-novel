@@ -1,9 +1,10 @@
 .mobile-navbar {
-    padding: 2rem;
+    padding-top: 1.2rem;
+    padding-bottom: 2rem;
 }
 .mobile-navbar-items {
-    color: white;
-    padding-bottom: 1rem;
+    color: #ffffff;
+    padding-bottom: 1.2rem;
 }
 .mobile-navbar-icon {
     font-size: 1.5rem;
@@ -32,7 +33,7 @@
         height:6rem;
     }
     .logo h1 {
-        font-size: 4rem;
+        font-size: 3.6rem;
     }
     .searchbar-item {
         padding: .2rem 0;
@@ -48,6 +49,24 @@
     }
     .select-type {
         width: 12rem;
+    }
+    .account {
+        display: flex;
+        justify-content: space-between;
+    }
+    .sign-up {
+        margin-right: .4rem;
+    }
+    .searchbar-btn {
+        flex:1;
+        line-height:3.6rem;
+    }
+    .searchbar-btn a {
+        font-size: 1.8rem;
+    }
+    .search {
+        padding: .4rem;
+        height: 3.2rem;
     }
 }
 
@@ -73,6 +92,24 @@
         max-width: 12.8rem;
         max-height: 19.2rem;
     }
+    .account {
+        display: flex;
+        justify-content: space-between;
+    }
+    .sign-up {
+        margin-right: .4rem;
+    }
+    .searchbar-btn {
+        flex:1;
+        line-height:3.6rem;
+    }
+    .searchbar-btn a {
+        font-size: 1.8rem;
+    }
+    .search {
+        padding: .4rem;
+        height: 3.2rem;
+    }
 }
 
 
@@ -84,7 +121,7 @@
         height:6rem;
     }
     .logo h1 {
-        font-size: 4rem;
+        font-size: 3.6rem;
     }
     .searchbar-item {
         padding: .2rem 0;
@@ -98,6 +135,17 @@
         max-width: 11.4rem;
         max-height: 18rem;
     }
+    .searchbar-btn {
+        line-height:3.6rem;
+        width: 13.6rem;
+    }
+    .searchbar-btn a {
+        font-size: 1.8rem;
+    }
+    .search {
+        padding: .4rem;
+        height: 3.2rem;
+    }
  }
 
 
@@ -110,7 +158,7 @@
         height:6rem;
     }
     .logo h1 {
-        font-size: 4rem;
+        font-size: 3.6rem;
     }
     .searchbar-item {
         padding: .2rem 0;
@@ -124,6 +172,17 @@
     .item__img {
         max-width: 16.8rem;
         max-height: 24.5rem;
+    }
+    .searchbar-btn {
+        line-height:3.6rem;
+        width: 13.6rem;
+    }
+    .searchbar-btn a {
+        font-size: 1.8rem;
+    }
+    .search {
+        padding: .4rem;
+        height: 3.2rem;
     }
 }
 

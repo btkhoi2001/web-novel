@@ -22,19 +22,15 @@
                         <a href="#" class="logo"><h1>Simple<span style="color: #F18121;">PoLL</span></h1></a>
                     </div>
                     <div class="searchbar-item search d-none d-lg-flex">
-                        <input type="search" class="search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
+                        <input type="search" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
                         <div class="search-select-btn"><i class="fas fa-search"></i></div>
                     </div>
                     <div class="searchbar-item d-none d-lg-block">
-                        <div class="searchbar-btn sign-up"><a href="#">Đăng kí</a></div>
-                        <div class="searchbar-btn sign-in"><a href="#">Đăng nhập</a></div>
+                        <div class="searchbar-btn sign-up"><a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">Đăng kí</a></div>
+                        <div class="searchbar-btn sign-in"><a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">Đăng nhập</a></div>
                     </div>
                 
                     <div id="mobile-menu" class="mobile-menu-btn d-lg-none">
-                        <!-- <div><i class="fas fa-home"></i></div>
-                        <div><i class="fas fa-bell"></i></div>
-                        <div><i class="fas fa-search"></i></div>
-                        <div class="account-btn"><i class="fas fa-user-circle"></i></div> -->
                         <div class="mobile-navbar-btn"><i class="fas fa-bars"></i></div>
                     </div>
                 </div>
@@ -137,9 +133,9 @@
                 </ul>
 
                 <ul class="mobile-navbar d-none">
-                    <li class="mobile-navbar-items mn1 ">
+                    <li class="mobile-navbar-items">
                         <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Danh sách <i class="fas fa-sort-down navbar-arrow-down"></i></a>
-                        <ul class="mobile-droplist md1 d-none">
+                        <ul class="mobile-droplist d-none">
                             <li><a href="#">Truyện mới cập nhật</a></li>
                             <li><a href="#">Truyện Hot</a></li>
                             <li><a href="#">Truyện Full</a></li>
@@ -157,10 +153,9 @@
                             <li><a href="#">Khác</a></li>
                         </ul>
                     </li>
-                    <li class="mobile-navbar-items mn2">
+                    <li class="mobile-navbar-items">
                         <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Thể loại  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
-                        <ul class="mobile-droplist md2 d-none">
-                            <!-- <div class="droplist-fluid"> -->
+                        <ul class="mobile-droplist d-none">
                                 <li><a href="#">Tiên Hiệp</a></li>
                                 <li><a href="#">Kiếm Hiệp</a></li>
                                 <li><a href="#">Ngôn Tình</a></li>
@@ -200,12 +195,11 @@
                                 <li><a href="#">Việt Nam</a></li>
                                 <li><a href="#">Đoản Văn</a></li>
                                 <li><a href="#">Khác</a></li>
-                            <!-- </div> -->
                         </ul>
                     </li>
-                    <li class="mobile-navbar-items mn3">
+                    <li class="mobile-navbar-items">
                         <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Phân loại theo chương  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
-                        <ul class="mobile-droplist md3 d-none">
+                        <ul class="mobile-droplist d-none">
                             <li><a href="#">Dưới 100 chương</a></li>
                             <li><a href="#">100-500 chương</a></li>
                             <li><a href="#">500-1000 chương</a></li>
@@ -215,9 +209,9 @@
                     <li class="mobile-navbar-items">
                         <a href="#" class="mobile-item-link"><i class="far fa-chart-bar  mobile-navbar-icon"></i> Bảng xếp hạng </a>
                     </li>
-                    <li class="mobile-navbar-items mn4">
+                    <li class="mobile-navbar-items">
                         <a href="#" class="mobile-item-link"> <i class="fas fa-sliders-h mobile-navbar-icon"></i> Phông nền  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
-                        <ul class="mobile-droplist md4 d-none">
+                        <ul class="mobile-droplist d-none">
                             <li><a href="#" id="lightmode">Màu sáng</a></li>
                             <li><a href="#" id="darkmode">Màu tối</a></li>
                         </ul>
@@ -228,6 +222,14 @@
                     <li class="mobile-navbar-items">
                         <a href="#" class="mobile-item-link"> <i class="far fa-bell mobile-navbar-icon"></i> Thông báo </a>
                     </li> 
+                    <li class="mobile-navbar-items account">
+                        <div class="searchbar-btn sign-up"><a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">Đăng kí</a></div>
+                        <div class="searchbar-btn sign-in"><a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">Đăng nhập</a></div>
+                    </li>
+                    <li class="mobile-navbar-items search">
+                        <input type="search" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
+                        <div class="search-select-btn"><i class="fas fa-search"></i></div>
+                    </li>
                 </ul>
             </div>
         </header>
@@ -586,17 +588,8 @@
         $(".mobile-navbar-btn").click(function(){
             $(".mobile-navbar").toggleClass('d-none');
         });
-        $(".mn1").click(function(){
-            $(".md1").toggleClass('d-none');
-        });
-        $(".mn2").click(function(){
-            $(".md2").toggleClass('d-none');
-        });
-        $(".mn3").click(function(){
-            $(".md3").toggleClass('d-none');
-        });
-        $(".mn4").click(function(){
-            $(".md4").toggleClass('d-none');
+        $(".mobile-navbar-items").click(function(){
+            $(this).children(".mobile-droplist").toggleClass('d-none');
         });
         $("#darkmode").click(function(){
             backgroundColor = "dark";
