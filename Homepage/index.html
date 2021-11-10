@@ -25,9 +25,16 @@
                         <input type="search" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
                         <div class="search-select-btn"><i class="fas fa-search"></i></div>
                     </div>
-                    <div class="searchbar-item d-none d-lg-block">
-                        <div class="searchbar-btn sign-up"><a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">Đăng kí</a></div>
-                        <div class="searchbar-btn sign-in"><a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">Đăng nhập</a></div>
+                    <div class="searchbar-item ">
+                       <div class="searchbar-btn">
+                           <a href="#"><i class="fas fa-bell"></i></a>
+                       </div>
+                       <div class="searchbar-btn">
+                           <a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">   
+                                <i class="fas fa-user-circle"></i>
+                                <div class="user-name d-none"></div>
+                           </a>
+                       </div>
                     </div>
                 
                     <div id="mobile-menu" class="mobile-menu-btn d-lg-none">
@@ -125,10 +132,10 @@
                         </div>
                     </li>
                     <li class="navbar-items">
-                        <a href="#" class="item-link"> <i class="far fa-bookmark navbar-icon"></i>Lịch sử </a>
+                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Lịch sử </a>
                     </li>
                     <li class="navbar-items">
-                        <a href="#" class="item-link"> <i class="far fa-bell navbar-icon"></i>Thông báo </a>
+                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Theo dõi </a>
                     </li> 
                 </ul>
 
@@ -211,21 +218,17 @@
                     </li>
                     <li class="mobile-navbar-items">
                         <a href="#" class="mobile-item-link"> <i class="fas fa-sliders-h mobile-navbar-icon"></i> Phông nền  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
-                        <ul class="mobile-droplist d-none">
-                            <li><a href="#" id="lightmode">Màu sáng</a></li>
-                            <li><a href="#" id="darkmode">Màu tối</a></li>
+                        <ul class="mobile-droplist d-none ">
+                            <li><a href="#" id="mobile-lightmode">Màu sáng</a></li>
+                            <li><a href="#" id="mobile-darkmode">Màu tối</a></li>
                         </ul>
                     </li>
                     <li class="mobile-navbar-items">
-                        <a href="#" class="mobile-item-link"> <i class="far fa-bookmark mobile-navbar-icon"></i> Lịch sử </a>
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Lịch sử </a>
                     </li>
                     <li class="mobile-navbar-items">
-                        <a href="#" class="mobile-item-link"> <i class="far fa-bell mobile-navbar-icon"></i> Thông báo </a>
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Theo dõi </a>
                     </li> 
-                    <li class="mobile-navbar-items account">
-                        <div class="searchbar-btn sign-up"><a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">Đăng kí</a></div>
-                        <div class="searchbar-btn sign-in"><a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">Đăng nhập</a></div>
-                    </li>
                     <li class="mobile-navbar-items search">
                         <input type="search" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
                         <div class="search-select-btn"><i class="fas fa-search"></i></div>
@@ -565,12 +568,36 @@
             $(".novel-title").css("color" , "white");
             $(".title a").css("color" , "white");
         }
+        function showMobileDarkBackground(){
+            $("#header").css("background-color", "var(--header-dark-color)");
+            $("#footer").css("background-color", "var(--dark-background-color)");
+            $(".main").css("background-color", "var(--dark-background-color)");
+            $(".fullepisode").css({
+                "color" : "var(--mint-color)",
+                "background-color": "var(--dark-background-color)",
+                "border" : "1px solid var(--mint-color)"
+            });
+            $(".novel-title").css("color" , "white");
+            $(".title a").css("color" , "white");
+        }
         function showLightBackground(){
             $("#header").css("background-color", "var(--header-light-color)");
             $("#footer").css("background-color", "var(--header-light-color)");
             $(".main").css("background-color", "var(--light-background-color)");
             $(".droplist-fluid").css("background-color", "var(--header-light-color)");
             $(".droplist-normal").css("background-color", "var(--header-light-color)");
+            $(".fullepisode").css({
+                "color" : "white",
+                "background-color": "#2A5893",
+                "border" : "none"
+            });
+            $(".novel-title").css("color" , "#4E4E4E");
+            $(".title a").css("color" , "#4E4E4E");
+        }
+        function showMobileLightBackground(){
+            $("#header").css("background-color", "var(--header-light-color)");
+            $("#footer").css("background-color", "var(--header-light-color)");
+            $(".main").css("background-color", "var(--light-background-color)");
             $(".fullepisode").css({
                 "color" : "white",
                 "background-color": "#2A5893",
@@ -588,8 +615,8 @@
         $(".mobile-navbar-btn").click(function(){
             $(".mobile-navbar").toggleClass('d-none');
         });
-        $(".mobile-navbar-items").click(function(){
-            $(this).children(".mobile-droplist").toggleClass('d-none');
+        $(".mobile-item-link").click(function(){
+            $(this).parent(".mobile-navbar-items").children(".mobile-droplist").toggleClass('d-none');
         });
         $("#darkmode").click(function(){
             backgroundColor = "dark";
@@ -598,6 +625,14 @@
         $("#lightmode").click(function(){
             backgroundColor = "light";
             showLightBackground();
+        });
+        $("#mobile-darkmode").click(function(){
+            backgroundColor = "dark";
+            showMobileDarkBackground();
+        });
+        $("#mobile-lightmode").click(function(){
+            backgroundColor = "light";
+            showMobileLightBackground();
         });
 
    </script>
