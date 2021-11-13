@@ -15,6 +15,10 @@
     padding-bottom: 0;
 }
 
+.logo:hover {
+    color: #F18121;
+}
+
 .container {
     height: 120%;
     width: 100%;
@@ -34,12 +38,6 @@
     border-radius: 20%;
     overflow: hidden;
 }
-
-/*@media screen and (max-height: 900px){
-    .container{
-        
-    }
-}*/
 
 .row {
     margin-top: 5px; 
