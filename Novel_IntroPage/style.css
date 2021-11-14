@@ -536,7 +536,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     padding-right: 15px;
 }
 
-.col-md-9, .col-md-4, .col-md-8, .col-md-6/*,.col-xs-12*/, .col-xs-4 {
+.col-md-9, .col-md-4, .col-md-8, .col-md-6,.col-xs-12, .col-xs-4 {
     float: left;
 }
 
@@ -950,7 +950,7 @@ small, .small {
 }
 
 .pager-list.mt0 {
-    margin-top: 0;
+    margin-top: 1rem;
     text-align: center;
 }
 
@@ -1135,7 +1135,7 @@ small, .small {
 
 /* footer */
 .footer {
-    margin-top: 1rem;
+    margin-top: 2rem;
     padding: 3.2rem 1.6rem;
     text-align: center;
     background-color:  var(--header-light-color);
