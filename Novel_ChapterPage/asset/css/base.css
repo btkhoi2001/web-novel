@@ -8,9 +8,11 @@
     --blue-color:#8EB3FD;
     --header-light-color:#14425d;
     --header-dark-color:#242f39;
-    --light-background-color:#e9e8e8e0;
+    --light-background-color:#e7e4e4;
     --dark-background-color:#212121;
-    --chapter-green-color: #5cb85c;
+    --chapter-btn-color: #5cb85c;
+    --chapter-novel-title-color: rgb(102, 151, 3);
+    --chapter-btn-color-hover: #449d44;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');

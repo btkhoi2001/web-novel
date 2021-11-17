@@ -1,7 +1,6 @@
 .main {
     width: 100%;
     background-color: var(--light-background-color);
-  
 }
 /* Header */
 #header {
@@ -228,7 +227,7 @@
     border-bottom-color: #4E4E4E;
     outline: none;
     border: 1px solid;
-    background: #f4f4f4;
+    background-color: #f4f4f4;
     height: 4rem;
     width: initial;
     padding: .4rem ;
@@ -241,6 +240,7 @@
     margin: 1.2rem;
     border-radius: .25rem;
     position: relative;
+    transition:transform ease 0.15s;
 }
 
 .item__img:hover {

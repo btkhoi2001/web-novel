@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="./asset/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./asset/css/base.css">
+    <link rel="stylesheet" href="./asset/css/style.css">
+    <link rel="stylesheet" href="./asset/css/responsive.css">
+    <link rel="shortcut icon" href="./asset/img/favicon.png" type="image/x-icon">
+    <script type="text/javascript" src="./asset/js/jquery-3.6.0.js"></script>
+    <title>Đọc truyện online - SimplePoLL</title>
+</head>
+<body>
+   <div class="main">
+        <header id="header">
+            <div class="container-xl">
+                <div class="searchbar">               
+                    <div class="searchbar-item">
+                        <a href="#" class="logo"><h1>Simple<span style="color: #F18121;">PoLL</span></h1></a>
+                    </div>
+                    <div class="searchbar-item search d-none d-lg-flex">
+                        <input type="search" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
+                        <div class="search-select-btn"><i class="fas fa-search"></i></div>
+                    </div>
+                    <div class="searchbar-item ">
+                       <div class="searchbar-btn">
+                           <a href="#"><i class="fas fa-bell"></i></a>
+                       </div>
+                       <div class="searchbar-btn">
+                           <a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">   
+                                <i class="fas fa-user-circle"></i>
+                                <div class="user-name d-none"></div>
+                           </a>
+                       </div>
+                    </div>
+                
+                    <div id="mobile-menu" class="mobile-menu-btn d-lg-none">
+                        <div class="mobile-navbar-btn"><i class="fas fa-bars"></i></div>
+                    </div>
+                </div>
+
+                <ul class="navbar d-none d-lg-block">
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"><i class="fas fa-home navbar-icon"></i>Trang chủ </a>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Danh sách <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-normal">
+                            <a href="#">Truyện mới cập nhật</a>
+                            <a href="#">Truyện Hot</a>
+                            <a href="#">Truyện Full</a>
+                            <a href="#">Tiên Hiệp Hay</a>
+                            <a href="#">Kiếm Hiệp Hay</a>
+                            <a href="#">Truyện teen Hay</a>
+                            <a href="#">Ngôn Tình Hay</a>
+                            <a href="#">Ngôn Tình Sắc</a>
+                            <a href="#">Ngôn Tình Ngược</a>
+                            <a href="#">Ngôn Tình Sủng</a>
+                            <a href="#">Ngôn Tình Hài</a>
+                            <a href="#">Đam Mỹ Hài</a>
+                            <a href="#">Đam Mỹ Hay</a>
+                            <a href="#">Đam Mỹ Sắc</a>
+                            <a href="#">Khác</a>
+                        </div>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Thể loại  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-fluid-container">
+                            <div class="droplist-fluid">
+                                <a href="#">Tiên Hiệp</a>
+                                <a href="#">Kiếm Hiệp</a>
+                                <a href="#">Ngôn Tình</a>
+                                <a href="#">Đam Mỹ</a>
+                                <a href="#">Quan Trường</a>
+                                <a href="#">Võng Du</a>
+                                <a href="#">Khoa Huyễn</a>
+                                <a href="#">Hệ Thống</a>
+                                <a href="#">Huyền Huyễn</a>
+                                <a href="#">Dị Giới</a>
+                                <a href="#">Dị Năng</a>
+                                <a href="#">Quân Sự</a>
+                                <a href="#">Lịch Sử</a>
+                                <a href="#">Xuyên Không</a>
+                                <a href="#">Xuyên Nhanh</a>
+                                <a href="#">Trọng Sinh</a>
+                                <a href="#">Trinh Thám</a>
+                                <a href="#">Thám Hiểm</a>
+                                <a href="#">Linh Dị</a>
+                                <a href="#">Sắc</a>
+                                <a href="#">Ngược</a>
+                                <a href="#">Sủng</a>
+                                <a href="#">Cung Đấu</a>
+                                <a href="#">Nữ Cường</a>
+                                <a href="#">Gia Đấu</a>
+                                <a href="#">Đông Phương</a>
+                                <a href="#">Đô Thị</a>
+                                <a href="#">Bách Hợp</a>
+                                <a href="#">Hài Hước</a>
+                                <a href="#">Điền Văn</a>
+                                <a href="#">Cổ đại</a>
+                                <a href="#">Mạt Thế</a>
+                                <a href="#">Truyện Teen</a>
+                                <a href="#">Phương Tây</a>
+                                <a href="#">Nữ Phụ</a>
+                                <a href="#">Light Novel</a>
+                                <a href="#">Việt Nam</a>
+                                <a href="#">Đoản Văn</a>
+                                <a href="#">Khác</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Phân loại theo chương  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-normal">
+                            <a href="#">Dưới 100 chương</a>
+                            <a href="#">100-500 chương</a>
+                            <a href="#">500-1000 chương</a>
+                            <a href="#">Trên 1000 chương</a>
+                        </div>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"><i class="far fa-chart-bar navbar-icon"></i> Bảng xếp hạng </a>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-sliders-h navbar-icon"></i>Phông nền  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-normal color-select">
+                            <a href="#" id="lightmode">Màu sáng</a>
+                            <a href="#" id="darkmode">Màu tối</a>
+                        </div>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Lịch sử </a>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Theo dõi </a>
+                    </li> 
+                </ul>
+
+                <ul class="mobile-navbar d-none">
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Danh sách <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist d-none">
+                            <li><a href="#">Truyện mới cập nhật</a></li>
+                            <li><a href="#">Truyện Hot</a></li>
+                            <li><a href="#">Truyện Full</a></li>
+                            <li><a href="#">Tiên Hiệp Hay</a></li>
+                            <li><a href="#">Kiếm Hiệp Hay</a></li>
+                            <li><a href="#">Truyện teen Hay</a></li>
+                            <li><a href="#">Ngôn Tình Hay</a></li>
+                            <li><a href="#">Ngôn Tình Sắc</a></li>
+                            <li><a href="#">Ngôn Tình Ngược</a></li>
+                            <li><a href="#">Ngôn Tình Sủng</a></li>
+                            <li><a href="#">Ngôn Tình Hài</a></li>
+                            <li><a href="#">Đam Mỹ Hài</a></li>
+                            <li><a href="#">Đam Mỹ Hay</a></li>
+                            <li><a href="#">Đam Mỹ Sắc</a></li>
+                            <li><a href="#">Khác</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Thể loại  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist d-none">
+                                <li><a href="#">Tiên Hiệp</a></li>
+                                <li><a href="#">Kiếm Hiệp</a></li>
+                                <li><a href="#">Ngôn Tình</a></li>
+                                <li><a href="#">Đam Mỹ</a></li>
+                                <li><a href="#">Quan Trường</a></li>
+                                <li><a href="#">Võng Du</a></li>
+                                <li><a href="#">Khoa Huyễn</a></li>
+                                <li><a href="#">Hệ Thống</a></li>
+                                <li><a href="#">Huyền Huyễn</a></li>
+                                <li><a href="#">Dị Giới</a></li>
+                                <li><a href="#">Dị Năng</a></li>
+                                <li><a href="#">Quân Sự</a></li>
+                                <li><a href="#">Lịch Sử</a></li>
+                                <li><a href="#">Xuyên Không</a></li>
+                                <li><a href="#">Xuyên Nhanh</a></li>
+                                <li><a href="#">Trọng Sinh</a></li>
+                                <li><a href="#">Trinh Thám</a></li>
+                                <li><a href="#">Thám Hiểm</a></li>
+                                <li><a href="#">Linh Dị</a></li>
+                                <li><a href="#">Sắc</a></li>
+                                <li><a href="#">Ngược</a></li>
+                                <li><a href="#">Sủng</a></li>
+                                <li><a href="#">Cung Đấu</a></li>
+                                <li><a href="#">Nữ Cường</a></li>
+                                <li><a href="#">Gia Đấu</a></li>
+                                <li><a href="#">Đông Phương</a></li>
+                                <li><a href="#">Đô Thị</a></li>
+                                <li><a href="#">Bách Hợp</a></li>
+                                <li><a href="#">Hài Hước</a></li>
+                                <li><a href="#">Điền Văn</a></li>
+                                <li><a href="#">Cổ đại</a></li>
+                                <li><a href="#">Mạt Thế</a></li>
+                                <li><a href="#">Truyện Teen</a></li>
+                                <li><a href="#">Phương Tây</a></li>
+                                <li><a href="#">Nữ Phụ</a></li>
+                                <li><a href="#">Light Novel</a></li>
+                                <li><a href="#">Việt Nam</a></li>
+                                <li><a href="#">Đoản Văn</a></li>
+                                <li><a href="#">Khác</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Phân loại theo chương  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist d-none">
+                            <li><a href="#">Dưới 100 chương</a></li>
+                            <li><a href="#">100-500 chương</a></li>
+                            <li><a href="#">500-1000 chương</a></li>
+                            <li><a href="#">Trên 1000 chương</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"><i class="far fa-chart-bar  mobile-navbar-icon"></i> Bảng xếp hạng </a>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-sliders-h mobile-navbar-icon"></i> Phông nền  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist d-none ">
+                            <li><a href="#" id="mobile-lightmode">Màu sáng</a></li>
+                            <li><a href="#" id="mobile-darkmode">Màu tối</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Lịch sử </a>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Theo dõi </a>
+                    </li> 
+                    <li class="mobile-navbar-items search">
+                        <input type="search" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
+                        <div class="search-select-btn"><i class="fas fa-search"></i></div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="container-xl">
+                <div class="chapter">
+                    <div class="chapter-part row justify-content-center">
+                        <div class="col-xs-10 col-sm-9 col-md-8 col-lg-6">
+                            <div class="chapter-item">
+                                <h1><a href="#" class="novel-title" title="Đấu Phá Thương Khung">ĐẤU PHÁ THƯƠNG KHUNG</a></h1>
+                            </div>
+
+                            <div class="chapter-item">
+                                <h3>
+                                    <a href="#" class="chapter-title" title="Đấu Phá Thương Khung - Chương 1641:
+                                    Kết thúc cũng là nơi bắt đầu! (Hết)">
+                                    Chương 1641: Kết thúc cũng là nơi bắt đầu! (Hết)</a>
+                                </h3>
+                            </div>
+                                
+                            <div class="chapter-item">
+                                <img src="./asset/img/chapter-start.png" alt="#">
+                            </div>
+                               
+                            <div class="chapter-item chapter-nav">
+                                <a href="#" class="btn-chapter-nav"> 
+                                    <i class="fas fa-chevron-left"></i> Chương trước
+                                </a>
+                                <button class="btn-chapter-nav chapter-jump "><i class="fas fa-list-ul"></i></button>
+                                <select name="" id="" class="btn-chapter-nav form-control chapter-select d-none" > 
+                                    <option value="chapter1633">Chương 1633</option>
+                                    <option value="chapter1634">Chương 1634</option>
+                                    <option value="chapter1635">Chương 1635</option>
+                                    <option value="chapter1637">Chương 1637</option>
+                                    <option value="chapter1638">Chương 1638</option>
+                                    <option value="chapter1649">Chương 1639</option>
+                                    <option value="chapter1640">Chương 1640</option>
+                                </select>
+                                <a href="#" class="btn-chapter-nav">
+                                    Chương tiếp <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                   <div class="chapter-part row">
+                        <div class="chapter-content-part">
+                            <img src="./asset/img/chapter-end.png" alt="#">
+                        </div>
+                        <p class="chapter-content-part chapter-content">
+                            Trận chiến độc nhất vô nhị cũng tới hồi kết thúc, nhưng đã để lại trong lòng Trung Châu những vết thương trầm trọng. Trung Châu vốn là nơi phồn hoa đô hội, nay đã bị chia làm hai mảnh bởi một khe vực dài hàng vạn trượng sâu vô tận. Khe vực đó về sau được người đời gọi là vực Song Đế, không còn ai nhớ tới nơi đây là chốn đã diễn ra trận chiến kinh thiên động địa ngày xưa.
+
+Trung Châu vì thế mà suy tàn một thời gian. Nhưng sau khi kiếp nạn qua đi, người từ những vùng đất khác lại kéo đến nơi này định cư. Không bao lâu nữa, nó sẽ trở lại bộ mặt vốn có của mình, bởi nơi đây, chính là nơi nổ ra trận đại chiến quyết định cả vận mệnh của đại lục Đấu Khí.
+
+Và với việc Hồn Thiên Đế bị phong ấn, thắng lợi cuối cùng của trận quyết chiến hiển nhiên thuộc về liên quân. Còn về phần Hồn tộc, dù nhờ Hồn Thiên Đế tiến vào Đấu Đế mà không ít kẻ thực lực tăng mạnh, nhưng còn chưa kịp thể hiện thì mười phần hết bảy tám đã chết dưới lưỡi đao máu của lão. Những người còn lại đã thất hồn lạc phách, đối với sự truy bắt của liên quân cũng không còn tâm tư chống trả, đều thúc thủ chịu trói.
+
+Không lâu sau khi đại chiến kết thúc, liên quân mới lần đầu tiên tiến vào Hồn giới sau nhiều năm như vậy. Nhưng bọn họ không hề được chứng kiến những cảnh tượng phồn thịnh như đã nghĩ. Ở Hồn giới, đập vào mắt liên quân là một màu đỏ, một màu đỏ bầm nặng nề u uất bao trùm toàn bộ không gian không dấu chân người.
+
+Tại vùng đất trung tâm của Hồn giới, liên quân phát hiện một cái hồ máu khổng lồ to gần mười vạn trượng, trong hồ sềnh sệch đầy máu đỏ, thây người và xương trắng. Nhìn thấy cảnh tượng đó, mọi người mới hiểu được tại vì sao nơi này lại vắng vẻ hoang liêu như vậy.
+
+Bởi lẽ những người sống ở nơi đây tựa hồ toàn bộ đã chôn thân dưới đáy huyết trì. Hồn Thiên Đế vì muốn đạt được mục tiêu, quả thật đã dốc toàn bộ vốn liếng...
+
+Kẻ như thế quả thật đã khiến lòng người rét lạnh vì kinh sợ. May thay, loại người điên này cuối cùng cũng bị người khác hàng phục.
+
+Bên trong Hồn giới chỉ còn sót lại vài người lưa thưa, tất cả đều bị bắt đi. Sau đó đám người Cổ Nguyên liên thủ phá tan tành hang ổ của Hồn tộc. Từ nay về sau, trên toàn cõi Trung Châu, sẽ không còn cái gì gọi là Hồn tộc nữa.
+
+Tám tộc truyền lại từ thời viễn cổ tới nay, chỉ còn Cổ tộc, Viêm tộc, Lôi tộc là tồn tại. Và dĩ nhiên không thể quên được một tộc, nhờ việc Tiêu Viêm trở thành Đấu Đế mà một lần nữa kích phát huyết mạch, Tiêu tộc!
+
+Thứ gọi là huyết mạch Đấu Đế, chính là những người có huyết thống gần với Tiêu Viêm. Mà chiếm được nhiều chỗ tốt nhất, dĩ nhiên là con gái của hắn, Tiêu Tiêu. Khi Tiêu Viêm trở thành Đấu Đế, nó dường như trong chốc lát đã tăng vọt lên thành Bát tinh Đấu Thánh. Loại tốc độ này, quả thật khiến người ta chấn động muốn ngất đi. Tuy nói thiên phú của Tiêu Viêm rất tốt, nhưng đó là loại thiên phú chưa hoàn toàn kích phát, còn đứa nhỏ của hắn, vì đủ loại duyên cớ sự tình, mà trực tiếp tiến thẳng lên trình độ đỉnh cao của đại lục. Chuyện tưởng chừng hết sức vô lý như vậy quả thật đã khiến cho những kẻ tu luyện mấy trăm mấy ngàn năm qua như Lôi Doanh, Viêm Tẫn hận muốn phun máu. Đây là ưu ái của huyết mạch đời thứ nhất sao chứ?
+
+Huyết mạch Đấu Đế quả thật là thứ biến thái! Nói cách khác, hoàn toàn có thể dùng sức một người mà chấn hưng cả gia tộc.
+
+Có thể tưởng tượng, toàn bộ Tiêu gia một khi triệt để hưởng thụ những ưu điểm của huyết mạch Đấu Đế rồi, thì sau này, nhất định sẽ có bước đại nhảy vọt. Đến lúc đó, có trở lại thành một Tiêu tộc cường thịnh như ngày xưa hay không, chỉ là vấn đề thời gian.
+
+...
+
+Đại chiến kết thúc, liên quân tự nhiên cũng tuyên bố giải tán. Bởi có một điều hiển nhiên, đại lục Đấu Khí sau này nếu không xuất hiện tình huống gì đặc thù thì rất khó để có thể xảy ra đại chiến kinh hồn như thế nữa. Chính là vì ngay lúc này, trên đại lục đang tồn tại một vị cường giả chí tôn đang quan sát hết thảy.
+
+Viêm Đế Tiêu Viêm!
+
+Một cái tên vang dội khắp mọi ngóc ngách trên đại lục, được vô số người tôn sùng thờ phụng. Và trong lòng bọn họ, cái tên đó như là thần linh, một vị thần che chở bảo vệ cho cả đại lục Đấu Khí.
+
+Liên quân tuy giải tán, nhưng liên minh Thiên Phủ vẫn tồn tại như trước. Hơn nữa, liên minh hôm nay không hề có bất luận phân chia tông phái hay thế lực gì nữa, mà bây giờ bọn họ phi thường hiểu rõ một điều, có thể đặt được một chân vào liên minh là vinh quang chói lọi không gì sánh được.
+
+Và vinh quang đó, đến từ vị cường giả đang đứng trên đỉnh của đại lục Đấu Khí.
+
+...
+
+Sau trận đại chiến hai năm, Trung Châu một lần nữa phồn hoa trở lại. Tông phái thế lực mọc lên như nấm sau mưa, khiến cả Trung Châu căng tràn nhựa sống, hừng hực một khí thế mới.
+
+Đương nhiên đối với những thứ này, liên minh Thiên phủ không hề quản đến, bọn họ vẫn duy trì địa vị siêu nhiên, lẳng lặng nhìn Trung Châu phát triển và thay đổi. Còn đối với những thế lực môn phái kia, địa vị bá chủ của liên minh là điều đã được khẳng định, không có bất kỳ kẻ nào dám to gan mà đứng ra khiêu khích.
+
+Thương thế trầm trọng dính phải khi giao chiến với Hồn Thiên Đế đã được Tiêu Viêm mượn lực lượng Dị hỏa, sau vỏn vẹn hai năm tu luyện, một lần nữa tu luyện thành thân thể, may mà không lưu lại di chứng gì.
+
+Trong hai năm này, Tiêu Viêm cùng Huân Nhi, Thải Lân cùng tổ chức một hôn lễ long trọng vô cùng. Hôn lễ có trời đất và vô số người chứng kiến... cũng là điều mà Tiêu Viêm đã từng hứa với hai nàng khi xưa.
+
+Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Thiên phủ cho Dược lão. Theo lời hắn, là liên minh bây giờ đã không còn cần hắn chống đỡ nữa rồi.
+
+Đối với hành động này của Tiêu Viêm, Dược lão cũng bất đắc dĩ vô cùng, lão biết tiểu tử này muốn buông tay thoái ẩn. Bất quá nghĩ tới gánh nặng mà hắn đeo trên lưng bao nhiêu năm qua, trong lòng lão không khỏi dậy lên chút yêu thương, cho nên đành phải một lần nữa trở thành Minh chủ, tiếp nhận trọng trách thay cho Tiêu Viêm.
+                        </p>
+                        <div class="chapter-content-part">
+                            <img src="./asset/img/chapter-end.png" alt="#">
+                        </div>
+                           
+                   </div>
+
+                   <div class="chapter-part row justify-content-center">
+                    <div class="col-xs-10 col-sm-9 col-md-8 col-lg-6">
+                        <div class="chapter-item chapter-nav">
+                            <a href="#" class="btn-chapter-nav"> 
+                                <i class="fas fa-chevron-left"></i> Chương trước
+                            </a>
+                            <button class="btn-chapter-nav chapter-jump "><i class="fas fa-list-ul"></i></button>
+                            <select name="" id="" class="btn-chapter-nav form-control chapter-select d-none" > 
+                                <option value="chapter1633">Chương 1633</option>
+                                <option value="chapter1634">Chương 1634</option>
+                                <option value="chapter1635">Chương 1635</option>
+                                <option value="chapter1637">Chương 1637</option>
+                                <option value="chapter1638">Chương 1638</option>
+                                <option value="chapter1649">Chương 1639</option>
+                                <option value="chapter1640">Chương 1640</option>
+                            </select>
+                            <a href="#" class="btn-chapter-nav">
+                                Chương tiếp <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="commnet row justify-content-center">
+                    <div class="col-xs-12 col-sm-10 col-lg-9 col-xl-10 comment-box">
+                        <div class="title-list">
+                            <h2>Bình luận truyện <i class="fa fa-comments"></i></h2>
+                        </div>
+                        <div class="comment-list mf-list">
+                            <div class="comment-list-item">
+                                <img class="comment-list-item-cover" src="./asset/img/top-bar-avatar-img.png">
+                                <div class="comment-list-item-info">
+                                    <form action="./index.html" name="formpl" id="formpl" method="post" class="postForm" onsubmit="return false">
+                                        <textarea class="comment-input js_max_text_length" name="txt_recontent"
+                                            placeholder="Thêm bình luận"></textarea>
+                                        <p class="comment-list-item-info-line">
+                                            <a class="comment-list-item-info-emoticon emoticonbt" href="#">Emoticon</a>
+                                            <a class="post-btn" href="#" data-isenable="1">Đăng</a>
+                                            <span class="emotion-form"> <img src="./asset/img/emotion-form.png">
+                                                <a href="#">m(_ _)m</a> 
+                                                <a href="#">(´･ω･`)</a> 
+                                                <a href="#">(`･ω･´)</a> 
+                                                <a href="#">(〒▽〒)</a> 
+                                                <a href="#">（┬＿┬）</a> 
+                                                <a href="#">(￣ε(#￣) Σ</a> 
+                                                <a href="#">ヽ(`Д´)ﾉ</a> 
+                                                <a href="#">(＃ﾟДﾟ)</a> 
+                                                <a href="#">(　ﾟДﾟ）</a> 
+                                                <a href="#">┐('～`；)┌</a> 
+                                                <a href="#">（´∀｀）</a> 
+                                                <a href="#">（　´_ゝ`）</a> 
+                                                <a href="#">Σ(゜д゜;)</a> 
+                                                <a href="#">(･∀･)</a> 
+                                                <a href="#">(´∀｀)σ)∀`)</a> 
+                                                <a href="#">←_←</a> 
+                                                <a href="#">→_→</a> 
+                                                <a href="#">（´-`）.｡oO( ... )</a> 
+                                                <a href="#">（ つ Д ｀）</a> 
+                                                <a href="#">(≧ロ≦)</a> 
+                                                <a href="#">ヽ(ｏ`皿′ｏ)ﾉ</a> 
+                                                <a href="#">(⌒▽⌒)</a> 
+                                                <a href="#">(￣3￣)</a> 
+                                                <a href="#">(〃ω〃)</a> 
+                                                <a href="#">(｡･ω･｡)</a> 
+                                                <a href="#">(●′ω`●)</a> 
+                                                <a href="#">(っ◕‿◕)っ</a> 
+                                                <a href="#">(〜￣△￣)〜</a> 
+                                                <a href="#">Σ(￣□￣||)</a> 
+                                                <a href="#">(╯°口°)╯(┴—┴</a> 
+                                                <a href="#">_(:3」∠)_</a> 
+                                            </span>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="comment-list commentcontent">
+                                <div class="comment-list-item">
+                                    <img class="comment-list-item-cover" src="./asset/img/top-bar-avatar-img.png">
+                                    <div class="comment-list-item-info">
+                                        <p class="comment-list-item-info-line">
+                                            <span class="comment-list-item-info-title">Tester01</span>
+                                            <span class="comment-list-item-info-date">2021-11-11 23:05</span>
+                                        </p>
+                                        <p class="comment-list-item-info-content">Ỏ ỏ ỏ</p>
+                                        <p class="comment-list-item-info-line">
+                                            <a class="comment-list-item-info-like likebtn" data-val="1" data-pid="2" href="#">(0)</a>
+                                            <a class="comment-list-item-info-reply replybtn" data-poster="" data-pid="2" href="#">Phản hồi</a>
+                                        </p>
+                                        <p class="comment-list-item-info-line border"></p>
+                                    </div>
+                                </div>
+                                <div class="comment-list-item">
+                                    <img class="comment-list-item-cover" src="./asset/img/top-bar-avatar-img.png">
+                                    <div class="comment-list-item-info">
+                                        <p class="comment-list-item-info-line">
+                                            <span class="comment-list-item-info-title">Tester02</span>
+                                            <span class="comment-list-item-info-date">2021-11-11 22:22</span>
+                                        </p>
+                                        <p class="comment-list-item-info-content">UwU</p>
+                                        <p class="comment-list-item-info-line">
+                                            <a class="comment-list-item-info-like likebtn" data-val="1" data-pid="1" href="#">(0)</a>
+                                            <a class="comment-list-item-info-reply replybtn" data-poster="" data-pid="1" href="#">Phản hồi</a>
+                                        </p>
+                                        <p class="comment-list-item-info-line border"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pager-list mt0">
+                                <div class="pager-list-m" style="cursor: pointer">
+                                    <a class="active">1</a>
+                                    <a data-pageid="2">2</a>
+                                    <a data-pageid="3">3</a>
+                                    <a data-pageid="4">4</a>
+                                    <a data-pageid="5">5</a>
+                                    <a data-pageid="6">6</a>
+                                    <a data-pageid="7">7</a>
+                                    <a data-pageid="8">8</a>
+                                    <a data-pageid="2">></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer">
+            <div class="social-list">
+                <a href=""><i class="fab fa-facebook-square"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-youtube"></i></a>
+                <a href=""><i class="fab fa-pinterest-p"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copy-right"> 
+                Copyright © 2021 - Đọc Truyện Chữ Hay Và Đầy Đủ. 
+                Maded by <a href="#">SimplePoLL</a>
+            </p>
+        </footer>
+
+   </div>
+
+    
+
+   <script>
+        function showDarkBackground(){
+            $(document.body).css("color","#ffffff99");
+            $("#header").css("background-color", "var(--header-dark-color)");
+            $("#footer").css("background-color", "#121212");
+            $(".main").css({
+                "background-image": "url(./asset/img/bg_dark.gif)",
+                "background-repeat": "repeat",
+                "background-position": "top center"
+            });
+            $(".droplist-fluid").css("background-color", "var(--header-dark-color)");
+            $(".droplist-normal").css("background-color", "var(--header-dark-color)");
+            $(".title-list").css("border-bottom-color","#000");
+            $(".title-list>h2, .title-list>h4").css({
+                "color": "white",
+                "border-bottom-color": "white"
+            });
+            $(".comment-box").css("background-color","transparent");
+            $(".comment-list-item-info-content").css("color", "white");
+            $(".comment-list-item-info-like, .comment-list-item-info-reply").css("color", "white");
+            $(".chapter-content").css({
+                "color" : "white",
+                "opacity": 0.6
+            });
+            $(".btn-chapter-nav").css({
+                "border": "1.2px solid #82A82D",
+                "background-color" : "#121212",
+                "color": "#82a82d"
+            })
+         
+        }
+        function showMobileDarkBackground(){
+            $(document.body).css("color","#ffffff99");
+            $("#header").css("background-color", "var(--header-dark-color)");
+            $("#footer").css("background-color", "#121212");
+            $(".main").css({
+                "background-image": "url(./asset/img/bg_dark.gif)",
+                "background-repeat": "repeat",
+                "background-position": "top center"
+            });
+            $(".droplist-fluid").css("background-color", "var(--header-dark-color)");
+            $(".droplist-normal").css("background-color", "var(--header-dark-color)");
+            $(".title-list").css("border-bottom-color","#000");
+            $(".title-list>h2, .title-list>h4").css({
+                "color": "white",
+                "border-bottom-color": "white"
+            });
+            $(".comment-box").css("background-color","transparent");
+            $(".comment-list-item-info-content").css("color", "white");
+            $(".comment-list-item-info-like, .comment-list-item-info-reply").css("color", "white");
+            $(".chapter-content").css({
+                "color" : "white",
+                "opacity": 0.6
+            });
+            $(".btn-chapter-nav").css({
+                "border": "1.2px solid #82A82D",
+                "background-color" : "#121212",
+                "color": "#82a82d"
+            })
+        }
+        function showLightBackground(){
+            $(document.body).css("color", "#4E4E4E");
+            $("#header").css("background-color", "var(--header-light-color)");
+            $("#footer").css("background-color", "var(--header-light-color)");
+            $(".main").css({
+                "background": "none",
+                "background-color": "var(--light-background-color",
+            });
+            $(".droplist-fluid").css("background-color", "var(--header-light-color)");
+            $(".droplist-normal").css("background-color", "var(--header-light-color)");
+            $(".title-list").css("border-bottom-color","#CCC");
+            $(".title-list>h2, .title-list>h4").css({
+                "color": "#4E4E4E",
+                "border-bottom-color": "#4E4E4E"
+            });
+            $(".comment-list-item-info-content").css("color", "#0b0b0b");
+            $(".comment-list-item-info-like, .comment-list-item-info-reply").css("color", "#2f2f2f");
+            $(".chapter-content").css({
+                "color" : "black",
+                "opacity": 1
+            });
+            $(".btn-chapter-nav").css({
+                "border": "none",
+                "background-color" : "var(--chapter-btn-color)",
+                "color": "white"
+            })
+        }
+        function showMobileLightBackground(){
+            $("#header").css("background-color", "var(--header-light-color)");
+            $("#footer").css("background-color", "var(--header-light-color)");
+            $(".main").css({
+                "background": "none",
+                "background-color": "var(--light-background-color",
+            });
+            $(".droplist-fluid").css("background-color", "var(--header-light-color)");
+            $(".droplist-normal").css("background-color", "var(--header-light-color)");
+            $(".title-list").css("border-bottom-color","#CCC");
+            $(".title-list>h2, .title-list>h4").css({
+                "color": "#4E4E4E",
+                "border-bottom-color": "#4E4E4E"
+            });
+            $(".comment-list-item-info-content").css("color", "#0b0b0b");
+            $(".comment-list-item-info-like, .comment-list-item-info-reply").css("color", "#2f2f2f");
+            $(".chapter-content").css({
+                "color" : "black",
+                "opacity": 1
+            });
+            $(".btn-chapter-nav").css({
+                "border": "none",
+                "background-color" : "var(--chapter-btn-color)",
+                "color": "white"
+            })
+        }
+
+        var backgroundColor = "light";
+        if(backgroundColor == "light")
+            showLightBackground();
+        else showDarkBackground();
+
+        $(".mobile-navbar-btn").click(function(){
+            $(".mobile-navbar").toggleClass('d-none');
+        });
+        $(".mobile-item-link").click(function(){
+            $(this).parent(".mobile-navbar-items").children(".mobile-droplist").toggleClass('d-none');
+        });
+        $("#darkmode").click(function(){
+            backgroundColor = "dark";
+            showDarkBackground();
+        });
+        $("#lightmode").click(function(){
+            backgroundColor = "light";
+            showLightBackground();
+        });
+        $("#mobile-darkmode").click(function(){
+            backgroundColor = "dark";
+            showMobileDarkBackground();
+        });
+        $("#mobile-lightmode").click(function(){
+            backgroundColor = "light";
+            showMobileLightBackground();
+        });
+
+   </script>
+
+   <script type="text/javascript" src="./asset/js/main.js"></script>
+
+</body>
+</html>
