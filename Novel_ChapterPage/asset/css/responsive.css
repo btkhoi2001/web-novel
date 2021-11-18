@@ -89,6 +89,15 @@
         padding: .4rem;
         height: 3.2rem;
     }
+    .word {
+        display: none;
+    }
+    .chapter-title {
+        font-size:1.4rem;
+    }
+    .btn-chapter-nav {
+        font-size:1.4rem;
+    }
 }
 
 @media (min-width: 30em) and (max-width: 35.9375em) {

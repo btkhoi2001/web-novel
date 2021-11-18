@@ -20,7 +20,7 @@
             <div class="container-xl">
                 <div class="searchbar">               
                     <div class="searchbar-item">
-                        <a href="#" class="logo"><h1>Simple<span style="color: #F18121;">PoLL</span></h1></a>
+                        <a href="../Homepage/index.html" class="logo"><h1>Simple<span style="color: #F18121;">PoLL</span></h1></a>
                     </div>
                     <div class="searchbar-item search d-none d-lg-flex">
                         <input type="search" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
@@ -255,13 +255,13 @@
                                 </h3>
                             </div>
                                 
-                            <div class="chapter-item">
+                            <div class="chapter-item chapter-start">
                                 <img src="./asset/img/chapter-start.png" alt="#">
                             </div>
                                
                             <div class="chapter-item chapter-nav">
                                 <a href="#" class="btn-chapter-nav"> 
-                                    <i class="fas fa-chevron-left"></i> Chương trước
+                                    <i class="fas fa-chevron-left"></i> <span class="word">Chương</span> trước
                                 </a>
                                 <button class="btn-chapter-nav chapter-jump "><i class="fas fa-list-ul"></i></button>
                                 <select name="" id="" class="btn-chapter-nav form-control chapter-select d-none" > 
@@ -274,7 +274,7 @@
                                     <option value="chapter1640">Chương 1640</option>
                                 </select>
                                 <a href="#" class="btn-chapter-nav">
-                                    Chương tiếp <i class="fas fa-chevron-right"></i>
+                                    <span class="word">Chương</span> sau <i class="fas fa-chevron-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -345,7 +345,7 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                     <div class="col-xs-10 col-sm-9 col-md-8 col-lg-6">
                         <div class="chapter-item chapter-nav">
                             <a href="#" class="btn-chapter-nav"> 
-                                <i class="fas fa-chevron-left"></i> Chương trước
+                                <i class="fas fa-chevron-left"></i> <span class="word">Chương</span> trước
                             </a>
                             <button class="btn-chapter-nav chapter-jump "><i class="fas fa-list-ul"></i></button>
                             <select name="" id="" class="btn-chapter-nav form-control chapter-select d-none" > 
@@ -358,17 +358,25 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                                 <option value="chapter1640">Chương 1640</option>
                             </select>
                             <a href="#" class="btn-chapter-nav">
-                                Chương tiếp <i class="fas fa-chevron-right"></i>
+                                <span class="word">Chương</span> sau <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </div>
+                        <div class="chapter-item">
+                            <a href="#" class="chapter-error">
+                                <i class="fas fa-flag"></i>  Báo lỗi chương
+                            </a>
+                            <a href="#" class="chapter-comment">
+                                <i class="fas fa-comments"></i> Bình luận 
                             </a>
                         </div>
                     </div>
                 </div>
                 </div>
 
-                <div class="commnet row justify-content-center">
+                <!-- <div class="commnet row justify-content-center">
                     <div class="col-xs-12 col-sm-10 col-lg-9 col-xl-10 comment-box">
                         <div class="title-list">
-                            <h2>Bình luận truyện <i class="fa fa-comments"></i></h2>
+                            <h2>Bình luận <i class="fa fa-comments"></i></h2>
                         </div>
                         <div class="comment-list mf-list">
                             <div class="comment-list-item">
@@ -464,7 +472,7 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -512,10 +520,17 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                 "opacity": 0.6
             });
             $(".btn-chapter-nav").css({
-                "border": "1.2px solid #82A82D",
                 "background-color" : "#121212",
                 "color": "#82a82d"
-            })
+            });
+            $(".chapter-error").css({
+                "background-color" : "#121212",
+                "color": "#C49654"
+            });
+            $(".chapter-comment").css({
+                "background-color" : "#121212",
+                "color": "#46b8da"
+            });
          
         }
         function showMobileDarkBackground(){
@@ -542,10 +557,17 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                 "opacity": 0.6
             });
             $(".btn-chapter-nav").css({
-                "border": "1.2px solid #82A82D",
                 "background-color" : "#121212",
                 "color": "#82a82d"
-            })
+            });
+            $(".chapter-error").css({
+                "background-color" : "#121212",
+                "color": "#C49654"
+            });
+            $(".chapter-comment").css({
+                "background-color" : "#121212",
+                "color": "#46b8da"
+            });
         }
         function showLightBackground(){
             $(document.body).css("color", "#4E4E4E");
@@ -569,10 +591,17 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                 "opacity": 1
             });
             $(".btn-chapter-nav").css({
-                "border": "none",
                 "background-color" : "var(--chapter-btn-color)",
                 "color": "white"
-            })
+            });
+            $(".chapter-error").css({
+                "background-color" : "#f0ad4e",
+                "color": "white"
+            });
+            $(".chapter-comment").css({
+                "background-color" : "#5bc0de",
+                "color": "white"
+            });
         }
         function showMobileLightBackground(){
             $("#header").css("background-color", "var(--header-light-color)");
@@ -595,17 +624,21 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                 "opacity": 1
             });
             $(".btn-chapter-nav").css({
-                "border": "none",
                 "background-color" : "var(--chapter-btn-color)",
                 "color": "white"
-            })
+            });
+            $(".chapter-error").css({
+                "background-color" : "#f0ad4e",
+                "color": "white"
+            });
+            $(".chapter-comment").css({
+                "background-color" : "#5bc0de",
+                "color": "white"
+            });
         }
 
         var backgroundColor = "light";
-        if(backgroundColor == "light")
-            showLightBackground();
-        else showDarkBackground();
-
+    
         $(".mobile-navbar-btn").click(function(){
             $(".mobile-navbar").toggleClass('d-none');
         });
@@ -628,6 +661,10 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
             backgroundColor = "light";
             showMobileLightBackground();
         });
+        $(".chapter-jump").click(function(){
+            $(".chapter-jump").addClass("d-none");
+            $(".chapter-select").toggleClass("d-none");
+        })
 
    </script>
 

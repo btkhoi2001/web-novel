@@ -464,12 +464,12 @@
 
 .chapter-part {
     padding: .8rem;
-    margin-bottom: 4.8rem;
+    margin: 2rem 0;
 }
 .chapter-item {
     display: flex;
     justify-content: center;
-    margin: .4rem 0;
+   
 }
 
 .novel-title {
@@ -485,7 +485,7 @@
 }
 
 .chapter-start {
-   margin: .8rem 0;
+   margin: 1rem 0;
 }
 
 .chapter-nav {
@@ -498,11 +498,11 @@
     color: white;
     background-color: var(--chapter-btn-color);
     font-size:1.6rem;
-    line-height: 4rem;
+    line-height: 4.2rem;
     text-align: center;
     vertical-align: middle;
     border-radius: .3rem;
-    border: none;
+    border: 1.2px solid #82A82D;
     margin: 0 .2rem;
     padding: .2rem .4rem;
 }
@@ -518,19 +518,47 @@
 }
 
 .chapter-select{
-    flex: 1.2;
+    flex: 1.5;
     text-align: left;
 }
 
 .chapter-content-part {
     display: flex;
     justify-content: center;
-    margin-bottom: 4rem;
 }
-.chapter-content-part:last-child{
-    margin-bottom:0;
-}
+
 .chapter-content {
     font-size: 2rem;
     color: black;
+    margin: 10rem 0;
+}
+
+.chapter-error {
+    background-color: #f0ad4e;
+    color: white;
+    font-size:1.4rem;
+    padding:.5rem 1rem;
+    margin: 1rem .4rem;
+    border-radius: .4rem;
+    border: 1.2px solid #C49654;
+}
+
+.chapter-error:hover {
+    color: white;
+    background-color: #e6911be0;
+}
+
+.chapter-comment {
+    background-color: #5bc0de;
+    color: white;
+    font-size:1.4rem;
+    padding:.5rem 1rem;
+    margin: 1rem .4rem;
+    border-radius: .4rem;
+    border: 1.2px solid #46b8da;
+}
+
+.chapter-comment:hover {
+    color: white;
+    background-color: #2fabd1d8;
 }
