@@ -241,44 +241,51 @@
         <div class="content">
             <div class="container-xl">
                 <div class="chapter">
-                    <div class="chapter-part row justify-content-center">
-                        <div class="col-xs-10 col-sm-9 col-md-8 col-lg-6">
-                            <div class="chapter-item">
-                                <h1><a href="#" class="novel-title" title="Đấu Phá Thương Khung">ĐẤU PHÁ THƯƠNG KHUNG</a></h1>
-                            </div>
+                   <div class="title-block">
+                        <div class="chapter-part row justify-content-center">
+                            <div class="col-xs-10 col-sm-9 col-md-8 col-lg-6">
+                                <div class="chapter-item">
+                                    <h1><a href="#" class="novel-title" title="Đấu Phá Thương Khung">ĐẤU PHÁ THƯƠNG KHUNG</a></h1>
+                                </div>
 
-                            <div class="chapter-item">
-                                <h3>
-                                    <a href="#" class="chapter-title" title="Đấu Phá Thương Khung - Chương 1641:
-                                    Kết thúc cũng là nơi bắt đầu! (Hết)">
-                                    Chương 1641: Kết thúc cũng là nơi bắt đầu! (Hết)</a>
-                                </h3>
-                            </div>
+                                <div class="chapter-item">
+                                    <h3>
+                                        <a href="#" class="chapter-title" title="Đấu Phá Thương Khung - Chương 1641:
+                                        Kết thúc cũng là nơi bắt đầu! (Hết)">
+                                        Chương 1641: Kết thúc cũng là nơi bắt đầu! (Hết)</a>
+                                    </h3>
+                                </div>
+                                    
+                                <div class="chapter-item chapter-start">
+                                    <img src="./asset/img/chapter-start.png" alt="#">
+                                </div>
                                 
-                            <div class="chapter-item chapter-start">
-                                <img src="./asset/img/chapter-start.png" alt="#">
-                            </div>
-                               
-                            <div class="chapter-item chapter-nav">
-                                <a href="#" class="btn-chapter-nav"> 
-                                    <i class="fas fa-chevron-left"></i> <span class="word">Chương</span> trước
-                                </a>
-                                <button class="btn-chapter-nav chapter-jump "><i class="fas fa-list-ul"></i></button>
-                                <select name="" id="" class="btn-chapter-nav form-control chapter-select d-none" > 
-                                    <option value="chapter1633">Chương 1633</option>
-                                    <option value="chapter1634">Chương 1634</option>
-                                    <option value="chapter1635">Chương 1635</option>
-                                    <option value="chapter1637">Chương 1637</option>
-                                    <option value="chapter1638">Chương 1638</option>
-                                    <option value="chapter1649">Chương 1639</option>
-                                    <option value="chapter1640">Chương 1640</option>
-                                </select>
-                                <a href="#" class="btn-chapter-nav">
-                                    <span class="word">Chương</span> sau <i class="fas fa-chevron-right"></i>
-                                </a>
+                                <div class="chapter-item chapter-nav">
+                                    <a href="#" class="btn-chapter-nav"> 
+                                        <i class="fas fa-chevron-left"></i> <span class="word">Chương</span> trước
+                                    </a>
+                                    <button class="btn-chapter-nav chapter-jump "><i class="fas fa-list-ul"></i></button>
+                                    <select name="" id="" class="btn-chapter-nav form-control chapter-select d-none" > 
+                                        <option value="chapter1633">Chương 1633</option>
+                                        <option value="chapter1634">Chương 1634</option>
+                                        <option value="chapter1635">Chương 1635</option>
+                                        <option value="chapter1637">Chương 1637</option>
+                                        <option value="chapter1638">Chương 1638</option>
+                                        <option value="chapter1649">Chương 1639</option>
+                                        <option value="chapter1640">Chương 1640</option>
+                                    </select>
+                                    <a href="#" class="btn-chapter-nav">
+                                        <span class="word">Chương</span> sau <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <button class="btn-header-toggle">
+                            <span class="header-up"><i class="fas fa-chevron-up"></i></span>
+                            <span class="header-down d-none"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+                   </div>
 
                    <div class="chapter-part row">
                         <div class="chapter-content-part">
@@ -523,6 +530,10 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                 "background-color" : "#121212",
                 "color": "#82a82d"
             });
+            $(".btn-header-toggle").css({
+                "background-color" : "#121212",
+                "color": "#82a82d"
+            });
             $(".chapter-error").css({
                 "background-color" : "#121212",
                 "color": "#C49654"
@@ -560,6 +571,10 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                 "background-color" : "#121212",
                 "color": "#82a82d"
             });
+            $(".btn-header-toggle").css({
+                "background-color" : "#121212",
+                "color": "#82a82d"
+            });
             $(".chapter-error").css({
                 "background-color" : "#121212",
                 "color": "#C49654"
@@ -594,6 +609,10 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                 "background-color" : "var(--chapter-btn-color)",
                 "color": "white"
             });
+            $(".btn-header-toggle").css({
+                "background-color" : "var(--chapter-btn-color)",
+                "color": "white"
+            });
             $(".chapter-error").css({
                 "background-color" : "#f0ad4e",
                 "color": "white"
@@ -624,6 +643,10 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                 "opacity": 1
             });
             $(".btn-chapter-nav").css({
+                "background-color" : "var(--chapter-btn-color)",
+                "color": "white"
+            });
+            $(".btn-header-toggle").css({
                 "background-color" : "var(--chapter-btn-color)",
                 "color": "white"
             });
@@ -667,6 +690,11 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
         });
         $(".chapter-comment").click(function(){
             $(".comment").toggleClass("d-none");
+        });
+        $(".btn-header-toggle").click(function(){
+            $(".header-up").toggleClass("d-none");
+            $(".header-down").toggleClass("d-none");
+            $("#header").toggleClass("d-none");
         })
 
    </script>

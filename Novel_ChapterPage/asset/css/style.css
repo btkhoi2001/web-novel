@@ -462,13 +462,33 @@
 
 /* Chapter */
 
-.chapter{
-    margin: 4rem 0;
+.chapter {
+    margin-bottom: 8rem;
+}
+.title-block {
+    display: block;
+    position: relative;
 }
 
+.btn-header-toggle {
+    position: absolute;
+    top: 1rem;
+    font-size:2.8rem;
+    color: white;
+    background-color: var(--chapter-btn-color);
+    padding: 1rem 2rem;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: .8rem;
+    border: 1.2px solid #82A82D;
+}
+.btn-header-toggle:hover {
+    background-color: var(--chapter-btn-color-hover);
+}
 .chapter-part {
     padding: .8rem;
-    margin: 2rem 0;
+    margin-bottom:  2rem;
+    padding-top: 2rem;
 }
 .chapter-item {
     display: flex;
@@ -566,3 +586,5 @@
     color: white;
     background-color: #2fabd1d8;
 }
+
+
