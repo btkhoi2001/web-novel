@@ -34,6 +34,10 @@ const schema = new mongoose.Schema(
         genres: {
             type: [mongoose.Schema.Types.ObjectId],
         },
+        isComplete: {
+            type: Boolean,
+            default: false,
+        },
     },
     { timestamps: true }
 );

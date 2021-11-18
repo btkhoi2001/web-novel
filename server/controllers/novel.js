@@ -1,5 +1,5 @@
-import { User } from "../models/User.js";
 import { Novel } from "../models/Novel.js";
+import { uploadFile } from "../aws/s3.js";
 
 export const getNovel = async (req, res) => {
     try {
@@ -22,15 +22,20 @@ export const getNovelById = async (req, res) => {
 };
 
 export const createNovel = async (req, res) => {
-    const { userId, title, description, cover, genres } = req.body;
+    const { userId, title, description, genres } = req.body;
 
     if (!title) return res.status(400).json({ message: "Title is required" });
 
     try {
+        const file = req.file;
+        const uploadedFile = await uploadFile(file);
+
+        console.log(req.body);
+
         const newNovel = new Novel({
             title,
             description,
-            cover,
+            cover: uploadedFile.Location,
             authorId: userId,
             genres,
         });

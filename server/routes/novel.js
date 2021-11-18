@@ -12,12 +12,20 @@ import {
     verifyNovelId,
     verifyOwnership,
 } from "../middlewares/novel.js";
+import multer from "multer";
 
 const router = express.Router();
+const upload = multer();
 
 router.get("/", getNovel);
 router.get("/:novelId", verifyNovelId, getNovelById);
-router.post("/", verifyToken, verifyAuthor, createNovel);
+router.post(
+    "/",
+    upload.single("cover"),
+    verifyToken,
+    verifyAuthor,
+    createNovel
+);
 router.put(
     "/:novelId",
     verifyToken,

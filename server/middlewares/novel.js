@@ -4,8 +4,8 @@ import { Novel } from "../models/Novel.js";
 export const verifyAuthor = async (req, res, next) => {
     try {
         const user = await User.findOne({ userId: req.body.userId });
-        if (user.isAdmin) req.body.isAdmin = true;
-        else if (!user.isAuthor)
+
+        if (!user.isAuthor)
             return res.status(401).json({
                 message: "This user has no author permissions",
             });
@@ -37,7 +37,8 @@ export const verifyOwnership = async (req, res, next) => {
 
     try {
         const novel = await Novel.findOne({ novelId });
-        if (novel.authorId != userId && !req.body.isAdmin)
+
+        if (novel.authorId != userId)
             return res.status(401).json({
                 message: `this user has no permission to modify the novel has id ${novelId}`,
             });
