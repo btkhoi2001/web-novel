@@ -238,6 +238,10 @@
 
 
 /*comment*/
+
+.comment {
+    animation: growDown 500ms ease-in-out forwards;
+}
 .comment-box {
     text-align: center;
     margin-top: 10px;

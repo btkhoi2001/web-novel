@@ -362,18 +362,18 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                             </a>
                         </div>
                         <div class="chapter-item">
-                            <a href="#" class="chapter-error">
+                            <button class="chapter-error">
                                 <i class="fas fa-flag"></i>  Báo lỗi chương
-                            </a>
-                            <a href="#" class="chapter-comment">
+                            </button>
+                            <button class="chapter-comment">
                                 <i class="fas fa-comments"></i> Bình luận 
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
                 </div>
 
-                <!-- <div class="commnet row justify-content-center">
+                <div class="comment row justify-content-center d-none">
                     <div class="col-xs-12 col-sm-10 col-lg-9 col-xl-10 comment-box">
                         <div class="title-list">
                             <h2>Bình luận <i class="fa fa-comments"></i></h2>
@@ -472,7 +472,7 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
 
@@ -664,6 +664,9 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
         $(".chapter-jump").click(function(){
             $(".chapter-jump").addClass("d-none");
             $(".chapter-select").toggleClass("d-none");
+        });
+        $(".chapter-comment").click(function(){
+            $(".comment").toggleClass("d-none");
         })
 
    </script>
