@@ -1,4 +1,12 @@
 import express from "express";
+import multer from "multer";
+import chapterRouter from "./chapter.js";
+import { verifyToken } from "../middlewares/auth.js";
+import {
+    verifyAuthor,
+    verifyNovelId,
+    verifyOwnership,
+} from "../middlewares/novel.js";
 import {
     getNovel,
     getNovelById,
@@ -6,13 +14,6 @@ import {
     updateNovel,
     deleteNovel,
 } from "../controllers/novel.js";
-import { verifyToken } from "../middlewares/auth.js";
-import {
-    verifyAuthor,
-    verifyNovelId,
-    verifyOwnership,
-} from "../middlewares/novel.js";
-import multer from "multer";
 
 const router = express.Router();
 const upload = multer();
@@ -28,6 +29,7 @@ router.post(
 );
 router.put(
     "/:novelId",
+    upload.single("cover"),
     verifyToken,
     verifyNovelId,
     verifyAuthor,
@@ -42,5 +44,6 @@ router.delete(
     verifyOwnership,
     deleteNovel
 );
+router.use("/:novelId/chapter", chapterRouter);
 
 export default router;

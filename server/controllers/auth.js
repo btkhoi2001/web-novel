@@ -75,7 +75,7 @@ export const login = async (req, res) => {
                 .json({ message: "Incorrect email or password" });
 
         const accessToken = jwt.sign(
-            { userId: user._id },
+            { userId: user.userId },
             process.env.ACCESS_TOKEN_SECRET
         );
 

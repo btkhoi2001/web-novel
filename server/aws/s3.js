@@ -1,30 +1,43 @@
 import aws from "aws-sdk";
-import { v4 as uuidv4 } from "uuid";
 import { Readable } from "stream";
 
 export const uploadFile = (file) => {
-    const bucketName = process.env.AWS_BUCKET_NAME + "/cover";
-    const region = process.env.AWS_BUCKET_REGION;
-    const accessKeyId = process.env.AWS_ACCESS_KEY;
-    const secretAccessKey = process.env.AWS_SECRET_KEY;
-    const { originalname, buffer } = file;
+    const { key, buffer } = file;
     const readable = new Readable();
+
+    const s3 = new aws.S3({
+        region: process.env.AWS_BUCKET_REGION,
+        accessKeyId: process.env.AWS_ACCESS_KEY,
+        secretAccessKey: process.env.AWS_SECRET_KEY,
+    });
 
     readable.push(buffer);
     readable.push(null);
 
-    const s3 = new aws.S3({
-        region,
-        accessKeyId,
-        secretAccessKey,
-    });
-
     const uploadParams = {
         ACL: "public-read",
-        Bucket: bucketName,
+        Bucket: process.env.AWS_BUCKET_NAME,
         Body: readable,
-        Key: uuidv4() + originalname.substr(originalname.lastIndexOf(".")),
+        Key: key,
+        CacheControl: "no-cache",
     };
 
     return s3.upload(uploadParams).promise();
+};
+
+export const deleteFile = (key) => {
+    const s3 = new aws.S3({
+        region: process.env.AWS_BUCKET_REGION,
+        accessKeyId: process.env.AWS_ACCESS_KEY,
+        secretAccessKey: process.env.AWS_SECRET_KEY,
+    });
+
+    const deleteParams = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: key,
+    };
+
+    console.log(deleteParams);
+
+    return s3.deleteObject(deleteParams).promise();
 };
