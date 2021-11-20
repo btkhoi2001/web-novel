@@ -7,6 +7,7 @@ import {
     getChapterById,
     createChapter,
     updateChapter,
+    deleteChapter,
 } from "../controllers/chapter.js";
 
 const router = express.Router({ mergeParams: true });
@@ -28,4 +29,13 @@ router.put(
     verifyChapterId,
     updateChapter
 );
+router.delete(
+    "/:chapterId",
+    verifyToken,
+    verifyAuthor,
+    verifyNovelOwnership,
+    verifyChapterId,
+    deleteChapter
+);
+
 export default router;

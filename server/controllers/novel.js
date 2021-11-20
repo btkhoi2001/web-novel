@@ -96,7 +96,10 @@ export const deleteNovel = async (req, res) => {
         const key = cover.substr(cover.indexOf("cover/"));
         await deleteFile(key);
 
-        res.status(200).json({ deletedNovel });
+        res.status(200).json({
+            message: "novel deleted successfully",
+            deletedNovel,
+        });
     } catch (error) {
         res.status(500).json({ error });
     }

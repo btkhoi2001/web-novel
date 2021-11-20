@@ -37,7 +37,10 @@ export const createChapter = async (req, res) => {
 
         await newChapter.save();
 
-        res.status(201).json({ newChapter });
+        res.status(201).json({
+            message: "chapter created successfully",
+            newChapter,
+        });
     } catch (error) {
         res.status(500).json({ error });
     }
@@ -63,6 +66,24 @@ export const updateChapter = async (req, res) => {
         res.status(200).json({
             message: "Chapter updated successfully",
             updatedChapter,
+        });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const deleteChapter = async (req, res) => {
+    const { novelId, chapterId } = req.params;
+
+    try {
+        const deletedChapter = await Chapter.findOneAndDelete({
+            novelId,
+            chapterId,
+        });
+
+        res.status(200).json({
+            message: "chapter deleted successfully",
+            deletedChapter,
         });
     } catch (error) {
         res.status(500).json({ error });
