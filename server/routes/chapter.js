@@ -6,6 +6,7 @@ import {
     getChapter,
     getChapterById,
     createChapter,
+    updateChapter,
 } from "../controllers/chapter.js";
 
 const router = express.Router({ mergeParams: true });
@@ -19,5 +20,12 @@ router.post(
     verifyNovelOwnership,
     createChapter
 );
-
+router.put(
+    "/:chapterId",
+    verifyToken,
+    verifyAuthor,
+    verifyNovelOwnership,
+    verifyChapterId,
+    updateChapter
+);
 export default router;

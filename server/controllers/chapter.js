@@ -42,3 +42,29 @@ export const createChapter = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+
+export const updateChapter = async (req, res) => {
+    const { novelId, chapterId } = req.params;
+    const { title, content } = req.body;
+
+    try {
+        const updatedChapter = await Chapter.findOneAndUpdate(
+            {
+                novelId,
+                chapterId,
+            },
+            {
+                title,
+                content,
+            },
+            { new: true }
+        );
+
+        res.status(200).json({
+            message: "Chapter updated successfully",
+            updatedChapter,
+        });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};

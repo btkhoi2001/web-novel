@@ -58,13 +58,12 @@ export const createNovel = async (req, res) => {
 };
 
 export const updateNovel = async (req, res) => {
+    const { novelId } = req.params;
     const { title, description, genres, isComplete } = req.body;
 
     try {
-        const novel = await Novel.findOne({ novelId: req.params.novelId });
-
         const updatedNovel = await Novel.findOneAndUpdate(
-            { novelId: req.params.novelId },
+            { novelId },
             {
                 title,
                 description,
@@ -75,7 +74,7 @@ export const updateNovel = async (req, res) => {
         );
 
         const file = req.file;
-        const { cover } = novel;
+        const { cover } = updatedNovel;
         file.key = cover.substr(cover.indexOf("cover/"));
         await uploadFile(file);
 
