@@ -5,7 +5,7 @@ import { verifyToken } from "../middlewares/auth.js";
 import {
     verifyAuthor,
     verifyNovelId,
-    verifyOwnership,
+    verifyNovelOwnership,
 } from "../middlewares/novel.js";
 import {
     getNovel,
@@ -33,7 +33,7 @@ router.put(
     verifyToken,
     verifyNovelId,
     verifyAuthor,
-    verifyOwnership,
+    verifyNovelOwnership,
     updateNovel
 );
 router.delete(
@@ -41,9 +41,9 @@ router.delete(
     verifyToken,
     verifyNovelId,
     verifyAuthor,
-    verifyOwnership,
+    verifyNovelOwnership,
     deleteNovel
 );
-router.use("/:novelId/chapter", chapterRouter);
+router.use("/:novelId/chapter", verifyNovelId, chapterRouter);
 
 export default router;

@@ -1,21 +1,22 @@
 import express from "express";
 import { verifyToken } from "../middlewares/auth.js";
+import { verifyAuthor, verifyNovelOwnership } from "../middlewares/novel.js";
+import { verifyChapterId } from "../middlewares/chapter.js";
 import {
-    verifyAuthor,
-    verifyNovelId,
-    verifyOwnership,
-} from "../middlewares/novel.js";
-import { getChapter, createChapter } from "../controllers/chapter.js";
+    getChapter,
+    getChapterById,
+    createChapter,
+} from "../controllers/chapter.js";
 
 const router = express.Router({ mergeParams: true });
 
 router.get("/", getChapter);
+router.get("/:chapterId", verifyChapterId, getChapterById);
 router.post(
     "/",
     verifyToken,
     verifyAuthor,
-    verifyNovelId,
-    verifyOwnership,
+    verifyNovelOwnership,
     createChapter
 );
 

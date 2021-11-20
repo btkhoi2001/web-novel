@@ -31,7 +31,7 @@ export const verifyNovelId = async (req, res, next) => {
     }
 };
 
-export const verifyOwnership = async (req, res, next) => {
+export const verifyNovelOwnership = async (req, res, next) => {
     const { userId } = req.body;
     const { novelId } = req.params;
 

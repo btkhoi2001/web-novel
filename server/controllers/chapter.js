@@ -4,12 +4,21 @@ export const getChapter = async (req, res) => {
     const { novelId } = req.params;
 
     try {
-        const chapters = await Chapter.find(
-            { novelId },
-            { _id: 0, content: 0, novelId: 0 }
-        );
+        const chapters = await Chapter.find({ novelId }, { content: 0 });
 
         res.status(200).json({ chapters });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const getChapterById = async (req, res) => {
+    const { novelId, chapterId } = req.params;
+
+    try {
+        const chapter = await Chapter.findOne({ novelId, chapterId });
+
+        res.status(200).json({ chapter });
     } catch (error) {
         res.status(500).json({ error });
     }
