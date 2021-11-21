@@ -265,7 +265,7 @@
                                         <i class="fas fa-chevron-left"></i> <span class="word">Chương</span> trước
                                     </a>
                                     <button class="btn-chapter-nav chapter-jump "><i class="fas fa-list-ul"></i></button>
-                                    <select name="" id="" class="btn-chapter-nav form-control chapter-select d-none" > 
+                                    <select name="" id="" class="btn-chapter-nav chapter-select d-none" > 
                                         <option value="chapter1633">Chương 1633</option>
                                         <option value="chapter1634">Chương 1634</option>
                                         <option value="chapter1635">Chương 1635</option>
@@ -355,7 +355,7 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
                                 <i class="fas fa-chevron-left"></i> <span class="word">Chương</span> trước
                             </a>
                             <button class="btn-chapter-nav chapter-jump "><i class="fas fa-list-ul"></i></button>
-                            <select name="" id="" class="btn-chapter-nav form-control chapter-select d-none" > 
+                            <select name="" id="" class="btn-chapter-nav chapter-select d-none" > 
                                 <option value="chapter1633">Chương 1633</option>
                                 <option value="chapter1634">Chương 1634</option>
                                 <option value="chapter1635">Chương 1635</option>
@@ -500,6 +500,62 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
 
    </div>
 
+   <div class="modal d-none">
+        <div class="modal-container ">
+            <header class="modal-header">
+                <i class="fas fa-bell"></i>
+                Báo lỗi chương
+            </header>
+
+            <div class="modal-close d-none d-md-block"> 
+                <i class="fas fa-times"></i>
+            </div>
+
+            <div class="modal-body">
+            <!-- <form action=""> -->
+                    <div class="mb-3">
+                        <label for="modal-email" class="form-label"><i class="fas fa-user-alt"></i> Địa chỉ email để liên lạc với bạn </label>
+                        <input type="email" class="form-control" id="modal-email" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="modal-error" class="form-label">
+                            <i class="fas fa-exclamation"></i><i class="fas fa-exclamation"></i><i class="fas fa-exclamation"></i>
+                            Lỗi mà bạn phát hiện </label>
+                        <textarea class="form-control" id="modal-error" rows="5"></textarea>
+                    </div>
+
+                    <button id="send" type="submit">
+                        Send <i class="fas fa-check"></i>
+                    </button>
+            <!-- </form>      -->
+        </div>
+    </div>
+
+    <script>
+        const errorBtn = document.querySelector('.chapter-error');
+        const modal = document.querySelector('.modal');
+        const modalClose = document.querySelector('.modal-close');
+        const modalContainer =document.querySelector('.modal-container') ;
+    
+        errorBtn.addEventListener('click', function () {
+            modal.classList.toggle('d-none');
+        });
+
+        modalClose.addEventListener('click', function () {
+            modal.classList.toggle('d-none');
+        });
+
+         // Đóng modal  khi nhận click vào màn hình (class modal đang bao hết màn hình)
+        modal.addEventListener('click',function () {
+            modal.classList.toggle('d-none');
+        });
+
+        // DỪng việc đóng modal nếu click vào bên trong giao diện modal
+        modalContainer.addEventListener('click', function (event) {
+            event.stopPropagation();
+        }) ;
+
+    </script>
     
 
    <script>
