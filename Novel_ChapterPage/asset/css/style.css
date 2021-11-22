@@ -612,7 +612,7 @@
 }
 
 .modal-container .modal-header {
-    background-color: var(--header-light-color);
+    background-color: #14425de5;
     height: 8rem;
     display: flex;
     align-items: center;
@@ -664,7 +664,7 @@
 }
 
 .modal-body #send {
-    background-color: var(--header-light-color);
+    background-color: #14425de5;
     border: none;
     color: white;
     width: 100%;
@@ -674,7 +674,7 @@
 }
 
 .modal-body #send:hover {
-    background-color: #14425de5;
+    background-color: var(--header-light-color);
 }
 
 
