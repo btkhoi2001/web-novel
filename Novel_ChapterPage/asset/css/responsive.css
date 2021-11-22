@@ -241,7 +241,7 @@
 
 @media (min-width: 62em) {
     .modal-container {
-        width: 55%;
-        max-width: 77rem;
+        width: 50%;
+        max-width: 70rem;
     }
 }
