@@ -93,6 +93,9 @@
         padding: .4rem;
         height: 3.2rem;
     }
+    .content {
+        padding-top: 0rem;
+    }
 }
 
 @media (min-width: 30em) and (max-width: 35.9375em) {
@@ -137,6 +140,9 @@
     .search {
         padding: .4rem;
         height: 3.2rem;
+    }
+    .content {
+        padding-top: 0rem;
     }
 }
 

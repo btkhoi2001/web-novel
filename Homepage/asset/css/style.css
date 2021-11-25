@@ -197,7 +197,9 @@
 }
 
 /* content */
-
+.content {
+    padding-top: 40rem;
+}
 .section {
     margin-top: 2rem;
 }
