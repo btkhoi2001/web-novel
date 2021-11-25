@@ -1,0 +1,379 @@
+.main {
+    width: 100%;
+    background-color: var(--light-background-color);
+}
+/* Header */
+#header {
+    color: var(--white-color);
+    background-color: var(--header-light-color);
+    font-size:1.2rem;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.searchbar {
+    height: 6rem;
+    display:flex;
+    align-items: center;
+    margin-left:  -2rem;
+    /* margin-right: -2rem; */
+}
+
+.searchbar-item {
+    display: inline-block;
+    padding: 0 1.6rem;
+    margin: .2rem;
+}
+
+.logo {
+    text-decoration: none;
+    color: var(--white-color);
+    font-weight:700;
+}
+.logo h1 {
+    font-size: 4rem;
+}
+.search{
+    flex:1;
+    align-items: center;
+    background-color: var(--light-background-color);
+    height:4rem;
+    border-radius: 6px;
+    display: flex;
+}
+
+.search-input {
+    flex: 1;
+    height:100%;
+    outline: none;
+    border: none;
+    font-size: 1.4rem;
+}
+
+.search-select-btn {
+    font-size: 1.4rem;
+    color: var(--header-light-color);
+    padding: 0 .8rem;
+    margin-left: .8rem;
+}
+
+.search-select-btn:hover {
+    cursor: pointer;
+}
+
+.searchbar-btn {
+    margin-top:.2rem;
+    padding: .4rem 1.2rem;
+    border-radius: .8rem;
+    display: inline-block;
+    text-align: center;
+    font-weight: 700;
+}
+
+.searchbar-btn:hover a {
+   opacity: .7;
+}
+
+.searchbar-btn a {
+    color: var(--white-color);
+    text-decoration: none;
+}
+
+.searchbar-btn a i {
+    font-size: 2.8rem;
+    display:inline-block;
+}
+
+.user {
+    display: inline-block;
+    position: relative;
+}
+.user-name {
+    position: absolute;
+    font-size: 2rem;
+    font-weight:400;
+    bottom: -.5rem;
+    left: 0;
+    opacity: 0.9;
+}
+
+.navbar {
+    height:5rem;
+    display:flex;
+    align-items: center;
+    margin-left:  -2rem;
+    margin-right: -2rem;
+}
+
+.navbar-items {
+    display: inline-block;
+    padding: 0 1.4rem;
+    margin: .2rem .4rem;
+}
+
+.item-link {
+    text-decoration: none;
+    color: var(--white-color);
+    display:block;
+    line-height:4rem;
+    font-size: 1.2rem;
+}
+
+.navbar-items:hover  {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.navbar-icon {
+    font-size: 1.2rem;
+    padding: .2rem;
+    margin: .2rem;
+}
+
+.navbar-arrow-down {
+    font-size: 1.2rem;
+    transform: translateY(-25%);
+}
+
+
+.droplist{
+    display: none;
+    z-index: 10;
+}
+    .droplist a{
+        display: block;
+        padding: 0.8rem 1.2rem;
+        text-decoration: none;
+        color: white;
+    }
+    .droplist a:hover{
+        color: var(--orange-color);
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+.droplist-fluid-container{
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.droplist-fluid {
+    background-color: var(--header-light-color);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    height: 20rem;
+    width: 80rem;
+    margin: auto;
+    box-shadow: 0 6px 12px rgb(0,0,0,0.2);
+    border-radius: 6px;
+    font-size: 1.2rem;
+}
+            
+.droplist-normal{
+    background-color: var(--header-light-color);
+    position: absolute;
+    width: 16rem;
+    border-radius: 6px;
+    margin-left:-1.3rem;
+}
+
+.dropdown:hover .droplist{
+    display: block;
+}
+
+.color-select{
+    width: 23rem;
+}
+.color-select a{
+    display: inline-block;
+    width: 49%;
+}
+
+/* content */
+.content {
+   padding-top: 30rem;
+}
+
+.page {
+    background-color: white;
+    position: relative;
+    min-height: 100rem;
+    border-radius: 2rem;
+}
+
+.page-content {
+    padding: .8rem;
+    width: 100%;
+    position: absolute;
+}
+
+.list {
+    margin-top: 5.4rem;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+.list-item {
+    padding: 1.2rem 2.4rem;
+}
+
+.list-item.active {
+    background-color: #206791;
+    color: #fff;
+}
+
+.list-item:hover {
+    font-style: italic;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.section {
+    font-size: 1.6rem;
+    color: #333;
+    margin-left: .6rem;
+    margin-right: 2rem;
+}
+
+.section-title {
+    font-weight: 500;
+    padding: .6rem;
+    font-size: 2.8rem;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 3rem;
+}
+
+.avatar {
+    padding: 1.2rem;
+    border-bottom: 1px solid #e6e6e6;
+}
+.avatar-wrapper{
+	position: relative;
+	height: 20rem;
+	width: 20rem;
+    margin: 0 auto;
+	border-radius: 50%;
+	overflow: hidden;
+	box-shadow: 1px 1px 15px -5px black;
+	transition: all .3s ease;
+}
+
+.avatar-wrapper:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.avatar-wrapper:hover .profile-pic{
+    opacity: .5;
+}
+
+.avatar-wrapper .profile-pic {
+    height: 100%;
+	width: 100%;
+	transition: all .3s ease;
+}
+.avatar-wrapper .profile-pic:after{
+    font-family: FontAwesome;
+    content: "\f007";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    font-size: 18rem;
+    background: #ecf0f1;
+    color: #34495e;
+    text-align: center;
+}
+.avatar-wrapper .upload-button {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    width: 100%;
+}
+.avatar-wrapper .upload-button .fa-arrow-circle-up{
+    position: absolute;
+    font-size: 20.2rem;
+    top: 0rem;
+    left: 0;
+    text-align: center;
+    opacity: 0;
+    transition: all .3s ease;
+    color: #34495e;
+}
+.avatar-wrapper .upload-button:hover .fa-arrow-circle-up{
+    opacity: .9;
+}
+
+.avatar .text-muted {
+    display: block;
+    padding: 1.6rem;
+}
+
+.information {
+    margin-top: 3rem;
+    padding: 1.2rem;
+}
+.information .submit {
+    background-color:#206791;
+    color: #fff;
+    font-size:1.6rem;
+    padding:.6rem 3.2rem;
+    border-radius: 2rem;
+}
+
+.information .submit:hover {
+    background-color: var(--header-light-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer */
+#footer {
+    margin-top: 4rem;
+    padding: 3.2rem 1.6rem;
+    text-align: center;
+    background-color:  var(--header-light-color);
+    color: white;
+}
+
+#footer .social-list a {
+    font-size: 2.4rem;
+    color: rgba(0,0,0,0.6);
+    color: white;
+}
+
+#footer .social-list a:hover {
+    font-size: 2.4rem;
+    color: rgba(0,0,0,0.4)
+}
+
+#footer .copy-right{
+   margin-top: .8rem;
+   color: rgba(0,0,0,0.6);
+   color: white;
+   font-size: 1.4rem;
+}
+
+#footer .copy-right a {
+    padding: 0 .4rem;
+    font-size: 1.6rem;
+    color: rgba(0,0,0,0.6);
+    text-decoration: underline;
+    color: white;
+}
