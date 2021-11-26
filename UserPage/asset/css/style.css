@@ -328,7 +328,34 @@
     background-color: var(--header-light-color);
 }
 
+.reading-list-item {
+    display: flex;
+    margin-bottom: 2.4rem;
+}
+.reading-list-item .item-img:hover img {
+    transform: scale(1.05);
+}
+.reading-list-item .item-body {
+    margin: 0 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.reading-list-item .item-body a {
+    color: #333 ;
+    opacity: 0.9;
+    font-size:1.8rem;
+}
+.reading-list-item .item-body a:hover {
+    color: var(--orange-color);
+}
 
+.property .item-body {
+    justify-content: center;
+}
+.property .candy {
+    color: red;
+}
 
 
 

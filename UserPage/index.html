@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="./asset/css/base.css">
+    <link rel="stylesheet" href="./asset/css/style.css">
+    <link rel="stylesheet" href="./asset/css/responsive.css">
     <title>Đọc truyện online - SimplePoLL</title>
 </head>
 <body>
@@ -32,7 +32,7 @@
                            <a href="#">   
                                 <i class="fas fa-user-circle"></i>
                                 <div class="user">
-                                    <span class="user-name">User</span>
+                                    <span class="user-name">User123</span>
                                 </div>
                            </a>
                        </div>
@@ -124,10 +124,10 @@
                         <a href="#" class="item-link"><i class="far fa-chart-bar navbar-icon"></i> Bảng xếp hạng </a>
                     </li>
                     <li class="navbar-items">
-                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Lịch sử </a>
+                        <a href="#" class="item-link"> <i class="fas fa-book navbar-icon"></i>Theo dõi </a>
                     </li>
                     <li class="navbar-items">
-                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Theo dõi </a>
+                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Đánh dấu </a>
                     </li> 
                     <li class="navbar-items">
                         <a href="#" class="item-link"> <i class="fas fa-upload navbar-icon"></i>Đăng Truyện </a>
@@ -150,7 +150,8 @@
                         <div class="col-3">
                             <ul class="list">
                                 <li class="list-item active"><i class="fas fa-user"></i> Hồ sơ</li>
-                                <li class="list-item"><i class="fas fa-book"></i> Tủ truyện</li>
+                                <li class="list-item"><i class="fas fa-book"></i> Theo dõi</li>
+                                <li class="list-item"><i class="fas fa-bookmark"></i> Đánh dấu</li>
                                 <li class="list-item"><i class="fas fa-cog"></i> Cài đặt</li>
                                 <li class="list-item"><i class="fas fa-dollar-sign"></i> Tài sản</li>
                                 <li class="list-item"><i class="fas fa-bell"></i> Thông báo</li>
@@ -180,15 +181,15 @@
                                         <form action="">
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
                                                 <label for="name" class="form-label" style="font-weight: 500;">Tên</label>
-                                                <input type="text" class="form-control" id="email" placeholder="Simple Poll"  style="padding:.6rem; font-size:1.4rem">
+                                                <input type="text" class="form-control" id="name" value="User123"  style="padding:.6rem; font-size:1.4rem">
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
                                                 <label for="birthdate" class="form-label" style="font-weight: 500;">Ngày sinh </label>
-                                                <input type="date" class="form-control" id="birthdate" placeholder="1/1/2021"  style="padding:.6rem; font-size:1.4rem">
+                                                <input type="date" class="form-control" id="birthdate"  style="padding:.6rem; font-size:1.4rem">
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
                                                 <label for="gender" class="form-label" style="font-weight: 500;">Giới tính</label>
-                                                <input type="text" class="form-control" id="email" placeholder="Nam"  style="padding:.6rem; font-size:1.4rem">
+                                                <input type="text" class="form-control" id="gender"  style="padding:.6rem; font-size:1.4rem">
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
                                                 <label for="introduction" class="form-label" style="font-weight: 500;">Giới thiệu</label>
@@ -196,7 +197,7 @@
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
                                                 <label for="email" class="form-label" style="font-weight: 500;">Email</label>
-                                                <input type="email" class="form-control" id="email" placeholder="name@example.com"  style="padding:.6rem; font-size:1.4rem">
+                                                <input type="email" class="form-control" id="email"  style="padding:.6rem; font-size:1.4rem">
                                             </div>
                                             <div class="mb-3" style="float: right;">
                                                 <button type="button" type="submit" class="btn submit" >Cập nhật</button>
@@ -204,6 +205,114 @@
                                            
                                         </form>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="section bookcase d-none">
+                                <div class="section-title">
+                                   Tủ Truyện
+                                </div>
+                                <div class="section-content">
+                                    <ul class="reading-list">
+                                        <li class="reading-list-item">
+                                            <a href="#" class="item-img">
+                                                <img src="https://static.cdnno.com/poster/cong-phap-cua-ta-toan-bo-nho-nhat/150.jpg?1631271236" alt="" width="44">
+                                            </a>
+                                            <div class="item-body">
+                                                <h2><a href="" class="item-body-title">Công Pháp Của Ta Toàn Bộ Nhờ Nhặt</a></h2>
+                                                <div class="text-muted text-overflow-1-lines">
+                                                    Đã đọc: 2/2223
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="reading-list-item">
+                                            <a href="#" class="item-img">
+                                                <img src="https://static.cdnno.com/poster/vu-than-chua-te/150.jpg?1585205086" alt="" width="44">
+                                            </a>
+                                            <div class="item-body">
+                                                <h2><a href="" class="item-body-title">Võ thần chúa tể</a></h2>
+                                                <div class="text-muted text-overflow-1-lines">
+                                                    Đã đọc: 2/2223
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="reading-list-item">
+                                            <a href="#" class="item-img">
+                                                <img src="https://static.cdnno.com/poster/van-co-than-de/150.jpg?1585205583" alt="" width="44">
+                                            </a>
+                                            <div class="item-body">
+                                                <h2><a href="" class="item-body-title">Vạn cổ thần đế</a></h2>
+                                                <div class="text-muted text-overflow-1-lines">
+                                                    Đã đọc: 2/2223
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="reading-list-item">
+                                            <a href="#" class="item-img">
+                                                <img src="https://static.cdnno.com/poster/vo-thuong-sat-than/150.jpg?1585205565" alt="" width="44">
+                                            </a>
+                                            <div class="item-body">
+                                                <h2><a href="" class="item-body-title">Vô thượng sát thần</a></h2>
+                                                <div class="text-muted text-overflow-1-lines">
+                                                    Đã đọc: 2/2223
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="section bookmark d-none">
+                                <div class="section-title">
+                                   Đánh dấu
+                                </div>
+                                <div class="section-content">
+                                    <ul class="reading-list">
+                                        <li class="reading-list-item">
+                                            <a href="#" class="item-img">
+                                                <img src="https://static.cdnno.com/poster/dinh-cap-khi-van-lang-le-tu-luyen-ngan-nam/150.jpg?1614159439" alt="" width="44">
+                                            </a>
+                                            <div class="item-body">
+                                                <h2><a href="" class="item-body-title">Đỉnh cấp khí vận, lặng lẽ tu luyện ngàn năm</a></h2>
+                                                <div class="text-muted text-overflow-1-lines">
+                                                    Đang đọc: 1/2223
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="reading-list-item">
+                                            <a href="#" class="item-img">
+                                                <img src="https://static.cdnno.com/poster/vu-than-chua-te/150.jpg?1585205086" alt="" width="44">
+                                            </a>
+                                            <div class="item-body">
+                                                <h2><a href="" class="item-body-title">Võ thần chúa tể</a></h2>
+                                                <div class="text-muted text-overflow-1-lines">
+                                                    Đang đọc: 2/1623
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="reading-list-item">
+                                            <a href="#" class="item-img">
+                                                <img src="https://static.cdnno.com/poster/van-co-than-de/150.jpg?1585205583" alt="" width="44">
+                                            </a>
+                                            <div class="item-body">
+                                                <h2><a href="" class="item-body-title">Vạn cổ thần đế</a></h2>
+                                                <div class="text-muted text-overflow-1-lines">
+                                                    Đang đọc: 3/2863
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="reading-list-item">
+                                            <a href="#" class="item-img">
+                                                <img src="https://static.cdnno.com/poster/vo-thuong-sat-than/150.jpg?1585205565" alt="" width="44">
+                                            </a>
+                                            <div class="item-body">
+                                                <h2><a href="" class="item-body-title">Vô thượng sát thần</a></h2>
+                                                <div class="text-muted text-overflow-1-lines">
+                                                    Đang đọc: 4/263
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
 
@@ -232,6 +341,35 @@
                                            
                                         </form>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="section property d-none">
+                                <div class="section-title">
+                                   Hoa
+                                </div>
+                                <div class="section-content">
+                                    <div class="information">
+                                        <div class="reading-list-item">
+                                            <a href="#" class="item-img">
+                                                <img src="./asset/img/candy.svg" alt="" width="50">
+                                            </a>
+                                            <div class="item-body">
+                                                <h2>
+                                                    Bạn hiện có <span class="candy"> 0 </span> kẹo
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section notification d-none ">
+                                <div class="section-title">
+                                   Thông báo
+                                </div>
+                                <div class="section-content">
+                                    Bạn không có thông báo.
                                 </div>
                             </div>
                         </div>
@@ -280,12 +418,42 @@
         $(".file-upload").click();
         });
 
-        $('.list-item').click(function () {
+        $('.list-item:nth-child(1)').click(function () {
             $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+            $('.general-information').removeClass('d-none');
             $(this).addClass('active');
         });
-
-        
+        $('.list-item:nth-child(2)').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+            $('.bookcase').removeClass('d-none');
+            $(this).addClass('active');
+        });
+        $('.list-item:nth-child(3)').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+            $('.bookmark').removeClass('d-none');
+            $(this).addClass('active');
+        });
+        $('.list-item:nth-child(4)').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+            $('.setting').removeClass('d-none');
+            $(this).addClass('active');
+        });
+        $('.list-item:nth-child(5)').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+            $('.property').removeClass('d-none');
+            $(this).addClass('active');
+        });
+        $('.list-item:nth-child(6)').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+            $('.notification').removeClass('d-none');
+            $(this).addClass('active');
+        });
 
    </script>
 
