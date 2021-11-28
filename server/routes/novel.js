@@ -1,5 +1,6 @@
 import express from "express";
 import multer from "multer";
+import ratingRouter from "./rating.js";
 import chapterRouter from "./chapter.js";
 import commentRouter from "./comment.js";
 import { verifyToken } from "../middlewares/auth.js";
@@ -45,6 +46,7 @@ router.delete(
     verifyNovelOwnership,
     deleteNovel
 );
+router.use("/:novelId/rating", verifyNovelId, ratingRouter);
 router.use("/:novelId/chapter", verifyNovelId, chapterRouter);
 router.use("/:novelId/comment", verifyNovelId, commentRouter);
 
