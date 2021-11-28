@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { Novel } from "../models/Novel.js";
-import { uploadFile, deleteFile } from "../aws/s3.js";
+import { uploadFile, deleteFile } from "../config/aws/s3.js";
 
 export const getNovel = async (req, res) => {
     try {
@@ -94,6 +94,7 @@ export const deleteNovel = async (req, res) => {
         const deletedNovel = await Novel.findOneAndDelete({ novelId });
         const { cover } = deletedNovel;
         const key = cover.substr(cover.indexOf("cover/"));
+
         await deleteFile(key);
 
         res.status(200).json({

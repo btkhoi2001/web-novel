@@ -1,4 +1,5 @@
 import express from "express";
+import commentRouter from "./comment.js";
 import { verifyToken } from "../middlewares/auth.js";
 import { verifyAuthor, verifyNovelOwnership } from "../middlewares/novel.js";
 import { verifyChapterId } from "../middlewares/chapter.js";

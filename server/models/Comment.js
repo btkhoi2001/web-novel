@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
+import Inc from "mongoose-sequence";
+const AutoIncrement = Inc(mongoose);
 
 const schema = new mongoose.Schema(
     {
-        CommentId: {
+        commentId: {
             type: Number,
             unique: true,
         },
@@ -10,6 +12,7 @@ const schema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        novelId: Number,
         chapterId: Number,
         parentCommentId: Number,
         content: {

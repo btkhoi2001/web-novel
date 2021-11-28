@@ -1,6 +1,7 @@
 import express from "express";
 import multer from "multer";
 import chapterRouter from "./chapter.js";
+import commentRouter from "./comment.js";
 import { verifyToken } from "../middlewares/auth.js";
 import {
     verifyAuthor,
@@ -45,5 +46,6 @@ router.delete(
     deleteNovel
 );
 router.use("/:novelId/chapter", verifyNovelId, chapterRouter);
+router.use("/:novelId/comment", verifyNovelId, commentRouter);
 
 export default router;
