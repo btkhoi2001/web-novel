@@ -38,5 +38,6 @@ router.delete(
     verifyChapterId,
     deleteChapter
 );
+router.use("/:chapterId/comment", verifyChapterId, commentRouter);
 
 export default router;
