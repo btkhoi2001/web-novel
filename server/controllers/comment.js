@@ -29,10 +29,7 @@ export const createComment = async (req, res) => {
             content,
         });
 
-        console.log(2);
-        console.log(newComment);
         await newComment.save();
-        console.log(3);
 
         res.status(201).json({
             message: "comment created successfully",

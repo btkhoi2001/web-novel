@@ -4,7 +4,7 @@ import { uploadFile, deleteFile } from "../config/aws/s3.js";
 
 export const getNovel = async (req, res) => {
     try {
-        const novels = await Novel.find({});
+        const novels = await Novel.find(null, null, { lean: true });
 
         res.status(200).json({ novels });
     } catch (error) {

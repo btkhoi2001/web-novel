@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRouter from "./routes/auth.js";
 import novelRouter from "./routes/novel.js";
+import userRouter from "./routes/user.js";
 import scheduler from "./schedules/jobs.js";
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(
 app.use(express.json({ limit: "50mb" }));
 app.use("/api/auth", authRouter);
 app.use("/api/novel", novelRouter);
+app.use("/api/user", userRouter);
 
 mongoose
     .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
