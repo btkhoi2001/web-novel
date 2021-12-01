@@ -149,10 +149,13 @@
                     <div class="row">
                         <div class="col-3">
                             <ul class="list">
-                                <li class="list-item active"><i class="fas fa-user"></i> Hồ sơ</li>
+                                <li class="list-item">
+                                    <a href="#"><i class="fas fa-id-card"></i> Hồ sơ</a>
+                                </li>
+                                <li class="list-item active"><i class="fas fa-user"></i> Tài khoản</li>
+                                <li class="list-item"><i class="fas fa-cog"></i> Mật khẩu</li>
                                 <li class="list-item"><i class="fas fa-book"></i> Theo dõi</li>
                                 <li class="list-item"><i class="fas fa-bookmark"></i> Đánh dấu</li>
-                                <li class="list-item"><i class="fas fa-cog"></i> Cài đặt</li>
                                 <li class="list-item"><i class="fas fa-dollar-sign"></i> Tài sản</li>
                                 <li class="list-item"><i class="fas fa-bell"></i> Thông báo</li>
                             </ul>
@@ -161,7 +164,7 @@
                         <div class="col-9">
                             <div class="section general-information ">
                                 <div class="section-title">
-                                   Hồ sơ
+                                   Thông tin chung
                                 </div>
                                 <div class="section-content">
                                     <div class="avatar text-center">
@@ -208,7 +211,7 @@
                                 </div>
                             </div>
 
-                            <div class="section bookcase d-none">
+                            <div class="section novel-following d-none">
                                 <div class="section-title">
                                    Tủ Truyện
                                 </div>
@@ -318,7 +321,7 @@
 
                             <div class="section setting d-none">
                                 <div class="section-title">
-                                   Cài Đặt
+                                   Mật khẩu
                                 </div>
                                 <div class="section-content">
                                     <div class="information">
@@ -346,18 +349,38 @@
 
                             <div class="section property d-none">
                                 <div class="section-title">
-                                   Hoa
+                                    <div class="tabs">
+                                        <div class="tab-item active">
+                                            Kẹo
+                                        </div>
+                                        <div class="tab-item">
+                                            Hoa
+                                        </div>
+                                        <div class="line"></div>
+                                    </div>
                                 </div>
                                 <div class="section-content">
                                     <div class="information">
-                                        <div class="reading-list-item">
-                                            <a href="#" class="item-img">
-                                                <img src="./asset/img/candy.svg" alt="" width="50">
-                                            </a>
-                                            <div class="item-body">
-                                                <h2>
-                                                    Bạn hiện có <span class="candy"> 0 </span> kẹo
-                                                </h2>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active">
+                                                <div class="item-img d-inline-block">
+                                                    <img src="./asset/img/candy.svg" alt="" width="50">
+                                                </div>
+                                                <div class="item-body d-inline-block">
+                                                    <h2>
+                                                        Bạn hiện có <span class="candy"> 0 </span> kẹo
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane">
+                                                <div class="item-img d-inline-block" style="font-size: 2rem;">
+                                                    <img src="./asset/img/flower.png" alt="" width="80">
+                                                </div>
+                                                <div class="item-body d-inline-block">
+                                                    <h2>
+                                                        Bạn hiện có <span class="flower"> 0 </span> hoa
+                                                    </h2>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -418,41 +441,65 @@
         $(".file-upload").click();
         });
 
-        $('.list-item:nth-child(1)').click(function () {
+        $('.list-item:nth-child(2)').click(function () {
             $('.list-item').removeClass('active');
             $('.section').addClass('d-none');
             $('.general-information').removeClass('d-none');
             $(this).addClass('active');
         });
-        $('.list-item:nth-child(2)').click(function () {
-            $('.list-item').removeClass('active');
-            $('.section').addClass('d-none');
-            $('.bookcase').removeClass('d-none');
-            $(this).addClass('active');
-        });
         $('.list-item:nth-child(3)').click(function () {
-            $('.list-item').removeClass('active');
-            $('.section').addClass('d-none');
-            $('.bookmark').removeClass('d-none');
-            $(this).addClass('active');
-        });
-        $('.list-item:nth-child(4)').click(function () {
             $('.list-item').removeClass('active');
             $('.section').addClass('d-none');
             $('.setting').removeClass('d-none');
             $(this).addClass('active');
         });
+        $('.list-item:nth-child(4)').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+            $('.novel-following').removeClass('d-none');
+            $(this).addClass('active');
+        });
         $('.list-item:nth-child(5)').click(function () {
             $('.list-item').removeClass('active');
             $('.section').addClass('d-none');
-            $('.property').removeClass('d-none');
+            $('.bookmark').removeClass('d-none');
             $(this).addClass('active');
         });
         $('.list-item:nth-child(6)').click(function () {
             $('.list-item').removeClass('active');
             $('.section').addClass('d-none');
+            $('.property').removeClass('d-none');
+            $(this).addClass('active');
+        });
+        $('.list-item:nth-child(7)').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
             $('.notification').removeClass('d-none');
             $(this).addClass('active');
+        });
+
+        const tabs = document.querySelectorAll(".tab-item");
+        const panes = document.querySelectorAll(".tab-pane");
+
+        const tabActive = document.querySelector(".tab-item.active");
+        const line = document.querySelector(".tabs .line");
+
+        line.style.left = tabActive.offsetLeft + "px";
+        line.style.width = tabActive.offsetWidth + "px";
+
+        tabs.forEach((tab, index) => {
+            const pane = panes[index];
+
+            tab.onclick = function () {
+                document.querySelector(".tab-item.active").classList.remove("active");
+                document.querySelector(".tab-pane.active").classList.remove("active");
+
+                line.style.left = this.offsetLeft + "px";
+                line.style.width = this.offsetWidth + "px";
+
+                this.classList.add("active");
+                pane.classList.add("active");
+            };
         });
 
    </script>
