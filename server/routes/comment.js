@@ -5,6 +5,7 @@ import {
     getComment,
     createComment,
     createCommentLike,
+    deleteCommentLike,
 } from "../controllers/comment.js";
 const router = express.Router({ mergeParams: true });
 
@@ -16,5 +17,10 @@ router.post(
     verifyCommentId,
     createCommentLike
 );
-
+router.delete(
+    "/:commentId/like",
+    verifyToken,
+    verifyCommentId,
+    deleteCommentLike
+);
 export default router;

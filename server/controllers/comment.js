@@ -63,3 +63,22 @@ export const createCommentLike = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+
+export const deleteCommentLike = async (req, res) => {
+    const { userId } = req.body;
+    const { commentId } = req.params;
+
+    try {
+        const deletedCommentLike = await CommentLike.findOneAndDelete(
+            {
+                userId,
+                commentId,
+            },
+            { lean: true }
+        );
+
+        res.status(200).json({ deletedCommentLike });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
