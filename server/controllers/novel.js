@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { Novel } from "../models/Novel.js";
+import { Rating } from "../models/Rating.js";
 import { uploadFile, deleteFile } from "../config/aws/s3.js";
 
 export const getNovel = async (req, res) => {
@@ -101,6 +102,25 @@ export const deleteNovel = async (req, res) => {
             message: "novel deleted successfully",
             deletedNovel,
         });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const createRatingNovel = async (req, res) => {
+    const { userId, rating } = req.body;
+    const { novelId } = req.params;
+
+    if (!rating) return res.status(401).json({ message: "rating not found" });
+
+    try {
+        const newRatingNovel = await Rating.findOneAndUpdate(
+            { userId, novelId },
+            { userId, novelId, rating },
+            { upsert: true, lean: true, new: true }
+        );
+
+        return res.status(201).json({ newRatingNovel });
     } catch (error) {
         res.status(500).json({ error });
     }
