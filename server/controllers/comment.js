@@ -1,4 +1,5 @@
 import { Comment } from "../models/Comment.js";
+import { CommentLike } from "../models/CommentLike.js";
 
 export const getComment = async (req, res) => {
     const { novelId, chapterId } = req.params;
@@ -35,6 +36,29 @@ export const createComment = async (req, res) => {
             message: "comment created successfully",
             newComment,
         });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const createCommentLike = async (req, res) => {
+    const { userId } = req.body;
+    const { commentId } = req.params;
+
+    try {
+        const newCommentLike = await CommentLike.findOneAndUpdate(
+            {
+                userId,
+                commentId,
+            },
+            {
+                userId,
+                commentId,
+            },
+            { upsert: true, lean: true, new: true }
+        );
+
+        return res.status(201).json({ newCommentLike });
     } catch (error) {
         res.status(500).json({ error });
     }
