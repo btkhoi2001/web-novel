@@ -198,7 +198,7 @@
 }
 
 .page {
-    background-color: white;
+    background-color: rgba(238, 243, 247, 0.96);
     position: relative;
     min-height: 100rem;
     border-radius: 2rem;
@@ -386,7 +386,6 @@
     padding: 16px 20px 11px 20px;
     font-size: 20px;
     text-align: center;
-    background-color: #fff;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: 5px solid transparent;
