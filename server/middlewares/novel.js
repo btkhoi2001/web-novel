@@ -17,7 +17,7 @@ export const verifyAuthor = async (req, res, next) => {
 };
 
 export const verifyNovelId = async (req, res, next) => {
-    const { novelId } = req.params;
+    const novelId = req.params.novelId || req.body.novelId;
 
     try {
         if (!(await Novel.exists({ novelId })))

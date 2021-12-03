@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import chapterRouter from "./chapter.js";
 import commentRouter from "./comment.js";
+import ratingRouter from "./rating.js";
 import { verifyToken } from "../middlewares/auth.js";
 import {
     verifyAuthor,
@@ -14,7 +15,6 @@ import {
     createNovel,
     updateNovel,
     deleteNovel,
-    createRatingNovel,
 } from "../controllers/novel.js";
 
 const router = express.Router();
@@ -46,7 +46,7 @@ router.delete(
     verifyNovelOwnership,
     deleteNovel
 );
-router.post("/:novelId/rating", verifyToken, verifyNovelId, createRatingNovel);
+router.use("/:novelId/rating", verifyNovelId, ratingRouter);
 router.use("/:novelId/chapter", verifyNovelId, chapterRouter);
 router.use("/:novelId/comment", verifyNovelId, commentRouter);
 

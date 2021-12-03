@@ -5,7 +5,6 @@ import { uploadFile, deleteFile } from "../config/aws/s3.js";
 
 export const getNovel = async (req, res) => {
     try {
-        // const novels = await Novel.find(null, null, { lean: true });
         const novels = await Novel.aggregate([
             {
                 $lookup: {
@@ -56,8 +55,6 @@ export const getNovel = async (req, res) => {
                 $sort: { novelId: 1 },
             },
         ]);
-
-        console.log(novels);
 
         res.status(200).json({ novels });
     } catch (error) {
@@ -119,8 +116,6 @@ export const getNovelById = async (req, res) => {
                 },
             },
         ]);
-
-        console.log(novel);
 
         res.status(200).json({ novel });
     } catch (error) {
@@ -205,25 +200,6 @@ export const deleteNovel = async (req, res) => {
             message: "novel deleted successfully",
             deletedNovel,
         });
-    } catch (error) {
-        res.status(500).json({ error });
-    }
-};
-
-export const createRatingNovel = async (req, res) => {
-    const { userId, rating } = req.body;
-    const { novelId } = req.params;
-
-    if (!rating) return res.status(401).json({ message: "rating not found" });
-
-    try {
-        const newRatingNovel = await Rating.findOneAndUpdate(
-            { userId, novelId },
-            { userId, novelId, rating },
-            { upsert: true, lean: true, new: true }
-        );
-
-        return res.status(201).json({ newRatingNovel });
     } catch (error) {
         res.status(500).json({ error });
     }
