@@ -1,5 +1,7 @@
 import { Bookmark } from "../models/Bookmark.js";
 
+export const getBookmark = async (req, res) => {};
+
 export const createBookmark = async (req, res) => {
     const { userId, novelId } = req.body;
 
@@ -16,4 +18,17 @@ export const createBookmark = async (req, res) => {
     }
 };
 
-export const deleteBookmark = async (req, res) => {};
+export const deleteBookmark = async (req, res) => {
+    const { userId, novelId } = req.body;
+
+    try {
+        const deletedBookmark = await Bookmark.findOneAndDelete({
+            userId,
+            novelId,
+        });
+
+        res.status(200).json({ deletedBookmark });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};

@@ -6,5 +6,6 @@ import { createBookmark, deleteBookmark } from "../controllers/bookmark.js";
 const router = express.Router({ mergeParams: true });
 
 router.post("/", verifyToken, verifyNovelId, createBookmark);
+router.delete("/", verifyToken, verifyNovelId, deleteBookmark);
 
 export default router;
