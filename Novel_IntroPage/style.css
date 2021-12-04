@@ -585,10 +585,80 @@ img {
     color: #428bca;
 }
 
+#suggest-book {
+    width: auto;
+    margin: .5rem 3.5rem;
+}
+
+#suggest-book>a {
+    background-color: #f7f5f0;
+    padding: .5rem 1rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    border-radius: 1.625rem;
+    font-weight: 600;
+    align-items: center!important;
+    justify-content: center!important;
+    display: flex;
+    width: 100%;
+    border-color: #1d66a5!important;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    text-decoration: none;
+}
+
+#suggest-book>a:hover {
+    background-color: #428bca;
+    color: #ffffff !important;
+}
+
+.svg-icon.icon-flower {
+    background-image: url(../Novel_IntroPage/flower.svg);
+    width: .8rem;
+    height: 1.2rem;
+    margin-left: .5rem;
+}
+
+.svg-icon {
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    display: inline-block;
+}
+
 .desc {
     /*width: 68%;*/
     padding-right: 15px;
     text-align: center;
+}
+
+#rating {
+    text-align: center;
+    perspective: 250px;
+    position: relative;
+    margin-bottom: 5px;
+    top: 40%;
+    width: 100%;
+}
+  
+#rating span {
+    cursor: pointer;
+    font-size: 25px;
+    padding: 0 5px;
+    color: #000;
+    opacity: .5;
+    transition: all 150ms;
+    display: inline-block;
+    transform: rotateX(45deg);
+    transform-origin: center bottom;
+}
+
+#rating span.hover {
+    color: #ffa600 !important;
+    opacity: 1;
+    transform: rotateX(0deg);
+    text-shadow: 0 0 30px #ffc;
 }
 
 .rate-holder, .rate-text {
@@ -612,12 +682,12 @@ small, .small {
 .desc .desc-text {
     font-family: "Arial", sans-serif;
     font-size: 12px;
-    height: 204px;
+    height: auto;
     margin-top: 10px;
     overflow: hidden;
     text-align: left;
 }
-.desc .desc-text>p{
+.desc .desc-text>p {
     margin-bottom: 2px;
 }
 

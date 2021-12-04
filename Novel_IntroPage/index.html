@@ -285,12 +285,22 @@
                                 <span class="text-primary">Đang ra</span>
                                 <!--<span class="text-success">Full</span>-->
                             </div>
+                            <div>
+                                <h3>Đề cử:</h3>
+                                <span class="suggest">0</span><i class="svg-icon icon-flower"></i>
+                            </div>
+                        </div>
+                        <div id="suggest-book">
+                            <a href="#" class="btn text-primary">
+                                    Đề cử 
+                                <i class="svg-icon icon-flower"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-8 desc">
                         <div class="rate">
                             <div class="rate-holder" data-score="" style="cursor: pointer;">
-                                <img alt="1" src="star-on.png" title="Thất bại tạo hóa...">&nbsp;<img alt="2"
+                                <!--<img alt="1" src="star-on.png" title="Thất bại tạo hóa...">&nbsp;<img alt="2"
                                     src="star-on.png" title="Rác thế nhờ">&nbsp;<img alt="3" src="star-on.png"
                                     title="Khó mà trên trung bình">&nbsp;<img alt="4" src="star-on.png"
                                     title="Haizz">&nbsp;<img alt="5" src="star-on.png" title="Tạm">&nbsp;<img alt="6"
@@ -299,6 +309,19 @@
                                     title="Hay đấy">&nbsp;<img alt="9" src="star-on.png"
                                     title="Ulatr Hay dữ bây!">&nbsp;<img alt="10" src="star-on.png" title="Siêu phẩm">
                                 <input name="score" type="hidden" value="">
+                                -->
+                                <div id="rating">
+                                    <span class="star">★</span>  
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>  
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>  
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>  
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>  
+                                    <span class="star">★</span>
+                                  </div>
                             </div>
                             <em class="rate-text"></em>
                             <div class="small" itemprop="aggregateRating" itemscope
@@ -315,7 +338,19 @@
                             </div>
                         </div>
                         <div class="desc-text desc-text-full" itemprop="description">
-                            <p>12345<span id="dots">...</span><span id="more">678910</span></p>
+                            <p>Lăng Hàn - Một Đan Đế đại danh đỉnh định mang trong thân mình tuyệt thế công pháp vì truy cầu bước cuối, xé bỏ tấm màn thành thần nhưng thất bại đã phải bỏ mình. Thế nhưng ông trời dường như không muốn tuyệt dường người, Lăng Hàn đã được trọng sinh vào một thiếu niên cùng tên và điều may mắn nhất là "Bất Diệt Thiên Kinh" ấn ký vẫn còn nằm nguyên trong tâm thức hắn.
+                                <br><br>
+                                Từ nay về sau sóng gió cuộn trào nổi lên, Đan Đế ngày xưa bây giờ phải cùng tranh phong với vô số thiên tài trẻ tuổi, lại bắt đầu một truyền thuyết mới như để chứng minh với trời đất: Ta, là người mạnh nhất!
+                                <br><br>
+                                <strong>Phân chia cảnh giới:</strong> Luyện Thể, Tụ Nguyên, Dũng Tuyền, Linh Hải, Thần Thai, Sinh Hoa, Linh Anh, Hóa Thần cùng Thiên Nhân Cảnh.....
+                                <br>
+                                <i>Mỗi cảnh giới chia làm chín tầng: tầng một đến ba là tiền kỳ, tầng bốn đến sáu gọi là</i><span id="dots">...</span><span id="more"> <i>trung kỳ và tầng bảy đến chín gọi là hậu kỳ và đỉnh</i>
+                                <br><br>
+                                <strong>Cảnh giới Đan Sư:</strong> Hoàng cấp,Huyền cấp, Địa cấp, Thiên cấp...<br>
+                                <strong>Thần Cảnh:</strong> Nhật Nguyệt Cảnh, Sơn Hà Cảnh, Tinh Thần Cảnh, Hằng Hà Cảnh, Sáng Thế Cảnh<br>
+                                <i>Mỗi cảnh giới chia làm: Tiểu Cực Vị, Trung Cực Vị, Đại Cực Vi, Đại Viên Mãn trong một Cực Vị lại chia làm: Tiền kỳ, Trung kỳ, Hậu kỳ, Viên mãn</i><br>
+                                <strong>Cảnh giới Tiên Vực:</strong>Trảm Trần Cảnh (Nhất Trảm-Nhị Trảm-Tam Trảm-Tứ Trảm-Ngũ Trảm),Phân Hồn Cảnh (Dương Hồn-Âm Hồn-Thiên Hồn-Địa Hồn), Tiên Phủ Cảnh, Thăng Nguyên Cảnh, Tiên Vương có 9 tầng từ 1 đến 9, bên trên Tiên Vương là Thiên Tôn<br>
+                                <strong>Cảnh giới Đan Sư ở Tiên Vực:</strong> Nhất Tinh, Nhị Tinh, Tam Tinh, Tứ Tinh,Ngũ Tinh Đan Sư</span></p>
                             <div class="showmore">
                                 <button onclick="ReadMoreFunc()" id="btn">Xem thêm</button>
                             </div>
@@ -761,6 +796,7 @@
                 "color": "white",
                 "border-bottom-color": "white"
             });
+            $("#rating span").css("color","#fff");
             $("#list-chapter").css("background-color","transparent");
             $(".comment-box").css("background-color","transparent");
             $(".comment-list-item-info-content").css("color", "white");
@@ -795,6 +831,7 @@
                 "color": "#4E4E4E",
                 "border-bottom-color": "#4E4E4E"
             });
+            $("#rating span").css("color","#000");
             $("#list-chapter").css("background-color","#f4f4f4");
             $(".comment-box").css("background-color","#f4f4f4");
             $(".comment-list-item-info-content").css("color", "#0b0b0b");
