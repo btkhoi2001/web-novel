@@ -200,7 +200,7 @@
 .page {
     background-color: rgba(238, 243, 247, 0.96);
     position: relative;
-    min-height: 100rem;
+    min-height: 180rem;
     border-radius: 2rem;
 }
 
@@ -214,6 +214,10 @@
     margin-top: 5.4rem;
     font-size: 1.8rem;
     color: #333;
+}
+
+.list-item i {
+    font-size: 1.6rem;
 }
 
 .list-item {
@@ -248,179 +252,62 @@
 }
 
 .section-title {
+    display: flex;
+    justify-content: space-between;
     font-weight: 500;
     padding: .6rem;
     font-size: 2.8rem;
     border-bottom: 1px solid #e6e6e6;
     margin-bottom: 3rem;
 }
-
-.avatar {
-    padding: 1.2rem;
-    border-bottom: 1px solid #e6e6e6;
+.section-content {
+    margin-top: -5rem;
 }
-.avatar-wrapper{
-	position: relative;
-	height: 20rem;
-	width: 20rem;
-    margin: 0 auto;
-	border-radius: 50%;
-	overflow: hidden;
-	box-shadow: 1px 1px 15px -5px black;
-	transition: all .3s ease;
-}
-
-.avatar-wrapper:hover{
-    transform: scale(1.05);
-    cursor: pointer;
-}
-.avatar-wrapper:hover .profile-pic{
-    opacity: .5;
-}
-
-.avatar-wrapper .profile-pic {
-    height: 100%;
-	width: 100%;
-	transition: all .3s ease;
-}
-.avatar-wrapper .profile-pic:after{
-    font-family: FontAwesome;
-    content: "\f007";
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    font-size: 18rem;
-    background: #ecf0f1;
-    color: #34495e;
-    text-align: center;
-}
-.avatar-wrapper .upload-button {
-    position: absolute;
-    top: 0; left: 0;
-    height: 100%;
-    width: 100%;
-}
-.avatar-wrapper .upload-button .fa-arrow-circle-up{
-    position: absolute;
-    font-size: 20.2rem;
-    top: 0rem;
-    left: 0;
-    text-align: center;
-    opacity: 0;
-    transition: all .3s ease;
-    color: #34495e;
-}
-.avatar-wrapper .upload-button:hover .fa-arrow-circle-up{
-    opacity: .9;
-}
-
-.avatar .text-muted {
-    display: block;
-    padding: 1.6rem;
-}
-
-.information {
-    margin-top: 3rem;
-    padding: 1.2rem;
-}
-.information .submit {
-    background-color:#206791;
-    color: #fff;
+.time-label {
+    display: flex;
+    align-items: center;
+    color: #4E4E4E;
     font-size:1.6rem;
-    padding:.6rem 3.2rem;
-    border-radius: 2rem;
+    padding: .4rem ;
+    margin-bottom: .4rem;
+}
+.time-select {
+    font-size: 1.6rem;
+    color: black;
+    font-weight: 500;
+    opacity: 0.8;
+    border-color: transparent;
+    outline: none;
+    border: none;
+    background-color: #f4f4f4;
+    height: 4rem;
+    width: 11.6rem;
+    padding: .4rem ;
 }
 
-.information .submit:hover {
-    background-color: var(--header-light-color);
+.text-ellipsis--2{
+    text-overflow:ellipsis;
+    overflow:hidden;
+    /* Addition lines for 2 line or multiline ellipsis */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
 }
 
-.reading-list-item {
-    display: flex;
-    margin-bottom: 2.4rem;
-}
-.reading-list-item .item-img:hover img {
-    transform: scale(1.05);
-}
-.reading-list-item .item-body {
-    margin: 0 1.2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.reading-list-item .item-body a {
-    color: #333 ;
-    opacity: 0.9;
-    font-size:1.8rem;
-}
-.reading-list-item .item-body a:hover {
-    color: var(--orange-color);
-}
-
-.property .item-body {
-    justify-content: center;
-}
-.property .candy,  .property .flower{
-    color: red;
+.rank-number {
+    padding: .3rem .8rem ;
+    border-radius: 50%;
+    background-color:lightblue;
 }
 
 
-.tabs {
-    display: flex;
-    position: relative;
-  }
-  .tabs .line {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 6px;
-    border-radius: 15px;
-    background-color: #206791;
-    transition: all 0.2s ease;
-  }
-  .tab-item {
-    min-width: 80px;
-    padding: 16px 20px 11px 20px;
-    font-size: 20px;
-    text-align: center;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom: 5px solid transparent;
-    opacity: 0.6;
-    cursor: pointer;
-    transition: all 0.5s ease;
-  }
-  .tab-icon {
-    font-size: 24px;
-    width: 32px;
-    position: relative;
-    top: 2px;
-  }
-  .tab-item:hover {
-    opacity: 1;
-    background-color: rgba(32, 103, 145, 0.05);
-    border-color: rgba(32, 103, 145, 0.1);
-  }
-  .tab-item.active {
-    opacity: 1;
-  }
-  .tab-content {
-    padding: 28px 0;
-  }
-  .tab-pane {
-    color: #333;
-    display: none;
-  }
-  .tab-pane.active {
-    display: block;
-  }
-  .tab-pane h2 {
-    font-size: 24px;
-    margin-bottom: 8px;
-  }
+
+
+
+
+
+
 
 
 

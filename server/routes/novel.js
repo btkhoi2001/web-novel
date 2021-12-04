@@ -1,8 +1,8 @@
 import express from "express";
 import multer from "multer";
-import ratingRouter from "./rating.js";
 import chapterRouter from "./chapter.js";
 import commentRouter from "./comment.js";
+import ratingRouter from "./rating.js";
 import { verifyToken } from "../middlewares/auth.js";
 import {
     verifyAuthor,

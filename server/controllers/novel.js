@@ -1,10 +1,60 @@
 import { v4 as uuidv4 } from "uuid";
 import { Novel } from "../models/Novel.js";
+import { Rating } from "../models/Rating.js";
 import { uploadFile, deleteFile } from "../config/aws/s3.js";
 
 export const getNovel = async (req, res) => {
     try {
-        const novels = await Novel.find(null, null, { lean: true });
+        const novels = await Novel.aggregate([
+            {
+                $lookup: {
+                    from: "ratings",
+                    localField: "novelId",
+                    foreignField: "novelId",
+                    as: "rating",
+                },
+            },
+            {
+                $unwind: {
+                    path: "$rating",
+                    preserveNullAndEmptyArrays: true,
+                },
+            },
+            {
+                $group: {
+                    _id: {
+                        novelId: "$novelId",
+                        title: "$title",
+                        description: "$description",
+                        views: "$views",
+                        nominations: "$nominations",
+                        cover: "$cover",
+                        authorId: "$authorId",
+                        genres: "$genres",
+                        isCompleted: "$isCompleted",
+                    },
+                    rating: { $avg: "$rating.rating" },
+                },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    novelId: "$_id.novelId",
+                    title: "$_id.title",
+                    description: "$_id.description",
+                    views: "$_id.views",
+                    nominations: "$_id.nominations",
+                    cover: "$_id.cover",
+                    authorId: "$_id.authorId",
+                    genres: "$_id.genres",
+                    isCompleted: "$_id.isCompleted",
+                    rating: { $ifNull: ["$rating", 0] },
+                },
+            },
+            {
+                $sort: { novelId: 1 },
+            },
+        ]);
 
         res.status(200).json({ novels });
     } catch (error) {
@@ -16,7 +66,56 @@ export const getNovelById = async (req, res) => {
     const { novelId } = req.params;
 
     try {
-        const novel = await Novel.findOne({ novelId });
+        const novel = await Novel.aggregate([
+            {
+                $match: { novelId: parseInt(novelId) },
+            },
+            {
+                $lookup: {
+                    from: "ratings",
+                    localField: "novelId",
+                    foreignField: "novelId",
+                    as: "rating",
+                },
+            },
+            {
+                $unwind: {
+                    path: "$rating",
+                    preserveNullAndEmptyArrays: true,
+                },
+            },
+            {
+                $group: {
+                    _id: {
+                        novelId: "$novelId",
+                        title: "$title",
+                        description: "$description",
+                        views: "$views",
+                        nominations: "$nominations",
+                        cover: "$cover",
+                        authorId: "$authorId",
+                        genres: "$genres",
+                        isCompleted: "$isCompleted",
+                    },
+                    rating: { $avg: "$rating.rating" },
+                },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    novelId: "$_id.novelId",
+                    title: "$_id.title",
+                    description: "$_id.description",
+                    views: "$_id.views",
+                    nominations: "$_id.nominations",
+                    cover: "$_id.cover",
+                    authorId: "$_id.authorId",
+                    genres: "$_id.genres",
+                    isCompleted: "$_id.isCompleted",
+                    rating: { $ifNull: ["$rating", 0] },
+                },
+            },
+        ]);
 
         res.status(200).json({ novel });
     } catch (error) {

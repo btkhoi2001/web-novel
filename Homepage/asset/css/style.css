@@ -18,7 +18,6 @@
     display:flex;
     align-items: center;
     margin-left:  -2rem;
-    margin-right: -2rem;
 }
 
 .searchbar-item {
@@ -86,17 +85,17 @@
     display:inline-block;
 }
 
-.user-name {
-    font-size: 1.8rem;
+.user {
     display: inline-block;
-    padding: .2rem;
+    position: relative;
 }
-
-.sign-up {
-    background-color: var(--orange-color);
-}
-.sign-in {
-    background-color: var(--green-color);
+.user-name {
+    position: absolute;
+    font-size: 2rem;
+    font-weight:400;
+    bottom: -.5rem;
+    left: 0;
+    opacity: 0.9;
 }
 
 .mobile-menu-btn {
@@ -296,6 +295,70 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* content: recently update novel */
+.novel-list a {
+    display: flex;
+    align-items: center;
+    margin: 0 .6rem;
+    font-size: 1.4rem;
+    text-align: center;
+    font-weight:500;
+    opacity: 0.9;
+    color: #4E4E4E;
+}
+.novel-list a:hover {
+   text-decoration: underline;
+}
+.novel-list i {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.list-col {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-right: 1px dashed #CCC;
+    border-bottom: 1px dashed #CCC;
+    padding: .4rem;
+}
+
+.lable-title {
+    justify-content: center;
+    width:2.8rem;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    padding: 0 .6rem;
+    background-color: transparent;
+}
+.lable-new {
+    color:#8EB3FD;
+    border: 1px solid #8EB3FD;
+}
+.lable-hot {
+    color:#FD8383;
+    border: 1px solid #FD8383;
+}
+.lable-full {
+    color:green;
+    border: 1px solid green;
+}
+
+
+.col-chap a{
+    color:#31708F;
+}
+.col-time {
+    font-size: 1.4rem;
+    font-weight:500;
+    opacity: 0.9;
+    color: #4E4E4E;
+}
+
+
+
 
 
 /* footer */
