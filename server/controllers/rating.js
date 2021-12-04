@@ -1,17 +1,19 @@
 import { Rating } from "../models/Rating.js";
 
 export const createRating = async (req, res) => {
-    const { novelId } = req.params;
     const { userId, rating } = req.body;
+    const { novelId } = req.params;
+
+    if (!rating) return res.status(401).json({ message: "rating not found" });
 
     try {
-        const newRating = new Rating({
-            userId,
-            novelId,
-            rating,
-        });
+        const newRatingNovel = await Rating.findOneAndUpdate(
+            { userId, novelId },
+            { userId, novelId, rating },
+            { upsert: true, lean: true, new: true }
+        );
 
-        res.status(201).json({ newRating });
+        return res.status(201).json({ newRatingNovel });
     } catch (error) {
         res.status(500).json({ error });
     }
