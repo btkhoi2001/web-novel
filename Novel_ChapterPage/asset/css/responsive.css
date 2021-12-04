@@ -93,7 +93,7 @@
         display: none;
     }
     .novel-title {
-        margin: 0 2.8rem;
+        margin: 0 1rem;
     }
     .chapter-title {
         font-size:1.4rem;
@@ -102,8 +102,14 @@
         font-size:1.4rem;
     }
     .btn-header-toggle {
-        padding: .6rem 1rem;
+        padding: 0 1rem;
         font-size: 1.6rem;
+        height: 4rem;
+    }
+    .btn-header-bookmark {
+        padding: 0 1rem;
+        font-size: 1.6rem;
+        height: 4rem;
     }
     .modal-container {
         width: 90%;
@@ -154,7 +160,14 @@
         height: 3.2rem;
     }
     .btn-header-toggle {
-        padding: .4rem 1.2rem;
+        padding: 0 1.2rem;
+        font-size: 2.2rem;
+        height: 4.4rem;
+    }
+    .btn-header-bookmark {
+        padding: 0 1.2rem;
+        font-size: 2.2rem;
+        height: 4.4rem;
     }
     .modal-container {
         width: 80%;
@@ -193,6 +206,16 @@
     .search {
         padding: .4rem;
         height: 3.2rem;
+    }
+    .btn-header-toggle {
+        padding: 0 1.6rem;
+        font-size: 2.4rem;
+        height: 5.4rem;
+    }
+    .btn-header-bookmark {
+        padding: 0 1.6rem;
+        font-size: 2.4rem;
+        height: 5.4rem;
     }
     .modal-container {
         width: 70%;

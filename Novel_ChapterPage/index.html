@@ -131,10 +131,13 @@
                         </div>
                     </li>
                     <li class="navbar-items">
-                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Lịch sử </a>
+                        <a href="#" class="item-link"> <i class="fas fa-book navbar-icon"></i>Theo dõi </a>
                     </li>
                     <li class="navbar-items">
-                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Theo dõi </a>
+                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Đánh dấu </a>
+                    </li> 
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"> <i class="fas fa-upload navbar-icon"></i>Đăng Truyện </a>
                     </li> 
                 </ul>
 
@@ -240,8 +243,13 @@
             <div class="container-xl">
                 <div class="chapter">
                    <div class="title-block">
+                        <button class="btn-header-toggle">
+                            <span class="header-up"><i class="fas fa-chevron-up"></i></span>
+                            <span class="header-down d-none"><i class="fas fa-chevron-down"></i></span>
+                        </button>
+
                         <div class="chapter-part row justify-content-center">
-                            <div class="col-xs-10 col-sm-9 col-md-8 col-lg-6">
+                            <div class="col-xs-12 col-sm-9 col-md-8 col-lg-6">
                                 <div class="chapter-item">
                                     <h1><a href="#" class="novel-title" title="Đấu Phá Thương Khung">ĐẤU PHÁ THƯƠNG KHUNG</a></h1>
                                 </div>
@@ -279,10 +287,11 @@
                             </div>
                         </div>
 
-                        <button class="btn-header-toggle">
-                            <span class="header-up"><i class="fas fa-chevron-up"></i></span>
-                            <span class="header-down d-none"><i class="fas fa-chevron-down"></i></span>
+                        <button class="btn-header-bookmark" title="Đánh dấu">
+                            <span class="mark-up"><i class="far fa-bookmark"></i></span>
+                            <span class="mark-down d-none"><i class="fas fa-check"></i></span>
                         </button>
+                      
                    </div>
 
                    <div class="chapter-part row">
@@ -752,6 +761,10 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
             $(".header-up").toggleClass("d-none");
             $(".header-down").toggleClass("d-none");
             $("#header").toggleClass("d-none");
+        })
+        $(".btn-header-bookmark").click(function(){
+            $(".mark-up").toggleClass("d-none");
+            $(".mark-down").toggleClass("d-none");
         })
 
    </script>
