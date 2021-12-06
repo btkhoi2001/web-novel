@@ -129,8 +129,8 @@
                     <li class="navbar-items">
                         <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Đánh dấu </a>
                     </li> 
-                    <li class="navbar-items">
-                        <a href="#" class="item-link"> <i class="fas fa-upload navbar-icon"></i>Đăng Truyện </a>
+                    <li class="navbar-items upload">
+                        <a href="#upload" class="item-link"> <i class="fas fa-upload navbar-icon"></i>Đăng Truyện </a>
                     </li> 
                 </ul>
 
@@ -150,7 +150,7 @@
                         <div class="col-3">
                             <ul class="list">
                                 <li class="list-item">
-                                    <a href="#"><i class="fas fa-id-card"></i> Hồ sơ</a>
+                                    <i class="fas fa-id-card"></i> Hồ sơ
                                 </li>
                                 <li class="list-item active"><i class="fas fa-user"></i> Tài khoản</li>
                                 <li class="list-item"><i class="fas fa-cog"></i> Mật khẩu</li>
@@ -158,6 +158,8 @@
                                 <li class="list-item"><i class="fas fa-bookmark"></i> Đánh dấu</li>
                                 <li class="list-item"><i class="fas fa-dollar-sign"></i> Tài sản</li>
                                 <li class="list-item"><i class="fas fa-bell"></i> Thông báo</li>
+                                <li class="list-item border-top border-2"><i class="fas fa-upload"></i> Đăng truyện</li>
+                                <li class="list-item"><i class="fas fa-book"></i> Truyện đã đăng</li>
                             </ul>
                         </div>
 
@@ -395,6 +397,94 @@
                                     Bạn không có thông báo.
                                 </div>
                             </div>
+
+                            <div class="section upload-novel d-none" id="upload">
+                                <div class="section-title">
+                                   Thêm truyện mới
+                                </div>
+                                <div class="section-content">
+                                    <div class="avatar">
+                                        <label for="cover-img" class="form-label" style="font-weight: 500;">Ảnh bìa</label>
+                                        <div class="avatar-wrapper text-center" style="height: 25rem; border-radius: 0;">
+                                            <img class="profile-pic" src="https://pub.truyen.onl/image/600x800.png" />
+                                            <div class="upload-button">
+                                                <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                                            </div>
+                                            <input class="file-upload" id="cover-img" type="file" accept="image/*"/>
+                                        </div>
+                                        <span class="text-muted text-center">
+                                            <em>Ấn vào ảnh trên để cập nhật ảnh bìa truyện</em>
+                                        </span>
+                                    </div>
+
+                                    <div class="information">
+                                        <form action="">
+                                            <div class="mb-3" style="margin-bottom: 2rem!important;">
+                                                <label for="novelname" class="form-label" style="font-weight: 500;">Tên truyện</label>
+                                                <input type="text" class="form-control" id="novelname" placeholder="Tên truyện"  style="padding:.6rem; font-size:1.4rem">
+                                            </div>
+                                            <div class="mb-3" style="margin-bottom: 2rem!important;">
+                                                <label for="type" class="form-label" style="font-weight: 500;">Thể loại</label>
+                                                <input type="text" class="form-control" id="type" placeholder="Thể loại" style="padding:.6rem; font-size:1.4rem">
+                                            </div>
+                                            <div class="mb-3" style="margin-bottom: 2rem!important;">
+                                                <label for="intro" class="form-label" style="font-weight: 500;">Giới thiệu</label>
+                                                <textarea class="form-control" id="intro" rows="8" 
+                                                placeholder="Tóm tắt cho truyện không nên quá dài mà nên ngắn gọn, tập trung, thú vị. Phần này rất quan trọng vì nó quyết định độc giả có đọc hay không." 
+                                                style="resize: none; padding:.6rem; font-size:1.4rem"></textarea>
+                                            </div>
+                                            <div class="mb-3" style="margin-bottom: 2rem!important;">
+                                                <div class="form-check">
+                                                    <input class="form-check-input p-3" type="checkbox" value="" id="accept">
+                                                    <label class="form-check-label mx-2" for="accept" style="font-size: 1.8rem; opacity: 0.8;">
+                                                      Tôi cam đoan đây là truyện do tôi sáng tác và không sao chép từ bất kì nguồn nào khác.
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 mt-2" style="float: right;">
+                                                <button type="button" type="submit" class="btn submit" >Đăng truyện</button>
+                                            </div>
+                                           
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section uploaded-novel d-none">
+                                <div class="section-title">
+                                   Truyện đã đăng
+                                </div>
+                                <div class="section-content">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Tên truyện</th>
+                                            <th scope="col">Thể loại</th>
+                                            <th scope="col">Ngày đăng</th>
+                                            <th scope="col">Ảnh bìa</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th scope="row">1</th>
+                                            <td>Võ thần chúa tể</td>
+                                            <td>Tu tiên, võ hiệp</td>
+                                            <td>1/1/2021</td>
+                                            <td><img src="https://static.cdnno.com/poster/dinh-cap-khi-van-lang-le-tu-luyen-ngan-nam/150.jpg?1614159439" alt="" width="60"></td>
+                                          </tr>
+                                          <tr>
+                                            <th scope="row ">2</th>
+                                            <td>Vô thượng sát thần</td>
+                                            <td>Tu tiên, võ hiệp</td>
+                                            <td>1/2/2021</td>
+                                            <td> <img src="https://static.cdnno.com/poster/vo-thuong-sat-than/150.jpg?1585205565" alt="" width="60"></td>
+                                          </tr>
+                                         
+                                        </tbody>
+                                      </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -441,6 +531,12 @@
         $(".file-upload").click();
         });
 
+        $('.list-item:nth-child(1)').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+         
+            $(this).addClass('active');
+        });
         $('.list-item:nth-child(2)').click(function () {
             $('.list-item').removeClass('active');
             $('.section').addClass('d-none');
@@ -477,15 +573,35 @@
             $('.notification').removeClass('d-none');
             $(this).addClass('active');
         });
+        $('.list-item:nth-child(8)').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+            $('.upload-novel').removeClass('d-none');
+            $(this).addClass('active');
+        });
+        $('.list-item:nth-child(9)').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+            $('.uploaded-novel').removeClass('d-none');
+            $(this).addClass('active');
+        });
+        
+        // Upload button in header
+        $('.upload').click(function () {
+            $('.list-item').removeClass('active');
+            $('.section').addClass('d-none');
+            $('.upload-novel').removeClass('d-none');
+            $('.list-item:nth-child(8)').addClass('active');
+        });
 
         const tabs = document.querySelectorAll(".tab-item");
         const panes = document.querySelectorAll(".tab-pane");
 
-        const tabActive = document.querySelector(".tab-item.active");
+        let tabActive = document.querySelector(".tab-item.active");
         const line = document.querySelector(".tabs .line");
-
+       
         line.style.left = tabActive.offsetLeft + "px";
-        line.style.width = tabActive.offsetWidth + "px";
+        line.style.width =  "80px";
 
         tabs.forEach((tab, index) => {
             const pane = panes[index];

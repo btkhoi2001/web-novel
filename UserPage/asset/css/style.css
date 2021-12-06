@@ -200,7 +200,7 @@
 .page {
     background-color: rgba(238, 243, 247, 0.96);
     position: relative;
-    min-height: 100rem;
+    min-height: 120rem;
     border-radius: 2rem;
 }
 
