@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./asset/css/base.css">
     <link rel="stylesheet" href="./asset/css/style.css">
     <link rel="stylesheet" href="./asset/css/responsive.css">
-    <title>Đọc truyện online - SimplePoLL</title>
+    <title>Trang cá nhân - SimplePoLL</title>
 </head>
 <body>
    <div class="main">
@@ -128,9 +128,6 @@
                     </li>
                     <li class="navbar-items">
                         <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Đánh dấu </a>
-                    </li> 
-                    <li class="navbar-items upload">
-                        <a href="#upload" class="item-link"> <i class="fas fa-upload navbar-icon"></i>Đăng Truyện </a>
                     </li> 
                 </ul>
 
@@ -585,15 +582,7 @@
             $('.uploaded-novel').removeClass('d-none');
             $(this).addClass('active');
         });
-        
-        // Upload button in header
-        $('.upload').click(function () {
-            $('.list-item').removeClass('active');
-            $('.section').addClass('d-none');
-            $('.upload-novel').removeClass('d-none');
-            $('.list-item:nth-child(8)').addClass('active');
-        });
-
+    
         const tabs = document.querySelectorAll(".tab-item");
         const panes = document.querySelectorAll(".tab-pane");
 

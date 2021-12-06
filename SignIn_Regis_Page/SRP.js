@@ -64,33 +64,16 @@ function clearInputError(inputElement) {
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
     const registerForm = document.querySelector("#register");
-    var status
+
     loginForm.addEventListener("submit", e => {
         e.preventDefault();
         setFormMessage(loginForm, "error", "Sai Email/Mật khẩu!");
     });
     registerForm.addEventListener("submit", e => {
-        const formData = new FormData(document.querySelector('form'));
-        fetch('https//localhost:8080/auth.js', {
-            method: POST,
-            body: formData
-        })
-        .then(res => {
-            status = res.status
-            return res.text()
-        })
-        .then(data => {
-            alert(data)
-            if(status == 201)
-                location.href="./index.html"
-        })
-        .catch(err => {
-            alert(err)
-        })
+        e.preventDefault();
     });
     document.querySelectorAll(".input-field").forEach(inputElement => {
         inputElement.addEventListener("blur", e => {
-            var illegalChars = /[\(\)\<\>\,\;\:\\\"\[\]]/;
             if (e.target.id === "regUser" && e.target.value.length > 0 && e.target.value.length < 8) {
                 setInputError(inputElement, "Tên người dùng phải có ít nhất 8 kí tự");
             }
@@ -100,9 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const P = document.querySelector("#regPass");
             if (e.target.id === "regPass2" && e.target.value !== P.value) {
                 setInputError(inputElement, "Khác mật khẩu đã nhập");
-            }
-            if (e.target.id === "regEmail" && e.target.value.match(illegalChars)){
-                setInputError(inputElement, "Email không được chứa các kí tự đặc biệt");
             }
             if (e.target.id === "textBox" && e.target.value !== c) {
                 setInputError(inputElement, "Sai mã captcha!");

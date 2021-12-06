@@ -131,19 +131,19 @@
                     <li class="navbar-items">
                         <a href="#" class="item-link"><i class="far fa-chart-bar navbar-icon"></i> Bảng xếp hạng </a>
                     </li>
-                    <li class="navbar-items dropdown">
+                    <!-- <li class="navbar-items dropdown">
                         <a href="#" class="item-link"> <i class="fas fa-sliders-h navbar-icon"></i>Phông nền <i
                                 class="fas fa-sort-down navbar-arrow-down"></i></a>
                         <div class="droplist droplist-normal color-select">
                             <a href="#" id="lightmode">Màu sáng</a>
                             <a href="#" id="darkmode">Màu tối</a>
                         </div>
+                    </li> -->
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i> Theo dõi </a>
                     </li>
                     <li class="navbar-items">
-                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Lịch sử </a>
-                    </li>
-                    <li class="navbar-items">
-                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Theo dõi </a>
+                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i> Đánh dấu</a>
                     </li>
                 </ul>
 
@@ -228,21 +228,20 @@
                         <a href="#" class="mobile-item-link"><i class="far fa-chart-bar  mobile-navbar-icon"></i> Bảng
                             xếp hạng </a>
                     </li>
-                    <li class="mobile-navbar-items">
+                    <!-- <li class="mobile-navbar-items">
                         <a href="#" class="mobile-item-link"> <i class="fas fa-sliders-h mobile-navbar-icon"></i> Phông
                             nền <i class="fas fa-sort-down navbar-arrow-down"></i></a>
                         <ul class="mobile-droplist d-none ">
                             <li><a href="#" id="mobile-lightmode">Màu sáng</a></li>
                             <li><a href="#" id="mobile-darkmode">Màu tối</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="mobile-navbar-items">
-                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Lịch sử
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Theo dõi
                         </a>
                     </li>
                     <li class="mobile-navbar-items">
-                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Theo
-                            dõi </a>
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Đánh dấu </a>
                     </li>
                     <li class="mobile-navbar-items search">
                         <input type="search" class="form-control search-input"
@@ -348,4 +347,14 @@
             </p>
         </footer>
     </div>
+
+
+    <script>
+        $(".mobile-navbar-btn").click(function(){
+            $(".mobile-navbar").toggleClass('d-none');
+        });
+        $(".mobile-item-link").click(function(){
+            $(this).parent(".mobile-navbar-items").children(".mobile-droplist").toggleClass('d-none');
+        });
+    </script>
 </body>
