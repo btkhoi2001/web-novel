@@ -146,10 +146,8 @@
                     <div class="row">
                         <div class="col-3">
                             <ul class="list">
-                                <li class="list-item">
-                                    <i class="fas fa-id-card"></i> Hồ sơ
-                                </li>
-                                <li class="list-item active"><i class="fas fa-user"></i> Tài khoản</li>
+                                <li class="list-item active"><i class="fas fa-id-card"></i> Hồ sơ</li>
+                                <li class="list-item"><i class="fas fa-user"></i> Tài khoản</li>
                                 <li class="list-item"><i class="fas fa-cog"></i> Mật khẩu</li>
                                 <li class="list-item"><i class="fas fa-book"></i> Theo dõi</li>
                                 <li class="list-item"><i class="fas fa-bookmark"></i> Đánh dấu</li>
@@ -161,12 +159,77 @@
                         </div>
 
                         <div class="col-9">
-                            <div class="section general-information ">
+                            <div class="section info">
+                                <div class="section-title">
+                                   Hồ sơ
+                                </div>
+                                <div class="section-content mt-4">
+                                    <div class="row">
+                                        <div class="col-8 mx-auto">
+                                            <div class="media mt-5 mb-4 d-flex">
+                                                <div class="nh-avatar nh-avatar--90 mr-3">
+                                                    <img alt="" class="img-fluid mx-4" src="https://static.cdnno.com/user/default/100.jpg" width=120 style="border-radius: 50%;">
+                                               </div>
+                                                <div class="media-body">
+                                                    <div class="mt-3 mx-2 d-flex align-items-center fs-3" style="font-weight: 500;"> User123
+                                                        <span class="badge p-2 bg-primary mx-3" style="border-radius: 8rem;">Lv.1</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="progress mb-3 " style="height: 1.6rem; background-color:rgb(226, 226, 226);">
+                                                <div role="progressbar" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-primary fs-6" style="width: 30%;">Exp: 0 / 10</div>
+                                            </div>
+                                            <table class="table table-border-less">
+                                                <tbody >
+                                                    <tr>
+                                                        <td class="align-middle text-uppercase" style="width: 100px;">Đã đọc</td> 
+                                                        <td class="align-middle">
+                                                            <div class="mt-3 mb-2 mx-3">
+                                                                <span data-v-13fe79ea="" class="h5 m-0 mr-1 fs-3">0</span> truyện
+                                                            </div>
+                                                            <div class="mt-2 mb-3 mx-3">
+                                                                <span class="h5 m-0 mr-1 fs-3">2</span> chương
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="align-middle border-top-dashed text-uppercase" style="width: 100px;">Bình luận</td>
+                                                        <td class="align-middle border-top-dashed">
+                                                            <div class="my-3 mx-3"><span class="h5 m-0 fs-3">0</span></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="align-middle border-top-dashed text-uppercase" style="width: 100px;">Đề cử</td> 
+                                                        <td class="align-middle border-top-dashed">
+                                                            <div class="my-3 mx-3"><span class="h5 m-0 fs-3">0</span></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="align-middle border-top-dashed text-uppercase" style="width: 100px;">Thích</td>
+                                                        <td class="align-middle border-top-dashed">
+                                                            <div class="my-3 mx-3"><span class="h5 m-0 fs-3">0</span></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="align-middle border-top-dashed border-bottom-dashed text-uppercase" style="width: 100px;">Cất giữ</td>
+                                                        <td class="align-middle border-top-dashed border-bottom-dashed">
+                                                            <div class="my-3 mx-3"><span class="h5 m-0 fs-3">1</span></div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section general-information d-none">
                                 <div class="section-title">
                                    Thông tin chung
                                 </div>
-                                <div class="section-content">
-                                    <div class="avatar text-center">
+                                <div class="section-content mt-4">
+                                    <div class="avatar text-center ">
                                         <div class="avatar-wrapper text-center">
                                             <img class="profile-pic" src="https://static.cdnno.com/user/default/200.jpg" />
                                             <div class="upload-button">
@@ -199,7 +262,7 @@
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
                                                 <label for="email" class="form-label" style="font-weight: 500;">Email</label>
-                                                <input type="email" class="form-control" id="email"  style="padding:.6rem; font-size:1.4rem">
+                                                <input type="email" class="form-control" id="email" value="user123@gmail.com" readonly style="padding:.6rem; font-size:1.4rem">
                                             </div>
                                             <div class="mb-3" style="float: right;">
                                                 <button type="button" type="submit" class="btn submit" >Cập nhật</button>
@@ -214,7 +277,7 @@
                                 <div class="section-title">
                                    Tủ Truyện
                                 </div>
-                                <div class="section-content">
+                                <div class="section-content mt-4">
                                     <ul class="reading-list">
                                         <li class="reading-list-item">
                                             <a href="#" class="item-img">
@@ -268,7 +331,7 @@
                                 <div class="section-title">
                                    Đánh dấu
                                 </div>
-                                <div class="section-content">
+                                <div class="section-content mt-4">
                                     <ul class="reading-list">
                                         <li class="reading-list-item">
                                             <a href="#" class="item-img">
@@ -322,7 +385,7 @@
                                 <div class="section-title">
                                    Mật khẩu
                                 </div>
-                                <div class="section-content">
+                                <div class="section-content mt-4">
                                     <div class="information">
                                         <form action="">
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
@@ -358,7 +421,7 @@
                                         <div class="line"></div>
                                     </div>
                                 </div>
-                                <div class="section-content">
+                                <div class="section-content mt-4">
                                     <div class="information">
                                         <div class="tab-content">
                                             <div class="tab-pane active">
@@ -390,16 +453,16 @@
                                 <div class="section-title">
                                    Thông báo
                                 </div>
-                                <div class="section-content">
+                                <div class="section-content mt-4">
                                     Bạn không có thông báo.
                                 </div>
                             </div>
 
-                            <div class="section upload-novel d-none" id="upload">
+                            <div class="section upload-novel d-none">
                                 <div class="section-title">
                                    Thêm truyện mới
                                 </div>
-                                <div class="section-content">
+                                <div class="section-content mt-4">
                                     <div class="avatar">
                                         <label for="cover-img" class="form-label" style="font-weight: 500;">Ảnh bìa</label>
                                         <div class="avatar-wrapper text-center" style="height: 25rem; border-radius: 0;">
@@ -422,7 +485,12 @@
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
                                                 <label for="type" class="form-label" style="font-weight: 500;">Thể loại</label>
-                                                <input type="text" class="form-control" id="type" placeholder="Thể loại" style="padding:.6rem; font-size:1.4rem">
+                                                <select class="form-select" aria-label="type-select" placeholder="" style="padding:.6rem; font-size:1.4rem; ">
+                                                    <option selected>Chọn thể loại truyện thích hợp</option>
+                                                    <option value="tiên hiệp">Tiên hiệp</option>
+                                                    <option value="tu tiên">Tu tiên</option>
+                                                    <option value="ngôn tình">Ngôn tình</option>
+                                                  </select>
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
                                                 <label for="intro" class="form-label" style="font-weight: 500;">Giới thiệu</label>
@@ -451,7 +519,7 @@
                                 <div class="section-title">
                                    Truyện đã đăng
                                 </div>
-                                <div class="section-content">
+                                <div class="section-content mt-4">
                                     <table class="table">
                                         <thead>
                                           <tr>
@@ -531,7 +599,7 @@
         $('.list-item:nth-child(1)').click(function () {
             $('.list-item').removeClass('active');
             $('.section').addClass('d-none');
-         
+            $('.info').removeClass('d-none');
             $(this).addClass('active');
         });
         $('.list-item:nth-child(2)').click(function () {
