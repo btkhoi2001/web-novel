@@ -1,0 +1,37 @@
+:root {
+    --white-color: #fff;
+    --black-color: #000;
+    --mint-color:#92bb35;
+    --green-color:#86AD86;
+    --pink-color:#FD8383;
+    --orange-color:#F18121;
+    --blue-color:#8EB3FD;
+    --header-light-color:#14425d;
+    --header-dark-color:#242f39;
+    --light-background-color:#f3f1f1ec;
+    --dark-background-color:#212121;
+    --chapter-green-color: #5cb85c;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+* {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Roboto Condensed', sans-serif;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--orange-color);
+}
