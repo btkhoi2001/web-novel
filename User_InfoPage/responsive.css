@@ -1,0 +1,35 @@
+.mobile-navbar {
+    padding-top: 1.2rem;
+    padding-bottom: 2rem;
+}
+.mobile-navbar-items {
+    color: #ffffff;
+    padding-bottom: 1.2rem;
+}
+.mobile-navbar-icon {
+    font-size: 1.5rem;
+}
+.mobile-item-link {
+    color: white;
+    font-size: 1.8rem;
+}
+.mobile-droplist {
+    display: block;
+}
+.mobile-droplist li a {
+    color: white;
+    font-size: 1.6rem;
+}
+.mobile-droplist li:hover a {
+    color: var(--orange-color);
+}
+.mobile-menu-btn {
+    padding: .4rem .8rem;
+}
+.mobile-navbar-btn i {
+    color: rgba(255, 255, 255, 0.849);
+    font-size: 2.4rem;
+    padding: .6rem 1rem;
+    border: 2px solid rgba(221, 221, 221, 0.61);
+    border-radius:.6rem;
+}
