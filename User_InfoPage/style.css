@@ -506,19 +506,7 @@ body {
     z-index: 1;
 }
 
-.swiper-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-    box-sizing: content-box;
-}
-
 .swiper-slide {
-    flex-shrink: 0;
-    height: 100%;
-    position: relative;
     padding: 4.8rem;
 }
 
@@ -602,60 +590,12 @@ body {
     list-style: none;
 }
 
-.swiper-pagination {
-    position: absolute;
-    text-align: center;
-    transition: opacity .3s;
-    transform: translateZ(0);
-    z-index: 10;
-}
-
-.swiper-pagination-bullets {
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-}
-
-.swiper-pagination-bullets .swiper-pagination-bullet {
-    margin: 0 4px;
-}
-
-.swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
-    display: inline-block;
-    border-radius: 100%;
-    background: #b78a28;
-    opacity: .25;
-}
-
 .swiper-pagination-bullet-active {
-    opacity: 1;
-    background: #b78a28;
+    background: #b78a28!important;
 }
 
-.swiper-button-prev {
-    left: 1.5rem;
-}
-.swiper-button-next {
-    right: 1.5rem;
-}
-
-.swiper-button-prev, .swiper-button-next {
-    background: 0 0;
-    font-size: 1.25rem;
-    color: #999;
-    position: absolute;
-    top: 50%;
-    width: 27px;
-    height: 44px;
-    margin-top: -22px;
-    z-index: 10;
-    cursor: pointer;
-}
-
-.fa-chevron-left, .fa-chevron-right {
-    font-size: 20px;
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 20px!important;
 }
 
 .nh-avatar.nh-avatar--90 {
