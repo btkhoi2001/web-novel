@@ -17,4 +17,18 @@ export const createFollow = async (req, res) => {
     }
 };
 
-export const deleteFollow = async (req, res) => {};
+export const deleteFollow = async (req, res) => {
+    const { novelId } = req.params;
+    const { userId } = req.body;
+
+    try {
+        const deletedFollow = await Follow.findOneAndDelete(
+            { userId, novelId },
+            { lean: true }
+        );
+
+        res.status(200).json({ deletedFollow });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
