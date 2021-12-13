@@ -4,6 +4,6 @@ import { createFollow, deleteFollow } from "../controllers/follow.js";
 
 const router = express.Router({ mergeParams: true });
 
-router.post("/", verifyToken, createRating);
+router.post("/", verifyToken, createFollow);
 
 export default router;

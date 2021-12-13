@@ -6,6 +6,7 @@ const schema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        title: String,
         message: String,
         isRead: {
             type: Boolean,
