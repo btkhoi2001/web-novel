@@ -36,3 +36,18 @@ export const updateNotification = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+
+export const deleteNotification = async (req, res) => {
+    const { notificationId } = req.params;
+
+    try {
+        const deletedNotification = await Notification.findOneAndDelete(
+            { notificationId },
+            { lean: true }
+        );
+
+        res.status(200).json({ deletedNotification });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
