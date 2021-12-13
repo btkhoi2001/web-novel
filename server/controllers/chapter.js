@@ -65,7 +65,7 @@ export const createChapter = async (req, res) => {
             },
         ]);
 
-        await Notification.insertMany(notifications);
+        await Notification.create(notifications);
 
         res.status(201).json({
             message: "chapter created successfully",

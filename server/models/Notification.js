@@ -1,7 +1,13 @@
 import mongoose from "mongoose";
+import Inc from "mongoose-sequence";
+const AutoIncrement = Inc(mongoose);
 
 const schema = new mongoose.Schema(
     {
+        notificationId: {
+            type: Number,
+            unique: true,
+        },
         receiverId: {
             type: Number,
             required: true,
@@ -17,5 +23,7 @@ const schema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+schema.plugin(AutoIncrement, { inc_field: "notificationId" });
 
 export const Notification = mongoose.model("notifications", schema);

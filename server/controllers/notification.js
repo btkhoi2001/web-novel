@@ -19,3 +19,20 @@ export const getNotification = async (req, res) => {
         res.status(500).json({ error });
     }
 };
+
+export const updateNotification = async (req, res) => {
+    const { notificationId } = req.params;
+    const { isRead } = req.body;
+
+    try {
+        const updatedNotification = await Notification.findOneAndUpdate(
+            { notificationId },
+            { isRead },
+            { lean: true, new: true }
+        );
+
+        res.status(200).json({ updatedNotification });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
