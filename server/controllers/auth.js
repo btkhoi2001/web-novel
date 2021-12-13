@@ -18,16 +18,21 @@ export const loggedIn = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-    const { email, displayName, password } = req.body;
+    const { email, displayName, password, confirmPassword } = req.body;
 
-    if (!email || !displayName || !password)
-        return res.status(400).json({ message: "Some fields are missing" });
+    if (!email || !displayName || !password || !confirmPassword)
+        return res.status(400).json({ message: "some fields are missing" });
+
+    if (password != confirmPassword)
+        return res
+            .status(400)
+            .json({ message: "password confirmation doesn't match password" });
 
     try {
         if (await User.exists({ email }))
             return res
                 .status(400)
-                .json({ message: "Email is already registered" });
+                .json({ message: "email is already registered" });
 
         const hashedPassword = await argon2.hash(password);
         const newUser = new User({
@@ -44,7 +49,7 @@ export const register = async (req, res) => {
         );
 
         res.status(201).json({
-            message: "User created successfully",
+            message: "user created successfully",
             accessToken,
         });
     } catch (error) {
@@ -59,8 +64,6 @@ export const login = async (req, res) => {
         return res.status(400).json({ message: "Missing email or password" });
 
     try {
-        const test = await User.exists({ email });
-
         if (!(await User.exists({ email })))
             return res
                 .status(401)

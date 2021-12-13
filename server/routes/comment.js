@@ -7,20 +7,18 @@ import {
     createCommentLike,
     deleteCommentLike,
 } from "../controllers/comment.js";
+
 const router = express.Router({ mergeParams: true });
 
 router.get("/", getComment);
-router.post("/", verifyToken, createComment);
-router.post(
-    "/:commentId/like",
-    verifyToken,
-    verifyCommentId,
-    createCommentLike
-);
-router.delete(
-    "/:commentId/like",
-    verifyToken,
-    verifyCommentId,
-    deleteCommentLike
-);
+
+router.use(verifyToken);
+
+router.post("/", createComment);
+
+router.use("/:commentId", verifyCommentId);
+
+router.post("/:commentId/like", createCommentLike);
+router.delete("/:commentId/like", deleteCommentLike);
+
 export default router;

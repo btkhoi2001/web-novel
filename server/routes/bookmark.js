@@ -9,8 +9,11 @@ import {
 
 const router = express.Router({ mergeParams: true });
 
-router.get("/", verifyToken, getBookmark);
-router.post("/", verifyToken, verifyNovelId, createBookmark);
-router.delete("/", verifyToken, verifyNovelId, deleteBookmark);
+router.use(verifyToken);
+router.get("/", getBookmark);
+
+router.use(verifyNovelId);
+router.post("/", createBookmark);
+router.delete("/", deleteBookmark);
 
 export default router;

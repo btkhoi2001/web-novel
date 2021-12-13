@@ -28,6 +28,11 @@ const schema = new mongoose.Schema(
             type: String,
             maxLength: 200,
         },
+        gender: {
+            type: String,
+            enum: ["Bí mật", "Nam", "Nữ"],
+            default: "Bí mật",
+        },
         isVerified: {
             type: Boolean,
             default: false,
@@ -36,13 +41,10 @@ const schema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
-        isAuthor: {
-            type: Boolean,
-            default: false,
-        },
-        isAdmin: {
-            type: Boolean,
-            default: false,
+        role: {
+            type: String,
+            enum: ["Reader", "Author", "Admin"],
+            default: "Reader",
         },
         flowers: {
             type: Number,

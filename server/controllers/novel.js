@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
 import { Novel } from "../models/Novel.js";
-import { Rating } from "../models/Rating.js";
 import { uploadFile, deleteFile } from "../config/aws/s3.js";
 
 export const getNovel = async (req, res) => {
@@ -34,6 +33,11 @@ export const getNovel = async (req, res) => {
                         isCompleted: "$isCompleted",
                     },
                     rating: { $avg: "$rating.rating" },
+                    ratingCount: {
+                        $sum: {
+                            $cond: [{ $ifNull: ["$rating", false] }, 1, 0],
+                        },
+                    },
                 },
             },
             {
@@ -49,6 +53,7 @@ export const getNovel = async (req, res) => {
                     genres: "$_id.genres",
                     isCompleted: "$_id.isCompleted",
                     rating: { $ifNull: ["$rating", 0] },
+                    ratingCount: "$ratingCount",
                 },
             },
             {
@@ -98,6 +103,11 @@ export const getNovelById = async (req, res) => {
                         isCompleted: "$isCompleted",
                     },
                     rating: { $avg: "$rating.rating" },
+                    ratingCount: {
+                        $sum: {
+                            $cond: [{ $ifNull: ["$rating", false] }, 1, 0],
+                        },
+                    },
                 },
             },
             {
@@ -113,6 +123,7 @@ export const getNovelById = async (req, res) => {
                     genres: "$_id.genres",
                     isCompleted: "$_id.isCompleted",
                     rating: { $ifNull: ["$rating", 0] },
+                    ratingCount: "$ratingCount",
                 },
             },
         ]);
@@ -125,25 +136,31 @@ export const getNovelById = async (req, res) => {
 
 export const createNovel = async (req, res) => {
     const { userId, title, description, genres } = req.body;
+    const file = req.file;
 
-    if (!title) return res.status(400).json({ message: "Title is required" });
+    if (!title)
+        return res.status(400).json({ message: "some fields are missing" });
 
     try {
-        const file = req.file;
-        const { originalname } = file;
-        file.key =
-            "cover/" +
-            uuidv4() +
-            originalname.substr(originalname.lastIndexOf("."));
-        const uploadedFile = await uploadFile(file);
-
         const newNovel = new Novel({
             title,
             description,
-            cover: uploadedFile.Location,
             authorId: userId,
             genres,
         });
+
+        if (file) {
+            const { originalname } = file;
+
+            file.key =
+                "cover/" +
+                uuidv4() +
+                originalname.substr(originalname.lastIndexOf("."));
+
+            const uploadedFile = await uploadFile(file);
+
+            newNovel.cover = uploadedFile.Location;
+        }
 
         await newNovel.save();
 
@@ -158,7 +175,8 @@ export const createNovel = async (req, res) => {
 
 export const updateNovel = async (req, res) => {
     const { novelId } = req.params;
-    const { title, description, genres, isComplete } = req.body;
+    const { title, description, genres, isCompleted } = req.body;
+    const file = req.file;
 
     try {
         const updatedNovel = await Novel.findOneAndUpdate(
@@ -167,15 +185,32 @@ export const updateNovel = async (req, res) => {
                 title,
                 description,
                 genres,
-                isComplete,
+                isCompleted,
             },
             { new: true }
         );
 
-        const file = req.file;
-        const { cover } = updatedNovel;
-        file.key = cover.substr(cover.indexOf("cover/"));
-        await uploadFile(file);
+        if (file) {
+            const { cover } = updatedNovel;
+
+            if (cover) {
+                file.key = cover.substr(cover.indexOf("cover/"));
+                await uploadFile(file);
+            } else {
+                const { originalname } = file;
+
+                file.key =
+                    "cover/" +
+                    uuidv4() +
+                    originalname.substr(originalname.lastIndexOf("."));
+
+                const uploadedFile = await uploadFile(file);
+
+                updatedNovel.cover = uploadedFile.Location;
+            }
+
+            await updatedNovel.save();
+        }
 
         res.status(200).json({
             message: "Novel updated successfully",
@@ -190,11 +225,16 @@ export const deleteNovel = async (req, res) => {
     const { novelId } = req.params;
 
     try {
-        const deletedNovel = await Novel.findOneAndDelete({ novelId });
+        const deletedNovel = await Novel.findOneAndDelete(
+            { novelId },
+            { lean: true }
+        );
         const { cover } = deletedNovel;
-        const key = cover.substr(cover.indexOf("cover/"));
 
-        await deleteFile(key);
+        if (cover) {
+            const key = cover.substr(cover.indexOf("cover/"));
+            await deleteFile(key);
+        }
 
         res.status(200).json({
             message: "novel deleted successfully",

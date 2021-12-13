@@ -4,6 +4,8 @@ export const verifyToken = (req, res, next) => {
     const authHeader = req.header("Authorization");
     const accessToken = authHeader && authHeader.split(" ")[1];
 
+    console.log("verifyToken");
+
     if (!accessToken)
         return res.status(401).json({ message: "Access token not found" });
 

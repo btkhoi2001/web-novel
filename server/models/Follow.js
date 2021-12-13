@@ -6,7 +6,7 @@ const schema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        commentId: {
+        novelId: {
             type: Number,
             required: true,
         },
@@ -14,4 +14,4 @@ const schema = new mongoose.Schema(
     { timestamps: true }
 );
 
-export const CommentLike = mongoose.model("commentLikes", schema);
+export const Follow = mongoose.model("follows", schema);

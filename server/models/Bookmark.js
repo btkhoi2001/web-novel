@@ -10,6 +10,10 @@ const schema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        chapterId: {
+            type: Number,
+            required: true,
+        },
     },
     { timestamps: true }
 );

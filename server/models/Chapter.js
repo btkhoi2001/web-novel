@@ -8,11 +8,18 @@ const schema = new mongoose.Schema(
             type: Number,
             unique: true,
         },
+        chapterOrder: {
+            type: Number,
+            required: true,
+        },
         title: {
             type: String,
-            maxLength: 100,
+            required: true,
         },
-        content: String,
+        content: {
+            type: String,
+            required: true,
+        },
         novelId: {
             type: Number,
             required: true,

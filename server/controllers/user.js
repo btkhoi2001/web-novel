@@ -2,7 +2,6 @@ import { User } from "../models/User.js";
 
 export const getUserProfile = async (req, res) => {
     const { userId } = req.body;
-    console.log(userId);
 
     try {
         const user = await User.findOne(
@@ -23,4 +22,8 @@ export const getUserProfile = async (req, res) => {
     } catch (error) {
         res.status(500).json({ error });
     }
+};
+
+export const updateUserProfile = async (req, res) => {
+    // const {displayName, avatar,} = req.body;
 };

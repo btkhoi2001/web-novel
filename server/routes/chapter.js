@@ -14,7 +14,6 @@ import {
 const router = express.Router({ mergeParams: true });
 
 router.get("/", getChapter);
-router.get("/:chapterId", verifyChapterId, getChapterById);
 router.post(
     "/",
     verifyToken,
@@ -22,22 +21,15 @@ router.post(
     verifyNovelOwnership,
     createChapter
 );
-router.put(
-    "/:chapterId",
-    verifyToken,
-    verifyAuthor,
-    verifyNovelOwnership,
-    verifyChapterId,
-    updateChapter
-);
-router.delete(
-    "/:chapterId",
-    verifyToken,
-    verifyAuthor,
-    verifyNovelOwnership,
-    verifyChapterId,
-    deleteChapter
-);
-router.use("/:chapterId/comment", verifyChapterId, commentRouter);
+
+router.use("/:chapterId", verifyChapterId);
+
+router.get("/:chapterId", getChapterById);
+router.use("/:chapterId/comment", commentRouter);
+
+router.use(verifyToken, verifyAuthor, verifyNovelOwnership);
+
+router.put("/:chapterId", updateChapter);
+router.delete("/:chapterId", deleteChapter);
 
 export default router;

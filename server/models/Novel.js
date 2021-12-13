@@ -14,7 +14,6 @@ const schema = new mongoose.Schema(
         },
         description: {
             type: String,
-            maxLength: 500,
             default: "",
         },
         views: {
@@ -28,11 +27,10 @@ const schema = new mongoose.Schema(
         cover: String,
         authorId: {
             type: Number,
-            ref: "users",
             required: true,
         },
         genres: {
-            type: [mongoose.Schema.Types.ObjectId],
+            type: [String],
         },
         isCompleted: {
             type: Boolean,

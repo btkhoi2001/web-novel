@@ -26,10 +26,14 @@ export const getChapterById = async (req, res) => {
 
 export const createChapter = async (req, res) => {
     const { novelId } = req.params;
-    const { title, content } = req.body;
+    const { chapterOrder, title, content } = req.body;
+
+    if (!chapterOrder || !title || !content)
+        return res.status(400).json({ message: "some fields are missing" });
 
     try {
         const newChapter = new Chapter({
+            chapterOrder,
             title,
             content,
             novelId,
@@ -48,7 +52,7 @@ export const createChapter = async (req, res) => {
 
 export const updateChapter = async (req, res) => {
     const { novelId, chapterId } = req.params;
-    const { title, content } = req.body;
+    const { chapterOrder, title, content } = req.body;
 
     try {
         const updatedChapter = await Chapter.findOneAndUpdate(
@@ -57,10 +61,11 @@ export const updateChapter = async (req, res) => {
                 chapterId,
             },
             {
+                chapterOrder,
                 title,
                 content,
             },
-            { new: true }
+            { lean: true, new: true }
         );
 
         res.status(200).json({
@@ -76,10 +81,15 @@ export const deleteChapter = async (req, res) => {
     const { novelId, chapterId } = req.params;
 
     try {
-        const deletedChapter = await Chapter.findOneAndDelete({
-            novelId,
-            chapterId,
-        });
+        const deletedChapter = await Chapter.findOneAndDelete(
+            {
+                novelId,
+                chapterId,
+            },
+            {
+                lean: true,
+            }
+        );
 
         res.status(200).json({
             message: "chapter deleted successfully",

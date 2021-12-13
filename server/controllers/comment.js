@@ -3,9 +3,78 @@ import { CommentLike } from "../models/CommentLike.js";
 
 export const getComment = async (req, res) => {
     const { novelId, chapterId } = req.params;
+    const { parentCommentId } = req.query;
 
     try {
-        const comments = await Comment.find({ novelId, chapterId });
+        const comments = await Comment.aggregate([
+            {
+                $match: {
+                    novelId: parseInt(novelId),
+                    chapterId: parseInt(chapterId) || null,
+                    parentCommentId: parseInt(parentCommentId) || null,
+                },
+            },
+            {
+                $lookup: {
+                    from: "commentlikes",
+                    localField: "commentId",
+                    foreignField: "commentId",
+                    as: "commentlike",
+                },
+            },
+            {
+                $unwind: {
+                    path: "$commentlike",
+                    preserveNullAndEmptyArrays: true,
+                },
+            },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "userId",
+                    foreignField: "userId",
+                    as: "user",
+                },
+            },
+            {
+                $unwind: {
+                    path: "$user",
+                    preserveNullAndEmptyArrays: true,
+                },
+            },
+            {
+                $group: {
+                    _id: {
+                        commentId: "$commentId",
+                        userId: "$user.userId",
+                        displayName: "$user.displayName",
+                        avatar: "$user.avatar",
+                        content: "$content",
+                        createdAt: "$createdAt",
+                    },
+                    likeCount: {
+                        $sum: {
+                            $cond: [{ $ifNull: ["$commentlike", false] }, 1, 0],
+                        },
+                    },
+                },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    commentId: "$_id.commentId",
+                    userId: "$_id.userId",
+                    displayName: "$_id.displayName",
+                    avatar: "$_id.avatar",
+                    content: "$_id.content",
+                    createdAt: "$_id.createdAt",
+                    likeCount: "$likeCount",
+                },
+            },
+            {
+                $sort: { commentId: 1 },
+            },
+        ]);
 
         res.status(200).json({ comments });
     } catch (error) {
@@ -21,7 +90,6 @@ export const createComment = async (req, res) => {
         return res.status(400).json({ message: "content is required" });
 
     try {
-        console.log(1);
         const newComment = new Comment({
             userId,
             novelId,
