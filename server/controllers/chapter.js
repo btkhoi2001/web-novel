@@ -1,4 +1,7 @@
 import { Chapter } from "../models/Chapter.js";
+import { Novel } from "../models/Novel.js";
+import { Follow } from "../models/Follow.js";
+import { Notification } from "../models/Notification.js";
 
 export const getChapter = async (req, res) => {
     const { novelId } = req.params;
@@ -40,6 +43,29 @@ export const createChapter = async (req, res) => {
         });
 
         await newChapter.save();
+
+        const novel = await Novel.findOne(
+            { novelId },
+            { _id: 0, title: 1, cover: 1 },
+            { lean: true }
+        );
+
+        const notifications = await Follow.aggregate([
+            {
+                $match: { novelId: parseInt(novelId) },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    receiverId: "$userId",
+                    title: `${novel.title} vừa thêm Chương ${chapterOrder}: ${title}`,
+                    image: novel.cover,
+                    actionUrl: `/novel/${novelId}/chapter/${newChapter.chapterId}`,
+                },
+            },
+        ]);
+
+        await Notification.insertMany(notifications);
 
         res.status(201).json({
             message: "chapter created successfully",

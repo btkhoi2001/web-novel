@@ -12,6 +12,7 @@ const schema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        image: String,
         actionUrl: String,
     },
     { timestamps: true }
