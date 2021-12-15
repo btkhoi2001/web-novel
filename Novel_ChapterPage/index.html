@@ -18,22 +18,59 @@
             <div class="container-xl">
                 <div class="searchbar">               
                     <div class="searchbar-item">
-                        <a href="../Homepage/index.html" class="logo"><h1>Simple<span style="color: #F18121;">PoLL</span></h1></a>
+                        <a href="#" class="logo"><h1>Simple<span style="color: #F18121;">PoLL</span></h1></a>
                     </div>
-                    <div class="searchbar-item search d-none d-lg-flex">
-                        <input type="search" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
-                        <div class="search-select-btn"><i class="fas fa-search"></i></div>
+                    <div class="searchbar-item search-novel d-none d-lg-flex">
+                        <div class="" style="width: 100%; height: 100%">
+                            <input type="text" id="searchBar" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
+                            <div class="search-select-btn"><i class="fas fa-search"></i></div>
+                        </div>
+                        <ul class="search-menu">
+                            <!-- <li class="">
+                                <a href="#" class="">
+                                    Đấu phá thương khung
+                                </a> 
+                            </li>
+                            <li class="">
+                                <a href="#" class="">
+                                    Võ thần chúa tể
+                                </a> 
+                            </li> -->
+                        </ul>
                     </div>
                     <div class="searchbar-item ">
-                       <div class="searchbar-btn">
-                           <a href="#"><i class="fas fa-bell"></i></a>
-                       </div>
-                       <div class="searchbar-btn">
-                           <a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">   
-                                <i class="fas fa-user-circle"></i>
-                                <div class="user-name d-none"></div>
-                           </a>
-                       </div>
+                    <div class="searchbar-btn notification-btn">
+                            <a href="#">
+                                <span><i class="fas fa-bell"></i></span>
+                                <span class="notification-badge">1</span>
+                            </a>
+                            <ul class="notification-menu d-none">
+                                <li class="d-flex ">
+                                    <a href="#" class="mt-2 me-2">
+                                        <img alt="" height="55" src="https://static.cdnno.com/poster/ta-tai-tan-thu-thon-lang-le-cau-thanh-dai-boss/150.jpg?1638291975" lazy="loaded"> 
+                                    </a> 
+                                    <div class="notification-content text-ellipsis--3">
+                                        <p>Đấu Phá Thương Khung vừa ra chương 2000. Cùng nhau đọc chương mới để ủng hộ cho page nhé</p>
+                                    </div>
+                                </li>
+                                <li class="d-flex ">
+                                    <a href="#" class="mt-2 me-2">
+                                        <img alt="" height="55" src="https://static.cdnno.com/poster/ta-tai-tan-thu-thon-lang-le-cau-thanh-dai-boss/150.jpg?1638291975" lazy="loaded"> 
+                                    </a> 
+                                    <div class="notification-content">
+                                        <p>Võ Thần Chúa Tể vừa ra chương 3000</p>
+                                    </div>
+                                </li>
+                            </ul>
+                    </div>
+                    <div class="searchbar-btn">
+                        <a href="../SignIn_Regis_Page/SignIn_Regis_Page.html">   
+                            <i class="fas fa-user-circle"></i>
+                            <div class="user">
+                                <span class="user-name d-none d-lg-block">User</span>
+                            </div>
+                        </a>
+                    </div>
                     </div>
                 
                     <div id="mobile-menu" class="mobile-menu-btn d-lg-none">
@@ -123,22 +160,13 @@
                     <li class="navbar-items">
                         <a href="#" class="item-link"><i class="far fa-chart-bar navbar-icon"></i> Bảng xếp hạng </a>
                     </li>
-                    <li class="navbar-items dropdown">
-                        <a href="#" class="item-link"> <i class="fas fa-sliders-h navbar-icon"></i>Phông nền  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
-                        <div class="droplist droplist-normal color-select">
-                            <a href="#" id="lightmode">Màu sáng</a>
-                            <a href="#" id="darkmode">Màu tối</a>
-                        </div>
-                    </li>
                     <li class="navbar-items">
                         <a href="#" class="item-link"> <i class="fas fa-book navbar-icon"></i>Theo dõi </a>
                     </li>
                     <li class="navbar-items">
                         <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Đánh dấu </a>
                     </li> 
-                    <li class="navbar-items">
-                        <a href="#" class="item-link"> <i class="fas fa-upload navbar-icon"></i>Đăng Truyện </a>
-                    </li> 
+                
                 </ul>
 
                 <ul class="mobile-navbar d-none">
@@ -218,18 +246,18 @@
                     <li class="mobile-navbar-items">
                         <a href="#" class="mobile-item-link"><i class="far fa-chart-bar  mobile-navbar-icon"></i> Bảng xếp hạng </a>
                     </li>
-                    <li class="mobile-navbar-items">
+                    <!-- <li class="mobile-navbar-items">
                         <a href="#" class="mobile-item-link"> <i class="fas fa-sliders-h mobile-navbar-icon"></i> Phông nền  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
                         <ul class="mobile-droplist d-none ">
                             <li><a href="#" id="mobile-lightmode">Màu sáng</a></li>
                             <li><a href="#" id="mobile-darkmode">Màu tối</a></li>
                         </ul>
+                    </li> -->
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-book mobile-navbar-icon"></i> Theo dõi </a>
                     </li>
                     <li class="mobile-navbar-items">
-                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Lịch sử </a>
-                    </li>
-                    <li class="mobile-navbar-items">
-                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Theo dõi </a>
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Đánh dấu </a>
                     </li> 
                     <li class="mobile-navbar-items search">
                         <input type="search" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
@@ -569,6 +597,9 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
     
 
    <script>
+
+       // Light mode - dark mode
+
         function showDarkBackground(){
             $(document.body).css("color","#ffffff99");
             $("#header").css("background-color", "var(--header-dark-color)");
@@ -728,12 +759,6 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
 
         var backgroundColor = "light";
     
-        $(".mobile-navbar-btn").click(function(){
-            $(".mobile-navbar").toggleClass('d-none');
-        });
-        $(".mobile-item-link").click(function(){
-            $(this).parent(".mobile-navbar-items").children(".mobile-droplist").toggleClass('d-none');
-        });
         $("#darkmode").click(function(){
             backgroundColor = "dark";
             showDarkBackground();
@@ -767,9 +792,108 @@ Sau hôn lễ không lâu, Tiêu Viêm nhường chức minh chủ liên minh Th
             $(".mark-down").toggleClass("d-none");
         })
 
+        // open close mobile menu
+        $(".mobile-navbar-btn").click(function(){
+            $(".mobile-navbar").toggleClass('d-none');
+        });
+        $(".mobile-item-link").click(function(){
+            $(this).parent(".mobile-navbar-items").children(".mobile-droplist").toggleClass('d-none');
+        });
+       
+        $('html').click(function() {
+            $('.search-menu').empty();
+            $('.notification-menu').addClass('d-none'); 
+        }); 
+        $('.notification-btn').click(function(event) {
+            event.stopPropagation();
+            $('.notification-menu').toggleClass('d-none'); 
+        }); 
+        
+        // Search novel
+        const novelLists = document.querySelector('.search-menu');
+        const searchBar = document.getElementById('searchBar');
+        let novels = [];
+
+        const loadNovels = async () => {
+            try {
+                const res = await fetch('https://hp-api.herokuapp.com/api/characters');
+                novels = await res.json();       
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        loadNovels();
+
+        searchBar.addEventListener('keyup', async (e) => {
+            const searchString = e.target.value.toLowerCase();
+            const filteredNovels = novels.filter((novel) => {
+                return ( novel.name.toLowerCase().includes(searchString) );
+            });
+            novelLists.innerHTML = '' ;
+            if (searchString.length !== 0)
+                displayNovels(filteredNovels);
+        });
+
+         // show 10 results
+         const displayNovels = (novels) => {
+            let htmlString;
+        
+            if (novels.length === 0) {
+                htmlString =  `
+                        <li style="color:red; font-size: 1.4rem">
+                            Truyện bạn tìm không có !
+                        </li>
+                    `;
+            }
+            else if (novels.length < 10){
+                htmlString = novels.map((novel) => {
+                    return `
+                        <li class="">
+                            <a href="#" class="">
+                                ${novel.name}
+                            </a> 
+                        </li>
+                    `;
+                })
+                .join('');
+            }
+            else {
+                let results = [];
+                for (i = 0; i < 10; i++) {
+                    results.push(novels[i]);
+                }
+                htmlString = results.map((novel) => {
+                    return `
+                        <li class="">
+                            <a href="#" class="">
+                                ${novel.name}
+                            </a> 
+                        </li>
+                    `;
+                })
+                .join('');
+            }
+            novelLists.innerHTML = htmlString;
+        };
+
+        /*show emoticon*/
+        var postForm = $(".postForm");
+
+        function showEmoticon(form) {
+        form.find(".emoticonbt").click(function () {
+            $(this).parent().find('.emotion-form').toggle();
+        });
+        form.find(".emotion-form a").click(function () {
+            var $input = form.find(".comment-input");
+            var txt = $input.val(); console.log(txt);
+            $input.val(txt + $(this).text()); $(this).parent().toggle();
+        });
+        }
+        $(function () { showEmoticon(postForm); });
+
    </script>
 
-   <script type="text/javascript" src="./asset/js/main.js"></script>
-
+   
 </body>
 </html>

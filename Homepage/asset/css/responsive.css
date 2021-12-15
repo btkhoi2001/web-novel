@@ -96,6 +96,16 @@
     .content {
         padding-top: 0rem;
     }
+    .searchbar-item .notification-btn .notification-badge {
+        left: 2.6rem;
+        top: 1.2rem;
+        padding: 0 .4rem;
+        line-height: 1.6rem;
+    }
+    .notification-btn .notification-menu {
+        top: 4.8rem;
+        width: 25rem;
+    }
 }
 
 @media (min-width: 30em) and (max-width: 35.9375em) {
@@ -144,6 +154,16 @@
     .content {
         padding-top: 0rem;
     }
+    .searchbar-item .notification-btn .notification-badge {
+        left: 2.6rem;
+        top: 1.2rem;
+        padding: 0 .4rem;
+        line-height: 1.6rem;
+    }
+    .notification-btn .notification-menu {
+        top: 4.8rem;
+        right: 0;
+    }
 }
 
 
@@ -182,6 +202,16 @@
     .search {
         padding: .4rem;
         height: 3.2rem;
+    }
+    .searchbar-item .notification-btn .notification-badge {
+        left: 2.6rem;
+        top: 1.2rem;
+        padding: 0 .4rem;
+        line-height: 1.6rem;
+    }
+    .notification-btn .notification-menu {
+        top: 4.8rem;
+        right: 0;
     }
  }
 
@@ -223,6 +253,16 @@
     .search {
         padding: .4rem;
         height: 3.2rem;
+    }
+    .searchbar-item .notification-btn .notification-badge {
+        left: 2.6rem;
+        top: 1.2rem;
+        padding: 0 .4rem;
+        line-height: 1.6rem;
+    }
+    .notification-btn .notification-menu {
+        top: 4.8rem;
+        right: 0;
     }
 }
 

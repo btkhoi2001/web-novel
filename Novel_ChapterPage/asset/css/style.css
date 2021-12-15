@@ -1,7 +1,6 @@
 .main {
     width: 100%;
     background-color: var(--light-background-color);
-  
 }
 /* Header */
 #header {
@@ -12,7 +11,6 @@
     left: 0;
     right: 0;
     z-index: 1;
-    margin-bottom: 2rem;
 }
 
 .searchbar {
@@ -20,13 +18,16 @@
     display:flex;
     align-items: center;
     margin-left:  -2rem;
-    margin-right: -2rem;
 }
 
 .searchbar-item {
     display: inline-block;
     padding: 0 1.6rem;
     margin: .2rem;
+}
+.searchbar-item a {
+    color: var(--white-color);
+    text-decoration: none;
 }
 
 .logo {
@@ -37,13 +38,16 @@
 .logo h1 {
     font-size: 4rem;
 }
-.search{
+
+.search-novel{
     flex:1;
     align-items: center;
     background-color: var(--light-background-color);
     height:4rem;
     border-radius: 6px;
-    display: flex;
+    display: block;
+    position: relative;
+    text-align: left;
 }
 
 .search-input {
@@ -55,15 +59,51 @@
 }
 
 .search-select-btn {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: var(--header-light-color);
-    padding: 0 .8rem;
-    margin-left: .8rem;
+    padding-left: 1.4rem;
+    margin-top: .7rem;
 }
 
 .search-select-btn:hover {
     cursor: pointer;
 }
+
+.search-novel .search-menu {
+    position: absolute;
+    top: 4.4rem;
+    left: 0;
+    background-color: #e5e5e5;
+    border: #989898;
+    padding: 0 1.6rem;
+    list-style: none;
+    width: 100%;
+    border-radius: .8rem;
+    text-align: left;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .15), 0 8px 16px rgba(0, 0, 0, .15);
+}
+  
+.search-novel .search-menu li {
+    background-color: #fff;
+    padding: .4rem .8rem;
+    margin: .6rem 0;
+    border-radius: .8rem;
+    margin-right: 3rem;
+}
+  
+.search-novel .search-menu li a {
+    color: rgba(105, 102, 102, 0.972);
+    font-size: 1.4rem;
+}
+
+.search-novel .search-menu li:hover > a {
+    color: var(--orange-color);
+    /* font-size: 1.6rem; */
+    font-style: italic;
+}
+
+
 
 .searchbar-btn {
     margin-top:.2rem;
@@ -74,13 +114,8 @@
     font-weight: 700;
 }
 
-.searchbar-btn:hover a {
+.searchbar-btn a:hover {
    opacity: .7;
-}
-
-.searchbar-btn a {
-    color: var(--white-color);
-    text-decoration: none;
 }
 
 .searchbar-btn a i {
@@ -88,22 +123,77 @@
     display:inline-block;
 }
 
-.user-name {
-    font-size: 1.8rem;
-    display: inline-block;
-    padding: .2rem;
+.searchbar-item .notification-btn {
+    position: relative;
+    text-align: left;
 }
 
-.sign-up {
-    background-color: var(--orange-color);
+.searchbar-item .notification-btn .notification-badge {
+    font-size: 1.2rem;
+    position: absolute;
+    top: 0;
+    left: 3.2rem;
+    padding: 0rem .5rem;
+    border-radius: 50%;
+    background-color: red;
 }
-.sign-in {
-    background-color: var(--green-color);
+  
+.notification-btn .notification-menu {
+    position: absolute;
+    top: 4.4rem;
+    right: -8rem;
+    background-color: #e5e5e5;
+    border: #989898;
+    padding: 1rem 2rem;
+    list-style: none;
+    width: 32rem;
+    border-radius: .8rem;
+    text-align: left;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .15), 0 8px 16px rgba(0, 0, 0, .15);
+}
+  
+.notification-btn .notification-menu li {
+    background-color: #fff;
+    color: rgba(105, 102, 102, 0.972);
+    padding: .8rem;
+    margin-bottom: 10px;
+    border-radius: .8rem;
+}
+  
+.notification-btn .notification-menu p {
+    margin-bottom: 0;
+    font-size: 1.4rem;
+}
+
+.text-ellipsis--3{
+    text-overflow:ellipsis;
+    overflow:hidden;
+    /* Addition lines for 3 line or multiline ellipsis */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+
+.user {
+    display: inline-block;
+    position: relative;
+}
+.user-name {
+    position: absolute;
+    font-size: 2rem;
+    font-weight:400;
+    bottom: -.5rem;
+    left: 0;
+    opacity: 0.9;
 }
 
 .mobile-menu-btn {
     font-size: 2.4rem;
 }
+
+
 
 .navbar {
     height:5rem;
@@ -153,7 +243,6 @@
         text-decoration: none;
         color: white;
     }
-
     .droplist a:hover{
         color: var(--orange-color);
         background-color: rgba(255, 255, 255, 0.2);
