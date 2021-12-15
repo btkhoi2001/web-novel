@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./asset/css/base.css">
+    <link rel="stylesheet" href="./asset/css/style.css">
+    <link rel="stylesheet" href="./asset/css/responsive.css">
+    <title>Đọc truyện online - SimplePoLL</title>
+</head>
+<body>
+   <div class="main">
+        <header id="header">
+            <div class="container-xl">
+                <div class="searchbar">               
+                    <div class="searchbar-item">
+                        <a href="#" class="logo"><h1>Simple<span style="color: #F18121;">PoLL</span></h1></a>
+                    </div>
+                    <div class="searchbar-item search d-none d-lg-flex">
+                        <input type="search" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
+                        <div class="search-select-btn"><i class="fas fa-search"></i></div>
+                    </div>
+                    <div class="searchbar-item ">
+                       <div class="searchbar-btn">
+                           <a href="#"><i class="fas fa-bell"></i></a>
+                       </div>
+                       <div class="searchbar-btn">
+                           <a href="#">   
+                                <i class="fas fa-user-circle"></i>
+                                <div class="user">
+                                    <span class="user-name">User123</span>
+                                </div>
+                           </a>
+                       </div>
+                    </div>
+                
+                   
+                </div>
+
+                <ul class="navbar d-none d-lg-block">
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"><i class="fas fa-home navbar-icon"></i>Trang chủ </a>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Danh sách <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-normal">
+                            <a href="#">Truyện mới cập nhật</a>
+                            <a href="#">Truyện Hot</a>
+                            <a href="#">Truyện Full</a>
+                            <a href="#">Tiên Hiệp Hay</a>
+                            <a href="#">Kiếm Hiệp Hay</a>
+                            <a href="#">Truyện teen Hay</a>
+                            <a href="#">Ngôn Tình Hay</a>
+                            <a href="#">Ngôn Tình Sắc</a>
+                            <a href="#">Ngôn Tình Ngược</a>
+                            <a href="#">Ngôn Tình Sủng</a>
+                            <a href="#">Ngôn Tình Hài</a>
+                            <a href="#">Đam Mỹ Hài</a>
+                            <a href="#">Đam Mỹ Hay</a>
+                            <a href="#">Đam Mỹ Sắc</a>
+                            <a href="#">Khác</a>
+                        </div>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Thể loại  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-fluid-container">
+                            <div class="droplist-fluid">
+                                <a href="#">Tiên Hiệp</a>
+                                <a href="#">Kiếm Hiệp</a>
+                                <a href="#">Ngôn Tình</a>
+                                <a href="#">Đam Mỹ</a>
+                                <a href="#">Quan Trường</a>
+                                <a href="#">Võng Du</a>
+                                <a href="#">Khoa Huyễn</a>
+                                <a href="#">Hệ Thống</a>
+                                <a href="#">Huyền Huyễn</a>
+                                <a href="#">Dị Giới</a>
+                                <a href="#">Dị Năng</a>
+                                <a href="#">Quân Sự</a>
+                                <a href="#">Lịch Sử</a>
+                                <a href="#">Xuyên Không</a>
+                                <a href="#">Xuyên Nhanh</a>
+                                <a href="#">Trọng Sinh</a>
+                                <a href="#">Trinh Thám</a>
+                                <a href="#">Thám Hiểm</a>
+                                <a href="#">Linh Dị</a>
+                                <a href="#">Sắc</a>
+                                <a href="#">Ngược</a>
+                                <a href="#">Sủng</a>
+                                <a href="#">Cung Đấu</a>
+                                <a href="#">Nữ Cường</a>
+                                <a href="#">Gia Đấu</a>
+                                <a href="#">Đông Phương</a>
+                                <a href="#">Đô Thị</a>
+                                <a href="#">Bách Hợp</a>
+                                <a href="#">Hài Hước</a>
+                                <a href="#">Điền Văn</a>
+                                <a href="#">Cổ đại</a>
+                                <a href="#">Mạt Thế</a>
+                                <a href="#">Truyện Teen</a>
+                                <a href="#">Phương Tây</a>
+                                <a href="#">Nữ Phụ</a>
+                                <a href="#">Light Novel</a>
+                                <a href="#">Việt Nam</a>
+                                <a href="#">Đoản Văn</a>
+                                <a href="#">Khác</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Phân loại theo chương  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-normal">
+                            <a href="#">Dưới 100 chương</a>
+                            <a href="#">100-500 chương</a>
+                            <a href="#">500-1000 chương</a>
+                            <a href="#">Trên 1000 chương</a>
+                        </div>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"><i class="far fa-chart-bar navbar-icon"></i> Bảng xếp hạng </a>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"> <i class="fas fa-book navbar-icon"></i>Theo dõi </a>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="#" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Đánh dấu </a>
+                    </li> 
+                    
+                </ul>
+
+            </div>
+        </header>
+
+        <span class="top-bg-op-box" style="background-image: 
+            url(&quot;https://static.cdnno.com/storage/topbox/758007f88f5c61f2e8d12c22c9dcf97a.jpeg&quot;); 
+            position: absolute; z-index: 0; left: 0px; overflow: hidden; width: 100%; height: 388px; 
+            background-repeat: no-repeat; background-position: 50% 0px; background-size: cover;">
+        </span>
+
+        <div class="content">
+            <div class="container-xl page">
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section ">
+                                <div class="section-title">
+                                    <span> Thể loại: Tiên hiệp</span>
+                                </div>
+                                <div class="section-content">
+                                    <ul class="top-novels">
+                                        <li class="media py-5 border-bottom d-flex">
+                                            <a href="#" class="mt-1 mx-4">
+                                                <img alt="" width="78" src="https://static.cdnno.com/poster/ta-tai-tan-thu-thon-lang-le-cau-thanh-dai-boss/150.jpg?1638291975" lazy="loaded"> 
+                                            </a> 
+                                            <div class="media-body">
+                                                <h2 class="mb-2" style="font-size: 1.6rem;">
+                                                    <a href="#" >Ta Tại Tân Thủ Thôn Lặng Lẽ Cẩu Thành Đại BOSS</a>
+                                                </h2> 
+                                                <div class="text-secondary text-overflow-3-lines">
+                                                    Xuyên qua đến Tu Tiên giới, giết người đoạt bảo, ngươi lừa ta gạt, yêu thú khắp nơi... Không được, bên ngoài quá nguy hiểm. Vẫn là thành thành thật thật tại Tân Thủ thôn yên tĩnh tu luyện.
+                                                </div> 
+                                                <ul class="list-unstyled d-flex flex-wrap mb-0 mt-3 text-secondary">
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-user"></i> <span class="mx-1">Thanh Sam Cách</span>
+                                                    </li>
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-fire"></i> <span class="mx-1">3483</span>
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#" class="latest-chapter">
+                                                            Chương 1123
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="media py-5 border-bottom d-flex">
+                                            <a href="#" class="mt-1 mx-4">
+                                                <img alt="" width="78" src="https://static.cdnno.com/poster/moi-nguoi-mot-cai-tinh-cau-bat-dau-che-tao-khoa-hoc-ky-thuat-van-minh/150.jpg?1638000691" lazy="loaded"> 
+                                            </a> 
+                                            <div class="media-body">
+                                                <h2 class="mb-2" style="font-size: 1.6rem;">
+                                                    <a href="#" >Mỗi người một cái tinh cầu: Bắt đầu chết tạo khoa học kỹ thuật văn minh </a>
+                                                </h2> 
+                                                <div class="text-secondary text-ellipsis--2">
+                                                    
+                                « B.faloo mạng tiểu thuyết độc nhất vô nhị ký hợp đồng tiểu thuyết: Mỗi người một cái tinh cầu: Bắt đầu chế tạo khoa học kỹ thuật văn minh »
+
+                                Giang Phàm xuyên việt đến rồi mọi người đều có thể giác tỉnh tinh cầu thế giới.
+                            
+                                Thức tỉnh tinh cầu càng lớn, năng lượng sơ khai càng cao cấp hơn, năng lượng này quyết định chế tạo văn minh có cường đại hay không.
+                            
+                                Có người chuyển hóa ra cảm giác năng lượng, chế tạo thẻ bài văn minh, trên tinh cầu mỗi người đều là Tạp Tu.
+                            
+                                Có người chuyển hóa ra hồn lực năng lượng, chế tạo Võ Hồn văn minh, trên tinh cầu mỗi người đều là Hồn Sư.
+                            
+                                Có người chuyển hóa ra linh khí năng lượng, chế tạo Tu Tiên văn minh, trên tinh cầu mỗi người đều là Tu Tiên Giả!
+                            
+                                Có người giác tỉnh chân khí năng lượng, chế tạo Võ Giả văn minh, trên tinh cầu mỗi người đều là Võ Giả.
+                            
+                                Có người giác tỉnh ma lực năng lượng, chế tạo Ma Pháp văn minh, trên tinh cầu mỗi người đều là Ma Pháp Sư.
+                            
+                                Có người giác tỉnh linh khí năng lượng, chế tạo Tu Tiên văn minh, trên tinh cầu mỗi người đều là Tu Tiên Giả!
+                            
+                                . . .
+                            
+                                Mọi người đều ở đây phí hết tâm tư, cấu tạo các loại Siêu Phàm Tinh Cầu.
+                            
+                                Mà Giang Phàm, lại đi ngược lại con đường cũ, lợi dụng trí nhớ kiếp trước bắt đầu chế tạo khoa học kỹ thuật văn minh!
+                            
+                                "Ngươi Tiêm Tinh Hạm trực tiếp đánh xuyên đối thủ tinh cầu, đối thủ cúi đầu đầu hàng."
+                            
+                                "Ngươi Dual Vector Foil đem đối thủ tu tiên tinh cầu hóa thành một trang giấy, đối thủ bị ngươi sợ choáng váng!"
+                            
+                                . . .
+                            
+                                Đây là một cái dùng khoa học kỹ thuật đánh xuyên qua các lộ Siêu Phàm văn minh cố sự!
+                            
+                                Tinh cầu thiên phú :Phổ thông cấp, cấp tinh anh, Thống Lĩnh cấp, Vương Giả cấp, Sử Thi cấp, Truyền Thuyết cấp, Thần Thoại cấp cùng với. . . Tối cao Vĩnh Hằng cấp!
+                            
+                            tác ra 700k chữ r, đủ béo.
+                            
+                            CẦU HOA TƯƠI, CẦU BUFF KẸO.
+                                                        
+                                                </div> 
+                                                <ul class="list-unstyled d-flex flex-wrap mb-0 mt-3 text-secondary">
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-user"></i> <span class="mx-1">Tứ tự chân ngôn</span>
+                                                    </li>
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-fire"></i> <span class="mx-1"> 3446</span>
+                                                       
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#" class="latest-chapter">
+                                                            Chương 648
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="media py-5 border-bottom d-flex">
+                                           <a href="#" class="mt-1 mx-4">
+                                                <img alt="" width="78" src="https://static.cdnno.com/poster/toan-dan-chuyen-chuc-ta-lua-chon-khong-chuc-nghiep-tan-nhan/150.jpg?1638291669" lazy="loaded"> 
+                                            </a> 
+                                            <div class="media-body">
+                                                <h2 class="mb-2" style="font-size: 1.6rem;">
+                                                    <a href="#" >Toàn Dân Chuyển Chức: Ta Lựa Chọn Không Chúc Nghiệp Tán Nhân</a>
+                                                </h2> 
+                                                <div class="text-secondary text-ellipsis--2">
+                                                    
+                                « B.faloo mạng tiểu thuyết độc nhất vô nhị ký hợp đồng tiểu thuyết: Toàn dân chuyển chức: Ta lựa chọn không chức nghiệp tán nhân »
+
+                                Một năm kia, toàn cầu dị biến, trò chơi hàng lâm hiện thực, ma tai bắt đầu tàn sát bừa bãi.
+                            
+                                Vì chống lại đây hết thảy, mỗi một cái người đều muốn quy hoạch chức nghiệp tuyển hạng, điên cuồng thăng cấp, tranh thủ mạnh mẽ.
+                            
+                                Có người lựa chọn cao quý pháp gia, Nhị chuyển quyết định nguyên tố pháp sư.
+                            
+                                Có người tuyển chọn Triệu Hoán Sư, dưới cờ triệu hoán vật liên tiếp xuất hiện, quần ẩu chết địch nhân.
+                            
+                                Có thể khiến người mở rộng tầm mắt là, bị đặt vào kỳ vọng cao thi đại học sinh Vân Thần cũng là tuyển trạch không chuyển chức, làm một cái không chức nghiệp tán nhân!
+                            
+                               
+                                                </div> 
+                                                <ul class="list-unstyled d-flex flex-wrap mb-0 mt-3 text-secondary">
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-user"></i> <span class="mx-1">Quái khách tiên sinh</span>
+                                                    </li>
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-fire"></i> <span class="mx-1"> 2758</span>
+                                                       
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#" class="latest-chapter">
+                                                            Chương 324
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="media py-5 border-bottom d-flex">
+                                           <a href="#" class="mt-1 mx-4">
+                                                <img alt="" width="78" src="https://static.cdnno.com/poster/hong-hoang-ngu-say-vo-so-nam-bi-de-tu-lo-ra-roi/150.jpg?1638373000" lazy="loaded"> 
+                                            </a> 
+                                            <div class="media-body">
+                                                <h2 class="mb-2" style="font-size: 1.6rem;">
+                                                    <a href="#" >Hồng Hoang: Ngủ Say Vô Số Năm, Bị Đệ Tử Lộ Ra Rồi</a>
+                                                </h2> 
+                                                <div class="text-secondary text-ellipsis--2">
+                                                    Trần Huyền xuyên qua Hồng Hoang, ngủ say vô số năm, bắt đầu đánh dấu Hồng Mông Đại Đạo tu vi lại không tự biết.
+                    
+                        Vô số sinh linh tụ tại bên cạnh hắn lĩnh hội đại đạo, tự xưng đệ tử.
+                    
+                        Một lòng chỉ muốn cẩu trở về hiện đại thế giới Trần Huyền, lại bị xuống núi đệ tử lộ ra rồi.
+                    
+                        Sau đó, Hồng Hoang khắp nơi lưu truyền truyền thuyết của hắn.
+                                                </div> 
+                                                <ul class="list-unstyled d-flex flex-wrap mb-0 mt-3 text-secondary">
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-user"></i> <span class="mx-1">Mộng lí gian sơn</span>
+                                                    </li>
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-fire"></i> <span class="mx-1"> 1596</span>
+                                                       
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#" class="latest-chapter">
+                                                            Chương 63
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="media py-5 border-bottom d-flex">
+                                            <a href="#" class="mt-1 mx-4">
+                                                <img alt="" width="78" src="https://static.cdnno.com/poster/hong-hoang-ngu-say-vo-so-nam-bi-de-tu-lo-ra-roi/150.jpg?1638373000" lazy="loaded"> 
+                                            </a> 
+                                            <div class="media-body">
+                                                <h2 class="mb-2" style="font-size: 1.6rem;">
+                                                    <a href="#" >Hồng Hoang: Ngủ Say Vô Số Năm, Bị Đệ Tử Lộ Ra Rồi</a>
+                                                </h2> 
+                                                <div class="text-secondary text-ellipsis--2">
+                                                    Trần Huyền xuyên qua Hồng Hoang, ngủ say vô số năm, bắt đầu đánh dấu Hồng Mông Đại Đạo tu vi lại không tự biết.
+                    
+                        Vô số sinh linh tụ tại bên cạnh hắn lĩnh hội đại đạo, tự xưng đệ tử.
+                    
+                        Một lòng chỉ muốn cẩu trở về hiện đại thế giới Trần Huyền, lại bị xuống núi đệ tử lộ ra rồi.
+                    
+                        Sau đó, Hồng Hoang khắp nơi lưu truyền truyền thuyết của hắn.
+                                                </div> 
+                                                <ul class="list-unstyled d-flex flex-wrap mb-0 mt-3 text-secondary">
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-user"></i> <span class="mx-1">Mộng lí gian sơn</span>
+                                                    </li>
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-fire"></i> <span class="mx-1"> 1596</span>
+                                                       
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#" class="latest-chapter">
+                                                            Chương 63
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="media py-5 border-bottom d-flex">
+                                            <a href="#" class="mt-1 mx-4">
+                                                <img alt="" width="78" src="https://static.cdnno.com/poster/hong-hoang-ngu-say-vo-so-nam-bi-de-tu-lo-ra-roi/150.jpg?1638373000" lazy="loaded"> 
+                                            </a> 
+                                            <div class="media-body">
+                                                <h2 class="mb-2" style="font-size: 1.6rem;">
+                                                    <a href="#" >Hồng Hoang: Ngủ Say Vô Số Năm, Bị Đệ Tử Lộ Ra Rồi</a>
+                                                </h2> 
+                                                <div class="text-secondary text-ellipsis--2">
+                                                    Trần Huyền xuyên qua Hồng Hoang, ngủ say vô số năm, bắt đầu đánh dấu Hồng Mông Đại Đạo tu vi lại không tự biết.
+                    
+                        Vô số sinh linh tụ tại bên cạnh hắn lĩnh hội đại đạo, tự xưng đệ tử.
+                    
+                        Một lòng chỉ muốn cẩu trở về hiện đại thế giới Trần Huyền, lại bị xuống núi đệ tử lộ ra rồi.
+                    
+                        Sau đó, Hồng Hoang khắp nơi lưu truyền truyền thuyết của hắn.
+                                                </div> 
+                                                <ul class="list-unstyled d-flex flex-wrap mb-0 mt-3 text-secondary">
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-user"></i> <span class="mx-1">Mộng lí gian sơn</span>
+                                                    </li>
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-fire"></i> <span class="mx-1"> 1596</span>
+                                                       
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#" class="latest-chapter">
+                                                            Chương 63
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="media py-5 border-bottom d-flex">
+                                           <a href="#" class="mt-1 mx-4">
+                                                <img alt="" width="78" src="https://static.cdnno.com/poster/hong-hoang-ngu-say-vo-so-nam-bi-de-tu-lo-ra-roi/150.jpg?1638373000" lazy="loaded"> 
+                                            </a> 
+                                            <div class="media-body">
+                                                <h2 class="mb-2" style="font-size: 1.6rem;">
+                                                    <a href="#" >Hồng Hoang: Ngủ Say Vô Số Năm, Bị Đệ Tử Lộ Ra Rồi</a>
+                                                </h2> 
+                                                <div class="text-secondary text-ellipsis--2">
+                                                    Trần Huyền xuyên qua Hồng Hoang, ngủ say vô số năm, bắt đầu đánh dấu Hồng Mông Đại Đạo tu vi lại không tự biết.
+                    
+                        Vô số sinh linh tụ tại bên cạnh hắn lĩnh hội đại đạo, tự xưng đệ tử.
+                    
+                        Một lòng chỉ muốn cẩu trở về hiện đại thế giới Trần Huyền, lại bị xuống núi đệ tử lộ ra rồi.
+                    
+                        Sau đó, Hồng Hoang khắp nơi lưu truyền truyền thuyết của hắn.
+                                                </div> 
+                                                <ul class="list-unstyled d-flex flex-wrap mb-0 mt-3 text-secondary">
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-user"></i> <span class="mx-1">Mộng lí gian sơn</span>
+                                                    </li>
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-fire"></i> <span class="mx-1"> 1596</span>
+                                                       
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#" class="latest-chapter">
+                                                            Chương 63
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="media py-5 border-bottom d-flex">
+                                            <a href="#" class="mt-1 mx-4">
+                                                <img alt="" width="78" src="https://static.cdnno.com/poster/hong-hoang-ngu-say-vo-so-nam-bi-de-tu-lo-ra-roi/150.jpg?1638373000" lazy="loaded"> 
+                                            </a> 
+                                            <div class="media-body">
+                                                <h2 class="mb-2" style="font-size: 1.6rem;">
+                                                    <a href="#" >Hồng Hoang: Ngủ Say Vô Số Năm, Bị Đệ Tử Lộ Ra Rồi</a>
+                                                </h2> 
+                                                <div class="text-secondary text-ellipsis--2">
+                                                    Trần Huyền xuyên qua Hồng Hoang, ngủ say vô số năm, bắt đầu đánh dấu Hồng Mông Đại Đạo tu vi lại không tự biết.
+                    
+                        Vô số sinh linh tụ tại bên cạnh hắn lĩnh hội đại đạo, tự xưng đệ tử.
+                    
+                        Một lòng chỉ muốn cẩu trở về hiện đại thế giới Trần Huyền, lại bị xuống núi đệ tử lộ ra rồi.
+                    
+                        Sau đó, Hồng Hoang khắp nơi lưu truyền truyền thuyết của hắn.
+                                                </div> 
+                                                <ul class="list-unstyled d-flex flex-wrap mb-0 mt-3 text-secondary">
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-user"></i> <span class="mx-1">Mộng lí gian sơn</span>
+                                                    </li>
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-fire"></i> <span class="mx-1"> 1596</span>
+                                                       
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#" class="latest-chapter">
+                                                            Chương 63
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="media py-5 border-bottom d-flex">
+                                            <a href="#" class="mt-1 mx-4">
+                                                <img alt="" width="78" src="https://static.cdnno.com/poster/hong-hoang-ngu-say-vo-so-nam-bi-de-tu-lo-ra-roi/150.jpg?1638373000" lazy="loaded"> 
+                                            </a> 
+                                            <div class="media-body">
+                                                <h2 class="mb-2" style="font-size: 1.6rem;">
+                                                    <a href="#" >Hồng Hoang: Ngủ Say Vô Số Năm, Bị Đệ Tử Lộ Ra Rồi</a>
+                                                </h2> 
+                                                <div class="text-secondary text-ellipsis--2">
+                                                    Trần Huyền xuyên qua Hồng Hoang, ngủ say vô số năm, bắt đầu đánh dấu Hồng Mông Đại Đạo tu vi lại không tự biết.
+                    
+                        Vô số sinh linh tụ tại bên cạnh hắn lĩnh hội đại đạo, tự xưng đệ tử.
+                    
+                        Một lòng chỉ muốn cẩu trở về hiện đại thế giới Trần Huyền, lại bị xuống núi đệ tử lộ ra rồi.
+                    
+                        Sau đó, Hồng Hoang khắp nơi lưu truyền truyền thuyết của hắn.
+                                                </div> 
+                                                <ul class="list-unstyled d-flex flex-wrap mb-0 mt-3 text-secondary">
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-user"></i> <span class="mx-1">Mộng lí gian sơn</span>
+                                                    </li>
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-fire"></i> <span class="mx-1"> 1596</span>
+                                                       
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#" class="latest-chapter">
+                                                            Chương 63
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        <li class="media py-5 border-bottom d-flex">
+                                            <a href="#" class="mt-1 mx-4">
+                                                <img alt="" width="78" src="https://static.cdnno.com/poster/hong-hoang-ngu-say-vo-so-nam-bi-de-tu-lo-ra-roi/150.jpg?1638373000" lazy="loaded"> 
+                                            </a> 
+                                            <div class="media-body">
+                                                <h2 class="mb-2" style="font-size: 1.6rem;">
+                                                    <a href="#" >Hồng Hoang: Ngủ Say Vô Số Năm, Bị Đệ Tử Lộ Ra Rồi</a>
+                                                </h2> 
+                                                <div class="text-secondary text-ellipsis--2">
+                                                    Trần Huyền xuyên qua Hồng Hoang, ngủ say vô số năm, bắt đầu đánh dấu Hồng Mông Đại Đạo tu vi lại không tự biết.
+                    
+                        Vô số sinh linh tụ tại bên cạnh hắn lĩnh hội đại đạo, tự xưng đệ tử.
+                    
+                        Một lòng chỉ muốn cẩu trở về hiện đại thế giới Trần Huyền, lại bị xuống núi đệ tử lộ ra rồi.
+                    
+                        Sau đó, Hồng Hoang khắp nơi lưu truyền truyền thuyết của hắn.
+                                                </div> 
+                                                <ul class="list-unstyled d-flex flex-wrap mb-0 mt-3 text-secondary">
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-user"></i> <span class="mx-1">Mộng lí gian sơn</span>
+                                                    </li>
+                                                    <li class="d-flex align-items-center me-4">
+                                                        <i class="fas fa-fire"></i> <span class="mx-1"> 1596</span>
+                                                       
+                                                    </li> 
+                                                    <li>
+                                                        <a href="#" class="latest-chapter">
+                                                            Chương 63
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="chart-pagination d-flex justify-content-center my-5">
+                                        <nav aria-label="Page navigation example">
+                                            <ul class="pagination">
+                                              <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                  <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                              </li>
+                                              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                              <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                              <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                              <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                              <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                  <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                              </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                   
+                            </div>
+
+                   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer">
+            <div class="social-list">
+                <a href="#"><i class="fab fa-facebook-square"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copy-right"> 
+                Copyright © 2021 - Đọc Truyện Chữ Hay Và Đầy Đủ. 
+                Maded by <a href="#">SimplePoLL</a>
+            </p>
+        </footer>
+
+   </div>
+
+    
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  
+
+</body>
+</html>
