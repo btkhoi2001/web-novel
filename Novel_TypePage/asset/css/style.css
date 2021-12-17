@@ -226,6 +226,40 @@
     border-bottom: 1px solid #e6e6e6;
 }
 
+.classification {
+    margin: 1rem 0;
+}
+.classification-title {
+    margin:  .4rem 1rem ;
+    font-weight: 500;
+    font-size: 1.6rem;
+}
+.classification-list {
+    padding: .6rem .2rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.classification-list li {
+    margin: .4rem .4rem;
+}
+.classification-list li a{
+    padding: .4rem .7rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border: 1px solid #0d6efd;
+    color: #0d6efd;
+    border-radius: .4rem;
+}
+.classification-list li a:hover {
+    border: 1px solid var(--orange-color);
+    color: var(--orange-color);
+}
+.classification-list .active a {
+    border: 1px solid var(--orange-color);
+    color: var(--orange-color);
+}
+
+
 .top-novels {
     font-size: 1.4rem;
     color: #333;
@@ -241,7 +275,6 @@
     border: 1px solid var(--orange-color);
     color: var(--orange-color);
 }
-
 .text-ellipsis--2{
     text-overflow:ellipsis;
     overflow:hidden;
