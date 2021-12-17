@@ -145,10 +145,58 @@
             <div class="container-xl page">
                 <div class="page-content">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-3">
+                            <div class="section">
+                                <div class="section-title">
+                                    <span>Đã chọn</span>
+                                </div>
+                                <div class="section-content">
+                                    <div class="classification border-bottom">
+                                        <div class="classification-title">
+                                            <span>Thể Loại</span>
+                                        </div>
+                                        <ul class="classification-list">
+                                            <li class="active"><a href="#">Tiên Hiệp</a></li>
+                                            <li><a href="#">Kiếm Hiệp</a></li>
+                                            <li><a href="#">Ngôn Tình</a></li>
+                                            <li><a href="#">Đam Mỹ</a></li>
+                                            <li><a href="#">Quan Trường</a></li>
+                                            <li><a href="#">Võng Du</a></li>
+                                            <li><a href="#">Khoa Huyễn</a></li>
+                                            <li><a href="#">Hệ Thống</a></li>
+                                            <li><a href="#">Huyền Huyễn</a></li>
+                                            <li><a href="#">Dị Giới</a></li>
+                                            <li><a href="#">Dị Năng</a></li>
+                                            <li><a href="#">Quân Sự</a></li>
+                                            <li><a href="#">Lịch Sử</a></li>
+                                            <li><a href="#">Xuyên Không</a></li>
+                                            <li><a href="#">Xuyên Nhanh</a></li>
+                                            <li><a href="#">Trọng Sinh</a></li>
+                                            <li><a href="#">Trinh Thám</a></li>
+                                            <li><a href="#">Thám Hiểm</a></li>
+                                            <li><a href="#">Linh Dị</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="classification border-bottom">
+                                        <div class="classification-title">
+                                            <span>Phân loại theo số chương</span>
+                                        </div>
+                                        <ul class="classification-list">
+                                            <li><a href="#">Dưới 100 chương</a></li>
+                                            <li><a href="#">100-500 chương</a></li>
+                                            <li><a href="#">500-1000 chương</a></li>
+                                            <li><a href="#">Trên 1000 chương</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                           
+                        <div class="col-9">
                             <div class="section ">
                                 <div class="section-title">
-                                    <span> Thể loại: Tiên hiệp</span>
+                                    <span>Tiên hiệp</span>
                                 </div>
                                 <div class="section-content">
                                     <ul class="top-novels">
@@ -573,11 +621,19 @@
 
    </div>
 
-    
    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-  
+   <script>
+        $('.classification-list li').click(function() {
+            $('.classification-list li').removeClass('active');
+            $(this).addClass('active');
+        })    
+        $('.pagination .page-item').click(function() {
+            $('.pagination .page-item').removeClass('active');
+            $(this).addClass('active');
+        })    
+    </script>
 
 </body>
 </html>
