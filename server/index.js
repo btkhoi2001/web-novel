@@ -6,6 +6,7 @@ import authRouter from "./routes/auth.js";
 import novelRouter from "./routes/novel.js";
 import userRouter from "./routes/user.js";
 import bookmarkRouter from "./routes/bookmark.js";
+import followRouter from "./routes/follow.js";
 import notificationRouter from "./routes/notification.js";
 import scheduler from "./schedules/jobs.js";
 
@@ -25,6 +26,7 @@ app.use(express.json({ limit: "50mb" }));
 app.use("/api/auth", authRouter);
 app.use("/api/novel", novelRouter);
 app.use("/api/user", userRouter);
+app.use("/api/follow", followRouter);
 app.use("/api/bookmark", bookmarkRouter);
 app.use("/api/notification", notificationRouter);
 
