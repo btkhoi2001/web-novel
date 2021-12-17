@@ -1,7 +1,8 @@
 import { Chapter } from "../models/Chapter.js";
 
 export const verifyChapterId = async (req, res, next) => {
-    const { novelId, chapterId } = req.params;
+    const novelId = req.params.novelId || req.body.novelId;
+    const chapterId = req.params.chapterId || req.body.chapterId;
 
     try {
         if (!(await Chapter.exists({ novelId, chapterId })))

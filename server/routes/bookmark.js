@@ -1,6 +1,7 @@
 import express from "express";
 import { verifyToken } from "../middlewares/auth.js";
-import { verifyNovelId } from "../middlewares/novel.js";
+// import { verifyNovelId } from "../middlewares/novel.js";
+import { verifyChapterId } from "../middlewares/chapter.js";
 import {
     getBookmark,
     createBookmark,
@@ -12,7 +13,7 @@ const router = express.Router({ mergeParams: true });
 router.use(verifyToken);
 router.get("/", getBookmark);
 
-router.use(verifyNovelId);
+router.use(verifyChapterId);
 router.post("/", createBookmark);
 router.delete("/", deleteBookmark);
 

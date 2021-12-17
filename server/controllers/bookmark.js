@@ -23,11 +23,27 @@ export const getBookmark = async (req, res) => {
                 },
             },
             {
+                $lookup: {
+                    from: "chapters",
+                    localField: "chapterId",
+                    foreignField: "chapterId",
+                    as: "chapter",
+                },
+            },
+            {
+                $unwind: {
+                    path: "$chapter",
+                    preserveNullAndEmptyArrays: true,
+                },
+            },
+            {
                 $project: {
                     _id: 0,
                     novelId: "$novelId",
-                    title: "$novel.title",
+                    novelTitle: "$novel.title",
                     cover: "$novel.cover",
+                    chapterOrder: "$chapter.chapterOrder",
+                    chapterTitle: "$chapter.title",
                 },
             },
         ]);
@@ -39,12 +55,12 @@ export const getBookmark = async (req, res) => {
 };
 
 export const createBookmark = async (req, res) => {
-    const { userId, novelId } = req.body;
+    const { userId, novelId, chapterId } = req.body;
 
     try {
         const newBookmark = await Bookmark.findOneAndUpdate(
-            { userId, novelId },
-            { userId, novelId },
+            { userId, novelId, chapterId },
+            { userId, novelId, chapterId },
             { upsert: true, lean: true, new: true }
         );
 
