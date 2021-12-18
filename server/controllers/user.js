@@ -2,6 +2,7 @@ import { User } from "../models/User.js";
 import { Comment } from "../models/Comment.js";
 import { CommentLike } from "../models/CommentLike.js";
 import { Novel } from "../models/Novel.js";
+import { NovelRead } from "../models/NovelRead.js";
 
 export const getUserProfile = async (req, res) => {
     const { userId } = req.params;
@@ -200,6 +201,51 @@ export const getUserProfile = async (req, res) => {
         user.likeCount = likeCount ? likeCount.likeCount : 0;
 
         res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const getUserRecentRead = async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const novels = await NovelRead.aggregate([
+            {
+                $match: { userId: parseInt(userId) },
+            },
+            {
+                $lookup: {
+                    from: "novels",
+                    localField: "novelId",
+                    foreignField: "novelId",
+                    as: "novel",
+                },
+            },
+            {
+                $unwind: {
+                    path: "$novel",
+                    preserveNullAndEmptyArrays: true,
+                },
+            },
+            {
+                $sort: { updatedAt: -1 },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    novelId: "$novelId",
+                    title: "$novel.title",
+                    description: "$novel.description",
+                    cover: "$novel.cover",
+                },
+            },
+            {
+                $limit: 10,
+            },
+        ]);
+
+        res.status(200).json({ novels });
     } catch (error) {
         res.status(500).json({ error });
     }
