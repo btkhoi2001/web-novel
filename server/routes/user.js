@@ -5,6 +5,7 @@ import { getUserProfile } from "../controllers/user.js";
 const router = express.Router();
 
 router.get("/:userId", verifyUserId, getUserProfile);
+router.get("/");
 
 router.use(verifyUser);
 router.get("/account", getUserProfile);
