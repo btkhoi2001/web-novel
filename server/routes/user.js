@@ -7,6 +7,7 @@ import {
     getUserRecentRead,
     getUserAccount,
     updateUserAccount,
+    updatePassword,
 } from "../controllers/user.js";
 
 const router = express.Router();
@@ -14,6 +15,7 @@ const upload = multer();
 
 router.get("/account", verifyUser, getUserAccount);
 router.put("/account", upload.single("avatar"), verifyUser, updateUserAccount);
+router.put("/account/change-password", verifyUser, updatePassword);
 
 router.use("/:userId", verifyUserId);
 router.get("/:userId", getUserProfile);

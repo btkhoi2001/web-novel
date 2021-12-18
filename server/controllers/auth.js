@@ -11,7 +11,7 @@ export const register = async (req, res) => {
     if (password != confirmPassword)
         return res
             .status(400)
-            .json({ message: "password confirmation doesn't match password" });
+            .json({ message: "confirmPassword doesn't match password" });
 
     try {
         if (await User.exists({ email }))
@@ -46,13 +46,13 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password)
-        return res.status(400).json({ message: "Missing email or password" });
+        return res.status(400).json({ message: "missing email or password" });
 
     try {
         if (!(await User.exists({ email })))
             return res
                 .status(401)
-                .json({ message: "Incorrect email or password" });
+                .json({ message: "incorrect email or password" });
 
         const user = await User.findOne({ email });
         const passwordValid = await argon2.verify(user.password, password);
@@ -60,7 +60,7 @@ export const login = async (req, res) => {
         if (!passwordValid)
             return res
                 .status(401)
-                .json({ message: "Incorrect email or password" });
+                .json({ message: "incorrect email or password" });
 
         const accessToken = jwt.sign(
             { userId: user.userId },
@@ -68,7 +68,7 @@ export const login = async (req, res) => {
         );
 
         res.status(200).json({
-            message: "User logged in successfully",
+            message: "user logged in successfully",
             accessToken,
         });
     } catch (error) {

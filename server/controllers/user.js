@@ -1,4 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
+import argon2 from "argon2";
+import jwt from "jsonwebtoken";
 import { uploadFile } from "../config/aws/s3.js";
 import { User } from "../models/User.js";
 import { Comment } from "../models/Comment.js";
@@ -326,6 +328,46 @@ export const updateUserAccount = async (req, res) => {
         }
 
         res.status(200).json({ updatedUser });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const updatePassword = async (req, res) => {
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+    const { userId, password } = req.user;
+
+    if (!currentPassword || !newPassword || !confirmPassword)
+        return res.status(400).json({ message: "some fields are missing" });
+
+    if (newPassword != confirmPassword)
+        return res
+            .status(400)
+            .json({ message: "confirmPassword doesn't match newPassword" });
+
+    try {
+        const passwordValid = await argon2.verify(password, currentPassword);
+
+        if (!passwordValid)
+            return res.status(401).json({ message: "incorrect password" });
+
+        const hashedPassword = await argon2.hash(newPassword);
+
+        await User.findOneAndUpdate(
+            { userId },
+            { password: hashedPassword },
+            { lean: true }
+        );
+
+        const accessToken = jwt.sign(
+            { userId },
+            process.env.ACCESS_TOKEN_SECRET
+        );
+
+        res.status(200).json({
+            message: "password changed successfully",
+            accessToken,
+        });
     } catch (error) {
         res.status(500).json({ error });
     }

@@ -16,12 +16,11 @@ export const verifyToken = async (req, res, next) => {
         const { userId } = decoded;
         const user = await User.findOne(
             { userId },
-            { _id: 0, userId: 1, role: 1 },
+            { _id: 0, userId: 1, role: 1, password: 1 },
             { lean: true }
         );
 
         req.user = user;
-        console.log(user);
 
         next();
     } catch (error) {
@@ -31,7 +30,7 @@ export const verifyToken = async (req, res, next) => {
 
 export const verifyUser = (req, res, next) => {
     const { user } = req;
-    console.log(user);
+
     if (!user)
         return res.status(401).json({ message: "Access token not found" });
 
