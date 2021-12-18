@@ -4,6 +4,7 @@ import { CommentLike } from "../models/CommentLike.js";
 export const getComment = async (req, res) => {
     const { novelId, chapterId } = req.params;
     const { parentCommentId } = req.query;
+    const { userId } = req.user || {};
 
     try {
         const comments = await Comment.aggregate([
@@ -54,7 +55,25 @@ export const getComment = async (req, res) => {
                     },
                     likeCount: {
                         $sum: {
-                            $cond: [{ $ifNull: ["$commentlike", false] }, 1, 0],
+                            $cond: [
+                                { $ifNull: ["$commentlike._id", false] },
+                                1,
+                                0,
+                            ],
+                        },
+                    },
+                    isLiked: {
+                        $sum: {
+                            $cond: [
+                                {
+                                    $eq: [
+                                        "$commentlike.userId",
+                                        parseInt(userId),
+                                    ],
+                                },
+                                1,
+                                0,
+                            ],
                         },
                     },
                 },
@@ -69,10 +88,13 @@ export const getComment = async (req, res) => {
                     content: "$_id.content",
                     createdAt: "$_id.createdAt",
                     likeCount: "$likeCount",
+                    isLiked: {
+                        $cond: [{ $gte: ["$isLiked", 1] }, true, false],
+                    },
                 },
             },
             {
-                $sort: { commentId: 1 },
+                $sort: { createdAt: 1 },
             },
         ]);
 
