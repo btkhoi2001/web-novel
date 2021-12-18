@@ -1,4 +1,5 @@
 import { Chapter } from "../models/Chapter.js";
+import { ChapterRead } from "../models/ChapterRead.js";
 import { Novel } from "../models/Novel.js";
 import { Follow } from "../models/Follow.js";
 import { Notification } from "../models/Notification.js";
@@ -7,7 +8,10 @@ export const getChapter = async (req, res) => {
     const { novelId } = req.params;
 
     try {
-        const chapters = await Chapter.find({ novelId }, { content: 0 });
+        const chapters = await Chapter.find(
+            { novelId, isArchived: true },
+            { content: 0 }
+        );
 
         res.status(200).json({ chapters });
     } catch (error) {
@@ -17,9 +21,17 @@ export const getChapter = async (req, res) => {
 
 export const getChapterById = async (req, res) => {
     const { novelId, chapterId } = req.params;
+    const { userId } = req.user;
 
     try {
         const chapter = await Chapter.findOne({ novelId, chapterId });
+
+        if (userId)
+            await ChapterRead.findOneAndUpdate(
+                { userId, novelId, chapterId },
+                { userId, novelId, chapterId },
+                { upsert: true, lean: true }
+            );
 
         res.status(200).json({ chapter });
     } catch (error) {

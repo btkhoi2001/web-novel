@@ -24,6 +24,10 @@ const schema = new mongoose.Schema(
             type: Number,
             required: true,
         },
+        isArchived: {
+            type: Boolean,
+            default: false,
+        },
     },
     { timestamps: true }
 );

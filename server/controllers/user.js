@@ -4,19 +4,28 @@ export const getUserProfile = async (req, res) => {
     const { userId } = req.body;
 
     try {
-        const user = await User.findOne(
-            { userId },
+        // const user = await User.findOne(
+        //     { userId },
+        //     {
+        //         _id: 0,
+        //         email: 1,
+        //         displayName: 1,
+        //         avatar: 1,
+        //         description: 1,
+        //     },
+        //     {
+        //         lean: true,
+        //     }
+        // );
+
+        const user = await User.aggregate([
             {
-                _id: 0,
-                email: 1,
-                displayName: 1,
-                avatar: 1,
-                description: 1,
+                $match: { userId: parseInt(userId) },
             },
             {
-                lean: true,
-            }
-        );
+                $lookup,
+            },
+        ]);
 
         res.status(200).json({ user });
     } catch (error) {

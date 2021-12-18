@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken } from "../middlewares/auth.js";
+import { verifyUser } from "../middlewares/auth.js";
 import { verifyCommentId } from "../middlewares/comment.js";
 import {
     getComment,
@@ -12,7 +12,7 @@ const router = express.Router({ mergeParams: true });
 
 router.get("/", getComment);
 
-router.use(verifyToken);
+router.use(verifyUser);
 
 router.post("/", createComment);
 

@@ -84,7 +84,8 @@ export const getComment = async (req, res) => {
 
 export const createComment = async (req, res) => {
     const { novelId, chapterId } = req.params;
-    const { userId, parentCommentId, content } = req.body;
+    const { parentCommentId, content } = req.body;
+    const { userId } = req.user;
 
     if (!content)
         return res.status(400).json({ message: "content is required" });
@@ -110,8 +111,8 @@ export const createComment = async (req, res) => {
 };
 
 export const createCommentLike = async (req, res) => {
-    const { userId } = req.body;
     const { commentId } = req.params;
+    const { userId } = req.user;
 
     try {
         const newCommentLike = await CommentLike.findOneAndUpdate(
@@ -133,8 +134,8 @@ export const createCommentLike = async (req, res) => {
 };
 
 export const deleteCommentLike = async (req, res) => {
-    const { userId } = req.body;
     const { commentId } = req.params;
+    const { userId } = req.user;
 
     try {
         const deletedCommentLike = await CommentLike.findOneAndDelete(

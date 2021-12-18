@@ -18,4 +18,4 @@ const schema = new mongoose.Schema(
     { timestamps: true }
 );
 
-export const Bookmark = mongoose.model("bookmarks", schema);
+export const ChapterRead = mongoose.model("chapterReads", schema);

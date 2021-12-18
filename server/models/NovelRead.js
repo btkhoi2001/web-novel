@@ -10,12 +10,8 @@ const schema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        chapterId: {
-            type: Number,
-            required: true,
-        },
     },
     { timestamps: true }
 );
 
-export const Bookmark = mongoose.model("bookmarks", schema);
+export const NovelRead = mongoose.model("novelReads", schema);

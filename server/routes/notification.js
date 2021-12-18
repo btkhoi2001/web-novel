@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken } from "../middlewares/auth.js";
+import { verifyUser } from "../middlewares/auth.js";
 import { verifyNotificationId } from "../middlewares/notification.js";
 import {
     getNotification,
@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.use(verifyToken);
+router.use(verifyUser);
 
 router.get("/", getNotification);
 

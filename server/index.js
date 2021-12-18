@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import { verifyToken } from "./middlewares/auth.js";
 import authRouter from "./routes/auth.js";
 import novelRouter from "./routes/novel.js";
 import userRouter from "./routes/user.js";
@@ -9,6 +10,7 @@ import bookmarkRouter from "./routes/bookmark.js";
 import followRouter from "./routes/follow.js";
 import notificationRouter from "./routes/notification.js";
 import scheduler from "./schedules/jobs.js";
+import { NovelCounter } from "./models/NovelCounter.js";
 
 dotenv.config();
 
@@ -24,6 +26,7 @@ app.use(
 );
 app.use(express.json({ limit: "50mb" }));
 app.use("/api/auth", authRouter);
+app.use(verifyToken);
 app.use("/api/novel", novelRouter);
 app.use("/api/user", userRouter);
 app.use("/api/follow", followRouter);

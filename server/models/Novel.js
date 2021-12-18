@@ -16,14 +16,6 @@ const schema = new mongoose.Schema(
             type: String,
             default: "",
         },
-        views: {
-            type: Number,
-            default: 0,
-        },
-        nominations: {
-            type: Number,
-            default: 0,
-        },
         cover: String,
         authorId: {
             type: Number,
@@ -33,6 +25,10 @@ const schema = new mongoose.Schema(
             type: [String],
         },
         isCompleted: {
+            type: Boolean,
+            default: false,
+        },
+        isArchived: {
             type: Boolean,
             default: false,
         },

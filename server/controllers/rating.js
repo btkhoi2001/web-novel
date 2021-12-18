@@ -1,8 +1,9 @@
 import { Rating } from "../models/Rating.js";
 
 export const createRating = async (req, res) => {
-    const { userId, rating } = req.body;
+    const { rating } = req.body;
     const { novelId } = req.params;
+    const { userId } = req.user;
 
     if (!rating) return res.status(401).json({ message: "rating not found" });
 

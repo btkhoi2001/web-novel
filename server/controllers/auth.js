@@ -2,21 +2,6 @@ import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import { User } from "../models/User.js";
 
-export const loggedIn = async (req, res) => {
-    try {
-        const user = await User.findOne({ userId: req.body.userId });
-        if (!user) return res.status(401).json({ message: "User not found" });
-
-        res.status(200).json({
-            message: "User is already logged in",
-            email: user.email,
-            displayName: user.displayName,
-        });
-    } catch (error) {
-        res.status(500).json({ error });
-    }
-};
-
 export const register = async (req, res) => {
     const { email, displayName, password, confirmPassword } = req.body;
 

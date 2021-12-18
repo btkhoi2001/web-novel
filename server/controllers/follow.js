@@ -1,7 +1,7 @@
 import { Follow } from "../models/Follow.js";
 
 export const getFollow = async (req, res) => {
-    const { userId } = req.body;
+    const { userId } = req.user;
 
     try {
         const follows = await Follow.aggregate([
@@ -39,7 +39,8 @@ export const getFollow = async (req, res) => {
 };
 
 export const createFollow = async (req, res) => {
-    const { userId, novelId } = req.body;
+    const { novelId } = req.body;
+    const { userId } = req.user;
 
     try {
         const newFollow = await Follow.findOneAndUpdate(
@@ -56,7 +57,7 @@ export const createFollow = async (req, res) => {
 
 export const deleteFollow = async (req, res) => {
     const { novelId } = req.params;
-    const { userId } = req.body;
+    const { userId } = req.user;
 
     try {
         const deletedFollow = await Follow.findOneAndDelete(

@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken } from "../middlewares/auth.js";
+import { verifyUser } from "../middlewares/auth.js";
 // import { verifyNovelId } from "../middlewares/novel.js";
 import { verifyChapterId } from "../middlewares/chapter.js";
 import {
@@ -10,7 +10,7 @@ import {
 
 const router = express.Router({ mergeParams: true });
 
-router.use(verifyToken);
+router.use(verifyUser);
 router.get("/", getBookmark);
 
 router.use(verifyChapterId);

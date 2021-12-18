@@ -1,7 +1,7 @@
 import { Bookmark } from "../models/Bookmark.js";
 
 export const getBookmark = async (req, res) => {
-    const { userId } = req.body;
+    const { userId } = req.user;
 
     try {
         const bookmarks = await Bookmark.aggregate([
@@ -39,6 +39,7 @@ export const getBookmark = async (req, res) => {
             {
                 $project: {
                     _id: 0,
+                    bookmarkId: "$bookmarkId",
                     novelId: "$novelId",
                     novelTitle: "$novel.title",
                     cover: "$novel.cover",
@@ -55,14 +56,27 @@ export const getBookmark = async (req, res) => {
 };
 
 export const createBookmark = async (req, res) => {
-    const { userId, novelId, chapterId } = req.body;
+    const { novelId, chapterId } = req.body;
+    const { userId } = req.user;
+
+    console.log(userId, novelId, chapterId);
 
     try {
-        const newBookmark = await Bookmark.findOneAndUpdate(
+        let newBookmark = await Bookmark.findOne(
             { userId, novelId, chapterId },
-            { userId, novelId, chapterId },
-            { upsert: true, lean: true, new: true }
+            {},
+            { lean: true }
         );
+
+        if (!newBookmark) {
+            newBookmark = new Bookmark({
+                userId,
+                novelId,
+                chapterId,
+            });
+
+            await newBookmark.save();
+        }
 
         res.status(201).json({ newBookmark });
     } catch (error) {
@@ -71,13 +85,18 @@ export const createBookmark = async (req, res) => {
 };
 
 export const deleteBookmark = async (req, res) => {
-    const { userId, novelId } = req.body;
+    const { novelId, chapterId } = req.body;
+    const { userId } = req.user;
 
     try {
-        const deletedBookmark = await Bookmark.findOneAndDelete({
-            userId,
-            novelId,
-        });
+        const deletedBookmark = await Bookmark.findOneAndDelete(
+            {
+                userId,
+                novelId,
+                chapterId,
+            },
+            { lean: true }
+        );
 
         res.status(200).json({ deletedBookmark });
     } catch (error) {

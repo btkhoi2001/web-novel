@@ -1,10 +1,15 @@
 import { v4 as uuidv4 } from "uuid";
 import { Novel } from "../models/Novel.js";
+import { NovelCounter } from "../models/NovelCounter.js";
+import { User } from "../models/User.js";
 import { uploadFile, deleteFile } from "../config/aws/s3.js";
 
 export const getNovel = async (req, res) => {
     try {
         const novels = await Novel.aggregate([
+            {
+                $match: { isArchived: false },
+            },
             {
                 $lookup: {
                     from: "ratings",
@@ -20,13 +25,20 @@ export const getNovel = async (req, res) => {
                 },
             },
             {
+                $lookup: {
+                    from: "novelcounters",
+                    localField: "novelId",
+                    foreignField: "novelId",
+                    as: "novelcounter",
+                },
+            },
+            {
                 $group: {
                     _id: {
                         novelId: "$novelId",
                         title: "$title",
                         description: "$description",
-                        views: "$views",
-                        nominations: "$nominations",
+                        novelcounter: "$novelcounter",
                         cover: "$cover",
                         authorId: "$authorId",
                         genres: "$genres",
@@ -41,13 +53,82 @@ export const getNovel = async (req, res) => {
                 },
             },
             {
+                $addFields: {
+                    views: {
+                        $map: {
+                            input: {
+                                $filter: {
+                                    input: "$_id.novelcounter",
+                                    cond: { $eq: ["$$this.name", "view"] },
+                                },
+                            },
+                            in: {
+                                count: "$$this.daily",
+                            },
+                        },
+                    },
+                },
+            },
+            {
+                $unwind: {
+                    path: "$views",
+                },
+            },
+            {
+                $addFields: {
+                    nominations: {
+                        $map: {
+                            input: {
+                                $filter: {
+                                    input: "$_id.novelcounter",
+                                    cond: {
+                                        $eq: ["$$this.name", "nomination"],
+                                    },
+                                },
+                            },
+                            in: {
+                                count: "$$this.daily",
+                            },
+                        },
+                    },
+                },
+            },
+            {
+                $unwind: {
+                    path: "$nominations",
+                },
+            },
+            {
+                $addFields: {
+                    comments: {
+                        $map: {
+                            input: {
+                                $filter: {
+                                    input: "$_id.novelcounter",
+                                    cond: { $eq: ["$$this.name", "comment"] },
+                                },
+                            },
+                            in: {
+                                count: "$$this.daily",
+                            },
+                        },
+                    },
+                },
+            },
+            {
+                $unwind: {
+                    path: "$comments",
+                },
+            },
+            {
                 $project: {
                     _id: 0,
                     novelId: "$_id.novelId",
                     title: "$_id.title",
                     description: "$_id.description",
-                    views: "$_id.views",
-                    nominations: "$_id.nominations",
+                    views: "$views.count",
+                    nominations: "$nominations.count",
+                    comments: "$comments.count",
                     cover: "$_id.cover",
                     authorId: "$_id.authorId",
                     genres: "$_id.genres",
@@ -90,13 +171,20 @@ export const getNovelById = async (req, res) => {
                 },
             },
             {
+                $lookup: {
+                    from: "novelcounters",
+                    localField: "novelId",
+                    foreignField: "novelId",
+                    as: "novelcounter",
+                },
+            },
+            {
                 $group: {
                     _id: {
                         novelId: "$novelId",
                         title: "$title",
                         description: "$description",
-                        views: "$views",
-                        nominations: "$nominations",
+                        novelcounter: "$novelcounter",
                         cover: "$cover",
                         authorId: "$authorId",
                         genres: "$genres",
@@ -111,14 +199,83 @@ export const getNovelById = async (req, res) => {
                 },
             },
             {
+                $addFields: {
+                    views: {
+                        $map: {
+                            input: {
+                                $filter: {
+                                    input: "$_id.novelcounter",
+                                    cond: { $eq: ["$$this.name", "view"] },
+                                },
+                            },
+                            in: {
+                                count: "$$this.daily",
+                            },
+                        },
+                    },
+                },
+            },
+            {
+                $unwind: {
+                    path: "$views",
+                },
+            },
+            {
+                $addFields: {
+                    nominations: {
+                        $map: {
+                            input: {
+                                $filter: {
+                                    input: "$_id.novelcounter",
+                                    cond: {
+                                        $eq: ["$$this.name", "nomination"],
+                                    },
+                                },
+                            },
+                            in: {
+                                count: "$$this.daily",
+                            },
+                        },
+                    },
+                },
+            },
+            {
+                $unwind: {
+                    path: "$nominations",
+                },
+            },
+            {
+                $addFields: {
+                    comments: {
+                        $map: {
+                            input: {
+                                $filter: {
+                                    input: "$_id.novelcounter",
+                                    cond: { $eq: ["$$this.name", "comment"] },
+                                },
+                            },
+                            in: {
+                                count: "$$this.daily",
+                            },
+                        },
+                    },
+                },
+            },
+            {
+                $unwind: {
+                    path: "$comments",
+                },
+            },
+            {
                 $project: {
                     _id: 0,
                     novelId: "$_id.novelId",
                     title: "$_id.title",
                     description: "$_id.description",
-                    views: "$_id.views",
-                    nominations: "$_id.nominations",
                     cover: "$_id.cover",
+                    views: "$views.count",
+                    nominations: "$nominations.count",
+                    comments: "$comments.count",
                     authorId: "$_id.authorId",
                     genres: "$_id.genres",
                     isCompleted: "$_id.isCompleted",
@@ -128,6 +285,19 @@ export const getNovelById = async (req, res) => {
             },
         ]);
 
+        await NovelCounter.findOneAndUpdate(
+            { novelId, name: "view" },
+            {
+                $inc: {
+                    daily: 1,
+                    weekly: 1,
+                    monthly: 1,
+                    all: 1,
+                },
+            },
+            { lean: true, new: true }
+        );
+
         res.status(200).json({ novel });
     } catch (error) {
         res.status(500).json({ error });
@@ -135,14 +305,15 @@ export const getNovelById = async (req, res) => {
 };
 
 export const createNovel = async (req, res) => {
-    const { userId, title, description, genres } = req.body;
+    const { title, description, genres } = req.body;
+    const { userId } = req.user;
     const file = req.file;
 
     if (!title)
         return res.status(400).json({ message: "some fields are missing" });
 
     try {
-        const newNovel = new Novel({
+        const newNovel = await Novel.create({
             title,
             description,
             authorId: userId,
@@ -162,10 +333,14 @@ export const createNovel = async (req, res) => {
             newNovel.cover = uploadedFile.Location;
         }
 
-        await newNovel.save();
+        await NovelCounter.create([
+            { novelId: newNovel.novelId, name: "view" },
+            { novelId: newNovel.novelId, name: "nomination" },
+            { novelId: newNovel.novelId, name: "comment" },
+        ]);
 
         res.status(201).json({
-            message: "Novel created successfully",
+            message: "novel created successfully",
             newNovel,
         });
     } catch (error) {
@@ -225,21 +400,55 @@ export const deleteNovel = async (req, res) => {
     const { novelId } = req.params;
 
     try {
-        const deletedNovel = await Novel.findOneAndDelete(
+        const deletedNovel = await Novel.findOneAndUpdate(
             { novelId },
-            { lean: true }
+            { isArchived: true },
+            { lean: true, new: true }
         );
-        const { cover } = deletedNovel;
+        // const { cover } = deletedNovel;
 
-        if (cover) {
-            const key = cover.substr(cover.indexOf("cover/"));
-            await deleteFile(key);
-        }
+        // if (cover) {
+        //     const key = cover.substr(cover.indexOf("cover/"));
+        //     await deleteFile(key);
+        // }
 
         res.status(200).json({
             message: "novel deleted successfully",
             deletedNovel,
         });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const createNomination = async (req, res) => {
+    const { novelId } = req.params;
+    const { quantity } = req.body;
+    const { userId } = req.user;
+
+    try {
+        const user = await User.findOne({ userId });
+
+        if (user.flowers < quantity)
+            return res.status(403).json({ message: "not enough flowers" });
+
+        const novelCounter = await NovelCounter.findOneAndUpdate(
+            { novelId, name: "nomination" },
+            {
+                $inc: {
+                    daily: quantity,
+                    weekly: quantity,
+                    monthly: quantity,
+                    all: quantity,
+                },
+            },
+            { lean: true, new: true }
+        );
+
+        user.flowers -= quantity;
+        await user.save();
+
+        res.status(200).json({ nominations: novelCounter.all });
     } catch (error) {
         res.status(500).json({ error });
     }
