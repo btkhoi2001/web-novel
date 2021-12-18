@@ -1,8 +1,9 @@
 import { v4 as uuidv4 } from "uuid";
 import { Novel } from "../models/Novel.js";
+import { NovelRead } from "../models/NovelRead.js";
 import { NovelCounter } from "../models/NovelCounter.js";
 import { User } from "../models/User.js";
-import { uploadFile, deleteFile } from "../config/aws/s3.js";
+import { uploadFile } from "../config/aws/s3.js";
 
 export const getNovel = async (req, res) => {
     try {
@@ -150,6 +151,7 @@ export const getNovel = async (req, res) => {
 
 export const getNovelById = async (req, res) => {
     const { novelId } = req.params;
+    const { userId } = req.user || {};
 
     try {
         const novel = await Novel.aggregate([
@@ -297,6 +299,13 @@ export const getNovelById = async (req, res) => {
             },
             { lean: true, new: true }
         );
+
+        if (userId)
+            await NovelRead.findOneAndUpdate(
+                { userId, novelId },
+                { userId, novelId },
+                { upsert: true, lean: true }
+            );
 
         res.status(200).json({ novel });
     } catch (error) {

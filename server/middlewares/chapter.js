@@ -5,7 +5,7 @@ export const verifyChapterId = async (req, res, next) => {
     const chapterId = req.params.chapterId || req.body.chapterId;
 
     try {
-        if (!(await Chapter.exists({ novelId, chapterI, isArchived: false })))
+        if (!(await Chapter.exists({ novelId, chapterId, isArchived: false })))
             return res.status(404).json({
                 message: `chapterId ${chapterId} not found`,
             });

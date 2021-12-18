@@ -9,6 +9,7 @@ import {
     createChapter,
     updateChapter,
     deleteChapter,
+    reportChapter,
 } from "../controllers/chapter.js";
 
 const router = express.Router({ mergeParams: true });
@@ -19,6 +20,7 @@ router.post("/", verifyUser, verifyAuthor, verifyNovelOwnership, createChapter);
 router.use("/:chapterId", verifyChapterId);
 
 router.get("/:chapterId", getChapterById);
+router.post("/:chapterId/report", reportChapter);
 router.use("/:chapterId/comment", commentRouter);
 
 router.use(verifyUser, verifyAuthor, verifyNovelOwnership);

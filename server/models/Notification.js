@@ -13,7 +13,10 @@ const schema = new mongoose.Schema(
             required: true,
         },
         title: String,
-        message: String,
+        message: {
+            type: String,
+            maxLength: 200,
+        },
         isRead: {
             type: Boolean,
             default: false,

@@ -1,18 +1,63 @@
 import { Chapter } from "../models/Chapter.js";
 import { ChapterRead } from "../models/ChapterRead.js";
 import { Novel } from "../models/Novel.js";
+import { NovelRead } from "../models/NovelRead.js";
+import { NovelCounter } from "../models/NovelCounter.js";
 import { Follow } from "../models/Follow.js";
 import { Notification } from "../models/Notification.js";
 
 export const getChapter = async (req, res) => {
     const { novelId } = req.params;
+    const { userId } = req.user || {};
 
     try {
-        const chapters = await Chapter.find(
-            { novelId, isArchived: true },
-            { content: 0 }
-        );
-
+        const chapters = await Chapter.aggregate([
+            {
+                $match: { novelId: parseInt(novelId) },
+            },
+            {
+                $lookup: {
+                    from: "chapterreads",
+                    let: {
+                        userId: parseInt(userId),
+                        chapterId: "$chapterId",
+                    },
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: {
+                                    $and: [
+                                        {
+                                            $eq: ["$userId", "$$userId"],
+                                        },
+                                        {
+                                            $eq: ["$chapterId", "$$chapterId"],
+                                        },
+                                    ],
+                                },
+                            },
+                        },
+                    ],
+                    as: "chapterread",
+                },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    chapterId: "$chapterId",
+                    novelId: "$novelId",
+                    title: "$title",
+                    chapterOrder: "$chapterOrder",
+                    isRead: {
+                        $cond: [
+                            { $ne: [{ $size: "$chapterread" }, 0] },
+                            true,
+                            false,
+                        ],
+                    },
+                },
+            },
+        ]);
         res.status(200).json({ chapters });
     } catch (error) {
         res.status(500).json({ error });
@@ -21,17 +66,47 @@ export const getChapter = async (req, res) => {
 
 export const getChapterById = async (req, res) => {
     const { novelId, chapterId } = req.params;
-    const { userId } = req.user;
+    const { userId } = req.user || {};
 
     try {
-        const chapter = await Chapter.findOne({ novelId, chapterId });
+        const chapter = await Chapter.findOne(
+            { novelId, chapterId, isArchived: false },
+            {
+                _id: 0,
+                novelId: 1,
+                chapterId: 1,
+                title: 1,
+                chapterOrder: 1,
+                content: 1,
+            }
+        );
 
-        if (userId)
+        await NovelCounter.findOneAndUpdate(
+            { novelId, name: "view" },
+            {
+                $inc: {
+                    daily: 1,
+                    weekly: 1,
+                    monthly: 1,
+                    all: 1,
+                },
+            },
+            { lean: true }
+        );
+
+        if (userId) {
+            await NovelRead.findOneAndUpdate(
+                { userId, novelId },
+                { userId, novelId },
+                { upsert: true, lean: true }
+            );
+
             await ChapterRead.findOneAndUpdate(
                 { userId, novelId, chapterId },
                 { userId, novelId, chapterId },
                 { upsert: true, lean: true }
             );
+        }
 
         res.status(200).json({ chapter });
     } catch (error) {
@@ -135,5 +210,33 @@ export const deleteChapter = async (req, res) => {
         });
     } catch (error) {
         res.status(500).json({ error });
+    }
+};
+
+export const reportChapter = async (req, res) => {
+    const { novelId, chapterId } = req.params;
+    const { email, message } = req.body;
+
+    if (!email || !message)
+        return res.status(400).json({ message: "some fields are missing" });
+
+    try {
+        const novel = await Novel.findOne({ novelId }, {}, { lean: true });
+        const chapter = await Chapter.findOne(
+            { novelId, chapterId },
+            {},
+            { lean: true }
+        );
+        const notification = await Notification.create({
+            receiverId: novel.authorId,
+            title: `Báo lỗi ${novel.title}: Chương ${chapter.chapterOrder} ${chapter.title} từ ${email}`,
+            message,
+            image: novel.cover,
+            actionUrl: `/novel/${novelId}/chapter/${chapterId}`,
+        });
+
+        res.status(200).json({ notification });
+    } catch (error) {
+        return res.status(500).json({ error });
     }
 };
