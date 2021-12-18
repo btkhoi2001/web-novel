@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+import { uploadFile } from "../config/aws/s3.js";
 import { User } from "../models/User.js";
 import { Comment } from "../models/Comment.js";
 import { CommentLike } from "../models/CommentLike.js";
@@ -251,6 +253,80 @@ export const getUserRecentRead = async (req, res) => {
     }
 };
 
-export const updateUserProfile = async (req, res) => {
-    // const {displayName, avatar,} = req.body;
+export const getUserAccount = async (req, res) => {
+    const { userId } = req.user;
+    console.log(userId);
+    try {
+        const user = await User.findOne(
+            { userId },
+            {
+                _id: 0,
+                displayName: 1,
+                email: 1,
+                avatar: 1,
+                description: 1,
+                gender: 1,
+                flowers: 1,
+            }
+        );
+
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const updateUserAccount = async (req, res) => {
+    const { displayName, description, gender } = req.body;
+    const { userId } = req.user;
+    const file = req.file;
+
+    console.log(displayName, description, gender);
+
+    try {
+        const updatedUser = await User.findOneAndUpdate(
+            { userId },
+            {
+                displayName,
+                description,
+                gender,
+            },
+            {
+                new: true,
+            }
+        ).select({
+            displayName: 1,
+            description: 1,
+            gender: 1,
+            avatar: 1,
+        });
+
+        console.log(updatedUser);
+
+        if (file) {
+            const { avatar } = updatedUser;
+
+            if (avatar) {
+                file.key = avatar.substr(avatar.indexOf("avatar/"));
+                await uploadFile(file);
+            } else {
+                const { originalname } = file;
+
+                file.key =
+                    "avatar/" +
+                    uuidv4() +
+                    originalname.substr(originalname.lastIndexOf("."));
+
+                const uploadedFile = await uploadFile(file);
+
+                updatedUser.avatar = uploadedFile.Location;
+            }
+
+            await updatedUser.save();
+        }
+
+        res.status(200).json({ updatedUser });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
 };

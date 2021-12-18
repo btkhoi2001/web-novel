@@ -414,12 +414,6 @@ export const deleteNovel = async (req, res) => {
             { isArchived: true },
             { lean: true, new: true }
         );
-        // const { cover } = deletedNovel;
-
-        // if (cover) {
-        //     const key = cover.substr(cover.indexOf("cover/"));
-        //     await deleteFile(key);
-        // }
 
         res.status(200).json({
             message: "novel deleted successfully",
