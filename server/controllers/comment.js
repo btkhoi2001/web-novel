@@ -166,15 +166,13 @@ export const createComment = async (req, res) => {
         return res.status(400).json({ message: "content is required" });
 
     try {
-        const newComment = new Comment({
+        const newComment = await Comment.create({
             userId,
             novelId,
             chapterId,
             parentCommentId,
             content,
         });
-
-        await newComment.save();
 
         res.status(201).json({
             message: "comment created successfully",

@@ -10,7 +10,6 @@ import bookmarkRouter from "./routes/bookmark.js";
 import followRouter from "./routes/follow.js";
 import notificationRouter from "./routes/notification.js";
 import scheduler from "./schedules/jobs.js";
-import { NovelCounter } from "./models/NovelCounter.js";
 
 dotenv.config();
 

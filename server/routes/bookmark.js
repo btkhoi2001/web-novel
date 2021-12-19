@@ -1,6 +1,5 @@
 import express from "express";
 import { verifyUser } from "../middlewares/auth.js";
-// import { verifyNovelId } from "../middlewares/novel.js";
 import { verifyChapterId } from "../middlewares/chapter.js";
 import {
     getBookmark,
