@@ -57,7 +57,11 @@ export const getChapter = async (req, res) => {
                     },
                 },
             },
+            {
+                $sort: { chapterOrder: 1 },
+            },
         ]);
+
         res.status(200).json({ chapters });
     } catch (error) {
         res.status(500).json({ error });

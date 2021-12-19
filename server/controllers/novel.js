@@ -10,6 +10,7 @@ export const getNovel = async (req, res) => {
     let {
         page,
         limit,
+        authorId,
         sortBy,
         timeline,
         genreId,
@@ -25,6 +26,8 @@ export const getNovel = async (req, res) => {
     const postMatch = {};
     const sortField = {};
     let count = { count: "$$this.all" };
+
+    if (authorId) preMatch.authorId = parseInt(authorId);
 
     if (genreId) {
         genreId = genreId.map(Number);
@@ -44,6 +47,9 @@ export const getNovel = async (req, res) => {
 
     if (sortBy) {
         switch (sortBy) {
+            case "new":
+                sortField.createdAt = -1;
+                break;
             case "view":
                 sortField.views = -1;
                 break;
@@ -77,8 +83,6 @@ export const getNovel = async (req, res) => {
         }
     }
 
-    console.log(sortField);
-
     try {
         const novels = (
             await Novel.aggregate([
@@ -102,8 +106,29 @@ export const getNovel = async (req, res) => {
                 {
                     $lookup: {
                         from: "chapters",
-                        localField: "novelId",
-                        foreignField: "novelId",
+                        let: {
+                            novelId: "$novelId",
+                            isArchived: false,
+                        },
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $and: [
+                                            {
+                                                $eq: ["$novelId", "$$novelId"],
+                                            },
+                                            {
+                                                $eq: [
+                                                    "$isArchived",
+                                                    "$$isArchived",
+                                                ],
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                        ],
                         as: "chapter",
                     },
                 },
@@ -120,6 +145,9 @@ export const getNovel = async (req, res) => {
                         foreignField: "novelId",
                         as: "novelcounter",
                     },
+                },
+                {
+                    $sort: { "chapter.createdAt": 1 },
                 },
                 {
                     $group: {
@@ -283,160 +311,185 @@ export const getNovelById = async (req, res) => {
     const { userId } = req.user || {};
 
     try {
-        const novel = await Novel.aggregate([
-            {
-                $match: { novelId: parseInt(novelId) },
-            },
-            {
-                $lookup: {
-                    from: "ratings",
-                    localField: "novelId",
-                    foreignField: "novelId",
-                    as: "rating",
+        const novel = (
+            await Novel.aggregate([
+                {
+                    $match: { novelId: parseInt(novelId) },
                 },
-            },
-            {
-                $unwind: {
-                    path: "$rating",
-                    preserveNullAndEmptyArrays: true,
-                },
-            },
-            {
-                $lookup: {
-                    from: "chapters",
-                    localField: "novelId",
-                    foreignField: "novelId",
-                    as: "chapter",
-                },
-            },
-            {
-                $unwind: {
-                    path: "$chapter",
-                    preserveNullAndEmptyArrays: true,
-                },
-            },
-            {
-                $lookup: {
-                    from: "novelcounters",
-                    localField: "novelId",
-                    foreignField: "novelId",
-                    as: "novelcounter",
-                },
-            },
-            {
-                $group: {
-                    _id: {
-                        novelId: "$novelId",
-                        title: "$title",
-                        description: "$description",
-                        novelcounter: "$novelcounter",
-                        cover: "$cover",
-                        authorId: "$authorId",
-                        genre: "$genre",
-                        genreId: "$genreId",
-                        isCompleted: "$isCompleted",
+                {
+                    $lookup: {
+                        from: "ratings",
+                        localField: "novelId",
+                        foreignField: "novelId",
+                        as: "rating",
                     },
-                    rating: { $avg: "$rating.rating" },
-                    ratingCount: {
-                        $sum: {
-                            $cond: [{ $ifNull: ["$rating", false] }, 1, 0],
+                },
+                {
+                    $unwind: {
+                        path: "$rating",
+                        preserveNullAndEmptyArrays: true,
+                    },
+                },
+                {
+                    $lookup: {
+                        from: "chapters",
+                        let: {
+                            novelId: "$novelId",
+                            isArchived: false,
                         },
-                    },
-                    chapters: {
-                        $sum: {
-                            $cond: [{ $ifNull: ["$chapter", false] }, 1, 0],
-                        },
-                    },
-                },
-            },
-            {
-                $addFields: {
-                    views: {
-                        $map: {
-                            input: {
-                                $filter: {
-                                    input: "$_id.novelcounter",
-                                    cond: { $eq: ["$$this.name", "view"] },
-                                },
-                            },
-                            in: {
-                                count: "$$this.daily",
-                            },
-                        },
-                    },
-                },
-            },
-            {
-                $unwind: {
-                    path: "$views",
-                },
-            },
-            {
-                $addFields: {
-                    nominations: {
-                        $map: {
-                            input: {
-                                $filter: {
-                                    input: "$_id.novelcounter",
-                                    cond: {
-                                        $eq: ["$$this.name", "nomination"],
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $and: [
+                                            {
+                                                $eq: ["$novelId", "$$novelId"],
+                                            },
+                                            {
+                                                $eq: [
+                                                    "$isArchived",
+                                                    "$$isArchived",
+                                                ],
+                                            },
+                                        ],
                                     },
                                 },
                             },
-                            in: {
-                                count: "$$this.daily",
+                        ],
+                        as: "chapter",
+                    },
+                },
+                {
+                    $unwind: {
+                        path: "$chapter",
+                        preserveNullAndEmptyArrays: true,
+                    },
+                },
+                {
+                    $lookup: {
+                        from: "novelcounters",
+                        localField: "novelId",
+                        foreignField: "novelId",
+                        as: "novelcounter",
+                    },
+                },
+                {
+                    $group: {
+                        _id: {
+                            novelId: "$novelId",
+                            title: "$title",
+                            description: "$description",
+                            novelcounter: "$novelcounter",
+                            cover: "$cover",
+                            authorId: "$authorId",
+                            genre: "$genre",
+                            genreId: "$genreId",
+                            isCompleted: "$isCompleted",
+                        },
+                        rating: { $avg: "$rating.rating" },
+                        ratingCount: {
+                            $sum: {
+                                $cond: [{ $ifNull: ["$rating", false] }, 1, 0],
+                            },
+                        },
+                        chapters: {
+                            $sum: {
+                                $cond: [{ $ifNull: ["$chapter", false] }, 1, 0],
                             },
                         },
                     },
                 },
-            },
-            {
-                $unwind: {
-                    path: "$nominations",
-                },
-            },
-            {
-                $addFields: {
-                    comments: {
-                        $map: {
-                            input: {
-                                $filter: {
-                                    input: "$_id.novelcounter",
-                                    cond: { $eq: ["$$this.name", "comment"] },
+                {
+                    $addFields: {
+                        views: {
+                            $map: {
+                                input: {
+                                    $filter: {
+                                        input: "$_id.novelcounter",
+                                        cond: { $eq: ["$$this.name", "view"] },
+                                    },
+                                },
+                                in: {
+                                    count: "$$this.daily",
                                 },
                             },
-                            in: {
-                                count: "$$this.daily",
+                        },
+                    },
+                },
+                {
+                    $unwind: {
+                        path: "$views",
+                    },
+                },
+                {
+                    $addFields: {
+                        nominations: {
+                            $map: {
+                                input: {
+                                    $filter: {
+                                        input: "$_id.novelcounter",
+                                        cond: {
+                                            $eq: ["$$this.name", "nomination"],
+                                        },
+                                    },
+                                },
+                                in: {
+                                    count: "$$this.daily",
+                                },
                             },
                         },
                     },
                 },
-            },
-            {
-                $unwind: {
-                    path: "$comments",
+                {
+                    $unwind: {
+                        path: "$nominations",
+                    },
                 },
-            },
-            {
-                $project: {
-                    _id: 0,
-                    novelId: "$_id.novelId",
-                    title: "$_id.title",
-                    description: "$_id.description",
-                    cover: "$_id.cover",
-                    views: "$views.count",
-                    nominations: "$nominations.count",
-                    comments: "$comments.count",
-                    authorId: "$_id.authorId",
-                    genre: "$_id.genre",
-                    genreId: "$_id.genreId",
-                    isCompleted: "$_id.isCompleted",
-                    rating: { $ifNull: ["$rating", 0] },
-                    ratingCount: "$ratingCount",
-                    chapters: { $ifNull: ["$chapters", 0] },
+                {
+                    $addFields: {
+                        comments: {
+                            $map: {
+                                input: {
+                                    $filter: {
+                                        input: "$_id.novelcounter",
+                                        cond: {
+                                            $eq: ["$$this.name", "comment"],
+                                        },
+                                    },
+                                },
+                                in: {
+                                    count: "$$this.daily",
+                                },
+                            },
+                        },
+                    },
                 },
-            },
-        ]);
+                {
+                    $unwind: {
+                        path: "$comments",
+                    },
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        novelId: "$_id.novelId",
+                        title: "$_id.title",
+                        description: "$_id.description",
+                        cover: "$_id.cover",
+                        views: "$views.count",
+                        nominations: "$nominations.count",
+                        comments: "$comments.count",
+                        authorId: "$_id.authorId",
+                        genre: "$_id.genre",
+                        genreId: "$_id.genreId",
+                        isCompleted: "$_id.isCompleted",
+                        rating: { $ifNull: ["$rating", 0] },
+                        ratingCount: "$ratingCount",
+                        chapters: { $ifNull: ["$chapters", 0] },
+                    },
+                },
+            ])
+        )[0];
 
         await NovelCounter.findOneAndUpdate(
             { novelId, name: "view" },

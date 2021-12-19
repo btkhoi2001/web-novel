@@ -6,99 +6,152 @@ export const getComment = async (req, res) => {
     const { parentCommentId } = req.query;
     const { userId } = req.user || {};
 
-    try {
-        const comments = await Comment.aggregate([
-            {
-                $match: {
-                    novelId: parseInt(novelId),
-                    chapterId: parseInt(chapterId) || null,
-                    parentCommentId: parseInt(parentCommentId) || null,
-                },
-            },
-            {
-                $lookup: {
-                    from: "commentlikes",
-                    localField: "commentId",
-                    foreignField: "commentId",
-                    as: "commentlike",
-                },
-            },
-            {
-                $unwind: {
-                    path: "$commentlike",
-                    preserveNullAndEmptyArrays: true,
-                },
-            },
-            {
-                $lookup: {
-                    from: "users",
-                    localField: "userId",
-                    foreignField: "userId",
-                    as: "user",
-                },
-            },
-            {
-                $unwind: {
-                    path: "$user",
-                    preserveNullAndEmptyArrays: true,
-                },
-            },
-            {
-                $group: {
-                    _id: {
-                        commentId: "$commentId",
-                        userId: "$user.userId",
-                        displayName: "$user.displayName",
-                        avatar: "$user.avatar",
-                        content: "$content",
-                        createdAt: "$createdAt",
-                    },
-                    likeCount: {
-                        $sum: {
-                            $cond: [
-                                { $ifNull: ["$commentlike._id", false] },
-                                1,
-                                0,
-                            ],
-                        },
-                    },
-                    isLiked: {
-                        $sum: {
-                            $cond: [
-                                {
-                                    $eq: [
-                                        "$commentlike.userId",
-                                        parseInt(userId),
-                                    ],
-                                },
-                                1,
-                                0,
-                            ],
-                        },
-                    },
-                },
-            },
-            {
-                $project: {
-                    _id: 0,
-                    commentId: "$_id.commentId",
-                    userId: "$_id.userId",
-                    displayName: "$_id.displayName",
-                    avatar: "$_id.avatar",
-                    content: "$_id.content",
-                    createdAt: "$_id.createdAt",
-                    likeCount: "$likeCount",
-                    isLiked: {
-                        $cond: [{ $gte: ["$isLiked", 1] }, true, false],
-                    },
-                },
-            },
-            {
-                $sort: { createdAt: 1 },
-            },
-        ]);
+    let { page, limit } = req.query;
+    page = page || 1;
+    limit = limit || 12;
 
-        res.status(200).json({ comments });
+    try {
+        const comments = (
+            await Comment.aggregate([
+                {
+                    $match: {
+                        novelId: parseInt(novelId),
+                        chapterId: parseInt(chapterId) || null,
+                        parentCommentId: parseInt(parentCommentId) || null,
+                    },
+                },
+                {
+                    $lookup: {
+                        from: "commentlikes",
+                        localField: "commentId",
+                        foreignField: "commentId",
+                        as: "commentlike",
+                    },
+                },
+                {
+                    $unwind: {
+                        path: "$commentlike",
+                        preserveNullAndEmptyArrays: true,
+                    },
+                },
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "userId",
+                        foreignField: "userId",
+                        as: "user",
+                    },
+                },
+                {
+                    $unwind: {
+                        path: "$user",
+                        preserveNullAndEmptyArrays: true,
+                    },
+                },
+                {
+                    $lookup: {
+                        from: "comments",
+                        localField: "commentId",
+                        foreignField: "parentCommentId",
+                        as: "childComment",
+                    },
+                },
+                {
+                    $unwind: {
+                        path: "$childComment",
+                        preserveNullAndEmptyArrays: true,
+                    },
+                },
+                {
+                    $group: {
+                        _id: {
+                            commentId: "$commentId",
+                            userId: "$user.userId",
+                            displayName: "$user.displayName",
+                            avatar: "$user.avatar",
+                            content: "$content",
+                            createdAt: "$createdAt",
+                        },
+                        likes: {
+                            $sum: {
+                                $cond: [
+                                    { $ifNull: ["$commentlike._id", false] },
+                                    1,
+                                    0,
+                                ],
+                            },
+                        },
+                        isLiked: {
+                            $sum: {
+                                $cond: [
+                                    {
+                                        $eq: [
+                                            "$commentlike.userId",
+                                            parseInt(userId),
+                                        ],
+                                    },
+                                    1,
+                                    0,
+                                ],
+                            },
+                        },
+                        childComments: {
+                            $sum: {
+                                $cond: [
+                                    { $ifNull: ["$childComment._id", false] },
+                                    1,
+                                    0,
+                                ],
+                            },
+                        },
+                    },
+                },
+                {
+                    $facet: {
+                        data: [
+                            {
+                                $project: {
+                                    _id: 0,
+                                    commentId: "$_id.commentId",
+                                    userId: "$_id.userId",
+                                    displayName: "$_id.displayName",
+                                    avatar: "$_id.avatar",
+                                    content: "$_id.content",
+                                    createdAt: "$_id.createdAt",
+                                    likes: "$likes",
+                                    isLiked: {
+                                        $cond: [
+                                            { $gte: ["$isLiked", 1] },
+                                            true,
+                                            false,
+                                        ],
+                                    },
+                                    childComments: "$childComments",
+                                },
+                            },
+                            {
+                                $sort: { createdAt: 1 },
+                            },
+                            {
+                                $skip: (page - 1) * limit,
+                            },
+                            {
+                                $limit: parseInt(limit),
+                            },
+                        ],
+                        totalPages: [{ $count: "totalPages" }],
+                    },
+                },
+            ])
+        )[0];
+
+        res.status(200).json({
+            comments: comments.data,
+            totalPages:
+                comments.totalPages.length == 0
+                    ? 0
+                    : Math.ceil(comments.totalPages[0].totalPages / limit),
+        });
     } catch (error) {
         res.status(500).json({ error });
     }
