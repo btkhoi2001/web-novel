@@ -157,6 +157,11 @@ export const createChapter = async (req, res) => {
         ]);
 
         await Notification.create(notifications);
+        await Novel.findOneAndUpdate(
+            { novelId },
+            { updatedAt: Date.now() },
+            { lean: true }
+        );
 
         res.status(201).json({
             message: "chapter created successfully",

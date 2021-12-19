@@ -47,6 +47,9 @@ export const getNovel = async (req, res) => {
 
     if (sortBy) {
         switch (sortBy) {
+            case "update":
+                sortField.updatedAt = -1;
+                break;
             case "new":
                 sortField.createdAt = -1;
                 break;
@@ -173,6 +176,9 @@ export const getNovel = async (req, res) => {
                                 $cond: [{ $ifNull: ["$chapter", false] }, 1, 0],
                             },
                         },
+                        lastChapter: {
+                            $last: "$chapter",
+                        },
                     },
                 },
                 {
@@ -259,6 +265,13 @@ export const getNovel = async (req, res) => {
                                     rating: { $ifNull: ["$rating", 0] },
                                     ratingCount: "$ratingCount",
                                     chapters: { $ifNull: ["$chapters", 0] },
+                                    lastChapter: {
+                                        chapterId: "$lastChapter.chapterId",
+                                        title: "$lastChapter.title",
+                                        chapterOrder:
+                                            "$lastChapter.chapterOrder",
+                                        createdAt: "$lastChapter.createdAt",
+                                    },
                                 },
                             },
                             {

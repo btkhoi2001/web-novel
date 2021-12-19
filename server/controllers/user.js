@@ -68,7 +68,7 @@ export const getUserProfile = async (req, res) => {
                             description: "$description",
                             gender: "$gender",
                             flowers: "$flowers",
-                            joinedAt: "$createdAt",
+                            createdAt: "$createdAt",
                         },
                         chapterRead: {
                             $sum: {
@@ -99,7 +99,7 @@ export const getUserProfile = async (req, res) => {
                         description: "$_id.description",
                         gender: "$_id.gender",
                         flowers: "$_id.flowers",
-                        joinedAt: "$_id.joinedAt",
+                        createdAt: "$_id.createdAt",
                         chapterRead: "$chapterRead",
                         novelPublished: "$novelPublished",
                         chapterPublished: "$chapterPublished",
