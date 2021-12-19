@@ -51,6 +51,7 @@ export const getBookmark = async (req, res) => {
                                     novelId: "$novelId",
                                     novelTitle: "$novel.title",
                                     cover: "$novel.cover",
+                                    chapterId: "$chapter.chapterId",
                                     chapterOrder: "$chapter.chapterOrder",
                                     chapterTitle: "$chapter.title",
                                 },
