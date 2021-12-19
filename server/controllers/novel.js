@@ -20,7 +20,7 @@ export const getNovel = async (req, res) => {
     } = req.query;
 
     page = page || 1;
-    limit = limit || 12;
+    limit = limit || Number.MAX_SAFE_INTEGER;
 
     const preMatch = { isArchived: false };
     const postMatch = {};

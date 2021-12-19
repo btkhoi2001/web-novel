@@ -5,7 +5,7 @@ export const getBookmark = async (req, res) => {
     let { page, limit } = req.query;
 
     page = page || 1;
-    limit = limit || 12;
+    limit = limit || Number.MAX_SAFE_INTEGER;
 
     try {
         const bookmarks = (

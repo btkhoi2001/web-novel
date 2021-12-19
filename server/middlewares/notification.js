@@ -2,7 +2,7 @@ import { Notification } from "../models/Notification.js";
 
 export const verifyNotificationId = async (req, res, next) => {
     const { notificationId } = req.params;
-    const { userId } = req.body;
+    const { userId } = req.user;
 
     try {
         if (

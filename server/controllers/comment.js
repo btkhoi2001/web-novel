@@ -5,10 +5,10 @@ export const getComment = async (req, res) => {
     const { novelId, chapterId } = req.params;
     const { parentCommentId } = req.query;
     const { userId } = req.user || {};
-
     let { page, limit } = req.query;
+
     page = page || 1;
-    limit = limit || 12;
+    limit = limit || Number.MAX_SAFE_INTEGER;
 
     try {
         const comments = (
