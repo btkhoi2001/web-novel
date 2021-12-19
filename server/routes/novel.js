@@ -7,6 +7,7 @@ import { verifyUser, verifyAuthor } from "../middlewares/auth.js";
 import { verifyNovelId, verifyNovelOwnership } from "../middlewares/novel.js";
 import {
     getNovel,
+    getNovelGenre,
     getNovelById,
     createNovel,
     updateNovel,
@@ -18,6 +19,7 @@ const router = express.Router({ mergeParams: true });
 const upload = multer();
 
 router.get("/", getNovel);
+router.get("/genre", getNovelGenre);
 router.post("/", upload.single("cover"), verifyUser, verifyAuthor, createNovel);
 
 router.use("/:novelId", verifyNovelId);

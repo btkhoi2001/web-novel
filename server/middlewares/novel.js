@@ -16,9 +16,8 @@ export const verifyNovelId = async (req, res, next) => {
 };
 
 export const verifyNovelOwnership = async (req, res, next) => {
-    const { userId } = req.body;
+    const { userId } = req.user;
     const { novelId } = req.params;
-    console.log("verifyNovelOwnership");
 
     try {
         const novel = await Novel.findOne({ novelId });

@@ -7,6 +7,7 @@ import { Comment } from "../models/Comment.js";
 import { CommentLike } from "../models/CommentLike.js";
 import { Novel } from "../models/Novel.js";
 import { NovelRead } from "../models/NovelRead.js";
+import { InvalidToken } from "../models/InvalidToken.js";
 
 export const getUserProfile = async (req, res) => {
     const { userId } = req.params;
@@ -257,7 +258,7 @@ export const getUserRecentRead = async (req, res) => {
 
 export const getUserAccount = async (req, res) => {
     const { userId } = req.user;
-    console.log(userId);
+
     try {
         const user = await User.findOne(
             { userId },
@@ -336,6 +337,10 @@ export const updateUserAccount = async (req, res) => {
 export const updatePassword = async (req, res) => {
     const { currentPassword, newPassword, confirmPassword } = req.body;
     const { userId, password } = req.user;
+    const { accessToken, expired } = req.jwt;
+    const options = {};
+
+    if (!expired) options.expiresIn = "7d";
 
     if (!currentPassword || !newPassword || !confirmPassword)
         return res.status(400).json({ message: "some fields are missing" });
@@ -359,14 +364,17 @@ export const updatePassword = async (req, res) => {
             { lean: true }
         );
 
-        const accessToken = jwt.sign(
-            { userId },
-            process.env.ACCESS_TOKEN_SECRET
+        await InvalidToken.create({ token: accessToken });
+
+        const newAccessToken = jwt.sign(
+            { userId, expired: expired ? true : false },
+            process.env.ACCESS_TOKEN_SECRET,
+            options
         );
 
         res.status(200).json({
             message: "password changed successfully",
-            accessToken,
+            newAccessToken,
         });
     } catch (error) {
         res.status(500).json({ error });

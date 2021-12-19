@@ -8,10 +8,13 @@ const schema = new mongoose.Schema(
             type: Number,
             unique: true,
         },
-        name: String,
+        name: {
+            type: String,
+            required: true,
+        },
     },
     { timestamps: true }
 );
 
-schema.plugin(AutoIncrement, { inc_field: "userId" });
+schema.plugin(AutoIncrement, { inc_field: "genreId" });
 export const Genre = mongoose.model("genres", schema);

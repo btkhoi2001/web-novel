@@ -25,8 +25,8 @@ app.use(
     })
 );
 app.use(express.json({ limit: "50mb" }));
-app.use("/api/auth", authRouter);
 app.use(verifyToken);
+app.use("/api/auth", authRouter);
 app.use("/api/novel", novelRouter);
 app.use("/api/user", userRouter);
 app.use("/api/follow", followRouter);

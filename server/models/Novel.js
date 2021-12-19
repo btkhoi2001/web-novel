@@ -21,9 +21,8 @@ const schema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        genres: {
-            type: [String],
-        },
+        genre: String,
+        genreId: Number,
         isCompleted: {
             type: Boolean,
             default: false,
