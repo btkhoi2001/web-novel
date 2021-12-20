@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+    version: 1.0.0
+    title: web-novel
+    description: Tài liệu REST API web đọc truyện chữ - Nhóm 18 - Simple Poll
+tags:
+    - name: auth
+schemes:
+    - http
+    - https
+securityDefinitions:
+    Bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+paths:
+    /api/auth/register:
+        post:
+            tags:
+                - "auth"
+            summary: Đăng ký
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                displayName:
+                                    type: string
+                                password:
+                                    type: string
+                                confirmPassword:
+                                    type: string
+            responses:
+                "201":
+                    description: Created
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        example: user created successfully
+                                    accessToken:
+                                        type: string
+                "400":
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Nhập thiếu trường
+                                    value:
+                                        message: some fields are missing
+                                error2:
+                                    summary: Mật khẩu không trùng
+                                    value:
+                                        message: confirmPassword doesn't match password
+                                error3:
+                                    summary: Email đã tồn tại
+                                    value:
+                                        message: email is already registered
+    /api/auth/login:
+        post:
+            tags:
+                - "auth"
+            summary: Đăng nhập
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                password:
+                                    type: string
+                                remember:
+                                    type: boolean
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        example: user logged in successfully
+                                    accessToken:
+                                        type: string
+                "400":
+                    description: Nhập thiếu trường
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        example: missing email or password
+                "401":
+                    description: Nhập sai email hoặc mật khẩu
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        example: incorrect email or password
+    /api/auth/logout:
+        post:
+            tags:
+                - "auth"
+            summary: Đăng xuất
+            security:
+                - bearerAuth: []
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        example: user logged out successfully
+components:
+    securitySchemes:
+        bearerAuth:
+            type: apiKey
+            name: JWT-Authorization
+            in: header

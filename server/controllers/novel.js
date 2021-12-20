@@ -17,6 +17,7 @@ export const getNovel = async (req, res) => {
         completed,
         chapterMin,
         chapterMax,
+        search,
     } = req.query;
 
     page = page || 1;
@@ -36,6 +37,9 @@ export const getNovel = async (req, res) => {
 
     if (typeof completed != "undefined")
         preMatch.isCompleted = completed == "true" ? true : false;
+
+    if (search) preMatch.$text = { $search: search };
+    console.log(preMatch);
 
     if (chapterMin && chapterMax)
         postMatch.$and = [

@@ -11,6 +11,7 @@ const schema = new mongoose.Schema(
         title: {
             type: String,
             required: true,
+            index: true,
         },
         description: {
             type: String,
@@ -35,6 +36,7 @@ const schema = new mongoose.Schema(
     { timestamps: true }
 );
 
+schema.index({ title: "text" });
 schema.plugin(AutoIncrement, { inc_field: "novelId" });
 
 export const Novel = mongoose.model("novels", schema);

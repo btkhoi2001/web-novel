@@ -88,7 +88,7 @@ export const logout = async (req, res) => {
     try {
         await InvalidToken.create({ token: accessToken });
 
-        res.status(200).json({ message: "logout successful" });
+        res.status(200).json({ message: "user logged out successfully" });
     } catch (error) {
         res.status(500).json({ error });
     }
