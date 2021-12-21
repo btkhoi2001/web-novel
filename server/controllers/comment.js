@@ -1,24 +1,29 @@
 import { Comment } from "../models/Comment.js";
 import { CommentLike } from "../models/CommentLike.js";
+import { Novel } from "../models/Novel.js";
+import { Chapter } from "../models/Chapter.js";
 
 export const getComment = async (req, res) => {
-    const { novelId, chapterId } = req.params;
-    const { parentCommentId } = req.query;
+    const { novelId, chapterId, parentCommentId } = req.query;
     const { userId } = req.user || {};
+    const matchQuery = {};
     let { page, limit } = req.query;
 
     page = page || 1;
     limit = limit || Number.MAX_SAFE_INTEGER;
 
+    if (novelId) matchQuery.novelId = parseInt(novelId);
+
+    matchQuery.chapterId = chapterId ? parseInt(chapterId) : null;
+    matchQuery.parentCommentId = parentCommentId
+        ? parseInt(parentCommentId)
+        : null;
+
     try {
         const comments = (
             await Comment.aggregate([
                 {
-                    $match: {
-                        novelId: parseInt(novelId),
-                        chapterId: parseInt(chapterId) || null,
-                        parentCommentId: parseInt(parentCommentId) || null,
-                    },
+                    $match: matchQuery,
                 },
                 {
                     $lookup: {
@@ -158,12 +163,32 @@ export const getComment = async (req, res) => {
 };
 
 export const createComment = async (req, res) => {
-    const { novelId, chapterId } = req.params;
-    const { parentCommentId, content } = req.body;
+    const { novelId, chapterId, parentCommentId, content } = req.body;
     const { userId } = req.user;
 
-    if (!content)
-        return res.status(400).json({ message: "content is required" });
+    if (novelId && !(await Novel.exists({ novelId, isArchived: false })))
+        return res.status(404).json({
+            message: `novelId ${novelId} not found`,
+        });
+
+    if (
+        chapterId &&
+        !(await Chapter.exists({ novelId, chapterId, isArchived: false }))
+    )
+        return res.status(404).json({
+            message: `chapterId ${chapterId} not found`,
+        });
+
+    if (
+        parentCommentId &&
+        !(await Comment.exists({ commentId: parentCommentId }))
+    )
+        return res.status(404).json({
+            message: `parentCommendId ${parentCommendId} not found`,
+        });
+
+    if (!content || (!novelId && !chapterId && !parentCommentId))
+        return res.status(400).json({ message: "some fields are missing" });
 
     try {
         const newComment = await Comment.create({
@@ -174,10 +199,7 @@ export const createComment = async (req, res) => {
             content,
         });
 
-        res.status(201).json({
-            message: "comment created successfully",
-            newComment,
-        });
+        res.status(201).json({ newComment });
     } catch (error) {
         res.status(500).json({ error });
     }

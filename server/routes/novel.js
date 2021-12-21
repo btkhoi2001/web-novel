@@ -1,7 +1,6 @@
 import express from "express";
 import multer from "multer";
 import chapterRouter from "./chapter.js";
-import commentRouter from "./comment.js";
 import ratingRouter from "./rating.js";
 import { verifyUser, verifyAuthor } from "../middlewares/auth.js";
 import { verifyNovelId, verifyNovelOwnership } from "../middlewares/novel.js";
@@ -27,7 +26,6 @@ router.use("/:novelId", verifyNovelId);
 router.get("/:novelId", getNovelById);
 router.post("/:novelId/nomination", verifyUser, createNomination);
 router.use("/:novelId/rating", ratingRouter);
-router.use("/:novelId/comment", commentRouter);
 router.use("/:novelId/chapter", chapterRouter);
 
 router.use("/:novelId", verifyUser, verifyAuthor, verifyNovelOwnership);

@@ -179,7 +179,7 @@ export const createFollow = async (req, res) => {
 };
 
 export const deleteFollow = async (req, res) => {
-    const { novelId } = req.params;
+    const { novelId } = req.body;
     const { userId } = req.user;
 
     try {

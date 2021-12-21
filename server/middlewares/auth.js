@@ -37,7 +37,7 @@ export const verifyUser = (req, res, next) => {
     const { user } = req;
 
     if (!user)
-        return res.status(401).json({ message: "Access token not found" });
+        return res.status(401).json({ message: "access token not found" });
 
     next();
 };
@@ -47,7 +47,7 @@ export const verifyAuthor = (req, res, next) => {
 
     if (user.role != "Author")
         return res.status(401).json({
-            message: "This user has no author permissions",
+            message: "this user has no author permissions",
         });
 
     next();

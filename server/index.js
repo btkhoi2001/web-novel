@@ -6,6 +6,7 @@ import { verifyToken } from "./middlewares/auth.js";
 import authRouter from "./routes/auth.js";
 import novelRouter from "./routes/novel.js";
 import userRouter from "./routes/user.js";
+import commentRouter from "./routes/comment.js";
 import bookmarkRouter from "./routes/bookmark.js";
 import followRouter from "./routes/follow.js";
 import notificationRouter from "./routes/notification.js";
@@ -30,6 +31,7 @@ app.use("/api/novel", novelRouter);
 app.use("/api/user", userRouter);
 app.use("/api/follow", followRouter);
 app.use("/api/bookmark", bookmarkRouter);
+app.use("/api/comment", commentRouter);
 app.use("/api/notification", notificationRouter);
 
 mongoose

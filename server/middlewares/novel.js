@@ -24,7 +24,7 @@ export const verifyNovelOwnership = async (req, res, next) => {
 
         if (novel.authorId != userId)
             return res.status(401).json({
-                message: `this user has no permission to modify the novel has id ${novelId}`,
+                message: `this user has no permission to modify this novel`,
             });
 
         next();

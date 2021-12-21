@@ -191,7 +191,7 @@ export const updateChapter = async (req, res) => {
         );
 
         res.status(200).json({
-            message: "Chapter updated successfully",
+            message: "chapter updated successfully",
             updatedChapter,
         });
     } catch (error) {
@@ -244,7 +244,7 @@ export const reportChapter = async (req, res) => {
             actionUrl: `/novel/${novelId}/chapter/${chapterId}`,
         });
 
-        res.status(200).json({ notification });
+        res.status(200).json({ message: "chapter reported successfully" });
     } catch (error) {
         return res.status(500).json({ error });
     }

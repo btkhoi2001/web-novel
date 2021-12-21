@@ -70,7 +70,7 @@ export const getUserProfile = async (req, res) => {
                             flowers: "$flowers",
                             createdAt: "$createdAt",
                         },
-                        chapterRead: {
+                        readChapters: {
                             $sum: {
                                 $cond: [
                                     { $ifNull: ["$chapterread", false] },
@@ -79,12 +79,12 @@ export const getUserProfile = async (req, res) => {
                                 ],
                             },
                         },
-                        novelPublished: {
+                        publishedNovels: {
                             $sum: {
                                 $cond: [{ $ifNull: ["$novel", false] }, 1, 0],
                             },
                         },
-                        chapterPublished: {
+                        publishedChapters: {
                             $sum: {
                                 $cond: [{ $ifNull: ["$chapter", false] }, 1, 0],
                             },
@@ -100,9 +100,9 @@ export const getUserProfile = async (req, res) => {
                         gender: "$_id.gender",
                         flowers: "$_id.flowers",
                         createdAt: "$_id.createdAt",
-                        chapterRead: "$chapterRead",
-                        novelPublished: "$novelPublished",
-                        chapterPublished: "$chapterPublished",
+                        readChapters: "$readChapters",
+                        publishedNovels: "$publishedNovels",
+                        publishedChapters: "$publishedChapters",
                     },
                 },
             ])
@@ -283,8 +283,6 @@ export const updateUserAccount = async (req, res) => {
     const { displayName, description, gender } = req.body;
     const { userId } = req.user;
     const file = req.file;
-
-    console.log(displayName, description, gender);
 
     try {
         const updatedUser = await User.findOneAndUpdate(

@@ -16,6 +16,6 @@ router.get("/", getNotification);
 router.use("/:notificationId", verifyNotificationId);
 
 router.put("/:notificationId", updateNotification);
-router.use("/:notificationId", deleteNotification);
+router.delete("/:notificationId", deleteNotification);
 
 export default router;

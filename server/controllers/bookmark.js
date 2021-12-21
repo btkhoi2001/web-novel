@@ -47,7 +47,6 @@ export const getBookmark = async (req, res) => {
                             {
                                 $project: {
                                     _id: 0,
-                                    bookmarkId: "$bookmarkId",
                                     novelId: "$novelId",
                                     novelTitle: "$novel.title",
                                     cover: "$novel.cover",

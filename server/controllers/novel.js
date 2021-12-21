@@ -633,7 +633,7 @@ export const updateNovel = async (req, res) => {
         }
 
         res.status(200).json({
-            message: "Novel updated successfully",
+            message: "novel updated successfully",
             updatedNovel,
         });
     } catch (error) {

@@ -10,11 +10,9 @@ import {
 const router = express.Router({ mergeParams: true });
 
 router.use(verifyUser);
-
 router.get("/", getFollow);
 
 router.use(verifyNovelId);
-
 router.post("/", createFollow);
 router.delete("/", deleteFollow);
 

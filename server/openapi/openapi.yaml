@@ -5,14 +5,17 @@ info:
     description: Tài liệu REST API web đọc truyện chữ - Nhóm 18 - Simple Poll
 tags:
     - name: auth
-schemes:
-    - http
-    - https
-securityDefinitions:
-    Bearer:
-        type: apiKey
-        name: Authorization
-        in: header
+    - name: novel
+    - name: genre
+    - name: rating
+    - name: nomination
+    - name: follow
+    - name: chapter
+    - name: report
+    - name: bookmark
+    - name: comment
+    - name: user
+    - name: notification
 paths:
     /api/auth/register:
         post:
@@ -34,6 +37,11 @@ paths:
                                     type: string
                                 confirmPassword:
                                     type: string
+                            required:
+                                - email
+                                - displayName
+                                - password
+                                - confirmPassword
             responses:
                 "201":
                     description: Created
@@ -86,6 +94,9 @@ paths:
                                     type: string
                                 remember:
                                     type: boolean
+                            required:
+                                - email
+                                - password
             responses:
                 "200":
                     description: OK
@@ -133,6 +144,1858 @@ paths:
                                 properties:
                                     message:
                                         example: user logged out successfully
+    /api/novel:
+        get:
+            tags:
+                - "novel"
+            summary: Lấy danh sách truyện
+            parameters:
+                - in: query
+                  name: page
+                  schema:
+                      type: integer
+                  description: Trang
+                - in: query
+                  name: limit
+                  schema:
+                      type: integer
+                  description: Số lượng truyện trả về
+                - in: query
+                  name: authorId
+                  schema:
+                      type: integer
+                  description: ID tác giả
+                - in: query
+                  name: sortBy
+                  schema:
+                      type: string
+                      enum: [update, new, view, nomination, comment, rating]
+                  description: Sắp xếp giảm dần / mới nhất
+                - in: query
+                  name: timeline
+                  schema:
+                      type: string
+                      enum: [daily, weekly, monthly, all]
+                  description: Khoảng thời gian
+                - in: query
+                  name: genreId
+                  schema:
+                      type: array
+                      items:
+                          type: integer
+                  description: Mảng ID thể loại truyện
+                - in: query
+                  name: completed
+                  schema:
+                      type: boolean
+                  description: Chuyện đã / chưa hoàn thành
+                - in: query
+                  name: chapterMin
+                  schema:
+                      type: integer
+                  description: Só chương >= chapterMin
+                - in: query
+                  name: chapterMax
+                  schema:
+                      type: integer
+                  description: Số chương <= chapterMax
+                - in: query
+                  name: search
+                  schema:
+                      type: string
+                  description: Tìm kiếm tên truyện
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    novels:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                novelId:
+                                                    type: integer
+                                                title:
+                                                    type: string
+                                                description:
+                                                    type: string
+                                                views:
+                                                    type: integer
+                                                nominations:
+                                                    type: integer
+                                                comments:
+                                                    type: integer
+                                                cover:
+                                                    type: string
+                                                authorId:
+                                                    type: integer
+                                                genre:
+                                                    type: string
+                                                genreId:
+                                                    type: integer
+                                                isCompleted:
+                                                    type: boolean
+                                                rating:
+                                                    type: number
+                                                ratingCount:
+                                                    type: integer
+                                                chapters:
+                                                    type: integer
+                                                lastChapter:
+                                                    type: object
+                                                    properties:
+                                                        chapterId:
+                                                            type: integer
+                                                        title:
+                                                            type: string
+                                                        chapterOrder:
+                                                            type: integer
+                                                        createdAt:
+                                                            type: string
+                                                            format: date
+                                    totalPages:
+                                        type: integer
+        post:
+            tags:
+                - "novel"
+            summary: Đăng truyện mới
+            security:
+                - bearerAuth: []
+            requestBody:
+                required: true
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                title:
+                                    type: string
+                                description:
+                                    type: string
+                                genreId:
+                                    type: string
+                                cover:
+                                    type: string
+                                    format: binary
+                            required:
+                                - title
+            responses:
+                201:
+                    description: Created
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: "novel created successfully"
+                                    newNovel:
+                                        type: object
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Tài khoản không có quyền tác giả
+                                    value:
+                                        message: this user has no author permissions
+    /api/novel/{novelId}:
+        get:
+            tags:
+                - "novel"
+            summary: Lấy thông tin truyện theo id
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    novelId:
+                                        type: integer
+                                    title:
+                                        type: string
+                                    description:
+                                        type: string
+                                    cover:
+                                        type: string
+                                    views:
+                                        type: integer
+                                    nominations:
+                                        type: integer
+                                    comments:
+                                        type: integer
+                                    authorId:
+                                        type: integer
+                                    genre:
+                                        type: string
+                                    genreId:
+                                        type: integer
+                                    isCompleted:
+                                        type: boolean
+                                    rating:
+                                        type: number
+                                    ratingCount:
+                                        type: integer
+                                    chapters:
+                                        type: integer
+                404:
+                    description: Không tìm thấy novelId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novelId ${novelId} not found
+        put:
+            tags:
+                - "novel"
+            summary: Cập nhật truyện
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                title:
+                                    type: string
+                                description:
+                                    type: string
+                                genreId:
+                                    type: string
+                                isCompleted:
+                                    type: boolean
+                                cover:
+                                    type: string
+                                    format: binary
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novel updated successfully
+                                    updatedNovel:
+                                        type: object
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Tài khoản không có quyền tác giả
+                                    value:
+                                        message: this user has no author permissions
+                                error3:
+                                    summary: Tài khoản không có quyền sửa truyện
+                                    value:
+                                        message: this user has no permission to modify this novel
+                404:
+                    description: Không tìm thấy novelId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novelId ${novelId} not found
+        delete:
+            tags:
+                - "novel"
+            summary: Xóa truyện
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novel deleted successfully
+                                    deletedNovel:
+                                        type: object
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Tài khoản không có quyền tác giả
+                                    value:
+                                        message: this user has no author permissions
+                                error3:
+                                    summary: Tài khoản không có quyền sửa truyện
+                                    value:
+                                        message: this user has no permission to modify this novel
+                404:
+                    description: Không tìm thấy novelId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novelId ${novelId} not found
+    /api/novel/genre:
+        get:
+            tags:
+                - "genre"
+            summary: Lấy danh sách các thể loại truyện
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    genres:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                name:
+                                                    type: string
+                                                genreId:
+                                                    type: integer
+    /api/novel/{novelId}/rating:
+        post:
+            tags:
+                - "rating"
+            summary: Đánh giá truyện
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                rating:
+                                    type: integer
+                                    minimum: 1
+                                    maximum: 10
+            responses:
+                201:
+                    description: Created
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    newRating:
+                                        type: object
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                404:
+                    description: Không tìm thấy novelId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novelId ${novelId} not found
+    /api/novel/{novelId}/nomination:
+        post:
+            tags:
+                - "nomination"
+            summary: Đề cử truyện
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                quantity:
+                                    type: integer
+            responses:
+                201:
+                    description: Created
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    nominations:
+                                        type: integer
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                403:
+                    description: Số lượng hoa không đủ
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: not enough flowers
+                404:
+                    description: Không tìm thấy novelId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novelId ${novelId} not found
+    /api/follow:
+        get:
+            tags:
+                - "follow"
+            summary: Lấy danh sách truyện theo dõi
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: query
+                  name: page
+                  schema:
+                      type: integer
+                  description: Trang
+                - in: query
+                  name: limit
+                  schema:
+                      type: integer
+                  description: Số lượng truyện trả về
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    follows:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                novelId:
+                                                    type: integer
+                                                novelTitle:
+                                                    type: string
+                                                cover:
+                                                    type: string
+                                                chapters:
+                                                    type: integer
+                                                readChapters:
+                                                    type: integer
+                                    totalPages:
+                                        type: integer
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+        post:
+            tags:
+                - "follow"
+            summary: Theo dõi truyện
+            security:
+                - bearerAuth: []
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                novelId:
+                                    type: integer
+                            required:
+                                - novelId
+            responses:
+                201:
+                    description: Created
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    newFollow:
+                                        type: object
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                404:
+                    description: Không tìm thấy novelId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novelId ${novelId} not found
+        delete:
+            tags:
+                - "follow"
+            summary: Xóa truyện theo dõi
+            security:
+                - bearerAuth: []
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                novelId:
+                                    type: integer
+                            required:
+                                - novelId
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    deletedFollow:
+                                        type: object
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                404:
+                    description: Không tìm thấy novelId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novelId ${novelId} not found
+    /api/novel/{novelId}/chapter:
+        get:
+            tags:
+                - "chapter"
+            summary: Lấy danh sách chương
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    chapters:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                chapterId:
+                                                    type: integer
+                                                novelId:
+                                                    type: integer
+                                                title:
+                                                    type: string
+                                                chapterOrder:
+                                                    type: number
+                                                isRead:
+                                                    type: boolean
+                404:
+                    description: Không tìm thấy novelId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novelId ${novelId} not found
+        post:
+            tags:
+                - "chapter"
+            summary: Đăng chương mới
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                chapterOrder:
+                                    type: integer
+                                title:
+                                    type: string
+                                content:
+                                    type: string
+                            required:
+                                - chapterOrder
+                                - title
+                                - content
+            responses:
+                201:
+                    description: Created
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: chapter created successfully
+                                    newChapter:
+                                        type: object
+                400:
+                    description: Nhập thiếu trường
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: some fields are missing
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Tài khoản không có quyền tác giả
+                                    value:
+                                        message: this user has no author permissions
+                                error3:
+                                    summary: Tài khoản không có quyền sửa truyện
+                                    value:
+                                        message: this user has no permission to modify this novel
+                404:
+                    description: Không tìm thấy novelId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novelId ${novelId} not found
+    /api/novel/{novelId}/chapter/{chapterId}:
+        get:
+            tags:
+                - "chapter"
+            summary: Lấy thông tin chương theo Id
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+                - in: path
+                  name: chapterId
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    chapter:
+                                        type: object
+                                        properties:
+                                            novelId:
+                                                type: integer
+                                            chapterId:
+                                                type: integer
+                                            title:
+                                                type: string
+                                            chapterOrder:
+                                                type: integer
+                                            content:
+                                                type: string
+                404:
+                    description: Not Found
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Không tìm thấy novelId
+                                    value:
+                                        message: novelId ${novelId} not found
+                                error2:
+                                    summary: Không tìm thấy chapterId
+                                    value:
+                                        message: chapterId ${chapterId} not found
+        put:
+            tags:
+                - "chapter"
+            summary: Cập nhật chương
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+                - in: path
+                  name: chapterId
+                  required: true
+                  schema:
+                      type: integer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                chapterOrder:
+                                    type: integer
+                                title:
+                                    type: string
+                                content:
+                                    type: string
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    updatedChapter:
+                                        type: object
+                400:
+                    description: Nhập thiếu trường
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: some fields are missing
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Tài khoản không có quyền tác giả
+                                    value:
+                                        message: this user has no author permissions
+                                error3:
+                                    summary: Tài khoản không có quyền sửa truyện
+                                    value:
+                                        message: this user has no permission to modify this novel
+                404:
+                    description: Not Found
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Không tìm thấy novelId
+                                    value:
+                                        message: novelId ${novelId} not found
+                                error2:
+                                    summary: Không tìm thấy chapterId
+                                    value:
+                                        message: chapterId ${chapterId} not found
+        delete:
+            tags:
+                - "chapter"
+            summary: Xóa chương
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+                - in: path
+                  name: chapterId
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    deletedChapter:
+                                        type: object
+                400:
+                    description: Nhập thiếu trường
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: some fields are missing
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Tài khoản không có quyền tác giả
+                                    value:
+                                        message: this user has no author permissions
+                                error3:
+                                    summary: Tài khoản không có quyền sửa truyện
+                                    value:
+                                        message: this user has no permission to modify this novel
+                404:
+                    description: Not Found
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Không tìm thấy novelId
+                                    value:
+                                        message: novelId ${novelId} not found
+                                error2:
+                                    summary: Không tìm thấy chapterId
+                                    value:
+                                        message: chapterId ${chapterId} not found
+    /api/novel/{novelId}/chapter/{chapterId}/report:
+        post:
+            tags:
+                - "report"
+            summary: Báo lỗi chương
+            parameters:
+                - in: path
+                  name: novelId
+                  required: true
+                  schema:
+                      type: integer
+                - in: path
+                  name: chapterId
+                  required: true
+                  schema:
+                      type: integer
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                message:
+                                    type: string
+                            required:
+                                - email
+                                - message
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: chapter reported successfully
+                400:
+                    description: Nhập thiếu trường
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: some fields are missing
+                404:
+                    description: Not Found
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Không tìm thấy novelId
+                                    value:
+                                        message: novelId ${novelId} not found
+                                error2:
+                                    summary: Không tìm thấy chapterId
+                                    value:
+                                        message: chapterId ${chapterId} not found
+    /api/bookmark:
+        get:
+            tags:
+                - "bookmark"
+            summary: Lấy danh sách chương đánh dấu
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: query
+                  name: page
+                  schema:
+                      type: integer
+                  description: Trang
+                - in: query
+                  name: limit
+                  schema:
+                      type: integer
+                  description: Số lượng truyện trả về
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    follows:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                novelId:
+                                                    type: integer
+                                                novelTitle:
+                                                    type: string
+                                                cover:
+                                                    type: string
+                                                chapterId:
+                                                    type: integer
+                                                chapterOrder:
+                                                    type: integer
+                                                chapterTitle:
+                                                    type: string
+                                    totalPages:
+                                        type: integer
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+        post:
+            tags:
+                - "bookmark"
+            summary: Đánh dấu truyện
+            security:
+                - bearerAuth: []
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                novelId:
+                                    type: integer
+                                chapterId:
+                                    type: integer
+                            required:
+                                - novelId
+                                - chapterId
+            responses:
+                201:
+                    description: Created
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    newBookmark:
+                                        type: object
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                404:
+                    description: Không tìm thấy novelId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: novelId ${novelId} not found
+        delete:
+            tags:
+                - "bookmark"
+            summary: Xóa truyện theo dõi
+            security:
+                - bearerAuth: []
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                novelId:
+                                    type: integer
+                                chapterId:
+                                    type: integer
+                            required:
+                                - novelId
+                                - chapterId
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    deletedBookmark:
+                                        type: object
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                404:
+                    description: Not Found
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Không tìm thấy novelId
+                                    value:
+                                        message: novelId ${novelId} not found
+                                error2:
+                                    summary: Không tìm thấy chapterId
+                                    value:
+                                        message: chapterId ${chapterId} not found
+    /api/comment:
+        get:
+            tags:
+                - "comment"
+            summary: Lấy danh sách bình luận
+            parameters:
+                - in: query
+                  name: page
+                  schema:
+                      type: integer
+                  description: Trang
+                - in: query
+                  name: limit
+                  schema:
+                      type: integer
+                  description: Số lượng bình luận trả về
+                - in: query
+                  name: novelId
+                  schema:
+                      type: integer
+                  description: novelId
+                - in: query
+                  name: chapterId
+                  schema:
+                      type: integer
+                  description: chapterId
+                - in: query
+                  name: parentCommentId
+                  schema:
+                      type: integer
+                  description: parentCommentId
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    follows:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                novelId:
+                                                    type: integer
+                                                novelTitle:
+                                                    type: string
+                                                cover:
+                                                    type: string
+                                                chapterId:
+                                                    type: integer
+                                                chapterOrder:
+                                                    type: integer
+                                                chapterTitle:
+                                                    type: string
+                                    totalPages:
+                                        type: integer
+        post:
+            tags:
+                - "comment"
+            summary: Đăng bình luận
+            security:
+                - bearerAuth: []
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                novelId:
+                                    type: integer
+                                chapterId:
+                                    type: integer
+                                parentCommentId:
+                                    type: integer
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    newComment:
+                                        type: object
+                400:
+                    description: Nhập thiếu trường
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: some fields are missing
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                404:
+                    description: Not Found
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Không tìm thấy novelId
+                                    value:
+                                        message: novelId ${novelId} not found
+                                error2:
+                                    summary: Không tìm thấy chapterId
+                                    value:
+                                        message: chapterId ${chapterId} not found
+                                error3:
+                                    summary: Không tìm thấy parentCommentId
+                                    value:
+                                        message: parentCommendId ${parentCommendId} not found
+    /api/comment/{commentId}/like:
+        post:
+            tags:
+                - "comment"
+            summary: Thích bình luận
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: commentId
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                201:
+                    description: Created
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    newCommentLike:
+                                        type: object
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                404:
+                    description: Không tìm thấy commentId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: commentId ${commentId} not found
+        delete:
+            tags:
+                - "comment"
+            summary: Hủy thích bình luận
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: commentId
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    deletedCommentLike:
+                                        type: object
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                404:
+                    description: Không tìm thấy commentId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: commentId ${commentId} not found
+    /api/user/{userId}:
+        get:
+            tags:
+                - "user"
+            summary: Lấy thông tin user theo Id
+            parameters:
+                - in: path
+                  name: userId
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    user:
+                                        type: object
+                                        properties:
+                                            displayName:
+                                                type: string
+                                            avatar:
+                                                type: string
+                                            description:
+                                                type: string
+                                            gender:
+                                                type: string
+                                                enum: [Bí mật, Nam, Nữ]
+                                            flowers:
+                                                type: integer
+                                            createdAt:
+                                                type: string
+                                                format: date
+                                            readChapters:
+                                                type: integer
+                                            publishedNovels:
+                                                type: integer
+                                            publishedChapters:
+                                                type: integer
+                                            commentCount:
+                                                type: integer
+                                            nominationCount:
+                                                type: integer
+                                            likeCount:
+                                                type: integer
+                404:
+                    description: Không tìm thấy userId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: userId ${userId} not found
+    /api/user/{userId}/recent-read:
+        get:
+            tags:
+                - "user"
+            summary: Lấy danh sách truyện đọc gần đây của user (số lượng 10)
+            parameters:
+                - in: path
+                  name: userId
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    novels:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                novelId:
+                                                    type: integer
+                                                title:
+                                                    type: string
+                                                description:
+                                                    type: string
+                                                cover:
+                                                    type: string
+                404:
+                    description: Không tìm thấy userId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: userId ${userId} not found
+    /api/user/account:
+        get:
+            tags:
+                - "user"
+            summary: Lấy thông tin tài khoản
+            security:
+                - bearerAuth: []
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    user:
+                                        type: object
+                                        properties:
+                                            displayName:
+                                                type: string
+                                            email:
+                                                type: string
+                                            avatar:
+                                                type: string
+                                            description:
+                                                type: string
+                                            gender:
+                                                type: string
+                                                enum: [Bí mật, Nam, Nữ]
+                                            flowers:
+                                                type: integer
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+        put:
+            tags:
+                - "user"
+            summary: Cập nhật thông tin tài khoản
+            security:
+                - bearerAuth: []
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            type: object
+                            properties:
+                                displayName:
+                                    type: string
+                                description:
+                                    type: string
+                                gender:
+                                    type: string
+                                    enum: [Bí mật, Nam, Nữ]
+                                avatar:
+                                    type: string
+                                    format: binary
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    updatedUser:
+                                        type: object
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+    /api/user/change-password:
+        put:
+            tags:
+                - "user"
+            summary: Thay đổi mật khẩu
+            security:
+                - bearerAuth: []
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                currentPassword:
+                                    type: string
+                                newPassword:
+                                    type: string
+                                confirmPassword:
+                                    type: string
+                            required:
+                                - currentPassword
+                                - newPassword
+                                - confirmPassword
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: password changed successfully
+                                    newAccessToken:
+                                        type: string
+                400:
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Nhập thiếu trường
+                                    value:
+                                        message: some fields are missing
+                                error2:
+                                    summary: Mật khẩu xác nhận không trùng mật khẩu mới
+                                    value:
+                                        message: confirmPassword doesn't match newPassword
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Sai mật khẩu
+                                    value:
+                                        message: incorrect password
+    /api/notification:
+        get:
+            tags:
+                - "notification"
+            summary: Lấy danh sách thông báo
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: query
+                  name: page
+                  schema:
+                      type: integer
+                  description: Trang
+                - in: query
+                  name: limit
+                  schema:
+                      type: integer
+                  description: Số lượng thông báo trả về
+                - in: query
+                  name: isRead
+                  schema:
+                      type: boolean
+                  description: Thông báo đã/chưa đọc
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    notifications:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                notificationId:
+                                                    type: integer
+                                                title:
+                                                    type: string
+                                                message:
+                                                    type: string
+                                                isRead:
+                                                    type: boolean
+                                                image:
+                                                    type: string
+                                                actionUrl:
+                                                    type: string
+                                    totalPages:
+                                        type: integer
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+    /api/notification/{notificationId}:
+        put:
+            tags:
+                - "notification"
+            summary: Cập nhật trạng thái thông báo
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: notificationId
+                  required: true
+                  schema:
+                      type: integer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                isRead:
+                                    type: boolean
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    updatedNotification:
+                                        type: object
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                404:
+                    description: Không tìm thấy notificationId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: notificationId ${notificationId} not found
+        delete:
+            tags:
+                - "notification"
+            summary: Xóa thông báo
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: path
+                  name: notificationId
+                  required: true
+                  schema:
+                      type: integer
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    deletedNotification:
+                                        type: object
+                401:
+                    description: Thiếu token
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+                404:
+                    description: Không tìm thấy notificationId
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: notificationId ${notificationId} not found
 components:
     securitySchemes:
         bearerAuth:
