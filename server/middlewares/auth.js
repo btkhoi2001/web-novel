@@ -20,14 +20,24 @@ export const verifyToken = async (req, res, next) => {
 
         const user = await User.findOne(
             { userId },
-            { _id: 0, userId: 1, role: 1, password: 1 },
+            {
+                _id: 0,
+                userId: 1,
+                role: 1,
+                password: 1,
+                email: 1,
+                isVerified: 1,
+            },
             { lean: true }
         );
 
         if (user.isBlocked) return next();
 
         req.user = user;
-        req.jwt = { accessToken, expired };
+        req.jwt = {
+            accessToken,
+            expired,
+        };
 
         next();
     } catch (error) {
