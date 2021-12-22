@@ -67,6 +67,11 @@ export const login = async (req, res) => {
                 .status(401)
                 .json({ message: "incorrect email or password" });
 
+        if (user.isBlocked)
+            return res
+                .stauts(401)
+                .json({ message: "this account has been blocked" });
+
         const accessToken = jwt.sign(
             { userId: user.userId, expired: remember ? true : false },
             process.env.ACCESS_TOKEN_SECRET,

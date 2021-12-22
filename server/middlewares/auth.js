@@ -24,6 +24,8 @@ export const verifyToken = async (req, res, next) => {
             { lean: true }
         );
 
+        if (user.isBlocked) return next();
+
         req.user = user;
         req.jwt = { accessToken, expired };
 
@@ -48,6 +50,17 @@ export const verifyAuthor = (req, res, next) => {
     if (user.role != "Author")
         return res.status(401).json({
             message: "this user has no author permissions",
+        });
+
+    next();
+};
+
+export const verifyAdmin = (req, res, next) => {
+    const { user } = req;
+
+    if (user.role != "Admin")
+        return res.status(401).json({
+            message: "this user has no admin permissions",
         });
 
     next();

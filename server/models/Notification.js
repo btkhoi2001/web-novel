@@ -12,10 +12,14 @@ const schema = new mongoose.Schema(
             type: Number,
             required: true,
         },
-        title: String,
+        title: {
+            type: String,
+            required: true,
+        },
         message: {
             type: String,
             maxLength: 200,
+            required: true,
         },
         isRead: {
             type: Boolean,

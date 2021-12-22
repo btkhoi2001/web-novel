@@ -39,7 +39,6 @@ export const getNovel = async (req, res) => {
         preMatch.isCompleted = completed == "true" ? true : false;
 
     if (search) preMatch.$text = { $search: search };
-    console.log(preMatch);
 
     if (chapterMin && chapterMax)
         postMatch.$and = [
