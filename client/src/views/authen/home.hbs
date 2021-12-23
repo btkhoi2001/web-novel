@@ -1,0 +1,71 @@
+<div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="login()">Đăng nhập</button>
+                <button type="button" class="toggle-btn" onclick="register()">Đăng ký</button>
+            </div>
+            <div class="social-icons">
+                <a class="fb" href="#">
+                    <img src="/img/fb.jpg">
+                </a>
+                <a class="ins" href="#">
+                    <img src="/img/ins.jpg">
+                </a>
+                <a class="gg" href="#">
+                    <img src="/img/gg.jpg">
+                </a>
+                <a class="twt" href="#">
+                    <img src="/img/twt.jpg">
+                </a>
+            </div>
+            <form id="login" class="input-group" action="#" method="post">
+                    <div class="row">
+                        <input type="email" class="input-field" autofocus placeholder="Email" required>
+                    </div>
+                    <div class="row">
+                        <input type="password" class="input-field" placeholder="Mật khẩu" required id="pw">
+                        <i class="far fa-eye" id="togglePassword" style="margin-left: -30px; 
+                        cursor: pointer;"></i><br>
+                    </div>
+                    <!-- <input type="checkbox" class="check-box">
+                <span id="text-cb">Ghi nhớ mật khẩu</span> -->
+                    <div class="check-box">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault" id="text-cb">
+                            Ghi nhớ mật khẩu
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn" id="login-btn">Đăng nhập</button>
+                    <a id="fgpw" href="#">Quên mật khẩu?</a>
+                    <div class="loginmes loginmes-error"></div>
+                    <div style="display: flex; justify-content: center; margin-top: 1.75rem;">
+                        <img src="/img/decor_img.png" width="300px" >
+                    </div>
+            </form>
+            <form id="register" class="input-group" action="" method="post">
+                <div class="row">
+                    <input type="text" id="regUser" class="input-field" autofocus placeholder="Tên người dùng" required>
+                    <div class="input-error-mes"></div>
+                </div>
+                <div class="row">
+                    <input type="email" class="input-field" placeholder="Email" required>
+                    <div class="input-error-mes"></div>
+                </div>
+                <div class="row">
+                    <input type="password" id="regPass" class="input-field" placeholder="Mật khẩu" required>
+                    <div class="input-error-mes"></div>
+                </div>
+                <div class="row">
+                    <input type="password" id="regPass2" class="input-field" placeholder="Nhập lại mật khẩu" required>
+                    <div class="input-error-mes"></div>
+                </div>
+                <div class="captcha-box">
+                    <canvas id="captcha">captcha text</canvas>
+                    <button id="refreshButton" type="submit">Refresh</button>
+                    <input type="text" id="textBox" class="input-field" name="text">
+                    <div class="input-error-mes" style="margin-bottom: 10px; margin-top: 0;"></div>
+                </div>
+                <!--<input type="checkbox" class="check-box"><span>Đồng ý điều khoản</span>-->
+                <button type="submit" class="submit-btn" id="register-btn">Đăng ký</button>
+            </form>
+        </div>
