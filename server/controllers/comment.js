@@ -78,13 +78,7 @@ export const getComment = async (req, res) => {
                             createdAt: "$createdAt",
                         },
                         likes: {
-                            $sum: {
-                                $cond: [
-                                    { $ifNull: ["$commentlike._id", false] },
-                                    1,
-                                    0,
-                                ],
-                            },
+                            $addToSet: "$commentlike._id",
                         },
                         isLiked: {
                             $sum: {
@@ -101,13 +95,7 @@ export const getComment = async (req, res) => {
                             },
                         },
                         childComments: {
-                            $sum: {
-                                $cond: [
-                                    { $ifNull: ["$childComment._id", false] },
-                                    1,
-                                    0,
-                                ],
-                            },
+                            $addToSet: "$childComment._id",
                         },
                     },
                 },
@@ -123,7 +111,7 @@ export const getComment = async (req, res) => {
                                     avatar: "$_id.avatar",
                                     content: "$_id.content",
                                     createdAt: "$_id.createdAt",
-                                    likes: "$likes",
+                                    likes: { $size: "$likes" },
                                     isLiked: {
                                         $cond: [
                                             { $gte: ["$isLiked", 1] },
@@ -131,7 +119,7 @@ export const getComment = async (req, res) => {
                                             false,
                                         ],
                                     },
-                                    childComments: "$childComments",
+                                    childComments: { $size: "$childComments" },
                                 },
                             },
                             {

@@ -74,23 +74,13 @@ export const getUserProfile = async (req, res) => {
                             createdAt: "$createdAt",
                         },
                         readChapters: {
-                            $sum: {
-                                $cond: [
-                                    { $ifNull: ["$chapterread", false] },
-                                    1,
-                                    0,
-                                ],
-                            },
+                            $addToSet: "$chapterread._id",
                         },
                         publishedNovels: {
-                            $sum: {
-                                $cond: [{ $ifNull: ["$novel", false] }, 1, 0],
-                            },
+                            $addToSet: "$novel._id",
                         },
                         publishedChapters: {
-                            $sum: {
-                                $cond: [{ $ifNull: ["$chapter", false] }, 1, 0],
-                            },
+                            $addToSet: "$chapter._id",
                         },
                     },
                 },
@@ -103,9 +93,9 @@ export const getUserProfile = async (req, res) => {
                         gender: "$_id.gender",
                         flowers: "$_id.flowers",
                         createdAt: "$_id.createdAt",
-                        readChapters: "$readChapters",
-                        publishedNovels: "$publishedNovels",
-                        publishedChapters: "$publishedChapters",
+                        readChapters: { $size: "$readChapters" },
+                        publishedNovels: { $size: "$publishedNovels" },
+                        publishedChapters: { $size: "$publishedChapters" },
                     },
                 },
             ])
