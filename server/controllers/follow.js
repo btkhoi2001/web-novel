@@ -105,18 +105,10 @@ export const getFollow = async (req, res) => {
                             cover: "$novel.cover",
                         },
                         chapters: {
-                            $sum: {
-                                $cond: [{ $ifNull: ["$chapter", false] }, 1, 0],
-                            },
+                            $addToSet: "$chapter._id",
                         },
                         readChapters: {
-                            $sum: {
-                                $cond: [
-                                    { $ifNull: ["$chapterread", false] },
-                                    1,
-                                    0,
-                                ],
-                            },
+                            $addToSet: "$chapterread._id",
                         },
                     },
                 },
@@ -129,8 +121,8 @@ export const getFollow = async (req, res) => {
                                     novelId: "$_id.novelId",
                                     novelTitle: "$_id.novelTitle",
                                     cover: "$_id.cover",
-                                    chapters: "$chapters",
-                                    readChapters: "$readChapters",
+                                    chapters: { $size: "$chapters" },
+                                    readChapters: { $size: "$readChapters" },
                                 },
                             },
                             {

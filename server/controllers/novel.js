@@ -97,6 +97,20 @@ export const getNovel = async (req, res) => {
                 },
                 {
                     $lookup: {
+                        from: "users",
+                        localField: "authorId",
+                        foreignField: "userId",
+                        as: "user",
+                    },
+                },
+                {
+                    $unwind: {
+                        path: "$user",
+                        preserveNullAndEmptyArrays: true,
+                    },
+                },
+                {
+                    $lookup: {
                         from: "ratings",
                         localField: "novelId",
                         foreignField: "novelId",
@@ -164,20 +178,17 @@ export const getNovel = async (req, res) => {
                             novelcounter: "$novelcounter",
                             cover: "$cover",
                             authorId: "$authorId",
+                            authorName: "$user.displayName",
                             genre: "$genre",
                             genreId: "$genreId",
                             isCompleted: "$isCompleted",
                         },
                         rating: { $avg: "$rating.rating" },
                         ratingCount: {
-                            $sum: {
-                                $cond: [{ $ifNull: ["$rating", false] }, 1, 0],
-                            },
+                            $addToSet: "$rating.userId",
                         },
                         chapters: {
-                            $sum: {
-                                $cond: [{ $ifNull: ["$chapter", false] }, 1, 0],
-                            },
+                            $addToSet: "$chapter.chapterId",
                         },
                         lastChapter: {
                             $last: "$chapter",
@@ -262,12 +273,13 @@ export const getNovel = async (req, res) => {
                                     comments: "$comments.count",
                                     cover: "$_id.cover",
                                     authorId: "$_id.authorId",
+                                    authorName: "$_id.authorName",
                                     genre: "$_id.genre",
                                     genreId: "$_id.genreId",
                                     isCompleted: "$_id.isCompleted",
                                     rating: { $ifNull: ["$rating", 0] },
-                                    ratingCount: "$ratingCount",
-                                    chapters: { $ifNull: ["$chapters", 0] },
+                                    ratingCount: { $size: "$ratingCount" },
+                                    chapters: { $size: "$chapters" },
                                     lastChapter: {
                                         chapterId: "$lastChapter.chapterId",
                                         title: "$lastChapter.title",
@@ -331,6 +343,20 @@ export const getNovelById = async (req, res) => {
             await Novel.aggregate([
                 {
                     $match: { novelId: parseInt(novelId) },
+                },
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "authorId",
+                        foreignField: "userId",
+                        as: "user",
+                    },
+                },
+                {
+                    $unwind: {
+                        path: "$user",
+                        preserveNullAndEmptyArrays: true,
+                    },
                 },
                 {
                     $lookup: {
@@ -398,20 +424,17 @@ export const getNovelById = async (req, res) => {
                             novelcounter: "$novelcounter",
                             cover: "$cover",
                             authorId: "$authorId",
+                            authorName: "$user.displayName",
                             genre: "$genre",
                             genreId: "$genreId",
                             isCompleted: "$isCompleted",
                         },
                         rating: { $avg: "$rating.rating" },
                         ratingCount: {
-                            $sum: {
-                                $cond: [{ $ifNull: ["$rating", false] }, 1, 0],
-                            },
+                            $addToSet: "$rating.userId",
                         },
                         chapters: {
-                            $sum: {
-                                $cond: [{ $ifNull: ["$chapter", false] }, 1, 0],
-                            },
+                            $addToSet: "$chapter.chapterId",
                         },
                     },
                 },
@@ -496,12 +519,13 @@ export const getNovelById = async (req, res) => {
                         nominations: "$nominations.count",
                         comments: "$comments.count",
                         authorId: "$_id.authorId",
+                        authorName: "$_id.authorName",
                         genre: "$_id.genre",
                         genreId: "$_id.genreId",
                         isCompleted: "$_id.isCompleted",
                         rating: { $ifNull: ["$rating", 0] },
-                        ratingCount: "$ratingCount",
-                        chapters: { $ifNull: ["$chapters", 0] },
+                        ratingCount: { $size: "$ratingCount" },
+                        chapters: { $size: "$chapters" },
                     },
                 },
             ])
