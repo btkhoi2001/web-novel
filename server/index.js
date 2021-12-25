@@ -10,6 +10,7 @@ import commentRouter from "./routes/comment.js";
 import bookmarkRouter from "./routes/bookmark.js";
 import followRouter from "./routes/follow.js";
 import notificationRouter from "./routes/notification.js";
+import adminRouter from "./routes/admin.js";
 import scheduler from "./schedules/jobs.js";
 
 dotenv.config();
@@ -33,6 +34,7 @@ app.use("/api/follow", followRouter);
 app.use("/api/bookmark", bookmarkRouter);
 app.use("/api/comment", commentRouter);
 app.use("/api/notification", notificationRouter);
+app.use("/api/admin", adminRouter);
 
 mongoose
     .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -8,6 +8,9 @@ import { CommentLike } from "../models/CommentLike.js";
 import { Novel } from "../models/Novel.js";
 import { NovelRead } from "../models/NovelRead.js";
 import { InvalidToken } from "../models/InvalidToken.js";
+import { VerificationToken } from "../models/VerificationToken.js";
+import { ResetPasswordToken } from "../models/ResetPasswordToken.js";
+import { sendEmail } from "../config/email/email.js";
 
 export const getUserProfile = async (req, res) => {
     const { userId } = req.params;
@@ -71,23 +74,13 @@ export const getUserProfile = async (req, res) => {
                             createdAt: "$createdAt",
                         },
                         readChapters: {
-                            $sum: {
-                                $cond: [
-                                    { $ifNull: ["$chapterread", false] },
-                                    1,
-                                    0,
-                                ],
-                            },
+                            $addToSet: "$chapterread._id",
                         },
                         publishedNovels: {
-                            $sum: {
-                                $cond: [{ $ifNull: ["$novel", false] }, 1, 0],
-                            },
+                            $addToSet: "$novel._id",
                         },
                         publishedChapters: {
-                            $sum: {
-                                $cond: [{ $ifNull: ["$chapter", false] }, 1, 0],
-                            },
+                            $addToSet: "$chapter._id",
                         },
                     },
                 },
@@ -100,9 +93,9 @@ export const getUserProfile = async (req, res) => {
                         gender: "$_id.gender",
                         flowers: "$_id.flowers",
                         createdAt: "$_id.createdAt",
-                        readChapters: "$readChapters",
-                        publishedNovels: "$publishedNovels",
-                        publishedChapters: "$publishedChapters",
+                        readChapters: { $size: "$readChapters" },
+                        publishedNovels: { $size: "$publishedNovels" },
+                        publishedChapters: { $size: "$publishedChapters" },
                     },
                 },
             ])
@@ -270,6 +263,7 @@ export const getUserAccount = async (req, res) => {
                 description: 1,
                 gender: 1,
                 flowers: 1,
+                isVerified: 1,
             }
         );
 
@@ -374,6 +368,125 @@ export const updatePassword = async (req, res) => {
             message: "password changed successfully",
             newAccessToken,
         });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const createVerificationToken = async (req, res) => {
+    const { userId, email, isVerified } = req.user;
+
+    if (isVerified)
+        return res
+            .status(200)
+            .json({ message: "this account has been verified" });
+
+    try {
+        const token = uuidv4();
+        const link = `${process.env.BASE_URL}/user/verify/${token}`;
+
+        if (!(await sendEmail(email, "Xác thực tài khoản", link)))
+            throw "Error";
+
+        await VerificationToken.findOneAndUpdate(
+            { userId },
+            { userId, token },
+            { upsert: true, lean: true }
+        );
+
+        res.status(200).json({
+            message: "account verification link sent to your email account",
+        });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const verifyVerificationToken = async (req, res) => {
+    const { token } = req.params;
+
+    try {
+        const verificationToken = await VerificationToken.findOneAndDelete(
+            { token },
+            { lean: true }
+        );
+
+        if (!verificationToken)
+            return res.status(404).json({ message: "token not found" });
+
+        await User.findOneAndUpdate(
+            { userId: verificationToken.userId },
+            { isVerified: true },
+            { lean: true }
+        );
+
+        res.status(200).json({ message: "account verified successfully" });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const createResetPasswordToken = async (req, res) => {
+    const { email } = req.body;
+    const user = await User.findOne({ email }, {}, { lean: true });
+
+    if (!email) return res.status(400).json({ message: "missing email" });
+
+    if (!user) return res.status(404).json({ message: "email not found" });
+
+    if (!user.isVerified)
+        return res.status(401).json({ message: "user has not been verified" });
+
+    try {
+        const token = uuidv4();
+        const link = `${process.env.BASE_URL}/user/reset-password/${token}`;
+
+        if (!(await sendEmail(email, "Quên mật khẩu", link))) throw "Error";
+
+        await ResetPasswordToken.findOneAndUpdate(
+            { userId: user.userId },
+            { userId: user.userId, token },
+            { upsert: true, lean: true }
+        );
+
+        res.status(200).json({
+            message: "reset password link sent to your email account",
+        });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
+export const verifyResetPasswordToken = async (req, res) => {
+    const { token } = req.params;
+    const { password, confirmPassword } = req.body;
+
+    if (!password || !confirmPassword)
+        return res.status(400).json({ message: "some fields are missing" });
+
+    if (password != confirmPassword)
+        return res
+            .status(400)
+            .json({ message: "confirmPassword doesn't match password" });
+
+    try {
+        const resetPasswordToken = await ResetPasswordToken.findOneAndDelete(
+            { token },
+            { lean: true }
+        );
+
+        if (!resetPasswordToken)
+            return res.status(404).json({ message: "token not found" });
+
+        const hashedPassword = await argon2.hash(password);
+
+        await User.findOneAndUpdate(
+            { userId: resetPasswordToken.userId },
+            { password: hashedPassword },
+            { lean: true }
+        );
+
+        res.status(200).json({ message: "password reset successfully" });
     } catch (error) {
         res.status(500).json({ error });
     }

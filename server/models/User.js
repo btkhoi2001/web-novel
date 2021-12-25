@@ -14,10 +14,12 @@ const schema = new mongoose.Schema(
             required: true,
             unique: true,
             validate: [validator.isEmail, "Invalid email"],
+            index: true,
         },
         displayName: {
             type: String,
             required: true,
+            index: true,
         },
         password: {
             type: String,
@@ -54,6 +56,7 @@ const schema = new mongoose.Schema(
     { timestamps: true }
 );
 
+schema.index({ email: "text", displayName: "text" });
 schema.plugin(AutoIncrement, { inc_field: "userId" });
 
 export const User = mongoose.model("users", schema);

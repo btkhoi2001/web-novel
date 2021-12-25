@@ -16,6 +16,7 @@ tags:
     - name: comment
     - name: user
     - name: notification
+    - name: admin
 paths:
     /api/auth/register:
         post:
@@ -233,6 +234,8 @@ paths:
                                                     type: string
                                                 authorId:
                                                     type: integer
+                                                authorName:
+                                                    type: string
                                                 genre:
                                                     type: string
                                                 genreId:
@@ -351,6 +354,8 @@ paths:
                                         type: integer
                                     authorId:
                                         type: integer
+                                    authorName:
+                                        type: string
                                     genre:
                                         type: string
                                     genreId:
@@ -1719,6 +1724,8 @@ paths:
                                                 enum: [Bí mật, Nam, Nữ]
                                             flowers:
                                                 type: integer
+                                            isVerified:
+                                                type: boolean
                 401:
                     description: Thiếu token
                     content:
@@ -1843,6 +1850,193 @@ paths:
                                     summary: Sai mật khẩu
                                     value:
                                         message: incorrect password
+    /api/user/verify:
+        post:
+            tags:
+                - "user"
+            summary: Gửi email xác thực tài khoản
+            security:
+                - bearerAuth: []
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                success1:
+                                    summary: Tài khoản đã được xác thực
+                                    value:
+                                        message: this account has been verified
+                                success2:
+                                    summary: Link xác thực đã được gửi đến email
+                                    value:
+                                        message: account verification link sent to your email account
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: access token not found
+    /api/user/verify/{token}:
+        post:
+            tags:
+                - "user"
+            summary: Xác thực token để xác thực email
+            parameters:
+                - in: path
+                  name: token
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: account verified successfully
+                404:
+                    description: Not Found
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: token not found
+    /api/user/reset-password:
+        post:
+            tags:
+                - "user"
+            summary: Gửi email lấy lại mật khẩu
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                            required:
+                                - email
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: reset password link sent to your email account
+                400:
+                    description: Thiếu email
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: missing email
+                401:
+                    description: Tài khoản chưa được xác thực
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: user has not been verified
+                404:
+                    description: Không tìm thấy email
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: email not found
+    /api/user/reset-password/{token}:
+        post:
+            tags:
+                - "user"
+            summary: Xác thực token để đổi mật khẩu
+            parameters:
+                - in: path
+                  name: token
+                  required: true
+                  schema:
+                      type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                password:
+                                    type: string
+                                confirmPassword:
+                                    type: string
+                            required:
+                                - password
+                                - confirmPassword
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: password reset successfully
+                400:
+                    description: Bad Request
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Nhập thiếu trường
+                                    value:
+                                        message: some fields are missing
+                                error2:
+                                    summary: Mật khẩu xác nhận không trùng mật khẩu mới
+                                    value:
+                                        message: confirmPassword doesn't match newPassword
+                404:
+                    description: Not Found
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                                        example: token not found
     /api/notification:
         get:
             tags:
@@ -1996,9 +2190,461 @@ paths:
                                     message:
                                         type: string
                                         example: notificationId ${notificationId} not found
+    /api/admin/user:
+        get:
+            tags:
+                - "admin"
+            summary: Lấy danh sách user
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: query
+                  name: page
+                  schema:
+                      type: integer
+                  description: Trang
+                - in: query
+                  name: limit
+                  schema:
+                      type: integer
+                  description: Số lượng user trả về
+                - in: query
+                  name: userId
+                  schema:
+                      type: integer
+                  description: userId
+                - in: query
+                  name: isBlocked
+                  schema:
+                      type: boolean
+                  description: Đang hoạt động / bị khóa
+                - in: query
+                  name: isVerified
+                  schema:
+                      type: boolean
+                  description: Đã / chưa xác thực
+                - in: query
+                  name: isAuthor
+                  schema:
+                      type: boolean
+                  description: Tác giả
+                - in: query
+                  name: search
+                  schema:
+                      type: string
+                  description: Tìm kiếm theo email hoặc tên hiển thị
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    users:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                userId:
+                                                    type: integer
+                                                email:
+                                                    type: string
+                                                displayName:
+                                                    type: string
+                                                avatar:
+                                                    type: string
+                                                description:
+                                                    type: string
+                                                gender:
+                                                    type: string
+                                                    enum: [Bí mật, Nam, Nữ]
+                                                isVerified:
+                                                    type: boolean
+                                                isBlocked:
+                                                    type: boolean
+                                                role:
+                                                    type: string
+                                                    enum:
+                                                        [Reader, Author, Admin]
+                                                flowers:
+                                                    type: integer
+                                    totalPages:
+                                        type: integer
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Không có quyền Admin
+                                    value:
+                                        message: this user has no admin permissions
+        put:
+            tags:
+                - "admin"
+            summary: Cập nhật user
+            security:
+                - bearerAuth: []
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                isBlocked:
+                                    type: boolean
+                                role:
+                                    type: string
+                                    enum: [Reader, Author]
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    updatedUser:
+                                        type: object
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Không có quyền Admin
+                                    value:
+                                        message: this user has no admin permissions
+    /api/admin/novel:
+        get:
+            tags:
+                - "admin"
+            summary: Lấy danh sách truyện
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: query
+                  name: page
+                  schema:
+                      type: integer
+                  description: Trang
+                - in: query
+                  name: limit
+                  schema:
+                      type: integer
+                  description: Số lượng user trả về
+                - in: query
+                  name: novelId
+                  schema:
+                      type: integer
+                  description: novelId
+                - in: query
+                  name: isArchived
+                  schema:
+                      type: boolean
+                  description: Lưu trữ
+                - in: query
+                  name: search
+                  schema:
+                      type: string
+                  description: Tìm kiếm theo tiêu đề
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    users:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                novelId:
+                                                    type: integer
+                                                title:
+                                                    type: string
+                                                description:
+                                                    type: string
+                                                cover:
+                                                    type: string
+                                                authorId:
+                                                    type: integer
+                                                genre:
+                                                    type: string
+                                                genreId:
+                                                    type: integer
+                                                isCompleted:
+                                                    type: boolean
+                                                isArchived:
+                                                    type: boolean
+                                    totalPages:
+                                        type: integer
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Không có quyền Admin
+                                    value:
+                                        message: this user has no admin permissions
+        put:
+            tags:
+                - "admin"
+            summary: Cập nhật truyện
+            security:
+                - bearerAuth: []
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                novelId:
+                                    type: integer
+                                isArchived:
+                                    type: boolean
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    updatedNovel:
+                                        type: object
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Không có quyền Admin
+                                    value:
+                                        message: this user has no admin permissions
+    /api/admin/chapter:
+        get:
+            tags:
+                - "admin"
+            summary: Lấy danh sách chương
+            security:
+                - bearerAuth: []
+            parameters:
+                - in: query
+                  name: page
+                  schema:
+                      type: integer
+                  description: Trang
+                - in: query
+                  name: limit
+                  schema:
+                      type: integer
+                  description: Số lượng user trả về
+                - in: query
+                  name: novelId
+                  schema:
+                      type: integer
+                  description: novelId
+                - in: query
+                  name: chapterId
+                  schema:
+                      type: integer
+                  description: chapterId
+                - in: query
+                  name: isArchived
+                  schema:
+                      type: boolean
+                  description: Lưu trữ
+                - in: query
+                  name: search
+                  schema:
+                      type: string
+                  description: Tìm kiếm theo tiêu đề
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    users:
+                                        type: array
+                                        items:
+                                            type: object
+                                            properties:
+                                                novelId:
+                                                    type: integer
+                                                chapterId:
+                                                    type: integer
+                                                title:
+                                                    type: string
+                                                chapterOrder:
+                                                    type: integer
+                                                content:
+                                                    type: string
+                                                isArchived:
+                                                    type: boolean
+                                    totalPages:
+                                        type: integer
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Không có quyền Admin
+                                    value:
+                                        message: this user has no admin permissions
+        put:
+            tags:
+                - "admin"
+            summary: Cập nhật chương
+            security:
+                - bearerAuth: []
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                chapterId:
+                                    type: integer
+                                isArchived:
+                                    type: boolean
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    updatedChapter:
+                                        type: object
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Không có quyền Admin
+                                    value:
+                                        message: this user has no admin permissions
+    /api/admin/notification:
+        post:
+            tags:
+                - "admin"
+            summary: Gửi thông báo
+            security:
+                - bearerAuth: []
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                receiverId:
+                                    type: integer
+                                    description: Nếu để trống sẽ gửi cho toàn bộ user
+                                title:
+                                    type: string
+                                message:
+                                    type: string
+            responses:
+                200:
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: object
+                                        example: notifications created successfully
+                401:
+                    description: Unauthorized
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                            examples:
+                                error1:
+                                    summary: Thiếu token
+                                    value:
+                                        message: access token not found
+                                error2:
+                                    summary: Không có quyền Admin
+                                    value:
+                                        message: this user has no admin permissions
 components:
     securitySchemes:
         bearerAuth:
             type: apiKey
             name: JWT-Authorization
             in: header
+servers:
+    # Added by API Auto Mocking Plugin
+    - description: SwaggerHub API Auto Mocking
+      url: https://virtserver.swaggerhub.com/btkhoi2001/web-novel/1.0.0

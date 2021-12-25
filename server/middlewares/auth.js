@@ -20,12 +20,24 @@ export const verifyToken = async (req, res, next) => {
 
         const user = await User.findOne(
             { userId },
-            { _id: 0, userId: 1, role: 1, password: 1 },
+            {
+                _id: 0,
+                userId: 1,
+                role: 1,
+                password: 1,
+                email: 1,
+                isVerified: 1,
+            },
             { lean: true }
         );
 
+        if (user.isBlocked) return next();
+
         req.user = user;
-        req.jwt = { accessToken, expired };
+        req.jwt = {
+            accessToken,
+            expired,
+        };
 
         next();
     } catch (error) {
@@ -48,6 +60,17 @@ export const verifyAuthor = (req, res, next) => {
     if (user.role != "Author")
         return res.status(401).json({
             message: "this user has no author permissions",
+        });
+
+    next();
+};
+
+export const verifyAdmin = (req, res, next) => {
+    const { user } = req;
+
+    if (user.role != "Admin")
+        return res.status(401).json({
+            message: "this user has no admin permissions",
         });
 
     next();
