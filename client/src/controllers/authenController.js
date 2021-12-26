@@ -5,7 +5,7 @@ class AuthenController {
             layout: 'authen'
         })
     }
-
+    return;
 }
 
 module.exports = new AuthenController();

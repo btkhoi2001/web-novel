@@ -6,7 +6,7 @@ class chartController {
             js: ['chartPage'],
         })
     }
-
+    return;
 }
 
 module.exports = new chartController();

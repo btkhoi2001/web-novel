@@ -1,16 +1,33 @@
+$(".mobile-navbar-btn").click(function(){
+    $(".mobile-navbar").toggleClass('d-none');
+});
+$(".mobile-item-link").click(function(){
+    $(this).parent(".mobile-navbar-items").children(".mobile-droplist").toggleClass('d-none');
+});
+
+$('html').click(function() {
+    $('.search-menu').empty();
+    $('.notification-menu').addClass('d-none'); 
+}); 
+$('.notification-btn').click(function(event) {
+    event.stopPropagation();
+    $('.notification-menu').toggleClass('d-none'); 
+}); 
+
+
 const novelLists = document.querySelector('.search-menu');
 const genreLists = document.querySelector('.droplist-fluid');
 const searchBar = document.getElementById('searchBar');
+const genreSidebar = document.querySelector('.col-3 .classification-list')
 const chart = document.querySelector('.top-novels');
 const pagination = document.querySelector('.pagination');
-
 
 
 const novelsPerPage = 10;
 let totalPages ;
 let currentPage = 1;
-let listOfNovels = [];
 let sortRatingsOfNovels = [];
+let listOfNovels = [];
 let listOfGenres = [];
 
 const loadPage = async () => {
@@ -20,12 +37,20 @@ const loadPage = async () => {
         const res2 = await fetch('http://localhost:5000/api/novel/genre');
         const genres = await res2.json();
         listOfNovels = novels.novels;
+        listOfNovels = listOfNovels.filter((novel) => {
+            return (novel.genreId == genreID);
+        });
         sortRatingsOfNovels = sortRatings(listOfNovels);
         totalPages = Math.ceil(sortRatingsOfNovels.length / 10);
         listOfGenres = genres.genres;     
         displayGenres(listOfGenres);
         displayChartPage(sortRatingsOfNovels, currentPage);
+        displayGenreTitle();
         display();
+        // scroll to section title
+        document.body.scrollTop = 400; // For Safari
+        document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
+
     } catch (err) {
         console.error(err);
     }
@@ -89,7 +114,7 @@ const displaySearchResults = (novels, length) => {
 };
 
 const displayGenres = (genres) => {
-    let htmlString;
+    let htmlString, htmlStr;
     htmlString = genres.map((genre) => {
         return `
                 <a href="/genre/${genre.genreId.toString()}" class="">
@@ -98,9 +123,33 @@ const displayGenres = (genres) => {
         `;
     })
         .join('');
-   
+
     genreLists.innerHTML = htmlString;
+
+    htmlStr = genres.map((genre) => {
+        if (genre.genreId == genreID)
+            return `
+                    <li class="active"><a href="/genre/${genre.genreId.toString()}"> ${genre.name}</a></li>
+                `;
+        else
+            return `
+                <li><a href="/genre/${genre.genreId.toString()}"> ${genre.name}</a></li>
+            `;
+    })
+        .join('');
+
+    genreSidebar.innerHTML = htmlStr;
 };
+
+const displayGenreTitle = () => {
+    let title = listOfGenres[genreID-1].name;
+    $('.col-9 .section-title').empty();
+    $('.col-9 .section-title').append(
+        `
+            <span>${title}</span>
+        `
+    )
+}
 
 const sortRatings = (data) => {
     let sortedData;
@@ -230,7 +279,7 @@ const displayChartPage = (novels, currPage) => {
                             </li> 
                             <li>
                                 <span class="d-block border border-primary small px-3 py-1 text-primary cursor-pointer">
-                                ${novel.genre}
+                                   Chương ${novel.lastChapter.chapterOrder}
                                 </span>
                             </li>
                         </ul>
@@ -251,7 +300,7 @@ const display = async () => {
         displayChartPage(sortRatingsOfNovels, currentPage);
         // scroll to section title
         document.body.scrollTop = 400; // For Safari
-        document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
+        document.documentElement.scrollTop = 400; 
         display();
     })
 }
