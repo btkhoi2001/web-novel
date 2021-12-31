@@ -1,12 +1,34 @@
+$(".mobile-navbar-btn").click(function(){
+    $(".mobile-navbar").toggleClass('d-none');
+});
+$(".mobile-item-link").click(function(){
+    $(this).parent(".mobile-navbar-items").children(".mobile-droplist").toggleClass('d-none');
+});
+
+$('html').click(function() {
+    $('.search-menu').empty();
+    $('.notification-menu').addClass('d-none'); 
+}); 
+$('.notification-btn').click(function(event) {
+    event.stopPropagation();
+    $('.notification-menu').toggleClass('d-none'); 
+}); 
+$('.notification-menu').click(function (event) {
+    event.stopPropagation();
+});
+
+
 // Search novel function
 const novelLists = document.querySelector('.search-menu');
 const genreLists = document.querySelector('.droplist-fluid');
 const searchBar = document.getElementById('searchBar');
 const hotNovels = document.querySelector('.hot-novels');
+const recentlyUpdatedNovels = document.querySelector('.update-novels')
 
 
 let listOfNovels = [];
 let listOfGenres = [];
+let listOfRecentlyUpdated = []
 
 const loadPage = async () => {
     try {
@@ -14,10 +36,14 @@ const loadPage = async () => {
         const novels = await res.json();
         const res2 = await fetch('http://localhost:5000/api/novel/genre');
         const genres = await res2.json();
+        const res3 = await fetch('http://localhost:5000/api/novel?sortBy=update');
+        const updatedNovels = await res3.json();
+        listOfRecentlyUpdated = updatedNovels.novels
         listOfNovels = novels.novels;
         listOfGenres = genres.genres;     
         displayGenres(listOfGenres);
         displayNovels(listOfNovels);
+        displayRecentlyUpdatedNovels(listOfRecentlyUpdated);
     } catch (err) {
         console.error(err);
     }
@@ -53,7 +79,7 @@ const displaySearchResults = (novels, length) => {
         htmlString = novels.map((novel) => {
             return `
                 <li class="">
-                    <a href="/novel/${novel.novelId.toString()}" class="d-block">
+                    <a href="/novel/${novel.novelId}" class="d-block">
                         ${novel.title}
                     </a> 
                 </li>
@@ -69,7 +95,7 @@ const displaySearchResults = (novels, length) => {
         htmlString = results.map((novel) => {
             return `
                 <li class="">
-                    <a href="/novel/${novel.novelId.toString()}" class="">
+                    <a href="/novel/${novel.novelId}" class="">
                         ${novel.title}
                     </a> 
                 </li>
@@ -84,7 +110,7 @@ const displayGenres = (genres) => {
     let htmlString;
     htmlString = genres.map((genre) => {
         return `
-                <a href="/genre/${genre.genreId.toString()}" class="">
+                <a href="/genre/${genre.genreId}" class="">
                     ${genre.name}
                 </a> 
         `;
@@ -94,16 +120,27 @@ const displayGenres = (genres) => {
     genreLists.innerHTML = htmlString;
 };
 
+
 const displayNovels = (novels) => {
     let htmlString;
     let results = [];
-        for (i = 0; i < 12; i++) {
-            results.push(novels[i]);
-        }
+    let len;
+
+    if(novels.length < 12) {
+        len = novels.length;
+    }
+    else {
+        len = 12;
+    }
+
+    for (i = 0; i < len; i++) {
+        results.push(novels[i]);
+    }
+
     htmlString = results.map((novel) => {
         let result = ` 
             <div class="item col-lg-2 col-sm-3 col-4">
-                <a href="/novel/${novel.novelId.toString()}" class="">`;
+                <a href="/novel/${novel.novelId}" class="">`;
         if(novel.isCompleted) {
             result += `<span class="item__fulllabel"></span>`
         }
@@ -118,5 +155,44 @@ const displayNovels = (novels) => {
     }).join('');
    
     hotNovels.innerHTML = htmlString;
+};
+
+const displayRecentlyUpdatedNovels = (novels) => {
+    let htmlString;
+    let results = [];
+    let length;
+
+    if(novels.length < 12)
+        length = novels.length;
+    else 
+        length = 12;
+
+    for (i = 0; i < length; i++) {
+        results.push(novels[i]);
+    }
+
+    htmlString = results.map((novel) => {
+        let result = `
+        <div class="row">
+            <div class="list-col col-xs-9 col-md-6 col-sm-8 col-title d-flex">
+                <i class="fas fa-angle-right"></i>
+                <a href="/novel/${novel.novelId}" title="${novel.title}">${novel.title}</a>
+                <span class="lable-title lable-new">New</span>
+                <span class="lable-title lable-hot mx-2">Hot</span>
+            </div>
+            <div class="list-col hidden-xs col-md-3 col-sm-2 col-category">
+                <a href="/genre/${novel.genreId}" title="${novel.genre}">${novel.genre}</a>
+            </div>
+            <div class="list-col col-xs-3 col-md-3 col-sm-2 col-chap">
+                <a href="#" title="${novel.lastChapter.title}">
+                    Chương ${novel.lastChapter.chapterOrder}
+                </a>
+            </div>
+        </div>`;
+
+        return result;
+    }).join('');
+   
+    recentlyUpdatedNovels.innerHTML = htmlString;
 };
 
