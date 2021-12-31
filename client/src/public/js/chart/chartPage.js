@@ -4,27 +4,25 @@ const searchBar = document.getElementById('searchBar');
 const chart = document.querySelector('.top-novels');
 const pagination = document.querySelector('.pagination');
 
-
+let key = 'view';
 
 const novelsPerPage = 10;
 let totalPages ;
 let currentPage = 1;
 let listOfNovels = [];
-let sortRatingsOfNovels = [];
 let listOfGenres = [];
 
 const loadPage = async () => {
     try {
-        const res = await fetch('http://localhost:5000/api/novel');
+        const res = await fetch(`http://localhost:5000/api/novel?sortBy=${key}`);
         const novels = await res.json();
         const res2 = await fetch('http://localhost:5000/api/novel/genre');
         const genres = await res2.json();
         listOfNovels = novels.novels;
-        sortRatingsOfNovels = sortRatings(listOfNovels);
-        totalPages = Math.ceil(sortRatingsOfNovels.length / 10);
+        totalPages = Math.ceil(listOfNovels.length / 10);
         listOfGenres = genres.genres;     
         displayGenres(listOfGenres);
-        displayChartPage(sortRatingsOfNovels, currentPage);
+        displayChartPage(listOfNovels, currentPage);
         display();
     } catch (err) {
         console.error(err);
@@ -32,6 +30,52 @@ const loadPage = async () => {
 };
 
 loadPage();
+
+$('.col-3 .list .popular').click( async () => {
+    key = 'view';
+    $('.col-3 .list .list-item').removeClass('active');
+    $('.col-3 .list .popular').addClass('active');
+    loadPage();
+     // scroll to section title
+     document.body.scrollTop = 400; // For Safari
+     document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
+})
+$('.col-3 .list .new').click(async () => {
+    key = 'new';
+    $('.col-3 .list .list-item').removeClass('active');
+    $('.col-3 .list .new').addClass('active');
+    loadPage();
+     // scroll to section title
+     document.body.scrollTop = 400; // For Safari
+     document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
+})
+$('.col-3 .list .nominated').click( async () => {
+    key = 'nomination';
+    $('.col-3 .list .list-item').removeClass('active');
+    $('.col-3 .list .nominated').addClass('active');
+    loadPage();
+     // scroll to section title
+     document.body.scrollTop = 400; // For Safari
+     document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
+})
+$('.col-3 .list .like').click(async () => {
+    key = 'rating';
+    $('.col-3 .list .list-item').removeClass('active');
+    $('.col-3 .list .like').addClass('active');
+    loadPage();
+     // scroll to section title
+     document.body.scrollTop = 400; // For Safari
+     document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
+})
+$('.col-3 .list .comment').click(async () => {
+    key = 'comment';
+    $('.col-3 .list .list-item').removeClass('active');
+    $('.col-3 .list .comment').addClass('active');
+    loadPage();
+     // scroll to section title
+     document.body.scrollTop = 400; // For Safari
+     document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
+})
 
 
 // Search novel names
@@ -61,7 +105,7 @@ const displaySearchResults = (novels, length) => {
         htmlString = novels.map((novel) => {
             return `
                 <li class="">
-                    <a href="/novel/${novel.novelId.toString()}" class="d-block">
+                    <a href="/novel/${novel.novelId}" class="d-block">
                         ${novel.title}
                     </a> 
                 </li>
@@ -77,7 +121,7 @@ const displaySearchResults = (novels, length) => {
         htmlString = results.map((novel) => {
             return `
                 <li class="">
-                    <a href="/novel/${novel.novelId.toString()}" class="">
+                    <a href="/novel/${novel.novelId}" class="">
                         ${novel.title}
                     </a> 
                 </li>
@@ -92,7 +136,7 @@ const displayGenres = (genres) => {
     let htmlString;
     htmlString = genres.map((genre) => {
         return `
-                <a href="/genre/${genre.genreId.toString()}" class="">
+                <a href="/genre/${genre.genreId}" class="">
                     ${genre.name}
                 </a> 
         `;
@@ -211,12 +255,12 @@ const displayChartPage = (novels, currPage) => {
         }
 
         result += `
-                    <a href="/novel/${novel.novelId.toString()}" class="mt-1 mx-4">
+                    <a href="/novel/${novel.novelId}" class="mt-1 mx-4">
                         <img alt="" height="116" width="78" src="${novel.cover}" lazy="loaded"> 
                     </a> 
                     <div class="media-body">
                         <h2 class="mb-2" style="font-size: 1.6rem;">
-                            <a href="/novel/${novel.novelId.toString()}" >${novel.title}</a>
+                            <a href="/novel/${novel.novelId}" >${novel.title}</a>
                         </h2> 
                         <div class="text-secondary text-ellipsis--3">
                         ${novel.description}
@@ -248,7 +292,7 @@ const display = async () => {
     $('.page-link').click(function(e) {
         let value = e.target.value;
         currentPage = parseInt(value);
-        displayChartPage(sortRatingsOfNovels, currentPage);
+        displayChartPage(listOfNovels, currentPage);
         // scroll to section title
         document.body.scrollTop = 400; // For Safari
         document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
