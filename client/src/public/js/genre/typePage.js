@@ -13,6 +13,10 @@ $('.notification-btn').click(function(event) {
     event.stopPropagation();
     $('.notification-menu').toggleClass('d-none'); 
 }); 
+$('.notification-menu').click(function (event) {
+    event.stopPropagation();
+});
+
 
 
 const novelLists = document.querySelector('.search-menu');
@@ -86,7 +90,7 @@ const displaySearchResults = (novels, length) => {
         htmlString = novels.map((novel) => {
             return `
                 <li class="">
-                    <a href="/novel/${novel.novelId.toString()}" class="d-block">
+                    <a href="/novel/${novel.novelId}" class="d-block">
                         ${novel.title}
                     </a> 
                 </li>
@@ -102,7 +106,7 @@ const displaySearchResults = (novels, length) => {
         htmlString = results.map((novel) => {
             return `
                 <li class="">
-                    <a href="/novel/${novel.novelId.toString()}" class="">
+                    <a href="/novel/${novel.novelId}" class="">
                         ${novel.title}
                     </a> 
                 </li>
@@ -117,7 +121,7 @@ const displayGenres = (genres) => {
     let htmlString, htmlStr;
     htmlString = genres.map((genre) => {
         return `
-                <a href="/genre/${genre.genreId.toString()}" class="">
+                <a href="/genre/${genre.genreId}" class="">
                     ${genre.name}
                 </a> 
         `;
@@ -129,11 +133,11 @@ const displayGenres = (genres) => {
     htmlStr = genres.map((genre) => {
         if (genre.genreId == genreID)
             return `
-                    <li class="active"><a href="/genre/${genre.genreId.toString()}"> ${genre.name}</a></li>
+                    <li class="active"><a href="/genre/${genre.genreId}"> ${genre.name}</a></li>
                 `;
         else
             return `
-                <li><a href="/genre/${genre.genreId.toString()}"> ${genre.name}</a></li>
+                <li><a href="/genre/${genre.genreId}"> ${genre.name}</a></li>
             `;
     })
         .join('');
@@ -260,12 +264,12 @@ const displayChartPage = (novels, currPage) => {
         }
 
         result += `
-                    <a href="/novel/${novel.novelId.toString()}" class="mt-1 mx-4">
+                    <a href="/novel/${novel.novelId}" class="mt-1 mx-4">
                         <img alt="" height="116" width="78" src="${novel.cover}" lazy="loaded"> 
                     </a> 
                     <div class="media-body">
                         <h2 class="mb-2" style="font-size: 1.6rem;">
-                            <a href="/novel/${novel.novelId.toString()}" >${novel.title}</a>
+                            <a href="/novel/${novel.novelId}" >${novel.title}</a>
                         </h2> 
                         <div class="text-secondary text-ellipsis--3">
                         ${novel.description}
