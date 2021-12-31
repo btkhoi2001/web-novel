@@ -167,16 +167,16 @@
     text-decoration: underline;
 }
 
-.loginmes{
+.mess{
     text-align: center;
     margin-top: 1rem;
 }
 
-.loginmes-error {
+.mess-error {
     color: var(--color-error);
 }
 
-.loginmes-success{
+.mess-success{
     color: var(--color-success);
 }
 

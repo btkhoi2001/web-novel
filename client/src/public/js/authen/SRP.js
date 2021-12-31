@@ -37,12 +37,12 @@ refreshButton.addEventListener('click', function () {
 
 
 function setFormMessage(formElement, type, message) {
-    const messageElement = formElement.querySelector(".loginmes");
+    const messageElement = formElement.querySelector(".mess");
     messageElement.textContent = message;
-    messageElement.classList.remove("loginmes-success,loginmes-error");
+    messageElement.classList.remove("mess-success,mess-error");
     if(type == 'error')
-        messageElement.classList.add('loginmes-error');
-    else messageElement.classList.add('loginmes-success');
+        messageElement.classList.add('mess-error');
+    else messageElement.classList.add('mess-success');
 }
 
 function setInputError(inputElement, message) {
@@ -54,6 +54,12 @@ function clearInputError(inputElement) {
     inputElement.classList.remove("input--error");
     inputElement.parentElement.querySelector(".input-error-mes").textContent = "";
 }
+
+const validateEmail = (email) => {
+  return email.match(
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  );
+};
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
@@ -85,36 +91,75 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     registerForm.addEventListener("submit", e => {
         e.preventDefault();
-        const user = document.querySelector("#regUser").value;
-        const email = document.querySelector("#regEmail").value;
-        const password = document.querySelector("#regPass").value;
-        const confpass = document.querySelector("#regPass2").value;
-        fetch("http://localhost:5000/api/auth/register", { 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, user, password, confpass }) 
-        }).then(res => res.json()).then(res => {
-
-        }).catch(e => {
-            setFormMessage(loginForm, 'error', 'Tên đăng nhập/Email/Mật khẩu không hợp lệ!');
-        })
+        if(checkUser && checkEmail && checkPass && checkPass2 && checkCaptcha) {
+            const displayName = document.querySelector("#regUser").value;
+            const email = document.querySelector("#regEmail").value;
+            const password = document.querySelector("#regPass").value;
+            const confirmPassword = document.querySelector("#regPass2").value;
+            fetch("http://localhost:5000/api/auth/register", { 
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, displayName, password, confirmPassword }) 
+            }).then(res => res.json()).then(res => {
+                if(!(res.accessToken))
+                    setFormMessage(registerForm, 'error', res.message);
+                else 
+                    {
+                        setFormMessage(registerForm, 'success', res.message);
+                        window.localStorage.setItem("token", res.accessToken);
+                    }
+            }).catch(err => {
+                setFormMessage(registerForm, 'error', 'Something wrong!');
+            })
+        }
+        else return;
     });
+    var checkUser = false;
+    var checkEmail = false;
+    var checkPass = false;
+    var checkPass2 = false;
+    var checkCaptcha = false;
     document.querySelectorAll(".input-field").forEach(inputElement => {
         inputElement.addEventListener("blur", e => {
-            if (e.target.id === "regUser" && e.target.value.length > 0 && e.target.value.length < 8) {
-                setInputError(inputElement, "Tên người dùng phải có ít nhất 8 kí tự");
+            if (e.target.id === "regUser"){
+                if(e.target.value.length > 0 && e.target.value.length < 8) {
+                    setInputError(inputElement, "Tên người dùng phải có ít nhất 8 kí tự");
+                    checkUser = false;
+                }
+                else checkUser = true;
             }
-            if (e.target.id === "regPass" && e.target.value.length > 0 && e.target.value.length < 8) {
-                setInputError(inputElement, "Mật khẩu phải có ít nhất 8 kí tự");
+            if (e.target.id === "regEmail"){ 
+                if(validateEmail(e.target.value))
+                    checkEmail = true;
+                else {
+                    setInputError(inputElement, "Email không hợp lệ");
+                    checkEmail = false;
+                }
+            }
+            if (e.target.id === "regPass") {
+                if(e.target.value.length > 0 && e.target.value.length < 8) {
+                    setInputError(inputElement, "Mật khẩu phải có ít nhất 8 kí tự");
+                    checkPass = false;
+                }
+                else checkPass = true;
             }
             const P = document.querySelector("#regPass");
-            if (e.target.id === "regPass2" && e.target.value !== P.value) {
-                setInputError(inputElement, "Khác mật khẩu đã nhập");
+            if (e.target.id === "regPass2") {
+                if(e.target.value !== P.value) {
+                    setInputError(inputElement, "Khác mật khẩu đã nhập");
+                    checkPass2 = false;
+                }
+                else checkPass2 = true;
             }
-            if (e.target.id === "textBox" && e.target.value !== c) {
-                setInputError(inputElement, "Sai mã captcha!");
+            if (e.target.id === "textBox") {
+
+                if(e.target.value !== c) {
+                    setInputError(inputElement, "Sai mã captcha!");
+                    checkCaptcha = false;
+                }
+                else checkCaptcha =true;
             }
         });
         inputElement.addEventListener("input", e => {
