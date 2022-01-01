@@ -40,7 +40,7 @@ function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".mess");
     messageElement.textContent = message;
     messageElement.classList.remove("mess-success,mess-error");
-    if(type == 'error')
+    if(type === 'error')
         messageElement.classList.add('mess-error');
     else messageElement.classList.add('mess-success');
 }
