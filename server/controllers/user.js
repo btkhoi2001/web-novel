@@ -71,6 +71,7 @@ export const getUserProfile = async (req, res) => {
                             description: "$description",
                             gender: "$gender",
                             flowers: "$flowers",
+                            role: "$role",
                             createdAt: "$createdAt",
                         },
                         readChapters: {
@@ -92,6 +93,7 @@ export const getUserProfile = async (req, res) => {
                         description: "$_id.description",
                         gender: "$_id.gender",
                         flowers: "$_id.flowers",
+                        role: "$_id.role",
                         createdAt: "$_id.createdAt",
                         readChapters: { $size: "$readChapters" },
                         publishedNovels: { $size: "$publishedNovels" },
@@ -263,6 +265,7 @@ export const getUserAccount = async (req, res) => {
                 description: 1,
                 gender: 1,
                 flowers: 1,
+                role: 1,
                 isVerified: 1,
             }
         );
@@ -295,8 +298,6 @@ export const updateUserAccount = async (req, res) => {
             gender: 1,
             avatar: 1,
         });
-
-        console.log(updatedUser);
 
         if (file) {
             const { avatar } = updatedUser;

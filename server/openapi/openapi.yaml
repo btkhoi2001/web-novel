@@ -1626,6 +1626,9 @@ paths:
                                                 enum: [Bí mật, Nam, Nữ]
                                             flowers:
                                                 type: integer
+                                            role:
+                                                type: string
+                                                enum: ["Reader", "Author"]
                                             createdAt:
                                                 type: string
                                                 format: date
@@ -1724,6 +1727,9 @@ paths:
                                                 enum: [Bí mật, Nam, Nữ]
                                             flowers:
                                                 type: integer
+                                            role:
+                                                type: string
+                                                enum: [Reader, Author]
                                             isVerified:
                                                 type: boolean
                 401:
@@ -1963,7 +1969,7 @@ paths:
                                 properties:
                                     message:
                                         type: string
-                                        example: user has not been verified
+                                        example: user has not been verified 
                 404:
                     description: Không tìm thấy email
                     content:
@@ -1973,7 +1979,7 @@ paths:
                                 properties:
                                     message:
                                         type: string
-                                        example: email not found
+                                        example: email not found                                       
     /api/user/reset-password/{token}:
         post:
             tags:
@@ -2036,7 +2042,7 @@ paths:
                                 properties:
                                     message:
                                         type: string
-                                        example: token not found
+                                        example: token not found              
     /api/notification:
         get:
             tags:
@@ -2645,6 +2651,6 @@ components:
             name: JWT-Authorization
             in: header
 servers:
-    # Added by API Auto Mocking Plugin
-    - description: SwaggerHub API Auto Mocking
-      url: https://virtserver.swaggerhub.com/btkhoi2001/web-novel/1.0.0
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/btkhoi2001/web-novel/1.0.0
