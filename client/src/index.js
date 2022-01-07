@@ -3,6 +3,10 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const app = express();
 const methodOverride = require('method-override');
+const cors = require('cors')
+
+ 
+app.use(cors());
 
 // port
 const port = 3000 || process.env.PORT ;

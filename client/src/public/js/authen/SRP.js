@@ -84,7 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     setFormMessage(loginForm, 'success', res.message);
                     window.localStorage.setItem("token", res.accessToken);
 
-                    // Redirect to home page (Readers login)
+                   
+                    //Redirect to home page (Readers login)
                     window.location.replace("http://localhost:3000/home")
                 }
         }).catch(err => {
