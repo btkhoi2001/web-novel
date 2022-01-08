@@ -87,6 +87,18 @@ export const login = async (req, res) => {
     }
 };
 
+export const loggedIn = async (req, res) => {
+    const { accessToken } = req.jwt;
+    const { displayName, role, avatar } = req.user;
+
+    res.status(200).json({
+        accessToken,
+        displayName,
+        role,
+        avatar,
+    });
+};
+
 export const logout = async (req, res) => {
     const { accessToken } = req.jwt;
 

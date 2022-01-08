@@ -24,6 +24,8 @@ export const verifyToken = async (req, res, next) => {
                 _id: 0,
                 userId: 1,
                 role: 1,
+                displayName: 1,
+                avatar: 1,
                 password: 1,
                 email: 1,
                 isVerified: 1,

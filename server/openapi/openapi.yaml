@@ -128,6 +128,48 @@ paths:
                                 properties:
                                     message:
                                         example: incorrect email or password
+    /api/auth/logged-in:
+        post:
+            tags:
+                - "auth"
+            summary: Kiểm tra token
+            security:
+                - bearerAuth: []            
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    accessToken:
+                                        type: string
+                                    displayName:
+                                        type: string
+                                    role:
+                                        type: string
+                                        enum: [Reader, Author, Admin]
+                                    avatar:
+                                        type: string
+                "400":
+                    description: Nhập thiếu trường
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        example: missing email or password
+                "401":
+                    description: Nhập sai email hoặc mật khẩu
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        example: incorrect email or password                                        
     /api/auth/logout:
         post:
             tags:
