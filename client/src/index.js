@@ -33,9 +33,13 @@ app.use(express.json());
 // override with the X-HTTP-Method-Override header in the request
 app.use(methodOverride('_method'));
 
+app.get('/', (req, res) => {
+    res.redirect('/home');
+});
 // router
 const route = require('./routes');
 route(app);
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

@@ -1,18 +1,10 @@
 class chartController {
     home(req, res, next) {
         res.render('chart/home', {
-            layout: 'chart',
-            css: ['style', 'base'],
-            js: ['chartPage'],
-        })
-        return;
-    }
-    
-    homeSignedIn(req, res, next) {
-        res.render('chart/home', {
-            layout: 'chartSignedIn',
-            css: ['chartPageSignedIn', 'base'],
-            js: ['chartPageSignedIn'],
+            layout: 'homePage',
+            css: ['chartPage', 'base'],
+            js: ['chartPage', 'isSignedIn'],
+            
         })
         return;
     }
