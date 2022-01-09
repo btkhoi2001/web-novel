@@ -1460,23 +1460,29 @@ paths:
                             schema:
                                 type: object
                                 properties:
-                                    follows:
+                                    comments:
                                         type: array
                                         items:
                                             type: object
                                             properties:
-                                                novelId:
+                                                commentId:
                                                     type: integer
-                                                novelTitle:
-                                                    type: string
-                                                cover:
-                                                    type: string
-                                                chapterId:
+                                                userId:
                                                     type: integer
-                                                chapterOrder:
-                                                    type: integer
-                                                chapterTitle:
+                                                displayName:
                                                     type: string
+                                                avatar:
+                                                    type: string
+                                                content:
+                                                    type: string
+                                                createdAt:
+                                                    type: string
+                                                likes:
+                                                    type: integer
+                                                isLiked:
+                                                    type: boolean
+                                                childComments:
+                                                    type: integer
                                     totalPages:
                                         type: integer
         post:
