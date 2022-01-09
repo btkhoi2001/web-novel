@@ -6,7 +6,7 @@ class novelIntroController {
         res.render('novelIntro/home', {
             layout: 'novelIntro',
             css: ['novelIntro', 'base'],
-            js: ['novelIntro','isSignedIn'],
+            js: ['novelIntro', 'header', 'isSignedIn'],
             novelID: novelID,
             
         })
