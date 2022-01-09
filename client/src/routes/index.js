@@ -2,7 +2,7 @@ const authenRoute = require('./authenRoute');
 const chartRoute = require('./chartRoute');
 const genreRoute = require('./genreRoute');
 const accountRoute = require('./accountRoute');
-
+const novelIntroRoute = require('./novelIntroRoute');
 
 function route(app) {
 
@@ -11,6 +11,8 @@ function route(app) {
     app.use('/chart', chartRoute);
 
     app.use('/genre', genreRoute);
+
+    app.use('/novel', novelIntroRoute);
 
     app.use('/account', accountRoute);
 
