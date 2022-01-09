@@ -5,7 +5,7 @@ class novelIntroController {
         const novelID =  req.params.id;
         res.render('novelIntro/home', {
             layout: 'novelIntro',
-            css: ['novelIntro', 'base'],
+            css: ['novelIntro', 'novelIntroResponsive'],
             js: ['novelIntro', 'header', 'isSignedIn'],
             novelID: novelID,
             

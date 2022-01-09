@@ -1,0 +1,123 @@
+.mobile-navbar {
+    padding-top: 1.2rem;
+    padding-bottom: 2rem;
+}
+.mobile-navbar-items {
+    color: #ffffff;
+    padding-bottom: 1.2rem;
+}
+.mobile-navbar-icon {
+    font-size: 1.5rem;
+}
+.mobile-item-link {
+    color: white;
+    font-size: 1.8rem;
+}
+.mobile-droplist {
+    display: block;
+}
+.mobile-droplist li a {
+    color: white;
+    font-size: 1.6rem;
+}
+.mobile-droplist li:hover a {
+    color: var(--orange-color);
+}
+.mobile-menu-btn {
+    padding: .4rem .8rem;
+}
+.mobile-navbar-btn i {
+    color: rgba(255, 255, 255, 0.849);
+    font-size: 2.4rem;
+    padding: .6rem 1rem;
+    border: 2px solid rgba(221, 221, 221, 0.61);
+    border-radius:.6rem;
+}
+
+@media (min-width: 992px){
+.col-truyen-side {
+    width: 27%;
+    padding: 0 0 0 7.5px;
+}
+
+.col-truyen-side .list.list-truyen {
+    margin: 10px 0;
+    padding-right: 14px;
+    padding-left: 14px;
+}
+.info-holder {
+    width: 32%;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+.book img{
+    padding-right: 15px;
+}
+}
+
+
+@media (min-width: 1025px){
+.comment-box {
+    margin-top: 15px;
+}
+.comment-box>.title-list {
+    margin-bottom: 0!important;
+}
+.list .glyphicon-chevron-right {
+    font-size: 14px;
+}
+}
+
+@media (min-width: 1200px){
+.csstransforms3d .books {
+    margin: 15px auto 30px;
+}
+.csstransforms3d .book {
+    position: relative;
+    transform: perspective(300px) rotateY(
+-3deg);
+    -moz-transform: rotateY(-3deg);
+    -webkit-transform: perspective(300) rotateY(
+-3deg);
+    outline: 1px solid transparent;
+    box-shadow: 5px 5px 20px #333;
+    margin: 0;
+}
+.csstransforms3d .book:before {
+    width: 100%;
+    left: 7.5%;
+    background-color: #000;
+}
+.csstransforms3d .book:after {
+    width: 5%;
+    left: 100%;
+    background-color: #EFEFEF;
+    box-shadow: inset 0px 0px 5px #aaa;
+    transform: perspective(300px) rotateY(
+20deg);
+    -moz-transform: rotateY(20deg);
+    -webkit-transform: perspective(300) rotateY(
+20deg);
+}
+.csstransforms3d .book:before, .csstransforms3d .book:after {
+    position: absolute;
+    top: 2%;
+    height: 96%;
+    content: ' ';
+    z-index: -1;
+}
+.book{
+    display: inline-block;
+}
+.csstransforms3d .book img {
+    position: relative;
+}
+.book img {
+    vertical-align: middle;
+    border: 1px solid #000;
+    border-left: 5px solid #000;
+    height: 324px;
+    width: 221px;
+}
+}
