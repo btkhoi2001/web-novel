@@ -449,7 +449,7 @@ export const getNovelById = async (req, res) => {
                                     },
                                 },
                                 in: {
-                                    count: "$$this.daily",
+                                    count: "$$this.all",
                                 },
                             },
                         },
@@ -473,7 +473,7 @@ export const getNovelById = async (req, res) => {
                                     },
                                 },
                                 in: {
-                                    count: "$$this.daily",
+                                    count: "$$this.all",
                                 },
                             },
                         },
@@ -497,7 +497,7 @@ export const getNovelById = async (req, res) => {
                                     },
                                 },
                                 in: {
-                                    count: "$$this.daily",
+                                    count: "$$this.all",
                                 },
                             },
                         },

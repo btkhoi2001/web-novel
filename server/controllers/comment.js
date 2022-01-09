@@ -1,6 +1,7 @@
 import { Comment } from "../models/Comment.js";
 import { CommentLike } from "../models/CommentLike.js";
 import { Novel } from "../models/Novel.js";
+import { NovelCounter } from "../models/NovelCounter.js";
 import { Chapter } from "../models/Chapter.js";
 
 export const getComment = async (req, res) => {
@@ -186,6 +187,19 @@ export const createComment = async (req, res) => {
             parentCommentId,
             content,
         });
+
+        await NovelCounter.findOneAndUpdate(
+            { novelId, name: "comment" },
+            {
+                $inc: {
+                    daily: 1,
+                    weekly: 1,
+                    monthly: 1,
+                    all: 1,
+                },
+            },
+            { lean: true, new: true }
+        );
 
         res.status(201).json({ newComment });
     } catch (error) {
