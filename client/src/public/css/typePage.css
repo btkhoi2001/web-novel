@@ -213,6 +213,7 @@
     align-items: center;
     margin-left:  -2rem;
     margin-right: -2rem;
+    margin-bottom: 0;
 }
 
 .navbar-items {
