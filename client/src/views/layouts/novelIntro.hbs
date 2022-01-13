@@ -337,12 +337,21 @@
     </script>
 
     <script>
-        const novelID = {{novelID}};
+        const novelId = {{novelID}};
     </script>
 
     {{#each js}}
-       <script type="text/javascript" src="/js/{{this}}.js"></script>
+        <script type="text/javascript" src="/js/{{this}}.js"></script>
     {{/each}}
+    
+    
+    {{#each jsIn}}
+        <script type="text/javascript" src="/js/Intro/{{this}}.js"></script>
+    {{/each}}
+
+    <script src="https://pagination.js.org/dist/2.1.5/pagination.js"></script>
+    <script src="https://pagination.js.org/dist/2.1.5/pagination.min.js"></script>
+
 </body>
 
 </html>

@@ -1,34 +1,3 @@
-function ReadMoreFunc() {
-  var dots = document.getElementById("dots");
-  var moreText = document.getElementById("more");
-  var btnText = document.getElementById("btn");
-
-  if (dots.style.display === "none") {
-    dots.style.display = "inline";
-    btnText.innerHTML = "Xem thêm";
-    moreText.style.display = "none";
-  } else {
-    dots.style.display = "none";
-    btnText.innerHTML = "Rút gọn";
-    moreText.style.display = "inline";
-  }
-}
-/*show emoticon*/
-var postForm = $(".postForm");
-
-function showEmoticon(form) {
-  form.find(".emoticonbt").click(function () {
-    $(this).parent().find('.emotion-form').toggle();
-  });
-  form.find(".emotion-form a").click(function () {
-    var $input = form.find(".comment-input");
-    var txt = $input.val(); console.log(txt);
-    $input.val(txt + $(this).text()); $(this).parent().toggle();
-  });
-}
-$(function () { showEmoticon(postForm); });
-
-
 /* rating */
 function StarRating() {
   this.init();
@@ -57,6 +26,21 @@ StarRating.prototype.init = function() {
             }
             document.querySelector('#rating').removeEventListener('mouseleave', lebin);
             check = true;
+            var rating = i + 1
+            const token = window.localStorage.getItem('token');
+            fetch(`http://localhost:5000/api/novel/${novelId}/rating`, { 
+              method: 'POST', 
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${token}`
+                
+              },
+              body: JSON.stringify({ rating }) 
+            }).then(res => res.json()).then(res => { 
+              console.log(res)
+            }).catch(err => {
+              console.error(err)
+            })
           }
       else 
           {
@@ -106,6 +90,3 @@ new StarRating();
 
 
 
-
-// Id của truyện hiện tại fetch :
-console.log(novelID);

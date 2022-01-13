@@ -4,39 +4,40 @@
                     <div class="title-list book-intro">
                         <h2>Thông tin truyện <i class="fa fa-book"></i></h2>
                     </div>
-                    <h3 class="title" itemprop="name">Thần Đạo Đan Tôn</h3>
+                    <h3 class="title" itemprop="name"></h3>
                     <div class="col-xs-12 col-sm-4 col-md-4 info-holder">
                         <div class="books">
                             <div class="book">
-                                <img src="/img/tmp_book.jpg" alt="Tmp" itemprop="image">
+                                <img src="" alt="Tmp" itemprop="image">
                             </div>
                         </div>
                         <div class="info">
                             <div>
                                 <h3>Tác giả:</h3>
-                                <a itemprop="author" href="#" title="">Cô Đơn Địa Phi</a>
+                                <a itemprop="author" href="#" title=""></a>
                             </div>
                             <div>
                                 <h3>Thể loại:</h3>
-                                <a itemprop="genre" href="#" title="">Tiện Hiệp</a>,
-                                <a itemprop="genre" href="#" title="">Huyền Huyễn</a>
-                            </div>
-                            <div>
-                                <h3>Nguồn:</h3>
-                                <span class="source">Phong Nguyệt Lâu</span>
+                                <a itemprop="genre" href="#" title=""></a>
                             </div>
                             <div>
                                 <h3>Trạng thái:</h3>
-                                <span class="text-primary">Đang ra</span>
+                                <span class="text-primary" itemprop="isCompleted">Đang ra</span>
                                 <!--<span class="text-success">Full</span>-->
                             </div>
                             <div>
                                 <h3>Đề cử:</h3>
-                                <span class="suggest">0</span><i class="svg-icon icon-flower"></i>
+                                <span class="suggest" itemprop="nomi">0</span><i class="svg-icon icon-flower"></i>
                             </div>
                         </div>
+                        <div id="follow">
+                            <a href="javascript:void(0)" onclick="following()" class="btn text-primary">
+                                    Theo dõi
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </div>
                         <div id="suggest-book">
-                            <a href="#" class="btn text-primary">
+                            <a href="javascript:void(0)" onclick="nominating()" class="btn text-primary">
                                     Đề cử 
                                 <i class="svg-icon icon-flower"></i>
                             </a>
@@ -45,16 +46,6 @@
                     <div class="col-xs-12 col-sm-8 col-md-8 desc">
                         <div class="rate">
                             <div class="rate-holder" data-score="" style="cursor: pointer;">
-                                <!--<img alt="1" src="star-on.png" title="Thất bại tạo hóa...">&nbsp;<img alt="2"
-                                    src="star-on.png" title="Rác thế nhờ">&nbsp;<img alt="3" src="star-on.png"
-                                    title="Khó mà trên trung bình">&nbsp;<img alt="4" src="star-on.png"
-                                    title="Haizz">&nbsp;<img alt="5" src="star-on.png" title="Tạm">&nbsp;<img alt="6"
-                                    src="star-on.png" title="Cũng thường">&nbsp;<img alt="7" src="star-on.png"
-                                    title="Ngay dưới mức hay">&nbsp;<img alt="8" src="star-on.png"
-                                    title="Hay đấy">&nbsp;<img alt="9" src="star-on.png"
-                                    title="Ulatr Hay dữ bây!">&nbsp;<img alt="10" src="star-on.png" title="Siêu phẩm">
-                                <input name="score" type="hidden" value="">
-                                -->
                                 <div id="rating">
                                     <span class="star">★</span>  
                                     <span class="star">★</span>
@@ -73,41 +64,40 @@
                                 itemtype="https://schema.org/AggregateRating">
                                 <em>Đánh giá:
                                     <strong>
-                                        <span itemprop="ratingValue">7.1</span>
+                                        <span itemprop="ratingValue"></span>
                                     </strong>/<span class="text-muted" itemprop="bestRating">10</span>
                                     từ
                                     <strong>
-                                        <span itemprop="ratingCount">5481</span>
+                                        <span itemprop="ratingCount"></span>
                                         lượt</strong>
                                 </em>
                             </div>
                         </div>
                         <div class="desc-text desc-text-full" itemprop="description">
-                            <p>Lăng Hàn - Một Đan Đế đại danh đỉnh định mang trong thân mình tuyệt thế công pháp vì truy cầu bước cuối, xé bỏ tấm màn thành thần nhưng thất bại đã phải bỏ mình. Thế nhưng ông trời dường như không muốn tuyệt dường người, Lăng Hàn đã được trọng sinh vào một thiếu niên cùng tên và điều may mắn nhất là "Bất Diệt Thiên Kinh" ấn ký vẫn còn nằm nguyên trong tâm thức hắn.
-                                <br><br>
-                                Từ nay về sau sóng gió cuộn trào nổi lên, Đan Đế ngày xưa bây giờ phải cùng tranh phong với vô số thiên tài trẻ tuổi, lại bắt đầu một truyền thuyết mới như để chứng minh với trời đất: Ta, là người mạnh nhất!
-                                <br><br>
-                                <strong>Phân chia cảnh giới:</strong> Luyện Thể, Tụ Nguyên, Dũng Tuyền, Linh Hải, Thần Thai, Sinh Hoa, Linh Anh, Hóa Thần cùng Thiên Nhân Cảnh.....
-                                <br>
-                                <i>Mỗi cảnh giới chia làm chín tầng: tầng một đến ba là tiền kỳ, tầng bốn đến sáu gọi là</i><span id="dots">...</span><span id="more"> <i>trung kỳ và tầng bảy đến chín gọi là hậu kỳ và đỉnh</i>
-                                <br><br>
-                                <strong>Cảnh giới Đan Sư:</strong> Hoàng cấp,Huyền cấp, Địa cấp, Thiên cấp...<br>
-                                <strong>Thần Cảnh:</strong> Nhật Nguyệt Cảnh, Sơn Hà Cảnh, Tinh Thần Cảnh, Hằng Hà Cảnh, Sáng Thế Cảnh<br>
-                                <i>Mỗi cảnh giới chia làm: Tiểu Cực Vị, Trung Cực Vị, Đại Cực Vi, Đại Viên Mãn trong một Cực Vị lại chia làm: Tiền kỳ, Trung kỳ, Hậu kỳ, Viên mãn</i><br>
-                                <strong>Cảnh giới Tiên Vực:</strong>Trảm Trần Cảnh (Nhất Trảm-Nhị Trảm-Tam Trảm-Tứ Trảm-Ngũ Trảm),Phân Hồn Cảnh (Dương Hồn-Âm Hồn-Thiên Hồn-Địa Hồn), Tiên Phủ Cảnh, Thăng Nguyên Cảnh, Tiên Vương có 9 tầng từ 1 đến 9, bên trên Tiên Vương là Thiên Tôn<br>
-                                <strong>Cảnh giới Đan Sư ở Tiên Vực:</strong> Nhất Tinh, Nhị Tinh, Tam Tinh, Tứ Tinh,Ngũ Tinh Đan Sư</span></p>
+                            {{!-- <p>Lăng Hàn - Một Đan Đế đại danh đỉnh định mang trong thân mình tuyệt thế công pháp vì truy cầu bước cuối, xé bỏ tấm màn thành thần nhưng thất bại đã phải bỏ mình. Thế nhưng ông trời dường như không muốn tuyệt dường người, Lăng Hàn đã được trọng sinh vào một thiếu niên cùng tên và điều may mắn nhất là "Bất Diệt Thiên Kinh" ấn ký vẫn còn nằm nguyên trong tâm thức hắn.
+Từ nay về sau sóng gió cuộn trào nổi lên, Đan Đế ngày xưa bây giờ phải cùng tranh phong với vô số thiên tài trẻ tuổi, lại bắt đầu một truyền thuyết mới như để chứng minh với trời đất: Ta, là người mạnh nhất!
+                                
+<strong>Phân chia cảnh giới:</strong> Luyện Thể, Tụ Nguyên, Dũng Tuyền, Linh Hải, Thần Thai, Sinh Hoa, Linh Anh, Hóa Thần cùng Thiên Nhân Cảnh.....
+                                
+<i>Mỗi cảnh giới chia làm chín tầng: tầng một đến ba là tiền kỳ, tầng bốn đến sáu gọi là</i><span id="dots">...</span><span id="more"> <i>trung kỳ và tầng bảy đến chín gọi là hậu kỳ và đỉnh</i>
+                                
+<strong>Cảnh giới Đan Sư:</strong> Hoàng cấp,Huyền cấp, Địa cấp, Thiên cấp...
+<strong>Thần Cảnh:</strong> Nhật Nguyệt Cảnh, Sơn Hà Cảnh, Tinh Thần Cảnh, Hằng Hà Cảnh, Sáng Thế Cảnh
+<i>Mỗi cảnh giới chia làm: Tiểu Cực Vị, Trung Cực Vị, Đại Cực Vi, Đại Viên Mãn trong một Cực Vị lại chia làm: Tiền kỳ, Trung kỳ, Hậu kỳ, Viên mãn</i>
+<strong>Cảnh giới Tiên Vực:</strong>Trảm Trần Cảnh (Nhất Trảm-Nhị Trảm-Tam Trảm-Tứ Trảm-Ngũ Trảm),Phân Hồn Cảnh (Dương Hồn-Âm Hồn-Thiên Hồn-Địa Hồn), Tiên Phủ Cảnh, Thăng Nguyên Cảnh, Tiên Vương có 9 tầng từ 1 đến 9, bên trên Tiên Vương là Thiên Tôn
+<strong>Cảnh giới Đan Sư ở Tiên Vực:</strong> Nhất Tinh, Nhị Tinh, Tam Tinh, Tứ Tinh,Ngũ Tinh Đan Sư</span></p> --}}
+                        </div>
                             <div class="showmore">
                                 <button onclick="ReadMoreFunc()" id="btn">Xem thêm</button>
                             </div>
-                        </div>
                         <div class="l-chapter">
                             <div class="l-title">
                                 <h3>Các chương mới nhất</h3>
                             </div>
                             <ul class="l-chapters">
-                                <li>
+                                {{!-- <li>
                                     <span class="glyphicon glyphicon-certificate"></span>
-                                    <a href="#" title="Chương 5340: Mời">
+                                    <a href="#" title="">
                                         <span class="chapter-text">
                                             <span>Chương </span>
                                         </span>5340: Mời
@@ -115,12 +105,12 @@
                                 </li>
                                 <li>
                                     <span class="glyphicon glyphicon-certificate"></span>
-                                    <a href="#" title="Chương 5339: Xâm phạm">
+                                    <a href="#" title="">
                                         <span class="chapter-text">
                                             <span>Chương </span>
                                         </span>5339: Xâm phạm
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -131,38 +121,32 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
-                            <ul class="list-chapter">
-                                <li>
+                            <ul class="list-chapter-left">
+                                {{!-- <li>
                                     <span class="glyphicon glyphicon-certificate"></span>
                                     <a href="#" title="">
-                                        <span class="book-text">
-                                            <span>Quyển </span>
-                                        </span>1 -
                                         <span class="chapter-text">
                                             <span>Chương </span>
                                         </span>1: Mở đầu
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6">
-                            <ul class="list-chapter">
-                                <li>
+                            <ul class="list-chapter-right">
+                                {{!-- <li>
                                     <span class="glyphicon glyphicon-certificate"></span>
                                     <a href="#" title="">
-                                        <span class="book-text">
-                                            <span>Quyển </span>
-                                        </span>1 -
                                         <span class="chapter-text">
                                             <span>Chương </span>
                                         </span>26:
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
-                    <ul class="pagination pagination-sm">
-                        <li class="active">
+                    <div class="pagination">
+                        {{!-- <li class="active">
                             <span>1<span class="sr-only"> (đang xem)</span>
                             </span>
                         </li>
@@ -193,8 +177,8 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
-                    </ul>
+                        </li> --}}
+                    </div>
                 </div>
                 <div class="col-xs-12 comment-box">
                     <div class="title-list">
@@ -202,53 +186,53 @@
                     </div>
                     <div class="comment-list mf-list">
                         <div class="comment-list-item">
-                            <img class="comment-list-item-cover" src="/img/top-bar-avatar-img.png">
+                            <img class="comment-list-item-cover-user" src="/img/top-bar-avatar-img.png">
                             <div class="comment-list-item-info">
                                 <form action="./index.html" name="formpl" id="formpl" method="post" class="postForm" onsubmit="return false">
                                     <textarea class="comment-input js_max_text_length" name="txt_recontent"
                                         placeholder="Thêm bình luận"></textarea>
                                     <p class="comment-list-item-info-line">
-                                        <a class="comment-list-item-info-emoticon emoticonbt" href="#">Emoticon</a>
-                                        <a class="post-btn" href="#" data-isenable="1">Đăng</a>
+                                        <a class="comment-list-item-info-emoticon emoticonbt" href="#" onclick="return false;">Emoticon</a>
+                                        <a class="post-btn" href="javascript:void(0)" data-isenable="1">Đăng</a>
                                         <span class="emotion-form"> <img src="/img/emotion-form.png">
-                                            <a href="#">m(_ _)m</a> 
-                                            <a href="#">(´･ω･`)</a> 
-                                            <a href="#">(`･ω･´)</a> 
-                                            <a href="#">(〒▽〒)</a> 
-                                            <a href="#">（┬＿┬）</a> 
-                                            <a href="#">(￣ε(#￣) Σ</a> 
-                                            <a href="#">ヽ(`Д´)ﾉ</a> 
-                                            <a href="#">(＃ﾟДﾟ)</a> 
-                                            <a href="#">(　ﾟДﾟ）</a> 
-                                            <a href="#">┐('～`；)┌</a> 
-                                            <a href="#">（´∀｀）</a> 
-                                            <a href="#">（　´_ゝ`）</a> 
-                                            <a href="#">Σ(゜д゜;)</a> 
-                                            <a href="#">(･∀･)</a> 
-                                            <a href="#">(´∀｀)σ)∀`)</a> 
-                                            <a href="#">←_←</a> 
-                                            <a href="#">→_→</a> 
-                                            <a href="#">（´-`）.｡oO( ... )</a> 
-                                            <a href="#">（ つ Д ｀）</a> 
-                                            <a href="#">(≧ロ≦)</a> 
-                                            <a href="#">ヽ(ｏ`皿′ｏ)ﾉ</a> 
-                                            <a href="#">(⌒▽⌒)</a> 
-                                            <a href="#">(￣3￣)</a> 
-                                            <a href="#">(〃ω〃)</a> 
-                                            <a href="#">(｡･ω･｡)</a> 
-                                            <a href="#">(●′ω`●)</a> 
-                                            <a href="#">(っ◕‿◕)っ</a> 
-                                            <a href="#">(〜￣△￣)〜</a> 
-                                            <a href="#">Σ(￣□￣||)</a> 
-                                            <a href="#">(╯°口°)╯(┴—┴</a> 
-                                            <a href="#">_(:3」∠)_</a> 
+                                            <a href="javascript:void(0)">m(_ _)m</a> 
+                                            <a href="javascript:void(0)">(´･ω･`)</a> 
+                                            <a href="javascript:void(0)">(`･ω･´)</a> 
+                                            <a href="javascript:void(0)">(〒▽〒)</a> 
+                                            <a href="javascript:void(0)">（┬＿┬）</a> 
+                                            <a href="javascript:void(0)">(￣ε(#￣) Σ</a> 
+                                            <a href="javascript:void(0)">ヽ(`Д´)ﾉ</a> 
+                                            <a href="javascript:void(0)">(＃ﾟДﾟ)</a> 
+                                            <a href="javascript:void(0)">(　ﾟДﾟ）</a> 
+                                            <a href="javascript:void(0)">┐('～`；)┌</a> 
+                                            <a href="javascript:void(0)">（´∀｀）</a> 
+                                            <a href="javascript:void(0)">（　´_ゝ`）</a> 
+                                            <a href="javascript:void(0)">Σ(゜д゜;)</a> 
+                                            <a href="javascript:void(0)">(･∀･)</a> 
+                                            <a href="javascript:void(0)">(´∀｀)σ)∀`)</a> 
+                                            <a href="javascript:void(0)">←_←</a> 
+                                            <a href="javascript:void(0)">→_→</a> 
+                                            <a href="javascript:void(0)">（´-`）.｡oO( ... )</a> 
+                                            <a href="javascript:void(0)">（ つ Д ｀）</a> 
+                                            <a href="javascript:void(0)">(≧ロ≦)</a> 
+                                            <a href="javascript:void(0)">ヽ(ｏ`皿′ｏ)ﾉ</a> 
+                                            <a href="javascript:void(0)">(⌒▽⌒)</a> 
+                                            <a href="javascript:void(0)">(￣3￣)</a> 
+                                            <a href="javascript:void(0)">(〃ω〃)</a> 
+                                            <a href="javascript:void(0)">(｡･ω･｡)</a> 
+                                            <a href="javascript:void(0)">(●′ω`●)</a> 
+                                            <a href="javascript:void(0)">(っ◕‿◕)っ</a> 
+                                            <a href="javascript:void(0)">(〜￣△￣)〜</a> 
+                                            <a href="javascript:void(0)">Σ(￣□￣||)</a> 
+                                            <a href="javascript:void(0)">(╯°口°)╯(┴—┴</a> 
+                                            <a href="javascript:void(0)">_(:3」∠)_</a> 
                                         </span>
                                     </p>
                                 </form>
                             </div>
                         </div>
                         <div class="comment-list commentcontent">
-                            <div class="comment-list-item">
+                            {{!-- <div class="comment-list-item">
                                 <img class="comment-list-item-cover" src="/img/top-bar-avatar-img.png">
                                 <div class="comment-list-item-info">
                                     <p class="comment-list-item-info-line">
@@ -277,10 +261,10 @@
                                     </p>
                                     <p class="comment-list-item-info-line border"></p>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="pager-list mt0">
-                            <div class="pager-list-m" style="cursor: pointer">
+                            {{!-- <div class="pager-list-m" style="cursor: pointer">
                                 <a class="active">1</a>
                                 <a data-pageid="2">2</a>
                                 <a data-pageid="3">3</a>
@@ -290,7 +274,7 @@
                                 <a data-pageid="7">7</a>
                                 <a data-pageid="8">8</a>
                                 <a data-pageid="2">></a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -304,7 +288,7 @@
                         <div class="col-xs-12">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                             <h3>
-                                <a href="#" title="Tu La Ma Đế">Tu La Ma Đế</a>
+                                <a href="#" id="sameA1"></a>
                             </h3>
                         </div>
                     </div>
@@ -312,7 +296,7 @@
                         <div class="col-xs-12">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                             <h3>
-                                <a href="#" title="Kiếm Động Cửu Thiên">Kiếm Động Cửu Thiên</a>
+                                <a href="#" id="sameA2"></a>
                             </h3>
                         </div>
                     </div>
@@ -320,7 +304,7 @@
                         <div class="col-xs-12">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                             <h3>
-                                <a href="#" title="Hoành Tảo Hoang Vũ">Hoành Tảo Hoang Vũ</a>
+                                <a href="#" id="sameA3"></a>
                             </h3>
                         </div>
                     </div>
