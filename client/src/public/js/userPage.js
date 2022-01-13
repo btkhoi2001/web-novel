@@ -40,6 +40,9 @@ $(".upload-cover").on('click', function() {
     $(".cover-upload").click();
 });
 
+
+
+
 $('#info').click(function () {
     $('.list-item').removeClass('active');
     $('.section').addClass('d-none');
@@ -115,6 +118,14 @@ $('#uploaded-novel').click(function () {
     document.body.scrollTop = 400; // For Safari
     document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
 });
+$('#upload-chapter').click(function () {
+    $('.list-item').removeClass('active');
+    $('.section').addClass('d-none');
+    $('.upload-chapter').removeClass('d-none');
+    $(this).addClass('active');
+    document.body.scrollTop = 400; // For Safari
+    document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
+});
 
 const tabs = document.querySelectorAll(".tab-item");
 const panes = document.querySelectorAll(".tab-pane");
@@ -186,9 +197,10 @@ const loadP = async () => {
         const g = await res5.json();
         genres = g.genres;    
 
+        const res6 = await fetch('http://localhost:5000/api/novel');
+        const n = await res6.json();
+        novels = n.novels;
 
-
-        console.log(follow, bookmark)
         // info
         displayInfoPage(user)
 
@@ -206,6 +218,10 @@ const loadP = async () => {
 
         // upload novel 
         getGenres(genres);
+
+        // upload chapter
+        getNovels(novels);
+
 
         // scroll to content
         document.body.scrollTop = 400; // For Safari
@@ -372,43 +388,94 @@ $('.change-pwd').click(async function() {
 
 // upload novel 
 $('.uploadNovel').click(async function() {
-    let name =  $('.general-information #name').val();
-    let gender =  $('.general-information #gender').val();
-    let intro = $('.general-information #introduction').val();
+    let novelName =  $('.upload-novel #novelname').val();
+    let genreId =  $('.upload-novel #genre').val();
+    let intro = $('.upload-novel #intro').val();
+    let checkBox = document.getElementById("guarantee")
 
-    if (name == "" || gender == "")
+    if (novelName == "" || genreId == "" || intro == "" || !coverImg)
     { 
-        alert("Vui lòng điền đầy đủ tất cả thông tin bắt buộc");
-        $('.general-information #name').val(`${user.user.displayName}`);
-        $('.general-information #gender').val(`${user.user.gender}`);
+        alert("Vui lòng điền đầy đủ tất cả thông tin và ảnh bìa truyện");
     }
-
+    else if (!checkBox.checked) {
+        alert("Vui lòng cam kết quyền tác giả");
+    }
     else {
         try {
             let formData = new FormData();
-            formData.append('displayName', name);
-            
-            formData.append('gender', gender);
+            formData.append('title', novelName);
+            formData.append('genreId', genreId);
+            formData.append('description', intro);
+            formData.append('cover', coverImg);
 
-            const res = await fetch('http://localhost:5000/api/user/account', {      
-                method: 'PUT',
+            let res = await fetch('http://localhost:5000/api/novel', {      
+                method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'enctype': 'multipart/form-data',
                 },
                 body: formData,
+            }).then(res => res.json()).then(res => {
+                novels = res.newNovel;
+                console.log(listOfNovels);
+                alert('Đăng truyện thành công');
+                location.reload();
             })
-            alert('Cập nhật thông tin cá nhân thành công');
-          
-            location.reload();
         }
-        catch(e) {
-            alert('Cập nhật thông tin cá nhân thành công');
+        catch(err) {
+            alert(err);
         }
     }
 
   
 });
+
+// upload chapter 
+$('.uploadChapter').click(async function() {
+    let novelId =  $('.upload-chapter #novelID').val();
+    let chapterOrder =  $('.upload-chapter #chapOrder').val();
+    let title = $('.upload-chapter #chaptername').val();
+    let content = $('.upload-chapter #intro').val();
+    let checkBox = document.getElementById("accept")
+
+    console.log(novelId, chapterOrder, title)
+
+    if (novelId == "" || chapterOrder == "" || title == "" || content =="")
+    { 
+        alert("Vui lòng điền đầy đủ tất cả thông tin ");
+    }
+    else if (!checkBox.checked) {
+        alert("Vui lòng cam kết quyền tác giả");
+    }
+    else {
+        try {
+            let res = await fetch(`http://localhost:5000/api/novel/${novelId}/chapter`, {      
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    'chapterOrder': chapterOrder,
+                    'title': title,
+                    'content': content,
+                }) ,
+            }).then(res => res.json()).then(res => {
+                let newChapter = res.newChapter;
+                console.log(newChapter);
+                alert('Đăng chương mới thành công');
+                location.reload();
+            })
+        }
+        catch(err) {
+            alert(err);
+        }
+    }
+
+  
+});
+
+
 
 
 const displayInfoPage = (user) => {
@@ -509,4 +576,17 @@ const getGenres = (genres) => {
         .join('');
    
     $('.upload-novel .form-select').html(htmlString);
+};
+
+const getNovels = (novels) => {
+    let htmlString = ` <option selected>Chọn truyện cần đăng chương mới</option>`;
+    htmlString = novels.map((novel) => {
+        return `
+            <option value="${novel.novelId}">${novel.title}</option>
+        `;
+    })
+        .join('');
+    
+        let result = ` <option selected>Chọn truyện cần đăng chương mới</option>` + htmlString;
+    $('.upload-chapter .form-select').html(result);
 };

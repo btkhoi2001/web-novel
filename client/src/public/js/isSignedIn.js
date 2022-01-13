@@ -11,7 +11,6 @@ const loadUser = async () => {
         User = await res.json();
        
         $('.authen .user').empty();
-        
         if(User.user.avatar) {
             $('.authen .user').append(`
                 <img src="${User.user.avatar}" width="28" height="28" style="border-radius:50%;">
@@ -23,6 +22,12 @@ const loadUser = async () => {
                 <i class="fas fa-user-circle"></i>
                 <span class="user-name">${User.user.displayName}</span> 
             `);
+        }
+
+        if(User.user.role === "Reader") {
+            $('.col-3 .list #upload').addClass('d-none');
+            $('.col-3 .list #upload-chapter').addClass('d-none');
+
         }
     } catch (err) {
         console.error(err);

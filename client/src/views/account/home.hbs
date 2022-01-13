@@ -31,9 +31,9 @@
                                 <li id="upload-chapter" class="list-item">
                                     <i class="fas fa-upload"></i> Đăng chương mới
                                 </li>
-                                <li id="uploaded-novel" class="list-item">
+                                {{!-- <li id="uploaded-novel" class="list-item">
                                     <i class="fas fa-book"></i> Truyện đã đăng
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         <div class="col-9">
@@ -299,7 +299,7 @@
                                         <label for="cover-img" class="form-label" style="font-weight: 500;">Ảnh bìa</label>
                                         <div class="avatar-wrapper text-center" style="height: 25rem; border-radius: 0;">
                                             <img class="cover-pic" src="/img/cover.png" />
-                                            <div class="upload-cover">
+                                            <div class="upload-cover" >
                                                 <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                                             </div>
                                             <input class="cover-upload" id="cover-img" type="file" accept="image/*"/>
@@ -317,7 +317,7 @@
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
                                                 <label for="type" class="form-label" style="font-weight: 500;">Thể loại</label>
-                                                <select class="form-select" aria-label="type-select" placeholder="" style="padding:.6rem; font-size:1.4rem; ">
+                                                <select class="form-select" id="genre" aria-label="type-select" placeholder="" style="padding:.6rem; font-size:1.4rem; ">
                                                     <option selected>Chọn thể loại truyện thích hợp</option>
                                                     <option value="tiên hiệp">Tiên hiệp</option>
                                                     <option value="tu tiên">Tu tiên</option>
@@ -332,8 +332,8 @@
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
                                                 <div class="form-check">
-                                                    <input class="form-check-input p-3" type="checkbox" value="" id="accept">
-                                                    <label class="form-check-label mx-2" for="accept" style="font-size: 1.8rem; opacity: 0.8;">
+                                                    <input class="form-check-input p-3" id="guarantee" type="checkbox" >
+                                                    <label class="form-check-label mx-2" for="guarantee" style="font-size: 1.8rem; opacity: 0.8;">
                                                       Tôi cam đoan đây là truyện do tôi sáng tác và không sao chép từ bất kì nguồn nào khác.
                                                     </label>
                                                 </div>
@@ -352,39 +352,26 @@
                                    Thêm chương mới
                                 </div>
                                 <div class="section-content mt-4">
-                                    <div class="avatar">
-                                        <label for="cover-img" class="form-label" style="font-weight: 500;">Ảnh bìa</label>
-                                        <div class="avatar-wrapper text-center" style="height: 25rem; border-radius: 0;">
-                                            <img class="cover-pic" src="/img/cover.png" />
-                                            <div class="upload-cover">
-                                                <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                                            </div>
-                                            <input class="cover-upload" id="cover-img" type="file" accept="image/*"/>
-                                        </div>
-                                        <span class="text-muted text-center">
-                                            <em>Ấn vào ảnh trên để cập nhật ảnh bìa truyện</em>
-                                        </span>
-                                    </div>
-
                                     <div class="information">
                                         <form action="">
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
-                                                <label for="novelname" class="form-label" style="font-weight: 500;">Tên truyện</label>
-                                                <input type="text" class="form-control" id="novelname" placeholder="Tên truyện"  style="padding:.6rem; font-size:1.4rem">
-                                            </div>
-                                            <div class="mb-3" style="margin-bottom: 2rem!important;">
-                                                <label for="type" class="form-label" style="font-weight: 500;">Thể loại</label>
-                                                <select class="form-select" aria-label="type-select" placeholder="" style="padding:.6rem; font-size:1.4rem; ">
-                                                    <option selected>Chọn thể loại truyện thích hợp</option>
-                                                    <option value="tiên hiệp">Tiên hiệp</option>
-                                                    <option value="tu tiên">Tu tiên</option>
-                                                    <option value="ngôn tình">Ngôn tình</option>
+                                                <label for="novelID" class="form-label" style="font-weight: 500;">Truyện</label>
+                                                <select class="form-select" id="novelID" aria-label="type-select" placeholder="" style="padding:.6rem; font-size:1.4rem; ">
+                                                    <option selected>Chọn truyện cần đăng chương mới</option>
+                                                    <option value="1">Đại chúa tể</option>
                                                   </select>
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
-                                                <label for="intro" class="form-label" style="font-weight: 500;">Giới thiệu</label>
-                                                <textarea class="form-control" id="intro" rows="8" 
-                                                placeholder="Tóm tắt cho truyện không nên quá dài mà nên ngắn gọn, tập trung, thú vị. Phần này rất quan trọng vì nó quyết định độc giả có đọc hay không." 
+                                                <label for="chapOrder" class="form-label" style="font-weight: 500;">Số thứ tự chương</label>
+                                                <input type="number" min="1" class="form-control" id="chapOrder" placeholder="Số thứ tự chương"  style="padding:.6rem; font-size:1.4rem">
+                                            </div>
+                                            <div class="mb-3" style="margin-bottom: 2rem!important;">
+                                                <label for="chaptername" class="form-label" style="font-weight: 500;">Tên chương</label>
+                                                <input type="text" class="form-control" id="chaptername" placeholder="Tên chương"  style="padding:.6rem; font-size:1.4rem">
+                                            </div>
+                                            <div class="mb-3" style="margin-bottom: 2rem!important;">
+                                                <label for="intro" class="form-label" style="font-weight: 500;">Nội dung</label>
+                                                <textarea class="form-control" id="intro" rows="30" 
                                                 style="resize: none; padding:.6rem; font-size:1.4rem"></textarea>
                                             </div>
                                             <div class="mb-3" style="margin-bottom: 2rem!important;">
@@ -396,7 +383,7 @@
                                                 </div>
                                             </div>
                                             <div class="mb-3 mt-2" style="float: right;">
-                                                <button type="button" type="submit" class="btn submit uploadNovel" >Đăng truyện</button>
+                                                <button type="button" type="submit" class="btn submit uploadChapter" >Đăng truyện</button>
                                             </div>
                                            
                                         </form>
