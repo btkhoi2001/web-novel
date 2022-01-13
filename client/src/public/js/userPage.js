@@ -155,6 +155,7 @@ let token;
 let user;
 let following;
 let comment;
+let novels;
 let genres = [];
 let listOfFollow = [];
 let listOfBookmark = [];
@@ -177,7 +178,7 @@ const loadP = async () => {
         });
         follow = await res2.json();
         listOfFollow = follow.follows;
-
+      
         const res3 = await fetch('http://localhost:5000/api/comment', {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -197,9 +198,15 @@ const loadP = async () => {
         const g = await res5.json();
         genres = g.genres;    
 
-        const res6 = await fetch('http://localhost:5000/api/novel');
-        const n = await res6.json();
-        novels = n.novels;
+        if(user.user.role === "Author") {
+            const res6 = await fetch(`http://localhost:5000/api/novel?authorId=${user.user.userId}`);
+            const n = await res6.json();
+            novels = n.novels;
+            displayUploadedNovels(novels);
+        }
+       
+
+
 
         // info
         displayInfoPage(user)
@@ -291,7 +298,7 @@ const deleteFollow = async (event) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ "novelId": novelId }) 
-    });
+    })
 
     alert(`Bỏ theo dõi truyện thành công`); 
     
@@ -303,6 +310,9 @@ const deleteFollow = async (event) => {
     follow = await res2.json();
     listOfFollow = follow.follows;
     displayFollowPage(listOfFollow);
+
+    document.body.scrollTop = 400; // For Safari
+    document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
 }
 
 // delete bookmark
@@ -332,7 +342,32 @@ const deleteBookmark = async (event) => {
     bookmark = await res4.json();
     listOfBookmark = bookmark.bookmarks;
     displayBookmarkPage(listOfBookmark);
-    console.log(bookmark)
+    
+    document.body.scrollTop = 400; // For Safari
+    document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
+  
+}
+
+const deleteNovel = async (event) => {
+    const novelId = event.target.value;
+  
+    const res = await fetch(`http://localhost:5000/api/novel/${novelId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        },
+    });
+ 
+    alert(`Xóa truyện thành công`); 
+    
+    const res6 = await fetch(`http://localhost:5000/api/novel?authorId=${user.user.userId}`);
+    const n = await res6.json();
+    novels = n.novels;
+    displayUploadedNovels(novels);
+
+    document.body.scrollTop = 400; // For Safari
+    document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
   
 }
 
@@ -590,3 +625,23 @@ const getNovels = (novels) => {
         let result = ` <option selected>Chọn truyện cần đăng chương mới</option>` + htmlString;
     $('.upload-chapter .form-select').html(result);
 };
+
+const displayUploadedNovels = (novels) => {
+    let htmlString;
+
+    htmlString = novels.map((novel, index) => {
+        return `
+        <tr>
+            <th scope="row">${index+1}</th>
+            <td>${novel.title}</td>
+            <td>${novel.genre}</td>
+            <td><img src="${novel.cover}" alt="" width="45" width="60"></td>
+            <td><button type="button" value="${novel.novelId}" onclick="deleteNovel(event)" class="btn btn-outline-danger delete-follow">Xóa</button></td>
+        </tr>
+        `;
+    })
+    .join('');
+
+    $('.uploaded-novel tbody').html(htmlString);
+        
+}

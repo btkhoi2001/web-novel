@@ -1,6 +1,8 @@
 let User;
 const loadUser = async () => {
     try {
+        $('body').removeClass('d-none');
+
         const token = window.localStorage.getItem('token');
         console.log(token);
         const res = await fetch('http://localhost:5000/api/user/account', {
@@ -27,6 +29,7 @@ const loadUser = async () => {
         if(User.user.role === "Reader") {
             $('.col-3 .list #upload').addClass('d-none');
             $('.col-3 .list #upload-chapter').addClass('d-none');
+            $('.col-3 .list #uploaded-novel').addClass('d-none');
 
         }
     } catch (err) {

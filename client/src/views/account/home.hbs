@@ -31,9 +31,9 @@
                                 <li id="upload-chapter" class="list-item">
                                     <i class="fas fa-upload"></i> Đăng chương mới
                                 </li>
-                                {{!-- <li id="uploaded-novel" class="list-item">
+                                <li id="uploaded-novel" class="list-item">
                                     <i class="fas fa-book"></i> Truyện đã đăng
-                                </li> --}}
+                                </li>
                             </ul>
                         </div>
                         <div class="col-9">
@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="section-content mt-4">
                                     <ul class="reading-list">
-                                        <li class="reading-list-item d-flex justify-content-between">
+                                        {{!-- <li class="reading-list-item d-flex justify-content-between">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <a href="#" class="item-img">
@@ -176,7 +176,7 @@
                                             <div class="d-flex justify-content-center" >
                                                 <button value="" type="submit" class="btn btn-danger delete-follow" >Xóa</button>
                                             </div>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="section-content mt-4">
                                     <ul class="reading-list">
-                                       <li class="reading-list-item d-flex justify-content-between">
+                                       {{!-- <li class="reading-list-item d-flex justify-content-between">
                                             <div class="row">
                                                 <div class="col-1">
                                                     <a href="#" class="item-img">
@@ -206,7 +206,7 @@
                                             <div class="d-flex justify-content-center" >
                                                 <button value="1/2" type="submit" class="btn btn-danger delete-bookmark" >Xóa</button>
                                             </div>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -399,28 +399,29 @@
                                     <table class="table">
                                         <thead>
                                           <tr>
-                                            <th scope="col">#</th>
+                                            <th scope="col"></th>
                                             <th scope="col">Tên truyện</th>
                                             <th scope="col">Thể loại</th>
-                                            <th scope="col">Ngày đăng</th>
                                             <th scope="col">Ảnh bìa</th>
+                                            <th scope="col">Tùy chọn</th>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <tr>
+                                          {{!-- <tr>
                                             <th scope="row">1</th>
                                             <td>Võ thần chúa tể</td>
                                             <td>Tu tiên, võ hiệp</td>
-                                            <td>1/1/2021</td>
                                             <td><img src="https://static.cdnno.com/poster/dinh-cap-khi-van-lang-le-tu-luyen-ngan-nam/150.jpg?1614159439" alt="" width="60"></td>
+                                            <td><button type="button" value="" onclick="deleteNovel(event)" class="btn btn-outline-danger delete-follow">Xóa</button></td>
                                           </tr>
                                           <tr>
                                             <th scope="row ">2</th>
                                             <td>Vô thượng sát thần</td>
                                             <td>Tu tiên, võ hiệp</td>
-                                            <td>1/2/2021</td>
                                             <td> <img src="https://static.cdnno.com/poster/vo-thuong-sat-than/150.jpg?1585205565" alt="" width="60"></td>
-                                          </tr>
+                                            <td><button type="button" value="" onclick="deleteNovel(event)" class="btn btn-outline-danger delete-follow">Xóa</button></td>
+                                          
+                                          </tr> --}}
                                          
                                         </tbody>
                                       </table>
