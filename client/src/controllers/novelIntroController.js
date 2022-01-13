@@ -14,6 +14,21 @@ class novelIntroController {
         return;
     }
 
+    chapter(req, res, next) {
+        const novelID =  req.params.id;
+        const chapterID =  req.params.chapterId;
+      
+        res.render('novelChapter/home', {
+            layout: 'novelChapter',
+            css: ['chapterPage', 'baseChapterPage', 'responsiveChapterPage'],
+            js: ['isSignedIn', 'header', 'chapterPage'],
+            novelID: novelID,
+            chapterID: chapterID,
+            
+        })
+        return;
+    }
+
 }
 
 module.exports = new novelIntroController();

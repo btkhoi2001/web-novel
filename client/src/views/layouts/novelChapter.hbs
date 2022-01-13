@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    {{#each css}}
+       <link rel="stylesheet" href="/css/{{this}}.css">
+    {{/each}}
+    <title>Đọc truyện online - SimplePoLL</title>
+</head>
+<body class="d-none">
+   <div class="main">
+        <header id="header">
+            <div class="container-xl">
+                <div class="searchbar">               
+                    <div class="searchbar-item">
+                        <a href="/home" class="logo"><h1>Simple<span style="color: #F18121;">PoLL</span></h1></a>
+                    </div>
+                    <div class="searchbar-item search-novel d-none d-lg-flex">
+                        <div class="d-inline-block" style="width: 100%; height: 100%; position: relative;">
+                            <input type="text" id="searchBar" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
+                            <div class="search-select-btn"><i class="fas fa-search"></i></div>
+                        </div>
+                        <ul class="search-menu">
+                            <!-- <li class="">
+                                <a href="#" class="">
+                                    Đấu phá thương khung
+                                </a> 
+                            </li>
+                            <li class="">
+                                <a href="#" class="">
+                                    Võ thần chúa tể
+                                </a> 
+                            </li> -->
+                        </ul>
+                    </div>
+                    <div class="searchbar-item ">
+                       <div class="searchbar-btn notification-btn">
+                            <a href="#">
+                                <span><i class="fas fa-bell"></i></span>
+                                <span class="notification-badge"></span>
+                            </a>
+                            <ul class="notification-menu d-none">
+                                <!-- <li class="d-flex ">
+                                    <a href="#" class="mt-2 me-2">
+                                        <img alt="" height="55" src="https://static.cdnno.com/poster/ta-tai-tan-thu-thon-lang-le-cau-thanh-dai-boss/150.jpg?1638291975" lazy="loaded"> 
+                                    </a> 
+                                    <div class="notification-content text-ellipsis--3">
+                                        <p>Đấu Phá Thương Khung vừa ra chương 2000. Cùng nhau đọc chương mới để ủng hộ cho page nhé</p>
+                                    </div>
+                                </li> -->
+                                <li class="d-flex" style="color: red;">
+                                    Bạn hiện không có thông báo !
+                                </li>
+                            </ul>
+                       </div>
+                        <div class="searchbar-btn authen dropdown" style="">
+                            <a href="/account">   
+                                <div class="user">
+                                    <i class="fas fa-user-circle"></i>
+                                    <span class="user-name"></span>
+                                </div>
+                                
+                            </a>
+                            <div class="droplist droplist-signout">
+                                <li>
+                                    <button type="submit" class="btn btn-logout" >
+                                        Đăng xuất
+                                    </button>
+                                </li>
+                            </div>
+                       </div>
+                    </div>
+                
+                    <div id="mobile-menu" class="mobile-menu-btn d-lg-none">
+                        <div class="mobile-navbar-btn"><i class="fas fa-bars"></i></div>
+                    </div>
+                </div>
+
+                <ul class="navbar d-none d-lg-block">
+                    <li class="navbar-items">
+                        <a href="/home" class="item-link"><i class="fas fa-home navbar-icon"></i>Trang chủ </a>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Danh sách <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-normal">
+                            <a href="#hot-novels">Truyện Hot</a>
+                            <a href="#update-novels">Truyện mới cập nhật</a>
+                            <a href="#full-novels">Truyện đã hoàn thành</a>
+                        </div>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Thể loại  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-fluid-container">
+                            <div class="droplist-fluid">
+                                <!-- <a href="#">Tiên Hiệp</a>
+                                <a href="#">Kiếm Hiệp</a>
+                                <a href="#">Ngôn Tình</a>
+                                <a href="#">Đam Mỹ</a>
+                                <a href="#">Quan Trường</a>
+                                <a href="#">Võng Du</a>
+                                <a href="#">Khoa Huyễn</a>
+                                <a href="#">Khác</a> -->
+                            </div>
+                        </div>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-list-ul navbar-icon"></i>Phân loại theo chương  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <div class="droplist droplist-normal">
+                            <a href="#">Dưới 100 chương</a>
+                            <a href="#">100-500 chương</a>
+                            <a href="#">500-1000 chương</a>
+                            <a href="#">Trên 1000 chương</a>
+                        </div>
+                    </li>
+                    <li class="navbar-items dropdown">
+                        <a href="#" class="item-link"> <i class="fas fa-sliders-h mobile-navbar-icon"></i> Phông nền  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="droplist droplist-normal" style="padding-left: 0;">
+                            <li><a href="#" id="lightmode">Màu sáng</a></li>
+                            <li><a href="#" id="darkmode">Màu tối</a></li>
+                        </ul>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="/chart" class="item-link"><i class="far fa-chart-bar navbar-icon"></i> Bảng xếp hạng </a>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="/account/follow" class="item-link"> <i class="fas fa-book navbar-icon"></i>Theo dõi </a>
+                    </li>
+                    <li class="navbar-items">
+                        <a href="/account/bookmark" class="item-link"> <i class="fas fa-bookmark navbar-icon"></i>Đánh dấu </a>
+                    </li> 
+                  
+                </ul>
+
+                <ul class="mobile-navbar d-none">
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Danh sách <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist d-none">
+                            <li><a href="#">Truyện mới cập nhật</a></li>
+                            <li><a href="#">Truyện Hot</a></li>
+                            <li><a href="#">Truyện Full</a></li>
+                            <li><a href="#">Tiên Hiệp Hay</a></li>
+                            <li><a href="#">Kiếm Hiệp Hay</a></li>
+                            <li><a href="#">Truyện teen Hay</a></li>
+                            <li><a href="#">Ngôn Tình Hay</a></li>
+                            <li><a href="#">Ngôn Tình Sắc</a></li>
+                            <li><a href="#">Ngôn Tình Ngược</a></li>
+                            <li><a href="#">Ngôn Tình Sủng</a></li>
+                            <li><a href="#">Ngôn Tình Hài</a></li>
+                            <li><a href="#">Đam Mỹ Hài</a></li>
+                            <li><a href="#">Đam Mỹ Hay</a></li>
+                            <li><a href="#">Đam Mỹ Sắc</a></li>
+                            <li><a href="#">Khác</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Thể loại  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist d-none">
+                                <li><a href="#">Tiên Hiệp</a></li>
+                                <li><a href="#">Kiếm Hiệp</a></li>
+                                <li><a href="#">Ngôn Tình</a></li>
+                                <li><a href="#">Đam Mỹ</a></li>
+                                <li><a href="#">Quan Trường</a></li>
+                                <li><a href="#">Võng Du</a></li>
+                                <li><a href="#">Khoa Huyễn</a></li>
+                                <li><a href="#">Hệ Thống</a></li>
+                                <li><a href="#">Huyền Huyễn</a></li>
+                                <li><a href="#">Dị Giới</a></li>
+                                <li><a href="#">Dị Năng</a></li>
+                                <li><a href="#">Quân Sự</a></li>
+                                <li><a href="#">Lịch Sử</a></li>
+                                <li><a href="#">Xuyên Không</a></li>
+                                <li><a href="#">Xuyên Nhanh</a></li>
+                                <li><a href="#">Trọng Sinh</a></li>
+                                <li><a href="#">Trinh Thám</a></li>
+                                <li><a href="#">Thám Hiểm</a></li>
+                                <li><a href="#">Linh Dị</a></li>
+                                <li><a href="#">Sắc</a></li>
+                                <li><a href="#">Ngược</a></li>
+                                <li><a href="#">Sủng</a></li>
+                                <li><a href="#">Cung Đấu</a></li>
+                                <li><a href="#">Nữ Cường</a></li>
+                                <li><a href="#">Gia Đấu</a></li>
+                                <li><a href="#">Đông Phương</a></li>
+                                <li><a href="#">Đô Thị</a></li>
+                                <li><a href="#">Bách Hợp</a></li>
+                                <li><a href="#">Hài Hước</a></li>
+                                <li><a href="#">Điền Văn</a></li>
+                                <li><a href="#">Cổ đại</a></li>
+                                <li><a href="#">Mạt Thế</a></li>
+                                <li><a href="#">Truyện Teen</a></li>
+                                <li><a href="#">Phương Tây</a></li>
+                                <li><a href="#">Nữ Phụ</a></li>
+                                <li><a href="#">Light Novel</a></li>
+                                <li><a href="#">Việt Nam</a></li>
+                                <li><a href="#">Đoản Văn</a></li>
+                                <li><a href="#">Khác</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-list-ul mobile-navbar-icon"></i> Phân loại theo chương  <i class="fas fa-sort-down navbar-arrow-down"></i></a>
+                        <ul class="mobile-droplist d-none">
+                            <li><a href="#">Dưới 100 chương</a></li>
+                            <li><a href="#">100-500 chương</a></li>
+                            <li><a href="#">500-1000 chương</a></li>
+                            <li><a href="#">Trên 1000 chương</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"><i class="far fa-chart-bar  mobile-navbar-icon"></i> Bảng xếp hạng </a>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-book mobile-navbar-icon"></i> Theo dõi </a>
+                    </li>
+                    <li class="mobile-navbar-items">
+                        <a href="#" class="mobile-item-link"> <i class="fas fa-bookmark mobile-navbar-icon"></i> Đánh dấu </a>
+                    </li> 
+                    <div class="mobile-navbar-items search-novel d-block">
+                        <div class="" style="width: 100%; height: 100%">
+                            <input type="text" id="mobileSearchBar" class="form-control search-input" placeholder="Bạn cứ nhập từ khóa, còn lại để SimplePoLL lo nè">
+                            <div class="search-select-btn"><i class="fas fa-search"></i></div>
+                        </div>
+                        <ul class="search-menu">
+                            
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </header>
+
+        {{{body}}}
+
+        <footer id="footer">
+            <div class="social-list">
+                <a href=""><i class="fab fa-facebook-square"></i></a>
+                <a href=""><i class="fab fa-instagram"></i></a>
+                <a href=""><i class="fab fa-youtube"></i></a>
+                <a href=""><i class="fab fa-pinterest-p"></i></a>
+                <a href=""><i class="fab fa-twitter"></i></a>
+                <a href=""><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copy-right"> 
+                Copyright © 2021 - Đọc Truyện Chữ Hay Và Đầy Đủ. 
+                Maded by <a href="#">SimplePoLL</a>
+            </p>
+        </footer>
+
+   </div>
+
+    
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    
+    
+    <script>
+        let novelId = {{novelID}};
+        let chapterId = {{chapterID}};
+
+        const errorBtn = document.querySelector('.chapter-error');
+        
+        const modal = document.querySelector('.modal');
+        const modalClose = document.querySelector('.modal-close');
+        const modalContainer =document.querySelector('.modal-container') ;
+    
+        errorBtn.addEventListener('click', function () {
+            console.log('err', errorBtn)
+            modal.classList.toggle('d-none');
+        });
+
+        modalClose.addEventListener('click', function () {
+            modal.classList.toggle('d-none');
+        });
+
+         // Đóng modal  khi nhận click vào màn hình (class modal đang bao hết màn hình)
+        modal.addEventListener('click',function () {
+            modal.classList.toggle('d-none');
+        });
+
+        // DỪng việc đóng modal nếu click vào bên trong giao diện modal
+        modalContainer.addEventListener('click', function (event) {
+            event.stopPropagation();
+        }) ;
+
+    </script>
+    
+
+
+    {{#each js}}
+       <script type="text/javascript" src="/js/{{this}}.js"></script>
+    {{/each}}
+
+</body>
+</html>

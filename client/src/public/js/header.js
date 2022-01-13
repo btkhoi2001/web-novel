@@ -40,7 +40,7 @@ $(".mobile-navbar-btn").click(function(){
         listOfNovels = novels.novels;
         listOfGenres = genres.genres;     
         displayGenres(listOfGenres);
-        console.log(listOfNovels)
+       
     } catch (err) {
         console.error(err);
     }

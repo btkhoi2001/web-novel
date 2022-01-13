@@ -1,0 +1,311 @@
+.mobile-navbar {
+    padding-top: 1.2rem;
+    padding-bottom: 2rem;
+    animation: growDown 500ms ease-in-out forwards;
+}
+.mobile-navbar-items {
+    color: #ffffff;
+    padding-bottom: 1.2rem;
+}
+
+.mobile-navbar-icon {
+    font-size: 1.5rem;
+}
+.mobile-item-link {
+    color: white;
+    font-size: 1.8rem;
+}
+.mobile-droplist {
+    display: block;
+}
+.mobile-droplist li a {
+    color: white;
+    font-size: 1.6rem;
+}
+.mobile-droplist li:hover a {
+    color: var(--orange-color);
+}
+.mobile-menu-btn {
+    padding: .4rem .8rem;
+}
+.mobile-navbar-btn i {
+    color: rgba(255, 255, 255, 0.849);
+    font-size: 2.4rem;
+    padding: .6rem 1rem;
+    border: 2px solid rgba(221, 221, 221, 0.61);
+    border-radius:.6rem;
+}
+@keyframes growDown {
+    0% {
+      transform: scaleY(0)
+    }
+    80% {
+      transform: scaleY(1.1)
+    }
+    100% {
+      transform: scaleY(1)
+    }
+}
+@media (min-width: 19.75em) and (max-width: 29.9375em) {
+    .searchbar {
+        margin-left:0;
+        margin-right: 0;
+        border-bottom: 1px solid #fff;
+        height:6rem;
+    }
+    .logo h1 {
+        font-size: 3rem;
+    }
+    .searchbar-item {
+        padding: .2rem 0;
+        margin: 0;
+        line-height:6rem;
+    }
+    .mobile-navbar-btn {
+        line-height: 6rem;
+    }
+    .select-type {
+        width: 12rem;
+    }
+    .mobile-menu-btn {
+        padding: .4rem .6rem;
+    }
+    .mobile-navbar-btn i {
+        color: rgba(255, 255, 255, 0.849);
+        font-size: 2.4rem;
+        padding: .4rem;
+    }
+    .searchbar-item:first-child {
+        flex:1;
+    }
+    .searchbar-btn {
+        margin-top: 1.2rem;
+        padding: .4rem;
+    }
+    .searchbar-btn a {
+        font-size: 1.8rem;
+    }
+    .search {
+        padding: .4rem;
+        height: 3.2rem;
+    }
+    .word {
+        display: none;
+    }
+    .novel-title {
+        margin: 0 1rem;
+    }
+    .chapter-title {
+        font-size:1.4rem;
+    }
+    .btn-chapter-nav {
+        font-size:1.4rem;
+    }
+    .btn-header-toggle {
+        padding: 0 1rem;
+        font-size: 1.6rem;
+        height: 4rem;
+    }
+    .btn-header-bookmark {
+        padding: 0 1rem;
+        font-size: 1.6rem;
+        height: 4rem;
+    }
+    .modal-container {
+        width: 90%;
+    }
+    .modal-container .modal-header {
+        height: 8rem;
+        font-size: 2.6rem;
+    }
+    .searchbar-item .notification-btn .notification-badge {
+        left: 2.6rem;
+        top: 1.2rem;
+        padding: 0 .4rem;
+        line-height: 1.6rem;
+    }
+    .notification-btn .notification-menu {
+        width: 25rem;
+        top: 4.8rem;
+        right: -8rem;
+    }
+}
+
+@media (min-width: 30em) and (max-width: 35.9375em) {
+    .searchbar {
+        margin-left:0;
+        margin-right: 0;
+        border-bottom: 1px solid #fff;
+        height:6rem;
+    }
+    .logo h1 {
+        font-size: 4rem;
+    }
+    .searchbar-item {
+        padding: .2rem 0;
+        margin: 0;
+        line-height:6rem;
+    }
+    .mobile-navbar-btn {
+        line-height: 6rem;
+    }
+    .account {
+        display: flex;
+        justify-content: space-between;
+    }
+    .sign-up {
+        margin-right: .4rem;
+    }
+    .searchbar-item:first-child {
+        flex:1;
+    }
+    .searchbar-btn {
+        margin-top: 1.2rem;
+        padding: .4rem .6rem;
+    }
+    .searchbar-btn a {
+        font-size: 1.8rem;
+    }
+    .search {
+        padding: .4rem;
+        height: 3.2rem;
+    }
+    .btn-header-toggle {
+        padding: 0 1.2rem;
+        font-size: 2.2rem;
+        height: 4.4rem;
+    }
+    .btn-header-bookmark {
+        padding: 0 1.2rem;
+        font-size: 2.2rem;
+        height: 4.4rem;
+    }
+    .modal-container {
+        width: 80%;
+    }
+    .searchbar-item .notification-btn .notification-badge {
+        left: 2.6rem;
+        top: 1.2rem;
+        padding: 0 .4rem;
+        line-height: 1.6rem;
+    }
+    .notification-btn .notification-menu {
+        top: 4.8rem;
+        right: 0;
+    }
+}
+
+
+@media (min-width: 36em)  and (max-width:47.9375em) { 
+    .searchbar {
+        margin-left:0;
+        margin-right: 0;
+        border-bottom: 1px solid #fff;
+        height:6rem;
+    }
+    .logo h1 {
+        font-size: 3.6rem;
+    }
+    .searchbar-item {
+        padding: .2rem 0;
+        margin: 0;
+        line-height:6rem;
+    }
+    .mobile-navbar-btn {
+        line-height: 6rem;
+    }
+    .searchbar-item:first-child {
+        flex:1;
+    }
+    .searchbar-btn {
+        margin-top: 1.2rem;
+        padding: .4rem .6rem;
+    }
+    .searchbar-btn a {
+        font-size: 1.8rem;
+    }
+    .search {
+        padding: .4rem;
+        height: 3.2rem;
+    }
+    .btn-header-toggle {
+        padding: 0 1.6rem;
+        font-size: 2.4rem;
+        height: 5.4rem;
+    }
+    .btn-header-bookmark {
+        padding: 0 1.6rem;
+        font-size: 2.4rem;
+        height: 5.4rem;
+    }
+    .modal-container {
+        width: 70%;
+    }
+    .searchbar-item .notification-btn .notification-badge {
+        left: 2.6rem;
+        top: 1.2rem;
+        padding: 0 .4rem;
+        line-height: 1.6rem;
+    }
+    .notification-btn .notification-menu {
+        top: 4.8rem;
+        right: 0;
+    }
+ }
+
+
+/* Tablet */
+@media (min-width: 48em) and (max-width:61.9375em) { 
+    .searchbar {
+        margin-left:0;
+        margin-right: 0;
+        border-bottom: 1px solid #fff;
+        height:6rem;
+    }
+    .logo h1 {
+        font-size: 3.6rem;
+    }
+    .searchbar-item {
+        padding: .2rem 0;
+        margin: 0;
+        line-height:6rem;
+    }
+    .mobile-navbar-btn {
+        line-height: 6rem;
+    }
+    .searchbar-item:first-child {
+        flex:1;
+    }
+    .searchbar-btn {
+        margin-top: 1.2rem;
+        padding: .4rem .6rem;
+    }
+    .searchbar-btn a {
+        font-size: 1.8rem;
+    }
+    .search {
+        padding: .4rem;
+        height: 3.2rem;
+    }
+    .modal-container {
+        width: 60%;
+    }
+    .searchbar-item .notification-btn .notification-badge {
+        left: 2.6rem;
+        top: 1.2rem;
+        padding: 0 .4rem;
+        line-height: 1.6rem;
+    }
+    .notification-btn .notification-menu {
+        top: 4.8rem;
+        right: 0;
+    }
+}
+
+
+@media (min-width: 62em) {
+    .modal-container {
+        width: 50%;
+        max-width: 70rem;
+    }
+}
