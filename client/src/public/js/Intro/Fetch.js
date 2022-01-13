@@ -117,7 +117,7 @@ function loadListChapter(LChapter, page) {
         var item = `
                     <li>
                         <span class="glyphicon glyphicon-certificate"></span>
-                        <a href="/novel/${novelId}/chaper/${element.chapterId}" title="">
+                        <a href="/novel/${novelId}/chapter/${element.chapterId}" title="">
                             <span class="chapter-text">
                                 <span>Chương </span>
                             </span>${element.chapterOrder}: ${element.title}
@@ -137,7 +137,7 @@ async function DisplayNewChapters(LChapter) {
         var item = `
                     <li>
                         <span class="glyphicon glyphicon-certificate"></span>
-                        <a href="/novel/${novelId}/chaper/${element.chapterId}" title="">
+                        <a href="/novel/${novelId}/chapter/${element.chapterId}" title="">
                             <span class="chapter-text">
                                 <span>Chương </span>
                             </span>${element.chapterOrder}: ${element.title}
