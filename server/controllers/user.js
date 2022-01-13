@@ -259,6 +259,7 @@ export const getUserAccount = async (req, res) => {
             { userId },
             {
                 _id: 0,
+                userId: 1,
                 displayName: 1,
                 email: 1,
                 avatar: 1,

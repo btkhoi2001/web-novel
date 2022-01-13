@@ -1426,6 +1426,8 @@ paths:
             tags:
                 - "comment"
             summary: Lấy danh sách bình luận
+            security:
+                - bearerAuth: []
             parameters:
                 - in: query
                   name: page
@@ -1764,6 +1766,8 @@ paths:
                                     user:
                                         type: object
                                         properties:
+                                            userId:
+                                                type: integer
                                             displayName:
                                                 type: string
                                             email:
@@ -1834,7 +1838,7 @@ paths:
                                     message:
                                         type: string
                                         example: access token not found
-    /api/user/change-password:
+    /api/user/account/change-password:
         put:
             tags:
                 - "user"
@@ -2357,6 +2361,8 @@ paths:
                         schema:
                             type: object
                             properties:
+                                userId:
+                                    type: integer
                                 isBlocked:
                                     type: boolean
                                 role:
