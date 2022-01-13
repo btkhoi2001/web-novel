@@ -4,7 +4,7 @@ class accountController {
         res.render('account/home', {
             layout: 'homePage',
             css: ['UserPage', 'base'],
-            js: ['requireSignedIn', 'UserPage', 'isSignedIn'],
+            js: ['isSignedIn', 'header', 'requireSignedIn', 'userPage'],
           
         })
         return;
