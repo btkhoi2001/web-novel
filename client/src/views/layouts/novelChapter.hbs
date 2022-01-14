@@ -12,7 +12,7 @@
     {{/each}}
     <title>Đọc truyện online - SimplePoLL</title>
 </head>
-<body class="d-none">
+<body >
    <div class="main">
         <header id="header">
             <div class="container-xl">
@@ -269,6 +269,8 @@
         errorBtn.addEventListener('click', function () {
             console.log('err', errorBtn)
             modal.classList.toggle('d-none');
+            $('#modal-email').val("");
+            $('#modal-error').val("");
         });
 
         modalClose.addEventListener('click', function () {

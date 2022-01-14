@@ -1,7 +1,6 @@
 let User;
 const loadUser = async () => {
     try {
-        $('body').removeClass('d-none');
 
         const token = window.localStorage.getItem('token');
         console.log(token);

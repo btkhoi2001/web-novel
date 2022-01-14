@@ -332,7 +332,7 @@ const deleteBookmark = async (event) => {
     });
     console.log(res);
 
-    alert(`Bỏ theo dõi truyện thành công`); 
+    alert(`Bỏ đánh dấu truyện thành công`); 
     
     const res4 = await fetch('http://localhost:5000/api/bookmark', {
         headers: {
