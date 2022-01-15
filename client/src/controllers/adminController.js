@@ -6,7 +6,7 @@ class adminController {
         res.render('admin/novel', {
             layout: 'admin',
             css: ['admin', 'responsive'],
-            js: ['admin',],
+            js: ['admin', 'FetchNovel'],
         })
         return;
     }
@@ -16,7 +16,7 @@ class adminController {
         res.render('admin/novelCreate', {
             layout: 'admin',
             css: ['admin', 'responsive'],
-            js: ['admin','typehead', 'bootstrap-tagsinput', 'app'],
+            js: ['admin','typehead', 'bootstrap-tagsinput','FetchGenre' , 'app'],
         })
         return;
     }
@@ -25,8 +25,8 @@ class adminController {
       
         res.render('admin/user', {
             layout: 'admin',
-            css: ['admin', 'responsive'],
-            js: ['admin',],
+            css: ['admin', 'responsive', 'modal'],
+            js: ['admin', 'FetchUser'],
         })
         return;
     }
@@ -46,7 +46,7 @@ class adminController {
         res.render('admin/genre', {
             layout: 'admin',
             css: ['admin', 'responsive'],
-            js: ['admin',],
+            js: ['admin', 'FetchGenre'],
         })
         return;
     }
