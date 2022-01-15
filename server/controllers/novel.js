@@ -182,6 +182,7 @@ export const getNovel = async (req, res) => {
                             genre: "$genre",
                             genreId: "$genreId",
                             isCompleted: "$isCompleted",
+                            updatedAt: "$updatedAt",
                         },
                         rating: { $avg: "$rating.rating" },
                         ratingCount: {
@@ -279,6 +280,7 @@ export const getNovel = async (req, res) => {
                                     isCompleted: "$_id.isCompleted",
                                     rating: { $ifNull: ["$rating", 0] },
                                     ratingCount: { $size: "$ratingCount" },
+                                    updatedAt: "$_id.updatedAt",
                                     chapters: { $size: "$chapters" },
                                     lastChapter: {
                                         chapterId: "$lastChapter.chapterId",

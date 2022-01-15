@@ -19,7 +19,6 @@ const schema = new mongoose.Schema(
         message: {
             type: String,
             maxLength: 200,
-            required: true,
         },
         isRead: {
             type: Boolean,
