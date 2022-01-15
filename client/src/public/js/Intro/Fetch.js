@@ -1,5 +1,6 @@
 const token = window.localStorage.getItem('token');
-       
+
+var checkfl = false
 async function fetchNovel() {
     try {
         if(token) {
@@ -17,6 +18,7 @@ async function fetchNovel() {
                 }
             });
             const listChapter = await res2.json();
+            checkfl = novel.novel.isFollowed;
             SetValueNovel(novel.novel)
             DisplayListChapter(listChapter.chapters)
             DisplayNewChapters(listChapter.chapters)
@@ -52,6 +54,10 @@ async function SetValueNovel(novel) {
         $("[itemprop=isCompleted").attr("class", 'text-success').html("Full")
     else $("[itemprop=isCompleted").attr("class", 'text-primary').html("Đang ra")
     $("[itemprop=genre").html(novel.genre)
+    if(checkfl)
+        $('#follow > a').html(`Hủy theo dõi <i class="fa fa-eye-slash"></i>`)
+    else 
+        $('#follow > a').html(`Theo dõi <i class="fa fa-eye"></i>`)
     $("[itemprop=nomi]").html(novel.nominations)
     $("[itemprop=ratingValue]").html(novel.rating)
     $("[itemprop=ratingCount]").html(novel.ratingCount)
@@ -173,7 +179,6 @@ function nominating() {
     })
 }
 
-var checkfl = false
 function following() {
     var em = document.getElementById('annomess')
     if(em)
@@ -188,6 +193,7 @@ function following() {
             body: JSON.stringify({novelId})
         }).then(res => res.json()).then(res => {
             checkfl = true
+            $('#follow > a').html(`Hủy theo dõi <i class="fa fa-eye-slash"></i>`)
             $('#follow').append(`<h3 id="annomess" class="flmes">Đã theo dõi truyện</h3>`)
             setTimeout(function() {
                 $("#annomess").fadeOut().empty();
@@ -206,6 +212,7 @@ function following() {
             body: JSON.stringify({novelId})
         }).then(res => res.json()).then(res => {
             checkfl = false
+            $('#follow > a').html(`Theo dõi <i class="fa fa-eye"></i>`)
             $('#follow').append(`<h3 id="annomess" class="uflmes">Đã hủy theo dõi truyện</h3>`)
             setTimeout(function() {
                 $("#annomess").fadeOut().empty();

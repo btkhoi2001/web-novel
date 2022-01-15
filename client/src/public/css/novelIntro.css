@@ -566,7 +566,7 @@ img {
     color: #ffffff !important;
 }
 
-.fa-eye {
+.fa-eye, .fa-eye-slash {
     color: var(--pink-color);
 }
 
