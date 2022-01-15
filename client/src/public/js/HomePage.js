@@ -1,46 +1,51 @@
-$(".mobile-navbar-btn").click(function(){
-    $(".mobile-navbar").toggleClass('d-none');
+$(".mobile-navbar-btn").click(function () {
+    $(".mobile-navbar").toggleClass("d-none");
 });
-$(".mobile-item-link").click(function(){
-    $(this).parent(".mobile-navbar-items").children(".mobile-droplist").toggleClass('d-none');
-});
-
-$('html').click(function() {
-    $('.search-menu').empty();
-    $('.notification-menu').addClass('d-none'); 
-}); 
-$('.notification-btn').click(function(event) {
-    event.stopPropagation();
-    $('.notification-menu').toggleClass('d-none'); 
-}); 
-$('.notification-menu').click(function (event) {
-    event.stopPropagation();
+$(".mobile-item-link").click(function () {
+    $(this)
+        .parent(".mobile-navbar-items")
+        .children(".mobile-droplist")
+        .toggleClass("d-none");
 });
 
+$("html").click(function () {
+    $(".search-menu").empty();
+    $(".notification-menu").addClass("d-none");
+});
+$(".notification-btn").click(function (event) {
+    event.stopPropagation();
+    $(".notification-menu").toggleClass("d-none");
+});
+$(".notification-menu").click(function (event) {
+    event.stopPropagation();
+});
 
 // Search novel function
-const novelLists = document.querySelector('.search-menu');
-const genreLists = document.querySelector('.droplist-fluid');
-const searchBar = document.getElementById('searchBar');
-const hotNovels = document.querySelector('.hot-novels');
-const recentlyUpdatedNovels = document.querySelector('.update-novels')
-
+const novelLists = document.querySelector(".search-menu");
+const genreLists = document.querySelector(".droplist-fluid");
+const searchBar = document.getElementById("searchBar");
+const hotNovels = document.querySelector(".hot-novels");
+const recentlyUpdatedNovels = document.querySelector(".update-novels");
 
 let listOfNovels = [];
 let listOfGenres = [];
-let listOfRecentlyUpdated = []
+let listOfRecentlyUpdated = [];
 
 const loadPage = async () => {
     try {
-        const res = await fetch('http://localhost:5000/api/novel');
+        const res = await fetch("https://api-webnovel.herokuapp.com/api/novel");
         const novels = await res.json();
-        const res2 = await fetch('http://localhost:5000/api/novel/genre');
+        const res2 = await fetch(
+            "https://api-webnovel.herokuapp.com/api/novel/genre"
+        );
         const genres = await res2.json();
-        const res3 = await fetch('http://localhost:5000/api/novel?sortBy=update');
+        const res3 = await fetch(
+            "https://api-webnovel.herokuapp.com/api/novel?sortBy=update"
+        );
         const updatedNovels = await res3.json();
-        listOfRecentlyUpdated = updatedNovels.novels
+        listOfRecentlyUpdated = updatedNovels.novels;
         listOfNovels = novels.novels;
-        listOfGenres = genres.genres;     
+        listOfGenres = genres.genres;
         displayGenres(listOfGenres);
         displayNovels(listOfNovels);
         displayRecentlyUpdatedNovels(listOfRecentlyUpdated);
@@ -51,85 +56,82 @@ const loadPage = async () => {
 
 loadPage();
 
-
 // Search novel names
-searchBar.addEventListener('keyup',  (e) => {
+searchBar.addEventListener("keyup", (e) => {
     const searchString = e.target.value.toLowerCase();
     const filteredNovels = listOfNovels.filter((novel) => {
-        return ( novel.title.toLowerCase().includes(searchString) );
+        return novel.title.toLowerCase().includes(searchString);
     });
-    novelLists.innerHTML = '' ;
-    if ((searchString.length !== 0) && (searchString !== ' '))
+    novelLists.innerHTML = "";
+    if (searchString.length !== 0 && searchString !== " ")
         // show first 10 results
         displaySearchResults(filteredNovels, 10);
 });
-
 
 const displaySearchResults = (novels, length) => {
     let htmlString;
 
     if (novels.length === 0) {
-        htmlString =  `
+        htmlString = `
                 <li style="color:red; font-size: 1.4rem">
                     Truyện bạn tìm không có !
                 </li>
             `;
-    }
-    else if (novels.length <= length){
-        htmlString = novels.map((novel) => {
-            return `
+    } else if (novels.length <= length) {
+        htmlString = novels
+            .map((novel) => {
+                return `
                 <li class="">
                     <a href="/novel/${novel.novelId}" class="d-block">
                         ${novel.title}
                     </a> 
                 </li>
             `;
-        })
-        .join('');
-    }
-    else {
+            })
+            .join("");
+    } else {
         let results = [];
         for (i = 0; i < length; i++) {
             results.push(novels[i]);
         }
-        htmlString = results.map((novel) => {
-            return `
+        htmlString = results
+            .map((novel) => {
+                return `
                 <li class="">
                     <a href="/novel/${novel.novelId}" class="">
                         ${novel.title}
                     </a> 
                 </li>
             `;
-        })
-        .join('');
+            })
+            .join("");
     }
     novelLists.innerHTML = htmlString;
 };
 
 const displayGenres = (genres) => {
     let htmlString;
-    htmlString = genres.map((genre) => {
-        return `
+    htmlString = genres
+        .map((genre) => {
+            return `
                 <a href="/genre/${genre.genreId}" class="">
                     ${genre.name}
                 </a> 
         `;
-    })
-        .join('');
-   
+        })
+        .join("");
+
     genreLists.innerHTML = htmlString;
 };
-
 
 const displayNovels = (novels) => {
     let htmlString;
     let results = [];
     let len;
 
-    if(novels.length < 12) {
+    if (novels.length < 12) {
         len = novels.length;
-    }
-    else {
+    } else {
         len = 12;
     }
 
@@ -137,23 +139,25 @@ const displayNovels = (novels) => {
         results.push(novels[i]);
     }
 
-    htmlString = results.map((novel) => {
-        let result = ` 
+    htmlString = results
+        .map((novel) => {
+            let result = ` 
             <div class="item col-lg-2 col-sm-3 col-4">
                 <a href="/novel/${novel.novelId}" class="">`;
-        if(novel.isCompleted) {
-            result += `<span class="item__fulllabel"></span>`
-        }
-        result += `
+            if (novel.isCompleted) {
+                result += `<span class="item__fulllabel"></span>`;
+            }
+            result += `
                     <img src="${novel.cover}" alt="${novel.title}" title="${novel.title}" class="item__img">
                     <div class="item__title">
                         <h3 class="novel-title" itemprop="name" title="${novel.title}">${novel.title}</h3>
                     </div>                            
                 </a>
-            </div>`
-        return result;
-    }).join('');
-   
+            </div>`;
+            return result;
+        })
+        .join("");
+
     hotNovels.innerHTML = htmlString;
 };
 
@@ -162,17 +166,16 @@ const displayRecentlyUpdatedNovels = (novels) => {
     let results = [];
     let length;
 
-    if(novels.length < 12)
-        length = novels.length;
-    else 
-        length = 12;
+    if (novels.length < 12) length = novels.length;
+    else length = 12;
 
     for (i = 0; i < length; i++) {
         results.push(novels[i]);
     }
 
-    htmlString = results.map((novel) => {
-        let result = `
+    htmlString = results
+        .map((novel) => {
+            let result = `
         <div class="row">
             <div class="list-col col-xs-9 col-md-6 col-sm-8 col-title d-flex">
                 <i class="fas fa-angle-right"></i>
@@ -190,9 +193,9 @@ const displayRecentlyUpdatedNovels = (novels) => {
             </div>
         </div>`;
 
-        return result;
-    }).join('');
-   
+            return result;
+        })
+        .join("");
+
     recentlyUpdatedNovels.innerHTML = htmlString;
 };
-

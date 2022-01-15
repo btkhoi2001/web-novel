@@ -1,20 +1,23 @@
-const token = window.localStorage.getItem('token');
+const token = window.localStorage.getItem("token");
 
 async function FetchUser() {
-    const res = await fetch(`http://localhost:5000/api/admin/user`, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`
+    const res = await fetch(
+        `https://api-webnovel.herokuapp.com/api/admin/user`,
+        {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         }
-    });
+    );
     const Luser = await res.json();
-    DisplayNovels(Luser.users)
+    DisplayNovels(Luser.users);
 }
 
-FetchUser()
+FetchUser();
 
 function DisplayNovels(users) {
-    $('.content > table > tbody').html('')
+    $(".content > table > tbody").html("");
     for (var i = 0; i < users.length; i++) {
         var item = `
         <tr>
@@ -26,7 +29,7 @@ function DisplayNovels(users) {
             <td><a href="#" class="chat">Chat</a></td>
             <td><a href="#banmodal" class="ban" data-toggle="modal">Ban</a></td>
         </tr>
-        `
-        $('.content > table > tbody').append(item)
+        `;
+        $(".content > table > tbody").append(item);
     }
 }
