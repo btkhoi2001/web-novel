@@ -16,7 +16,7 @@ class adminController {
         res.render('admin/novelCreate', {
             layout: 'admin',
             css: ['admin', 'responsive'],
-            js: ['admin', 'bootstrap-tagsinput', 'app', 'typehead'],
+            js: ['admin','typehead', 'bootstrap-tagsinput', 'app'],
         })
         return;
     }
@@ -36,7 +36,7 @@ class adminController {
         res.render('admin/userCreate', {
             layout: 'admin',
             css: ['admin', 'responsive'],
-            js: ['admin', 'bootstrap-tagsinput', 'app', 'typehead'],
+            js: ['admin','typehead', 'bootstrap-tagsinput', 'app'],
         })
         return;
     }
@@ -56,7 +56,7 @@ class adminController {
         res.render('admin/genreCreate', {
             layout: 'admin',
             css: ['admin', 'responsive'],
-            js: ['admin', 'bootstrap-tagsinput', 'app', 'typehead'],
+            js: ['admin','typehead', 'bootstrap-tagsinput', 'app'],
         })
         return;
     }
