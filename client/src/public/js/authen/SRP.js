@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
     const registerForm = document.querySelector("#register");
 
-    loginForm.addEventListener("submit", e => {
+    loginForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const email = document.querySelector("#em").value;
         const password = document.querySelector("#pw").value;
@@ -84,9 +84,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     setFormMessage(loginForm, 'success', res.message);
                     window.localStorage.setItem("token", res.accessToken);
 
-                   
-                    //Redirect to home page (Readers login)
-                    window.location.replace("http://localhost:3000/home")
+                    const token = window.localStorage.getItem('token');
+                    fetch('http://localhost:5000/api/user/account', {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    }).then(res => res.json()).then(res => {
+                        let user =  res.user;
+                        // Redirect to home page (Readers and Author login)
+                        if(user.role === "Reader" || user.role === "Author") {
+                            window.location.replace("http://localhost:3000/home")
+                        }
+                    })
+                    
                 }
         }).catch(err => {
             setFormMessage(loginForm, 'error', 'Something wrong!');

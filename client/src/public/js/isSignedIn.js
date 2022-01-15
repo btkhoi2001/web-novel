@@ -29,7 +29,6 @@ const loadUser = async () => {
             $('.col-3 .list #upload').addClass('d-none');
             $('.col-3 .list #upload-chapter').addClass('d-none');
             $('.col-3 .list #uploaded-novel').addClass('d-none');
-
         }
     } catch (err) {
         console.error(err);
