@@ -203,6 +203,12 @@ const loadP = async () => {
             const n = await res6.json();
             novels = n.novels;
             displayUploadedNovels(novels);
+
+             // upload novel 
+            getGenres(genres);
+
+            // upload chapter
+            getNovels(novels);
         }
        
 
@@ -223,19 +229,12 @@ const loadP = async () => {
         // property
         $('.flower').text(`${user.user.flowers}`)
 
-        // upload novel 
-        getGenres(genres);
-
-        // upload chapter
-        getNovels(novels);
-
-
         // scroll to content
         document.body.scrollTop = 400; // For Safari
         document.documentElement.scrollTop = 400; // For Chrome, Edge, ...
       
     } catch (err) {
-        console.error(err);
+        console.log(err);
     }
 };
 
