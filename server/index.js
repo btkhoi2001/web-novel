@@ -12,8 +12,13 @@ import followRouter from "./routes/follow.js";
 import notificationRouter from "./routes/notification.js";
 import adminRouter from "./routes/admin.js";
 import scheduler from "./schedules/jobs.js";
+import { fileURLToPath } from "url";
+import path, { dirname } from "path";
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
 const PORT = process.env.PORT || 5000;
