@@ -69,7 +69,7 @@ if (window.localStorage.getItem("token")) {
 
 $(".btn-logout").click(function () {
     window.localStorage.clear();
-    window.location.replace(`http://localhost:3000/`);
+    window.location.replace(`https://app-webnovel.herokuapp.com/`);
 });
 
 const displayNotifications = async (seen, unseen) => {
@@ -106,7 +106,7 @@ const displayNotifications = async (seen, unseen) => {
                 return `
               
                     <li class="d-flex unseen-message">
-                        <a href="http://localhost:3000/novel/${novelID}" class="mt-2">
+                        <a href="https://app-webnovel.herokuapp.com/novel/${novelID}" class="mt-2">
                             <img alt="" height="70" width="50" src="${novelImage}" lazy="loaded"> 
                         </a> 
                         <button value="${n.notificationId}" onclick="setStatus(event)" style="border:none; width:100%;" >
@@ -138,7 +138,7 @@ const displayNotifications = async (seen, unseen) => {
                 return `
            
                 <li class="d-flex">
-                    <a href="http://localhost:3000/novel/${novelID}" class="mt-2">
+                    <a href="https://app-webnovel.herokuapp.com/novel/${novelID}" class="mt-2">
                         <img alt="" height="70" width="50" src="${novelImage}" lazy="loaded"> 
                     </a> 
                     <button value="${n.notificationId}" onclick="goToChapter(event)" style="border:none; width:100%;" >

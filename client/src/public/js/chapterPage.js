@@ -92,7 +92,7 @@ $(".btn-header-toggle").click(function () {
 });
 $(".mark-up").click(async function () {
     if (!window.localStorage.getItem("token")) {
-        window.location.replace(`http://localhost:3000/authen`);
+        window.location.replace(`https://app-webnovel.herokuapp.com/authen`);
     } else {
         const token = window.localStorage.getItem("token");
         const res = await fetch(
@@ -118,7 +118,7 @@ $(".mark-up").click(async function () {
 });
 $(".mark-down").click(async function () {
     if (!window.localStorage.getItem("token")) {
-        window.location.replace(`http://localhost:3000/authen`);
+        window.location.replace(`https://app-webnovel.herokuapp.com/authen`);
     } else {
         const token = window.localStorage.getItem("token");
         const res = await fetch(
@@ -144,7 +144,7 @@ $(".mark-down").click(async function () {
 });
 $("#send").click(async function () {
     if (!window.localStorage.getItem("token")) {
-        window.location.replace(`http://localhost:3000/authen`);
+        window.location.replace(`https://app-webnovel.herokuapp.com/authen`);
     } else {
         const email = $("#modal-email").val();
         const content = $("#modal-error").val();
@@ -259,7 +259,7 @@ const displayChapter = (novel, chapter, listOfChapters) => {
     if (previousChapter) {
         $(".prev-chap").attr(
             "href",
-            `http://localhost:3000/novel/${novel.novelId}/chapter/${previousChapter.chapterId}`
+            `https://app-webnovel.herokuapp.com/novel/${novel.novelId}/chapter/${previousChapter.chapterId}`
         );
     } else {
         $(".prev-chap").addClass("btn-disabled");
@@ -269,7 +269,7 @@ const displayChapter = (novel, chapter, listOfChapters) => {
     if (nextChapter) {
         $(".next-chap").attr(
             "href",
-            `http://localhost:3000/novel/${novel.novelId}/chapter/${nextChapter.chapterId}`
+            `https://app-webnovel.herokuapp.com/novel/${novel.novelId}/chapter/${nextChapter.chapterId}`
         );
     } else {
         $(".next-chap").addClass("btn-disabled");
@@ -282,7 +282,7 @@ const displayChapter = (novel, chapter, listOfChapters) => {
     let htmlString4;
 
     htmlString1 = `
-        <h1><a href="http://localhost:3000/novel/${novel.novelId}" class="novel-title" title="${novel.title}">${novel.title}</a></h1>
+        <h1><a href="https://app-webnovel.herokuapp.com/novel/${novel.novelId}" class="novel-title" title="${novel.title}">${novel.title}</a></h1>
         `;
 
     htmlString2 = `
@@ -300,7 +300,7 @@ const displayChapter = (novel, chapter, listOfChapters) => {
     htmlString4 = listOfChapters
         .map((chap) => {
             return `
-            <option value="http://localhost:3000/novel/${novel.novelId}/chapter/${chap.chapterId}">
+            <option value="https://app-webnovel.herokuapp.com/novel/${novel.novelId}/chapter/${chap.chapterId}">
                 Chương ${chap.chapterOrder}
             </option>
         `;

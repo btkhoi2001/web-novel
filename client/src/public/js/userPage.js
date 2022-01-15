@@ -552,13 +552,13 @@ const displayFollowPage = (novels) => {
              <li class="reading-list-item d-flex justify-content-between">
                                             <div class="row">
                                                 <div class="col-1">
-                                                    <a href="http://localhost:3000/novel/${novel.novelId}" class="item-img">
+                                                    <a href="https://app-webnovel.herokuapp.com/novel/${novel.novelId}" class="item-img">
                                                         <img src="${novel.cover}" alt="" width="58" height="80">
                                                     </a>
                                                 </div>
                                                 <div class="col-11">
                                                     <div class="item-body">
-                                                        <h2><a href="http://localhost:3000/novel/${novel.novelId}" class="item-body-title">${novel.novelTitle}</a></h2>
+                                                        <h2><a href="https://app-webnovel.herokuapp.com/novel/${novel.novelId}" class="item-body-title">${novel.novelTitle}</a></h2>
                                                         <div class="text-muted text-overflow-1-lines">
                                                             Đã đọc: ${novel.readChapters} chương
                                                         </div>
@@ -585,14 +585,14 @@ const displayBookmarkPage = (novels) => {
              <li class="reading-list-item d-flex justify-content-between">
                                             <div class="row">
                                                 <div class="col-1">
-                                                    <a href="http://localhost:3000/novel/${novel.novelId}" class="item-img">
+                                                    <a href="https://app-webnovel.herokuapp.com/novel/${novel.novelId}" class="item-img">
                                                         <img src="${novel.cover}" alt="" width="58" height="80">
                                                     </a>
                                                 </div>
                                                 <div class="col-11">
                                                     <div class="item-body">
-                                                        <h2><a href="http://localhost:3000/novel/${novel.novelId}" class="item-body-title">${novel.novelTitle}</a></h2>
-                                                        <div><a href="http://localhost:3000/novel/${novel.novelId}/chapter/${novel.chapterId}" class="text-overflow-1-lines d-inline-block">
+                                                        <h2><a href="https://app-webnovel.herokuapp.com/novel/${novel.novelId}" class="item-body-title">${novel.novelTitle}</a></h2>
+                                                        <div><a href="https://app-webnovel.herokuapp.com/novel/${novel.novelId}/chapter/${novel.chapterId}" class="text-overflow-1-lines d-inline-block">
                                                             Đang đọc: chương ${novel.chapterOrder} 
                                                         </a></div>
                                                     </div>

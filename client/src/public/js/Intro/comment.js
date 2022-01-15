@@ -279,7 +279,7 @@ function showmoreComments(btnid) {
 
 async function postComment() {
     if (!token) {
-        window.location.replace(`http://localhost:3000/authen`);
+        window.location.replace(`https://app-webnovel.herokuapp.com/authen`);
     }
     const content = $(".comment-input").val();
     if (content) {
@@ -344,7 +344,7 @@ function like(cmtid) {
 var itemindex = 0;
 function reply(pid, user) {
     if (!token) {
-        window.location.replace(`http://localhost:3000/authen`);
+        window.location.replace(`https://app-webnovel.herokuapp.com/authen`);
     }
     var t = $(`.replybtn[data-pid=${pid}]`);
     var dataid = t.data("dataid");

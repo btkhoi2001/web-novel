@@ -1,44 +1,102 @@
 <div class="admin-content">
-            <div class="button-group">
-                <a href="http://localhost:3000/admin/user/create" class="btn btn-big">Add User</a>
-                <a href="http://localhost:3000/admin/user" class="btn btn-big">Manage</a>
-            </div>
-            <div class="section upload-novel">
-                <div class="section-title">
-                   Thêm User mới
-                </div>
-                <div class="section-content mt-4">
-                    <div class="information">
-                        <form action="create.html" method="post">
-                            <div class="mb-3" style="margin-bottom: 2rem!important;">
-                                <label for="name" class="form-label" style="font-weight: 500;">Tên người dùng</label>
-                                <input type="text" id="regUser" class="form-control" autofocus placeholder="Feel Free" required style="padding:.6rem; font-size:1.4rem">
-                            </div>
-                            <div class="mb-3" style="margin-bottom: 2rem!important;">
-                                <label for="email" class="form-label" style="font-weight: 500;">Email</label>
-                                <input type="email" class="form-control" placeholder="Email" required style="padding:.6rem; font-size:1.4rem">
-                            </div>
-                            <div class="mb-3" style="margin-bottom: 2rem!important;">
-                                <label for="password" class="form-label" style="font-weight: 500;">Mật khẩu</label>
-                                <input type="password" id="regPass" class="form-control" placeholder="" required style="padding:.6rem; font-size:1.4rem">
-                            </div>
-                            <div class="mb-3" style="margin-bottom: 2rem!important;">
-                                <label for="comfpassword" class="form-label" style="font-weight: 500;">Nhập lại mật khẩu</label>
-                                <input type="password" id="regPass2" class="form-control" placeholder="" required style="padding:.6rem; font-size:1.4rem">
-                            </div>
-                            <div class="mb-3"  style="margin-bottom: 2rem!important;">
-                                <label for="role" class="form-label" style="font-weight: 500;">Role</label>
-                                <select name="role">
-                                    <option value="Admin">Admin</option>
-                                    <option value="Author">Author</option>
-                                    <option value="Viewer">Viewer</option>
-                                </select>
-                            </div>
-                            <div class="mb-3 mt-2" style="float: right;">
-                                <button type="button" type="submit" class="btn submit" >Thêm người dùng</button>
-                            </div>
-                        </form>
+    <div class="button-group">
+        <a
+            href="https://app-webnovel.herokuapp.com/admin/user/create"
+            class="btn btn-big"
+        >Add User</a>
+        <a
+            href="https://app-webnovel.herokuapp.com/admin/user"
+            class="btn btn-big"
+        >Manage</a>
+    </div>
+    <div class="section upload-novel">
+        <div class="section-title">
+            Thêm User mới
+        </div>
+        <div class="section-content mt-4">
+            <div class="information">
+                <form action="create.html" method="post">
+                    <div class="mb-3" style="margin-bottom: 2rem!important;">
+                        <label
+                            for="name"
+                            class="form-label"
+                            style="font-weight: 500;"
+                        >Tên người dùng</label>
+                        <input
+                            type="text"
+                            id="regUser"
+                            class="form-control"
+                            autofocus
+                            placeholder="Feel Free"
+                            required
+                            style="padding:.6rem; font-size:1.4rem"
+                        />
                     </div>
-                </div>
+                    <div class="mb-3" style="margin-bottom: 2rem!important;">
+                        <label
+                            for="email"
+                            class="form-label"
+                            style="font-weight: 500;"
+                        >Email</label>
+                        <input
+                            type="email"
+                            class="form-control"
+                            placeholder="Email"
+                            required
+                            style="padding:.6rem; font-size:1.4rem"
+                        />
+                    </div>
+                    <div class="mb-3" style="margin-bottom: 2rem!important;">
+                        <label
+                            for="password"
+                            class="form-label"
+                            style="font-weight: 500;"
+                        >Mật khẩu</label>
+                        <input
+                            type="password"
+                            id="regPass"
+                            class="form-control"
+                            placeholder=""
+                            required
+                            style="padding:.6rem; font-size:1.4rem"
+                        />
+                    </div>
+                    <div class="mb-3" style="margin-bottom: 2rem!important;">
+                        <label
+                            for="comfpassword"
+                            class="form-label"
+                            style="font-weight: 500;"
+                        >Nhập lại mật khẩu</label>
+                        <input
+                            type="password"
+                            id="regPass2"
+                            class="form-control"
+                            placeholder=""
+                            required
+                            style="padding:.6rem; font-size:1.4rem"
+                        />
+                    </div>
+                    <div class="mb-3" style="margin-bottom: 2rem!important;">
+                        <label
+                            for="role"
+                            class="form-label"
+                            style="font-weight: 500;"
+                        >Role</label>
+                        <select name="role">
+                            <option value="Admin">Admin</option>
+                            <option value="Author">Author</option>
+                            <option value="Viewer">Viewer</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 mt-2" style="float: right;">
+                        <button
+                            type="button"
+                            type="submit"
+                            class="btn submit"
+                        >Thêm người dùng</button>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
+</div>

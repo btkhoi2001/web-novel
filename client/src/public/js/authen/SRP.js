@@ -174,11 +174,11 @@ document.addEventListener("DOMContentLoaded", () => {
                                 user.role === "Author"
                             ) {
                                 window.location.replace(
-                                    "http://localhost:3000/home"
+                                    "https://app-webnovel.herokuapp.com/home"
                                 );
                             } else {
                                 window.location.replace(
-                                    "http://localhost:3000/admin/novel"
+                                    "https://app-webnovel.herokuapp.com/admin/novel"
                                 );
                             }
                         });
