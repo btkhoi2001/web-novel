@@ -196,13 +196,14 @@ body {
 }
   
 .notification-btn .notification-menu {
-    min-height: 25rem;
+    height: 27.6rem;
+    overflow-y: scroll;
     position: absolute;
-    top: 4.4rem;
+    top: 6.4rem;
     right: -8rem;
     background-color: #e5e5e5;
     border: #989898;
-    padding: 1rem 2rem;
+    padding: 1rem 1.6rem;
     list-style: none;
     width: 32rem;
     border-radius: .8rem;
@@ -220,10 +221,36 @@ body {
     margin-bottom: 10px;
     border-radius: .8rem;
 }
+
+.notification-btn .notification-menu button:hover  {
+    background-color: #c6d1dfce;
+    cursor: pointer;
+}
   
 .notification-btn .notification-menu p {
     margin-bottom: 0;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+}
+
+.notification-btn .notification-menu .unseen {
+    margin-top: .2rem;
+    font-size: 1rem;
+    color: red;
+    float: right;
+    font-style: italic;
+}
+
+.notification-btn .notification-menu .seen {
+    margin-top: .2rem;
+    font-size: 1rem;
+    color: green;
+    float: right;
+    font-style: italic;
+}
+
+.notification-content {
+    flex:1;
+    margin-left: .6rem;
 }
 
 .text-ellipsis--3{
@@ -235,6 +262,16 @@ body {
     -webkit-box-orient: vertical;
     white-space: normal;
 }
+.text-ellipsis--4{
+    text-overflow:ellipsis;
+    overflow:hidden;
+    /* Addition lines for 4 line or multiline ellipsis */
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+
 
 .user {
     display: inline-block;
