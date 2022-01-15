@@ -95,6 +95,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         if(user.role === "Reader" || user.role === "Author") {
                             window.location.replace("http://localhost:3000/home")
                         }
+                        else {
+                            window.location.replace("http://localhost:3000/admin/novel")
+                        }
                     })
                     
                 }

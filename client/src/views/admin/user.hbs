@@ -1,0 +1,79 @@
+<div class="admin-content">
+            <div class="button-group">
+                <a href="create.html" class="btn btn-big">Add User</a>
+                <a href="index.html" class="btn btn-big">Manage</a>
+            </div>
+            <div class="content">
+                <h2 class="page-title">Users</h2>
+                <div class="searchbar-item search ">
+                    <input type="search" class="form-control search-input" placeholder="Tên tài khoản muốn tìm...">
+                    <div class="search-select-btn"><i class="fas fa-search"></i></div>
+                </div>
+                <table>
+                    <thead>
+                        <th>N</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th colspan="4">Action</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Name1</td>
+                            <td>Admin</td>
+                            <td><a href="#" class="edit">Edit</a></td>
+                            <td><a href="#" class="delete">Delete</a></td>
+                            <td><a href="#" class="chat">Chat</a></td>
+                            <td><a href="#banmodal" class="ban" data-toggle="modal">Ban</a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Name2</td>
+                            <td>Author</td>
+                            <td><a href="#" class="edit">Edit</a></td>
+                            <td><a href="#" class="delete">Delete</a></td>
+                            <td><a href="#" class="chat">Chat</a></td>
+                            <td><a href="#banmodal" class="ban" data-toggle="modal">Ban</a></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Name3</td>
+                            <td>Viewer</td>
+                            <td><a href="#" class="edit">Edit</a></td>
+                            <td><a href="#" class="delete">Delete</a></td>
+                            <td><a href="#" class="chat">Chat</a></td>
+                            <td><a href="#banmodal" class="ban" data-toggle="modal">Ban</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="modal fade" id="banmodal" role="dialog" tabindex="-1" aria-labelledby="banmodalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h5 class="modal-title" id="exampleModalLabel">CHO RA ĐẢO Ở!</h5>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <input id="one" type="radio" name="radios" value="one">
+                                <input id="two" type="radio" name="radios" value="two">
+                                <input id="three" type="radio" name="radios" value="three">
+                                <input id="four" type="radio" name="radios" value="four">
+                                <span></span>
+                                <label for="one">1 Day</label>
+                                <label for="two">1 Month</label>
+                                <label for="three">1 Year</label>
+                                <label for="four">Forever</label>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Đi</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>

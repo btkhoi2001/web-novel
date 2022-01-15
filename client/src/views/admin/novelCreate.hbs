@@ -1,0 +1,49 @@
+ <div class="admin-content">
+            <div class="button-group">
+                <a href="create.html" class="btn btn-big">Add Novel</a>
+                <a href="index.html" class="btn btn-big">Manage</a>
+            </div>
+            <div class="section upload-novel">
+                <div class="section-title">
+                   Thêm truyện mới
+                </div>
+                <div class="section-content mt-4">
+                    <div class="avatar">
+                        <label for="cover-img" class="form-label" style="font-weight: 500;">Ảnh bìa</label>
+                        <div class="avatar-wrapper text-center" style="height: 25rem; border-radius: 0;">
+                            <img class="profile-pic" src="https://pub.truyen.onl/image/600x800.png" />
+                            <div class="upload-button">
+                                <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                            </div>
+                            <input class="file-upload" id="cover-img" type="file" accept="image/*"/>
+                        </div>
+                        <span class="text-muted text-center">
+                            <em>Ấn vào ảnh trên để cập nhật ảnh bìa truyện</em>
+                        </span>
+                    </div>
+
+                    <div class="information">
+                        <form action="create.html">
+                            <div class="mb-3" style="margin-bottom: 2rem!important;">
+                                <label for="novelname" class="form-label" style="font-weight: 500;">Tên truyện</label>
+                                <input type="text" class="form-control" id="novelname" placeholder="Tên truyện"  style="padding:.6rem; font-size:1.4rem">
+                            </div>
+                            <div class="mb-3" style="margin-bottom: 2rem!important;">
+                                <label for="genres" class="form-label" style="font-weight: 500;">Thể loại</label>
+                                <input type="text"  class="form-control" id="genres" placeholder="Choose genres">
+                            </div>
+                            <div class="mb-3 intro" style="margin-bottom: 2rem!important;">
+                                <label for="intro" class="form-label" style="font-weight: 500;">Giới thiệu</label>
+                                <textarea class="form-control" id="intro" rows="8" 
+                                placeholder="Tóm tắt cho truyện không nên quá dài mà nên ngắn gọn, tập trung, thú vị. Phần này rất quan trọng vì nó quyết định độc giả có đọc hay không." 
+                                style="resize: none; padding:.6rem; font-size:1.4rem"></textarea>
+                            </div>
+                            <div class="mb-3 mt-2" style="float: right;">
+                                <button type="button" type="submit" class="btn submit" >Đăng truyện</button>
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

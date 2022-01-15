@@ -3,10 +3,13 @@ const chartRoute = require('./chartRoute');
 const genreRoute = require('./genreRoute');
 const accountRoute = require('./accountRoute');
 const novelIntroRoute = require('./novelIntroRoute');
+const adminRoute = require('./adminRoute');
 
 function route(app) {
 
     app.use('/authen', authenRoute);
+
+    app.use('/admin', adminRoute);
 
     app.use('/chart', chartRoute);
 
@@ -33,7 +36,7 @@ function route(app) {
                 url: req.url,
                 layout: 'homePage',
                 css: ['ErrorPage', 'base', 'responsive'],
-                js: ['ErrorPage'],
+                js: ['ErrorPage','isSignedIn'],
             });
           return;
         }

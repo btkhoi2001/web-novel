@@ -167,10 +167,36 @@
     margin-bottom: 10px;
     border-radius: .8rem;
 }
+
+.notification-btn .notification-menu .unseen-message:hover {
+    background-color: #c6d1dfce;
+    cursor: pointer;
+}
   
 .notification-btn .notification-menu p {
     margin-bottom: 0;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+}
+
+.notification-btn .notification-menu .unseen {
+    margin-top: .2rem;
+    font-size: 1rem;
+    color: red;
+    float: right;
+    font-style: italic;
+}
+
+.notification-btn .notification-menu .seen {
+    margin-top: .2rem;
+    font-size: 1rem;
+    color: green;
+    float: right;
+    font-style: italic;
+}
+
+.notification-content {
+    flex:1;
+    margin-left: .6rem;
 }
 
 .text-ellipsis--3{
