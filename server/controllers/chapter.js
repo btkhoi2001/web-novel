@@ -5,6 +5,7 @@ import { NovelRead } from "../models/NovelRead.js";
 import { NovelCounter } from "../models/NovelCounter.js";
 import { Follow } from "../models/Follow.js";
 import { Notification } from "../models/Notification.js";
+import { Bookmark } from "../models/Bookmark.js";
 
 export const getChapter = async (req, res) => {
     const { novelId } = req.params;
@@ -82,8 +83,18 @@ export const getChapterById = async (req, res) => {
                 title: 1,
                 chapterOrder: 1,
                 content: 1,
-            }
+            },
+            { lean: true }
         );
+
+        if (userId)
+            chapter.isBookmarked = (await Bookmark.exists({
+                userId,
+                novelId,
+                chapterId,
+            }))
+                ? true
+                : false;
 
         await NovelCounter.findOneAndUpdate(
             { novelId, name: "view" },

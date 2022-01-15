@@ -416,6 +416,32 @@ export const getNovelById = async (req, res) => {
                     },
                 },
                 {
+                    $lookup: {
+                        from: "follows",
+                        let: {
+                            userId: parseInt(userId),
+                            novelId: "$novelId",
+                        },
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $and: [
+                                            {
+                                                $eq: ["$userId", "$$userId"],
+                                            },
+                                            {
+                                                $eq: ["$novelId", "$$novelId"],
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+                        ],
+                        as: "follow",
+                    },
+                },
+                {
                     $group: {
                         _id: {
                             novelId: "$novelId",
@@ -428,6 +454,7 @@ export const getNovelById = async (req, res) => {
                             genre: "$genre",
                             genreId: "$genreId",
                             isCompleted: "$isCompleted",
+                            follow: "$follow",
                         },
                         rating: { $avg: "$rating.rating" },
                         ratingCount: {
@@ -526,6 +553,13 @@ export const getNovelById = async (req, res) => {
                         rating: { $ifNull: ["$rating", 0] },
                         ratingCount: { $size: "$ratingCount" },
                         chapters: { $size: "$chapters" },
+                        isFollowed: {
+                            $cond: [
+                                { $ne: [{ $size: "$_id.follow" }, 0] },
+                                true,
+                                false,
+                            ],
+                        },
                     },
                 },
             ])
