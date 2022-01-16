@@ -374,23 +374,21 @@
             crossorigin="anonymous"
         ></script>
 
+
         <script>
-            let novelId =
-            {{novelID}}; let chapterId =
-            {{chapterID}}; const errorBtn =
-            document.querySelector('.chapter-error'); const modal =
-            document.querySelector('.modal'); const modalClose =
-            document.querySelector('.modal-close'); const modalContainer
-            =document.querySelector('.modal-container') ;
-            errorBtn.addEventListener('click', function () { console.log('err',
-            errorBtn) modal.classList.toggle('d-none');
+            let novelId = {{novelID}}; 
+            let chapterId = {{chapterID}}; 
+            const errorBtn = document.querySelector('.chapter-error'); 
+            const modal = document.querySelector('.modal'); 
+            const modalClose = document.querySelector('.modal-close'); 
+            const modalContainer =document.querySelector('.modal-container') ;
+            errorBtn.addEventListener('click', function () { console.log('err', errorBtn) 
+            modal.classList.toggle('d-none');
             $('#modal-email').val(""); $('#modal-error').val(""); });
             modalClose.addEventListener('click', function () {
-            modal.classList.toggle('d-none'); }); // Đóng modal khi nhận click
-            vào màn hình (class modal đang bao hết màn hình)
+            modal.classList.toggle('d-none'); }); // Đóng modal khi nhận click vào màn hình (class modal đang bao hết màn hình)
             modal.addEventListener('click',function () {
-            modal.classList.toggle('d-none'); }); // DỪng việc đóng modal nếu
-            click vào bên trong giao diện modal
+            modal.classList.toggle('d-none'); }); // DỪng việc đóng modal nếu click vào bên trong giao diện modal
             modalContainer.addEventListener('click', function (event) {
             event.stopPropagation(); }) ;
 
